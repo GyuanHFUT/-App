@@ -4,8 +4,9 @@
 .list-block{
     position: relative;
     top: 100px;
+    opacity:0.9;
 }
 .content-block{
     position: relative;
-    top: 200px;
+    top: 150px;
 }
