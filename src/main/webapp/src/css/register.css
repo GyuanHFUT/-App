@@ -1,0 +1,11 @@
+#register{
+    background-image: url(../img/1.jpg);
+}
+.list-block{
+    position: relative;
+    top: 100px;
+}
+.content-block{
+    position: relative;
+    top: 200px;
+}
