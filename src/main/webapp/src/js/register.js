@@ -1,5 +1,21 @@
 $(document).ready(function () {
           $.init();
+           $("#yanzheng").click(function () {
+                 $.ajax({
+                  type: 'get',
+                  url: '',
+                  data:'' ,
+                  success: function(data){
+                        if(data.success){
+                            $.toast('验证码已发送，请查收!')
+                        }
+                        else{
+                          $.toast('数据异常，请重试!')
+                        }
+                 }
+            })          
+           })
+
             function checkPhone(phone){ 
               if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))){ 
                  $.toast("请输入正确的手机号码。");  
@@ -16,23 +32,23 @@ $(document).ready(function () {
                   url: '',
                   data:'' ,
                   success: function(data){
-                        if(data){
+                        if(data.success){
                             $.alert('该手机号已被注册!')
                         }
                  }
             })
          }
      } ) 
-     $("#uyanzheng").blur(function () {
-          var yanzheng = $("#uyanzheng").val();
-         if (yanzheng.length!=6){
-          $.toast('验证码格式错误!')
-            $("#uyanzheng").focus();
-         }
-         else{
-           return true; 
-         }
-     } ) 
+     // $("#uyanzheng").blur(function () {
+     //      var yanzheng = $("#uyanzheng").val();
+     //     if (yanzheng.length!=6){
+     //      $.toast('验证码格式错误!')
+     //        $("#uyanzheng").focus();
+     //     }
+     //     else{
+     //       return true; 
+     //     }
+     // } ) 
 
      $("#upwd").blur(function () {
           var pwd = $("#upwd").val();
@@ -63,7 +79,7 @@ $(document).ready(function () {
                     $.router.load("../pages/choice_que.html"); 
                 })}  
                 else{
-                   $.alert("数据异常，请重试!");
+                   $.alert("验证码错误，请重试!");
                 }
                 }
             })
