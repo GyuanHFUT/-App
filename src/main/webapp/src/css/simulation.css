@@ -1,0 +1,73 @@
+*{margin: 0;padding: 0}
+p {
+margin:0;
+}
+.words{
+padding:0.4rem;
+}
+.words .select{
+    height: 2.5rem;
+    line-height:2.5rem;
+    display: block;
+    text-align: left;
+    font-weight: normal;
+    font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
+
+}
+.words .select:hover{
+    color:red;
+}
+.words .select span{
+    font-size:1.2rem;
+    margin-left: 0.5rem;
+}
+.words .iconfont{
+    font-size:1.6rem;
+    position:relative;
+    bottom:0.2rem;
+}
+.imgs{
+  padding:0.4rem;
+}
+
+.imgs .select img{
+  width:8rem;
+  height:5rem;
+}
+.imgs .select .iconfont{
+    font-size:1.6rem;
+    position:relative;
+    bottom:4.2rem;
+}
+.news h3{
+  font-family: "Helvetica Neue",Helvetica,sans-serif;
+  font-size:1rem;
+  line-height: 1.5;
+  color: #3d4145;
+}
+
+.show_trans{
+  text-align:center;
+}
+.show_trans img{
+  width:95%;
+  height:9rem;
+}
+.trans_input input{
+  width:70%;
+  background-color: rgba(255, 255, 255, 0.03);
+  margin-bottom:1rem;
+  border:0px;
+  border-bottom:#000000 1px solid;
+}
+.blank{
+  background-color:#fff;
+  /*text-align:center;*/
+}
+.choice_blank{
+  display:inline-block;
+  width:1.5rem;
+  height:1.5rem;
+  border:1px solid #ccc;
+ text-align:center;
+}
