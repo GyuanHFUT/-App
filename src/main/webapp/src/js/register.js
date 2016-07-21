@@ -12,7 +12,7 @@ $(document).ready(function () {
               data: "account",
               success: function(data){
                     if(data){
-                        $.alert('该账号已被注册!')
+                        $.alert('该手机号已被注册!')
                     }
              }
         })

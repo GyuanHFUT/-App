@@ -1,16 +1,24 @@
-#register{
+.page{
     background-image: url(../img/1.jpg);
+}
+.button{
+    opacity:0.8;
 }
 .list-block{
     position: relative;
-    top: 100px;
+    top: 5rem;
     opacity:0.85;
 }
 .content-block{
     position: relative;
-    top: 150px;
+    top: 7.5rem;
 }
 .list-block ul {
     width: 94%;
     left: 3%;
     }
+#yanzheng{
+    position:absolute;
+    top: 0.55rem;
+    left:12rem;
+}
