@@ -44,9 +44,13 @@
                     <!-- 这里是页面内容区 -->
                     <div class="content content-padded">
                        <h3>1.关键词语选择</h3>
-                       <audio src="" preload class="audiox">您的浏览器不支持音频播放。</audio>
-                       <i class="icon iconfont">&#xf001b;</i>
-                       <i class="icon iconfont">&#xe61b;</i>
+                       
+                       <div class="yinpin"> 
+                       <audio src="../src/audio/1.mp3" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
+                       <a class="icon iconfont pull-right"  class="playn">&#xf001b;</a>
+                       <a class="icon iconfont pull-right"  class="stopn" style="display:none">&#xf0019;</a>
+                       </div>
+
                         <div class="selects words">
                             <div class="select"><i class="icon iconfont">&#xe61b;</i><span>bad</span><br></div>
                             <div class="select"><i class="icon iconfont">&#xe61b;</i><span>bad</span><br></div>
@@ -166,7 +170,6 @@
 
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
-
-    <script>$.init()</script>
+    <script type='text/javascript' src='../src/js/practice.js' charset='utf-8'></script>
   </body>
 </html>
