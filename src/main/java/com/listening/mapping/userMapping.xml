@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.listening.mapper.UserMapper">
+    <insert id="insertUser">
+        insert user (user_type, user_name, user_nickname, user_pwd) values (#{user_type}, #{user_name}, #{user_nickname}, #{user_pwd});
+    </insert>
+    <select id="userLogin" resultType="com.listening.domain.User">
+        SELECT *
+        from user WHERE user_name=#{user_name} and user_pwd=#{user_pwd};
+    </select>
+    <select id="selectUserByName" resultType="com.listening.domain.User">
+        SELECT *
+        FROM user WHERE user_name=#{user_name};
+    </select>
+</mapper>

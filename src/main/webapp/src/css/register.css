@@ -1,8 +1,8 @@
-.page{
-    background-image: url(../img/1.jpg);
-}
+// .page{
+//     background-image: url(../img/1.jpg);
+// }
 .button{
-    opacity:0.8;
+    // opacity:0.8;
 }
 .list-block{
     position: relative;
@@ -11,7 +11,7 @@
 }
 .content-block{
     position: relative;
-    top: 7.5rem;
+    top: 4.5rem;
 }
 .list-block ul {
     width: 94%;
@@ -21,4 +21,18 @@
     position:absolute;
     top: 0.55rem;
     left:12rem;
+}
+#zhaohui{
+    position:absolute;
+    top: 0.55rem;
+    left:10.6rem;
+}
+.head_photo img {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+    position:absolute;
+    top: 1rem;
+    left:7.5rem;
 }
