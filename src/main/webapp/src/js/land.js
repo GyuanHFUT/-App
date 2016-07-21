@@ -7,15 +7,17 @@ $(document).ready(function () {
         var users = {"user_id":account, "user_pwd":name};
             $.ajax({
               type: 'get',
-              url: '',
+              url: 'user/userLogin',
               data: "users",
               success: function(data){
-                    $.alert("登陆成功!", function () {
+                if(data.success){   
+                  $.alert("登陆成功!", function () {
                     $.router.load("../pages/choice_que.html"); 
-        })},
-                  error: function(xhr, type){
-                    $.alert('登陆失败，请重试!')
+        })}
+                  else{
+                     $.alert("数据异常，请重试!");
                   }
+                 }
             })}
             else{$.alert("用户名和密码不能为空！")}
     });

@@ -55,15 +55,17 @@ $(document).ready(function () {
         var users = {"user_id":account, "user_name":name,"user_pwd":pwd,"yanzheng":yanzheng};
             $.ajax({
               type: 'get',
-              url: '',
+              url: 'user/addUser',
               data: "users",
               success: function(data){
+                if(data.success){
                     $.alert("注册成功!", function () {
                     $.router.load("../pages/choice_que.html"); 
-        })},
-                  error: function(xhr, type){
-                    $.alert('注册失败，请重试!')
-                  }
+                })}  
+                else{
+                   $.alert("数据异常，请重试!");
+                }
+                }
             })
           }
         else {$.alert("验证码和昵称不能为空！")}

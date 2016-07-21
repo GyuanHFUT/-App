@@ -28,7 +28,7 @@ public class UserController {
         User user1 = userManager.userLogin(user);
         map.put("user", user1);
         map.put("success", true);
-        map.put("msg", "登陆成功！");
+        map.put("msg", "注册成功！");
         return map;
     }
 
