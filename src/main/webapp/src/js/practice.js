@@ -1,15 +1,17 @@
 $(document).ready(function () {
     $.init();
     console.log("哈哈哈");
-    $(".playn").click(function(){
+    $(".playn").on('click',function(){
         $(".playn").hide();
         $(".stopn").show();
-        $(".audion").play();
+        var x = document.getElementsByClassName("audion");
+        window,close();
+        x.play();
     })
     $(".stopn").click(function(){
         $(".stopn").hide();
         $(".playn").show();
-        $(".audion").stop();
+        $(".audion").pause();
     })
 
 })
