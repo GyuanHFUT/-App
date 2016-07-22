@@ -71,3 +71,18 @@ padding:0.4rem;
   border:1px solid #ccc;
  text-align:center;
 }
+.selects .xiangjie-wapper {
+    box-sizing: border-box;
+    padding: .96666667rem .7rem;
+}
+.xiangjie-wapper h3 {
+    font-size: 1rem;
+    color: #18b4ed;
+    font-weight: bold;
+
+}
+.xiangjie-wapper .explain-p {
+    font-size: 1rem;
+    line-height: 1.733;
+    color: #8e734d;
+}
