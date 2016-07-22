@@ -16,14 +16,14 @@ $(document).ready(function () {
         $(".playn").hide();
         $(".stopn").show();
         bofang();
-        // $(".stopn").style.display="block";
-        // var x = document.getElementsByClassName("audion");
-        // x.play();
     })
     $(".stopn").click(function(){
         $(".stopn").hide();
         $(".playn").show();
         zhanting();
     })
-
+    $(".open-xiangjie").click(function(){
+        $(".xiangjie-wapper").toggle();
+         $(".xiangjie-wapper").addClass('active');
+    })
 })
