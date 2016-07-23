@@ -11,7 +11,7 @@ $(document).ready(function () {
         var x = document.getElementById("audion");
         x.pause();
         }
-    console.log("哈哈哈");
+    console.log("哈哈哈我最帅嘿嘿嘿");
     $(".playn").on('click',function(){
         $(".playn").hide();
         $(".stopn").show();
