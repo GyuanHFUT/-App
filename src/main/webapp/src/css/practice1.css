@@ -6,6 +6,22 @@ p {
 ul, li {
     list-style: none;
 }
+.box-wrap  ul li.current {
+    box-shadow:0px 0px 0px 1px black; 
+}
+
+.duicolor,.dadui b{
+  color:#18b4ed;
+}
+.cuocolor,.dacuo b{
+  color:red;
+}
+.popdui{
+  background:#18b4ed !important;
+}
+.popcuo{
+  background: #f25e5e;
+}
 .box-wrap ul li{
     margin: 0.4rem;
 
@@ -18,22 +34,6 @@ ul, li {
     width: 2rem;
     display: inline;
     float: left;
-}
-.box-wrap  ul li.current {
-    box-shadow:0px 0px 0px 1px black; 
-}
-
-.dadui b{
-  color:#18b4ed;
-}
-.dacuo b{
-  color:red;
-}
-.duicolor{
-  color:#18b4ed;
-}
-.cuocolor{
-  color:red;
 }
 .xiangjie-wapper{
   display:none;

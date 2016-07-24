@@ -22,8 +22,22 @@ $(document).ready(function () {
         $(".playn").show();
         zhanting();
     })
+    
     $(".open-xiangjie").click(function(){
-        $(".xiangjie-wapper").toggle();
-         $(".xiangjie-wapper").addClass('active');
+         var parents  =  $(this).parent().parent();
+         var flag=parents.find(".xiangjie-wapper");
+          flag.toggle();
+          // console.log($(flag).css("display")==='none');
+          $(this).addClass('active');
+          if ($(flag).css("display")==='none') {
+               $(this).removeClass('active');
+          }
+          else{
+                $(this).addClass('active');
+           };
+         // parents.find(".xiangjie-wapper").toggle(
+         //        ,
+         //        function(){ $(this).removeClass('active')}
+         //    ) 
     })
 })
