@@ -4,10 +4,10 @@ $(document).ready(function () {
     $(".select").one('click',function(){
         var x=$(this).attr('value');
         var tihao=parseInt(x);
-        var flag=$(tihao).attr('value');
+        // var flag=$(tihao).attr('value');
         var parents  =  $(this).parent().parent();
         var parentss=parents.parent();   
-        console.log( typeof x);     
+        console.log(x);     
         // console.log($('.flex[value="x"]'));   
         // console.log( $('.flex[value="1"]'));  
        console.log( $('.flex:eq(1)'))

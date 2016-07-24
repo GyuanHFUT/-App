@@ -40,4 +40,52 @@ $(document).ready(function () {
          //        function(){ $(this).removeClass('active')}
          //    ) 
     })
+    //收藏部分！
+    $(".shoucang").click(function(){
+      if ($(this).hasClass('active')) 
+          {
+            $(this).removeClass('active');
+            $.ajax({
+                    type: 'get',
+                    url: '',
+                    data: "users",
+                    success: function(data){
+                      if(data.success){   
+                        $.toast("取消收藏！")}
+                        else{
+                           $.toast("数据异常，请重试!");
+                           $(this).addClass('active');
+                        }
+                       },
+                  })          
+      }
+      else{
+        $(this).addClass('active');
+        $.ajax({
+              type: 'get',
+              url: '',
+              data: "users",
+              success: function(data){
+                if(data.success){   
+                  $.toast("收藏成功！")}
+                  else{
+                     $.toast("数据异常，请重试!");
+                     $(this).removeClass('active');
+                  }
+                 },
+            }) 
+      }
+    })
+    //滑动翻页部分
+    $(".page").swipeLeft(function(){
+      var flag=$(this).attr("id");
+      flag++;
+      console.log(flag);
+      // var next=parseInt(flag);
+      // console.log(typeof(next+1));
+      $.router.load("#2");
+    })
+    $(".page").swipeRight(function(){
+      $.router.load("#1");
+    })
 })
