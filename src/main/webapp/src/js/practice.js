@@ -1,7 +1,10 @@
 
 $(document).ready(function () {
     $.init();
-    function bofang()
+    $(document).on("pageInit", "#page-index", function(e, pageId, $page) {
+        alert("hhhh");
+    });
+    function bofang(x)
         {
         var x = document.getElementById("audion");
         x.play();
@@ -11,18 +14,24 @@ $(document).ready(function () {
         var x = document.getElementById("audion");
         x.pause();
         }
-    console.log("哈哈哈我最帅嘿嘿嘿");
-    $(".playn").on('click',function(){
-        $(".playn").hide();
-        $(".stopn").show();
-        bofang();
-    })
-    $(".stopn").click(function(){
-        $(".stopn").hide();
-        $(".playn").show();
-        zhanting();
-    })
-    
+    // console.log("哈哈哈我最帅嘿嘿嘿");
+    // $(".playn").on('click',function(){
+    //     $(".playn").hide();
+    //     $(".stopn").show();
+    //     bofang();
+    // })
+    // $(".stopn").click(function(){
+    //     $(".stopn").hide();
+    //     $(".playn").show();
+    //     zhanting();
+    // })
+    $('.yinpinicon').tap(function(){
+        $(".playn").toggle();
+        $(".stopn").toggle();
+        var flag=$(this).parent().find('audio');
+        flag.play();
+        
+    } )
     $(".open-xiangjie").click(function(){
          var parents  =  $(this).parent().parent();
          var flag=parents.find(".xiangjie-wapper");
@@ -79,13 +88,37 @@ $(document).ready(function () {
     //滑动翻页部分
     $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
+      if (flag<$(".page").length) {
+      $('.flex:eq('+flag+')'). addClass('current') 
+           .siblings().removeClass('current');            
       flag++;
-      console.log(flag);
-      // var next=parseInt(flag);
-      // console.log(typeof(next+1));
-      $.router.load("#2");
-    })
+      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
+      $.router.load("#"+flag+"");        
+  }else{
+     $.toast("已经是最后一题了")
+  }
+ })
     $(".page").swipeRight(function(){
-      $.router.load("#1");
+     var flag=$(this).attr("id");
+     if (flag>1) {
+         flag--;
+     $('.flex:eq('+(flag-1)+')'). addClass('current') 
+           .siblings().removeClass('current');           
+     
+      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
+      $.router.load("#"+flag+"");        
+     }
+     else{
+        $.toast("已经是第一题了")
+     }
     })
+
+    $(".flex").tap(function(){//点击盒子切换页面
+      var flag=$(this).html();       
+     $('.flex:eq('+(flag-1)+')'). addClass('current') 
+           .siblings().removeClass('current');           
+      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
+      $.router.load("#"+flag+"");        
+    })
+
 })
