@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface UserMapper {
-    public void insertUser(User user);
-    public User selectUserByName(String user_name);
+    public void insertUser(@Param(value = "user_name") String user_name, @Param(value="user_pwd") String user_pwd, @Param(value = "user_nickname") String user_nickname);
+    public User selectUserByName(@Param(value = "user_name") String user_name);
     public User userLogin(@Param(value = "user_name") String user_name, @Param(value="user_pwd") String user_pwd);
+    public void updateUserByName(@Param(value = "user_name") String user_name,@Param(value="user_pwd") String user_pwd);
 }
