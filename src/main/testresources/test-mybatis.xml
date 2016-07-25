@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass"  value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl"  value="jdbc:mysql://121.251.19.130/listening?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+        <property name="user"  value="root"></property>
+        <property name="password" value="615615"></property>
+        <!-- 请求超时时间 -->
+        <property name="checkoutTimeout" value="30000" />
+        <!-- 每60秒检查所有连接池中的空闲连接。默认值: 0，不检查 -->
+        <property name="idleConnectionTestPeriod" value="30" />
+        <!-- 连接数据库连接池最大空闲时间 -->
+        <property name="maxIdleTime" value="300" />
+        <!-- 连接池初始化连接数 -->
+        <property name="initialPoolSize" value="5" />
+        <property name="minPoolSize" value="5" />
+        <property name="maxPoolSize" value="20" />
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+        <property name="acquireIncrement" value="5" />
+
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:com/listening/mapping/*.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.listening.mapper"/>
+        <property name="SqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+
+
+</beans>
