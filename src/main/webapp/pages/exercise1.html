@@ -122,7 +122,7 @@
                         <div class="xiangjie-wapper">
                           <h3>试题详解：</h3>
                             <div class="explain-p">
-                             <p>“违反道路交通安全法，违反法律法规即为<a href="#2">内联的新页面</a>违法行为。官方已无违章/违规的说法。</p>
+                             <p>违反道路交通安全法，违反法律法规即为<a href="#2">内联的新页面</a>违法行为。官方已无违章/违规的说法。</p>
                             </div>
                             <h3>听力原文：</h3>
                             <div class="explain-p">
@@ -205,10 +205,10 @@
                        <span class="weida">未答题 <b>1311</b></span> 
                        </div> 
                        <div class="box-wrap">
-                          <ul>
-                              <!-- <a href="#1"> --><li class="flex current close-popup">1</li><!-- </a> -->
-                              <!-- <a href="#2"> --><li class="flex close-popup">2</li><!-- </a> -->
-                             <!--  <a href="#3"> --><li class="flex close-popup">3</li><!-- </a> -->
+                          <ul class="close-popup">
+                              <li class="flex current">1</li> 
+                              <li class="flex">2</li>
+                              <li class="flex">3</li>
                               <li class="flex">4</li>
                               <li class="flex">5</li>
                               <li class="flex">6</li>
@@ -223,6 +223,13 @@
            </div>         
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
+         <script type="text/x-handlebars-template" id="myTemplate">
+         <header class="bar bar-nav">
+             <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
+            <span class="title"> {{title}}</span>
+        </header>
+     </script>
     <script type='text/javascript' src='../src/js/practice.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/js/exercise1.js' charset='utf-8'></script>
   </body>
