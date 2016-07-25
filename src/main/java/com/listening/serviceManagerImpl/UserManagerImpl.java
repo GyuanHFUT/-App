@@ -1,7 +1,9 @@
 package com.listening.serviceManagerImpl;
 
 import com.listening.domain.User;
+import com.listening.domain.Word;
 import com.listening.mapper.UserMapper;
+import com.listening.mapper.WordMapper;
 import com.listening.serviceManager.UserManager;
 import com.listening.util.exception.MessageException;
 import com.listening.util.number.RandomNumber;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,6 +84,7 @@ public class UserManagerImpl implements UserManager {
                 throw new MessageException("密码不正确，请重新输入！");
             }else {
                 User user2 = userMapper.userLogin(user.getUser_name(), user.getUser_pwd());
+                SessionUtils.bindSession("user", user2);
                 return user2;
             }
 
@@ -142,6 +146,8 @@ public class UserManagerImpl implements UserManager {
         }
         return map;
     }
+
+
 
 
 }

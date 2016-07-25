@@ -1,6 +1,7 @@
 package com.listening.serviceManager;
 
 import com.listening.domain.User;
+import com.listening.domain.Word;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,4 +19,6 @@ public interface UserManager {
     public Map<String,Object> sentUserCode(String user_name) throws IOException;
 
     public Map<String,Object> backUserPwd(String user_name, String user_pwd, String user_code);
+
+
 }

@@ -1,6 +1,7 @@
 package com.listening.controller;
 
 import com.listening.domain.User;
+import com.listening.domain.Word;
 import com.listening.serviceManager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

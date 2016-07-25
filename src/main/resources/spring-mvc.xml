@@ -31,8 +31,24 @@
     </mvc:annotation-driven>
     <context:component-scan base-package="com.listening.controller"/>
     <!--过滤器配置-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--将加载资源文件的路径去除掉-->
+            <mvc:exclude-mapping path="/src/img/**"/>
+            <mvc:exclude-mapping path="/src/lib/**"/>
+            <mvc:exclude-mapping path="/pages/**"/>
+            <mvc:exclude-mapping path="/src/**"/>
+            <bean id="Interceptor" class="com.listening.util.interceptor.Interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!--对静态资源的访问-->
+    <mvc:resources mapping="/img/**" location="/src/img/"/>
+    <mvc:resources mapping="/css/**" location="/src/css/"/>
+    <mvc:resources mapping="/js/**" location="/src/js/"/>
+    <mvc:resources mapping="/lib/**" location="/src/lib/"/>
+    <mvc:resources mapping="/pages/**" location="/pages"/>
     <!--添加默认处理静态资源的配置 -->
     <mvc:default-servlet-handler/>
     <!--上传文件-->
