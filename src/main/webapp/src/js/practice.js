@@ -1,10 +1,7 @@
 
 $(document).ready(function () {
     $.init();
-    $(document).on("pageInit", "#page-index", function(e, pageId, $page) {
-        alert("hhhh");
-    });
-    function bofang(x)
+        function bofang(x)
         {
         var x = document.getElementById("audion");
         x.play();
@@ -50,7 +47,7 @@ $(document).ready(function () {
          //    ) 
     })
     //收藏部分！
-    $(".shoucang").click(function(){
+    $(".shoucang").tap(function(){
       if ($(this).hasClass('active')) 
           {
             $(this).removeClass('active');
@@ -105,7 +102,8 @@ $(document).ready(function () {
      $('.flex:eq('+(flag-1)+')'). addClass('current') 
            .siblings().removeClass('current');           
      
-      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
+      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");  
+      console.log(flag);     
       $.router.load("#"+flag+"");        
      }
      else{
@@ -120,5 +118,4 @@ $(document).ready(function () {
       $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
       $.router.load("#"+flag+"");        
     })
-
 })
