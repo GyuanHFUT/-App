@@ -11,8 +11,28 @@ public class Word {
     private String option_A;
     private String option_B;
     private String option_C;
+    private String listen_text;
+    private String listen_explain;
     private int listen_score;
     private int listen_degree;
+
+    public String getListen_text() {
+        return listen_text;
+    }
+
+    public void setListen_text(String listen_text) {
+        this.listen_text = listen_text;
+    }
+
+    public String getListen_explain() {
+        return listen_explain;
+    }
+
+    public void setListen_explain(String listen_explain) {
+        this.listen_explain = listen_explain;
+    }
+
+
 
     public int getListen_id() {
         return listen_id;
