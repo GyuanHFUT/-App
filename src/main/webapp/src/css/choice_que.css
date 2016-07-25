@@ -5,6 +5,7 @@
 a{
  text-decoration:none;
 }
+
 .panel-left{
   background-color:#1E1E1E;
 }
@@ -64,4 +65,22 @@ margin:1rem;
 .content .day_word p{
   text-align:left;
   margin:0;
+}
+#practice .content-block{
+  margin:auto 0;
+}
+.selects .xiangjie-wapper {
+    box-sizing: border-box;
+    padding: .96666667rem .7rem;
+}
+.xiangjie-wapper h3 {
+    font-size: 1.03333333rem;
+    color: #18b4ed;
+    font-weight: bold;
+
+}
+.xiangjie-wapper .explain-p {
+    font-size: 1.03333333rem;
+    line-height: 1.733;
+    color: #8e734d;
 }

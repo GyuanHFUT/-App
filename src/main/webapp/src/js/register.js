@@ -1,44 +1,90 @@
 $(document).ready(function () {
           $.init();
-         $("#youke").click(function () {
-            $.router.load("/home"); 
-         })
+           $("#yanzheng").click(function () {
+                 $.ajax({
+                  type: 'get',
+                  url: '',
+                  data:'' ,
+                  success: function(data){
+                        if(data.success){
+                            $.toast('验证码已发送，请查收!')
+                        }
+                        else{
+                          $.toast('数据异常，请重试!')
+                        }
+                 }
+            })          
+           })
 
+            function checkPhone(phone){ 
+              if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))){ 
+                 $.toast("请输入正确的手机号码。");  
+                 $("#account").focus();
+                  return false; 
+              } return true; 
+          }
          $("#account").blur(function () {
             var account = $("#account").val();
-            $.ajax({
-              type: 'get',
-              url: '',
-              data: "account",
-              success: function(data){
-                    if(data){
-                        $.alert('该账号已被注册!')
-                    }
-             }
-        })
+            var flag=checkPhone(account);
+            if(flag){
+             $.ajax({
+                  type: 'get',
+                  url: '',
+                  data:'' ,
+                  success: function(data){
+                        if(data.success){
+                            $.alert('该手机号已被注册!')
+                        }
+                 }
+            })
+         }
      } ) 
+     // $("#uyanzheng").blur(function () {
+     //      var yanzheng = $("#uyanzheng").val();
+     //     if (yanzheng.length!=6){
+     //      $.toast('验证码格式错误!')
+     //        $("#uyanzheng").focus();
+     //     }
+     //     else{
+     //       return true; 
+     //     }
+     // } ) 
+
+     $("#upwd").blur(function () {
+          var pwd = $("#upwd").val();
+         if (pwd.length>=4&&pwd.length<=16){
+          return true;
+         }
+         else{
+            $.toast('密码请设置4到16位之间!')
+            $("#upwd").focus();
+         }
+     } ) 
+
         $("#send").click(function () {
         var account = $("#account").val();
         var pwd = $("#upwd").val();
         var name=$("#uname").val();
-        if (name.length!=0){
-            if (pwd.length>=4&&pwd.length<=16&&account.length>=4&&account.length<=16){
-        var users = {"user_id":account, "user_name":name,"user_pwd":pwd};
+         var yanzheng=$("#uyanzheng").val();
+        if (yanzheng.length!=0&&name.length!=0){
+           
+        var users = {"user_id":account, "user_name":name,"user_pwd":pwd,"yanzheng":yanzheng};
             $.ajax({
-              type: 'POST',
-              url: '',
+              type: 'get',
+              url: 'user/addUser',
               data: "users",
               success: function(data){
+                if(data.success){
                     $.alert("注册成功!", function () {
-                    $.router.load("/home"); 
-        })},
-                  error: function(xhr, type){
-                    $.alert('注册失败，请重试!')
-                  }
-            })}
-            else{$.alert("账户和密码请设置4到16位之间！")}
-        }
-        else {$.alert("昵称不能为空！")}
+                    $.router.load("../pages/choice_que.html"); 
+                })}  
+                else{
+                   $.alert("验证码错误，请重试!");
+                }
+                }
+            })
+          }
+        else {$.alert("验证码和昵称不能为空！")}
     });
 
 })
