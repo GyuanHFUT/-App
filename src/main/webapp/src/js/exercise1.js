@@ -29,7 +29,7 @@ $(document).ready(function () {
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
               }
-                  else{
+                  else{ 
                      $.toast("已经是最后一题了")
               }
             };
