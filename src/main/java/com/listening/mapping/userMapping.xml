@@ -3,7 +3,7 @@
 
 <mapper namespace="com.listening.mapper.UserMapper">
     <insert id="insertUser">
-        insert user ( user_name, user_pwd, user_nickname) values ( #{user_name}, #{user_pwd}, #{user_nickname});
+        insert INTO user( user_name, user_pwd, user_nickname) values ( #{user_name}, #{user_pwd}, #{user_nickname});
     </insert>
     <select id="userLogin" resultType="com.listening.domain.User">
         SELECT *

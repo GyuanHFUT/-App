@@ -147,7 +147,19 @@ public class UserManagerImpl implements UserManager {
         return map;
     }
 
+    @Override
+    public Map<String, Object> deleteUser(int user_id) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try{
+            userMapper.deleteUser(user_id);
+            map.put("success", true);
+            map.put("msg", "注销成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+        return map;
+    }
 
 
 }

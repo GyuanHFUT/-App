@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.listening.mapper.EssayMapper">
+    <select id="selectAllEssay" resultType="com.listening.domain.Essay">
+        SELECT *
+        from essay;
+    </select>
+
+    <select id="selectEssayOfNum" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM essay;
+    </select>
+
+    <select id="selectEssayOfMin" resultType="java.lang.Integer">
+        SELECT MIN(listen_id)
+        FROM essay;
+    </select>
+
+</mapper>

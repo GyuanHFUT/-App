@@ -1,5 +1,6 @@
 package com.listening.util.random;
 
+import com.listening.domain.ShortDialogue;
 import com.listening.domain.Word;
 
 import java.util.ArrayList;
@@ -35,14 +36,24 @@ public class RandomTitle {
         }
         return array;
     }
-
-    public static List<Word> reconstructList(List<Word> list, int s1, int s2, int n){
+//利用泛型使得list传入不同的对象
+    public static <T> List<T> reconstructList(List<T> list, int s1, int s2, int n){
         int[] array = RandomTitle.createRandom(s1, s2, n);
-        List<Word> list1 = new ArrayList<Word>();
+        List<T> list1 = new ArrayList<T>();
         for(int i: array){
-            Word word = list.get(i-s1);
-            list1.add(word);
+            //Word word = list.get(i-s1);
+            list1.add(list.get(i-s1));
         }
         return list1;
     }
+
+/*    public static List<ShortDialogue> reconstructList(List<ShortDialogue> list, int s1, int s2, int n){
+        int[] array = RandomTitle.createRandom(s1, s2, n);
+        List<ShortDialogue> list1 = new ArrayList<ShortDialogue>();
+        for(int i: array){
+            ShortDialogue shortDialogue = list.get(i-s1);
+            list1.add(shortDialogue);
+        }
+        return list1;
+    }*/
 }
