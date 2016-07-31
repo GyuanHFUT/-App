@@ -1,21 +1,122 @@
 $(document).ready(function(){
-  var data ={
-    "title":"专项学习测试"
+  var data = [
+                       {     "listen_id":1,
+                             "listen_type":1,
+                             "listen_title":"",
+                             "option_A": "../src/img/encouragement.jpg",
+                             "option_B": "../src/img/encouragement.jpg",
+                             "option_C": "../src/img/encouragement.jpg",
+                             "listen_answer":"A",
+                             "radio_url":"../src/audio/1.mp3",
+                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+                             "yuanwen":"Is there anything wrong with you,Peter?",
+                             "listen_style":"2"
+                         },
+                         {
+                             "listen_id":2,
+                             "listen_type":3,
+                             "listen_title":"",
+                             "option_A": "sunshine",
+                             "option_B": "big",
+                             "option_C": "two",
+                             "listen_answer":"B",
+                             "radio_url":"../src/audio/1.mp3",
+                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+                             "yuanwen":"Is there anything wrong with you,Peter?",
+                             "listen_style":"1"
+                         },
+                         {
+                             "listen_id":3,
+                             "listen_type":2,
+                             "listen_title":"What is Lily's father",
+                             "option_A": "sunshine",
+                             "option_B": "big",
+                             "option_C": "three",
+                             "listen_answer":"C",
+                             "radio_url":"../src/audio/1.mp3",
+                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+                             "yuanwen":"Is there anything wrong with you,Peter?",
+                             "listen_style":"1"
+                         }] ;
+  for(var t= 0 ;t<data.length;t++){
+    data[t].first = "";
+    data[0].first="page-current";
+    var n = data[t].listen_type,
+        title = data[t].listen_title,
+        style = data[t].listen_style;
+    switch(n){
+      case 1:data[t]["listen_name"]="关键词语选择";break;
+      case 2:data[t]["listen_name"]="短对话理解"; break;
+      case 3:data[t]["listen_name"]="长对话理解"; break;
+      case 4:data[t]["listen_name"]="短文理解"; break;
+      case 5:data[t]["listen_name"]="信息转换"; break;
+    };
+   if(title == ""){
+     data[t].listen_title= data[t].listen_name;
+   };
+   switch(style){
+     case 1:data[t]["selects_type"]="words";break;
+     case 2:data[t]["selects_type"]="imgs"; break;
+     case 3:data[t]["selects_type"]=""; break;
+   };
   };
+  Handlebars.registerHelper("addOne",function(index,options){
+    return parseInt(index)+1;
+  });
+  handlebars.registerHelper("option_select",function(){
+      for(var t= 0 ;t<data.length;t++){
+        var style = data[t].listen_style;
+        if(style == 2){
+          
+        }
+      }
+    if()
+  })
+  Handlebars.registerHelper('list', function(items, options) {
+      var out = '<ul>';
+      for(var i=0, l=items.length; i<l; i++) {
+          var item = options.fn(items[i]);
+          out = out + '<li class="'+options.hash.class+'">' + item + '</li>';
+      }
+      return out + '</ul>';
+  });
   var myTemplate = Handlebars.compile($("#myTemplate").html());
-  $("#6").html(myTemplate(data));
+
+  $("#handlebars").html(myTemplate(data));
   $.init();
+  //初始化结束
+  var classnum = document.getElementsByClassName('page');
+  for(var s = 1; s<=classnum.length;s++){
+    var li = document.createElement('li');
+    var ul = document.getElementById('box_li');
+    li.innerHTML = s;
+    ul.appendChild(li);
+    // var indexnum = $('page-current');
+    // console.log(indexnum)
+    // var j = document.getElementsByClassName('page-current').parent().getElementById.value;
+    // console.log(j);
+  }
+
   //一些使用到的全局变量
   var dui=0;
   var cuo=0;
   var zong=$(".weida").find('b').html();
+  //倒计时效果
+  var fm =3,
+  lm = 0,
+  fs = 0,
+  ls = 0;
+  var time = document.getElementsByClassName('time');
+  time[0].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
+  setInterval(checkTime,1000);
+
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
       if (flag<$(".page").length) {
           $('.flex:eq('+flag+')'). addClass('current').siblings().removeClass('current');
           flag++;
-          $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
+          $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
           $.router.load("#"+flag+"");
       }else{
           $.toast("已经是最后一题了")
@@ -39,7 +140,6 @@ $(document).ready(function(){
     });
   });
   //选项选择后对应选项颜色样式的改变
-
   $(".select").on('tap',function(){
      var parent  =  $(this).parent();
      var parents  =  $(this).parent().parent();
@@ -87,9 +187,70 @@ $(document).ready(function(){
       }else{
             $.toast("请注意不要重复选择！");
            }
- })
+ });
+ $(".flex").tap(function(){//点击盒子切换页面
+     var flag=$(this).html();
+     $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
+     $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
+     $.router.load("#"+flag+"");
+   })
   //交卷所要做到的携带内容与结果
+
   //倒计时的实现
+
+  function checkTime(){
+      if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
+          $.alert('时间到，请点击交卷', function () {
+              $.router.load("./grade.html");
+          });
+      }else{
+          fm = checkfm(fm,lm,fs,ls);
+          lm = checklm(lm,fs,ls);
+          fs = checkfs(fs,ls);
+          ls = checkls(ls);
+      }
+      for (var j = 0; j < time.length; j++) {
+          var each = time[j].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
+      }
+      return each;
+  };
+
+  function checkls(ls){
+     if(ls == 0){
+        ls = 9;
+     }else{
+        ls--;
+     }
+     return ls;
+   };
+  function checkfs(fs,ls){
+     if(fs == 0 && ls ==0){
+       fs = 5;
+     }else if(ls == 0){
+       fs--;
+     }else{
+       return fs;
+     }
+     return fs;
+   };
+  function checklm(lm,fs,ls){
+     if(lm == 0 && ls == 0 && fs == 0){
+       lm = 9;
+     }else if(ls== 0 &&fs == 0){
+       lm--;
+     }else{
+       return lm;
+     }
+     return lm;
+   };
+  function checkfm(fm,lm,fs,ls){
+     if(lm == 0 && fs == 0 && ls == 0 ){
+       fm--;
+     }
+     return fm;
+   };
   //音频的实现
+
   //ajax事件的学习，需要用这个做一些事情
+
 })

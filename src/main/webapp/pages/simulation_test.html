@@ -13,17 +13,15 @@
     <link rel="stylesheet" href="../src/css/simulation.css">
   </head>
   <body>
-    <div class="page-group">
+    <div class="page-group " id="handlebars" >
         <!-- 你的html代码 -->
-
-
-        <div class="page " id="6">
+          <div class="page" style="display:none"> </div>
+        <!-- <div class="page " id="6"> -->
           <!-- <p>试验试验试验试验</p> -->
-        </div>
-        <div class="page  page-current" id="1">
-            <!-- 标题栏 -->
+        <!-- </div> -->
+        <!-- <div class="page  page-current" id="1">
             <header class="bar bar-nav">
-                  <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
+                  <a  href="../pages/choice_que.html#chioce_que" class=" pull-left"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
                 <span class="title">关键词选择</span>
                  <div class="yinpin">
                <audio src="../src/audio/1.mp3" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
@@ -31,14 +29,13 @@
                <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
                </div>
             </header>
-            <!-- 工具栏 -->
             <nav class="bar bar-tab">
                 <a class="tab-item  confirm-ok carry_out" href="#">
                     <i class="icon iconfont">&#xf006c;</i>
                     <span class="tab-label">交卷</span>
                 </a>
                 <a class="tab-item external active" href="#">
-                   <p>30:00</p>
+                   <p class="time">30:00</p>
                    <span class="tab-label">倒计时</span>
                 </a>
                 <a class="tab-item external open-popup" href="#">
@@ -46,8 +43,6 @@
                     <span class="tab-label">1/30</span>
                 </a>
             </nav>
-
-            <!-- 这里是页面内容区 -->
             <div class="content content-padded">
                <h3>1.关键词语选择</h3>
                 <div class="selects words"  value="1">
@@ -70,7 +65,6 @@
         </div>
 
         <div class="page " id="2">
-            <!-- 标题栏 -->
             <header class="bar bar-nav">
                   <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
                 <span class="title"> 短对话理解</span>
@@ -80,15 +74,13 @@
                <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
                </div>
             </header>
-
-            <!-- 工具栏 -->
             <nav class="bar bar-tab">
                 <a class="tab-item external" href="#">
                     <i class="icon iconfont">&#xf006c;</i>
                     <span class="tab-label">交卷</span>
                 </a>
                 <a class="tab-item external active" href="#">
-                   <p>30:00</p>
+                   <p class="time">30:00</p>
                    <span class="tab-label">倒计时</span>
                 </a>
                 <a class="tab-item external open-popup" href="#">
@@ -96,8 +88,6 @@
                     <span class="tab-label">1/30</span>
                 </a>
             </nav>
-
-            <!-- 这里是页面内容区 -->
             <div class="content content-padded">
                <h3 ><span>10.<span>When did John have his birthday party?</h3>
                 <div class="selects words" value="2">
@@ -108,7 +98,6 @@
             </div>
         </div>
         <div class="page   " id="3">
-            <!-- 标题栏 -->
             <header class="bar bar-nav">
                   <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
                 <span class="title"> 短对话理解</span>
@@ -118,16 +107,13 @@
                <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
                </div>
             </header>
-
-
-            <!-- 工具栏 -->
             <nav class="bar bar-tab">
                 <a class="tab-item external" href="#">
                     <i class="icon iconfont">&#xf006c;</i>
                     <span class="tab-label">交卷</span>
                 </a>
                 <a class="tab-item external active" href="#">
-                   <p>30:00</p>
+                   <p class="time">30:00</p>
                    <span class="tab-label">倒计时</span>
                 </a>
                 <a class="tab-item external open-popup" href="#">
@@ -135,8 +121,6 @@
                     <span class="tab-label open-popup">1/30</span>
                 </a>
             </nav>
-
-            <!-- 这里是页面内容区 -->
             <div class="content content-padded ">
                <h3 >6.What is Lily's father</h3>
                 <div class="selects imgs " value="3">
@@ -167,7 +151,6 @@
         </div>
 
         <div class="page  " id="4">
-            <!-- 标题栏 -->
             <header class="bar bar-nav">
                   <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
                 <span class="title">短文理解</span>
@@ -177,16 +160,13 @@
                <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
                </div>
             </header>
-
-
-            <!-- 工具栏 -->
             <nav class="bar bar-tab">
                 <a class="tab-item external" href="#">
                     <i class="icon iconfont">&#xf006c;</i>
                     <span class="tab-label">交卷</span>
                 </a>
                 <a class="tab-item external active" href="#">
-                   <p>30:00</p>
+                   <p class="time">30:00</p>
                    <span class="tab-label">倒计时</span>
                 </a>
                 <a class="tab-item external open-popup" href="#">
@@ -194,8 +174,6 @@
                     <span class="tab-label">1/30</span>
                 </a>
             </nav>
-
-            <!-- 这里是页面内容区 -->
             <div class="content content-padded ">
                <h3 >6.What is Lily's father</h3>
                <div class="selects words" value="4">
@@ -217,7 +195,6 @@
         </div>
 
         <div class="page " id="5">
-            <!-- 标题栏 -->
             <header class="bar bar-nav">
                   <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
                 <span class="title"> 信息转换</span>
@@ -227,15 +204,13 @@
                <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
                </div>
             </header>
-
-            <!-- 工具栏 -->
             <nav class="bar bar-tab">
                 <a class="tab-item external" href="#">
                     <i class="icon iconfont">&#xf006c;</i>
                     <span class="tab-label">交卷</span>
                 </a>
                 <a class="tab-item external active" href="#">
-                   <p>30:00</p>
+                   <p class="time">30:00</p>
                    <span class="tab-label">倒计时</span>
                 </a>
                 <a class="tab-item external open-popup" href="#">
@@ -243,8 +218,6 @@
                     <span class="tab-label">1/30</span>
                 </a>
             </nav>
-
-            <!-- 这里是页面内容区 -->
             <div class="content content-padded ">
                <h3 >信息转换</h3>
                <div class="show_trans"><img src="../src/img/encouragement.jpg"></div>
@@ -296,17 +269,99 @@
                    </ul>
                </div>
              </div>
-       </div>
+       </div> -->
     </div>
-    <!-- <script type="text/javascript" src="../src/lib/jquery/jquery-2.2.0.js"></script> -->
+       <div class="popup">
+                 <header class="bar bar-nav close-popup">
+                   <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+                   <span class="title"> 题目目录</span>
+                 </header>
+                 <div class="content-block">
+                 <br>
+                   <div class="show-wapper">
+                        <div class="dati-info">
+                        <span class="dadui">答对 <strong>0</strong></span>
+                        <span class="dacuo">答错 <strong>0</strong></span>
+                        <span class="weida">未答题 <strong>30</strong></span>
+                        </div>
+                        <div class="box-wrap">
+                           <ul class="close-popup" id ="box_li">
+                               <!-- <li class="flex current">1</li> -->
+                           </ul>
+                       </div>
+                     </div>
+               </div>
+        </div>
+
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
      <script type="text/x-handlebars-template" id="myTemplate">
-         <header class="bar bar-nav">
-             <a class="back"><i class="icon iconfont pull-left back">&#xe61e;</i></a>
-            <span class="title"> {{title}}</span>
-        </header>
+       {{#each this}}
+           <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
+               <header class="bar bar-nav">
+                     <a  href="../pages/choice_que.html#chioce_que" class=" pull-left">
+                       <i class="icon iconfont pull-left back">&#xe61e;</i></a>
+                   <span class="title">{{listen_name}}</span>
+                    <div class="yinpin">
+                  <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
+                 <span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
+                  <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
+                  </div>
+               </header>
+               <nav class="bar bar-tab">
+                   <a class="tab-item  confirm-ok carry_out" href="#">
+                       <i class="icon iconfont">&#xf006c;</i>
+                       <span class="tab-label">交卷</span>
+                   </a>
+                   <a class="tab-item external active" href="#">
+                      <p class="time">30:00</p>
+                      <span class="tab-label">倒计时</span>
+                   </a>
+                   <a class="tab-item external open-popup" href="#">
+                       <i class="icon iconfont">&#xf0004;</i>
+                       <span class="tab-label">{{addOne @index}}/30</span>
+                       <input type="hidden" value="{{addOne @index}}" id="curr">
+                   </a>
+               </nav>
+               <div class="content content-padded">
+                  <h3>{{addOne @index}}.{{listen_title}}</h3>
+                   <div class="selects {{selects_type}}"  value="{{listen_type}}">
+                       <div class="select dui">
+                         <i class="icon iconfont">&#xe61b;</i>
+                         <span>bad</span>
+                          <img src="../src/img/encouragement.jpg">
+                       </div>
+                       <div class="select">
+                         <i class="icon iconfont">&#xe61b;</i><span>bad</span></div>
+                       <div class="select">
+                         <i class="icon iconfont">&#xe61b;</i><span>bad</span></div>
+                   </div>
+                   <div class="selects {{selects_type}} " value="{{listen_type}}">
+                           <div class="select dui">
+                             <i class="icon iconfont ">&#xe61b;</i>
+                             <img src="../src/img/encouragement.jpg">
+                           </div>
+                           <div class="select">
+                             <i class="icon iconfont">&#xe61b;</i>
+                             <img src="../src/img/encouragement.jpg">
+                           </div>
+                           <div class="select">
+                             <i class="icon iconfont">&#xe61b;</i>
+                               <img src="../src/img/encouragement.jpg">
+                           </div>
+                   </div>
+                   <div class="show_trans"><img src="../src/img/encouragement.jpg"></div>
+                   <div class="selects {{selects_type}} " value="{{listen_type}}">
+                   <div class="trans_input"><input type="text" name="test_answer" value="26."/></div>
+                   <div class="trans_input"><input type="text" name="test_answer" value="27."/></div>
+                   <div class="trans_input"><input type="text" name="test_answer" value="28."/></div>
+                   <div class="trans_input"><input type="text" name="test_answer" value="29."/></div>
+                   <div class="trans_input"><input type="text" name="test_answer" value="30."/></div>
+                   </div>
+               </div>
+           </div>
+    {{/each}}
      </script>
     <script type='text/javascript' src='../src/js/simulation_test.js'></script>
   </body>
