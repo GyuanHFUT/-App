@@ -10,7 +10,7 @@ import java.util.List;
 public interface LongDialogueManager {
     List<List> showAllLongDialogue();
 
-    int selectLongDialogueOfNum();
+/*    int selectLongDialogueOfNum();
 
-    int selectLongDialogueOfMin();
+    int selectLongDialogueOfMin();*/
 }

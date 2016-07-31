@@ -49,7 +49,7 @@ public class LongDialogueManagerImpl implements LongDialogueManager {
         return list;
     }
 
-    @Override
+/*    @Override
     public int selectLongDialogueOfNum() {
 
         return longDialogueMapper.selectLongDialogueOfNum();
@@ -58,5 +58,5 @@ public class LongDialogueManagerImpl implements LongDialogueManager {
     @Override
     public int selectLongDialogueOfMin() {
         return longDialogueMapper.selectLongDialogueOfMin();
-    }
+    }*/
 }
