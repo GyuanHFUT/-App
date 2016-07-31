@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.listening.mapper.LongDialogueMapper">
+    <select id="selectAllLongDialogue" resultType="com.listening.domain.LongDialogue">
+        SELECT *
+        from long_dialogue ;
+    </select>
+
+    <select id="selectLongDialogueOfNum" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM long_dialogue ;
+    </select>
+
+    <select id="selectLongDialogueOfMin" resultType="java.lang.Integer">
+        SELECT MIN(listen_id)
+        FROM long_dialogue;
+    </select>
+
+</mapper>

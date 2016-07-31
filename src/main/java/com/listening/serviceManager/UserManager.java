@@ -21,4 +21,5 @@ public interface UserManager {
     public Map<String,Object> backUserPwd(String user_name, String user_pwd, String user_code);
 
 
+    Map<String,Object> deleteUser(int user_id);
 }
