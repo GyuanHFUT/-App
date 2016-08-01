@@ -1,7 +1,7 @@
 $(document).ready(function(){
   var data = [
-                       {     "listen_id":1,
-                             "listen_type":1,
+                       {     "listen_id":"1",
+                             "listen_type":"1",
                              "listen_title":"",
                              "option_A": "../src/img/encouragement.jpg",
                              "option_B": "../src/img/encouragement.jpg",
@@ -13,8 +13,8 @@ $(document).ready(function(){
                              "listen_style":"2"
                          },
                          {
-                             "listen_id":2,
-                             "listen_type":3,
+                             "listen_id":"2",
+                             "listen_type":"3",
                              "listen_title":"",
                              "option_A": "sunshine",
                              "option_B": "big",
@@ -23,11 +23,12 @@ $(document).ready(function(){
                              "radio_url":"../src/audio/1.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"1"
+                             "listen_style":"1",
+                             "form_url":"../src/img/encouragement.jpg"
                          },
                          {
-                             "listen_id":3,
-                             "listen_type":2,
+                             "listen_id":"3",
+                             "listen_type":"2",
                              "listen_title":"What is Lily's father",
                              "option_A": "sunshine",
                              "option_B": "big",
@@ -39,49 +40,45 @@ $(document).ready(function(){
                              "listen_style":"1"
                          }] ;
   for(var t= 0 ;t<data.length;t++){
-    data[t].first = "";
-    data[0].first="page-current";
-    var n = data[t].listen_type,
+     data[t].first = "";
+     data[0].first="page-current";
+     var n = data[t].listen_type,
         title = data[t].listen_title,
-        style = data[t].listen_style;
-    switch(n){
-      case 1:data[t]["listen_name"]="关键词语选择";break;
-      case 2:data[t]["listen_name"]="短对话理解"; break;
-      case 3:data[t]["listen_name"]="长对话理解"; break;
-      case 4:data[t]["listen_name"]="短文理解"; break;
-      case 5:data[t]["listen_name"]="信息转换"; break;
-    };
-   if(title == ""){
-     data[t].listen_title= data[t].listen_name;
-   };
-   switch(style){
-     case 1:data[t]["selects_type"]="words";break;
-     case 2:data[t]["selects_type"]="imgs"; break;
-     case 3:data[t]["selects_type"]=""; break;
-   };
+        s = data[t].listen_style;
+     switch(s){
+          case "1":data[t]["selects_type"]="words";break;
+          case "2":data[t]["selects_type"]="imgs"; break;
+          case "3":data[t]["selects_type"]=""; break;
+      };
+     switch(n){
+        case "1":data[t]["listen_name"]="关键词语选择";break;
+        case "2":data[t]["listen_name"]="短对话理解"; break;
+        case "3":data[t]["listen_name"]="长对话理解"; break;
+        case "4":data[t]["listen_name"]="短文理解"; break;
+        case "5":data[t]["listen_name"]="信息转换"; break;
+     };
+     if(title == ""){
+       data[t].listen_title= data[t].listen_name;
+     };
+
   };
+// console.log(style);
+console.log(data);
+  var myTemplate = Handlebars.compile($("#myTemplate").html());
   Handlebars.registerHelper("addOne",function(index,options){
     return parseInt(index)+1;
   });
-  handlebars.registerHelper("option_select",function(){
-      for(var t= 0 ;t<data.length;t++){
-        var style = data[t].listen_style;
-        if(style == 2){
-          
-        }
-      }
-    if()
-  })
-  Handlebars.registerHelper('list', function(items, options) {
-      var out = '<ul>';
-      for(var i=0, l=items.length; i<l; i++) {
-          var item = options.fn(items[i]);
-          out = out + '<li class="'+options.hash.class+'">' + item + '</li>';
-      }
-      return out + '</ul>';
-  });
-  var myTemplate = Handlebars.compile($("#myTemplate").html());
-
+  Handlebars.registerHelper("choice",function(option_A,options){
+    var sty =  option_A.slice(option_A.length-4,option_A.length);
+    if(sty !== ".jpg"){
+               //满足添加继续执行
+               console.log(sty);
+               return options.fn(this);
+             }else{
+               //不满足条件执行{{else}}部分
+               return options.inverse(this);
+             }
+    });
   $("#handlebars").html(myTemplate(data));
   $.init();
   //初始化结束
