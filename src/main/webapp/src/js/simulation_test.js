@@ -42,14 +42,12 @@ $(document).ready(function(){
   for(var t= 0 ;t<data.length;t++){
      data[t].first = "";
      data[0].first="page-current";
+     data[t].box = "";
+     data[0].box = "current";
      var n = data[t].listen_type,
         title = data[t].listen_title,
-        s = data[t].listen_style;
-     switch(s){
-          case "1":data[t]["selects_type"]="words";break;
-          case "2":data[t]["selects_type"]="imgs"; break;
-          case "3":data[t]["selects_type"]=""; break;
-      };
+        s = data[t].listen_style,
+        answer = data[t].listen_answer;
      switch(n){
         case "1":data[t]["listen_name"]="关键词语选择";break;
         case "2":data[t]["listen_name"]="短对话理解"; break;
@@ -60,39 +58,55 @@ $(document).ready(function(){
      if(title == ""){
        data[t].listen_title= data[t].listen_name;
      };
-
+     switch(s){
+          case "1":data[t]["selects_type"]="words";break;
+          case "2":data[t]["selects_type"]="imgs"; break;
+          case "3":data[t]["selects_type"]=""; break;
+      };
   };
 // console.log(style);
 console.log(data);
-  var myTemplate = Handlebars.compile($("#myTemplate").html());
-  Handlebars.registerHelper("addOne",function(index,options){
-    return parseInt(index)+1;
+Handlebars.registerHelper("addOne",function(index,options){
+  return parseInt(index)+1;
+});
+Handlebars.registerHelper("choice",function(option_A,options){
+  var sty =  option_A.slice(option_A.length-4,option_A.length);
+  if(sty !== ".jpg"){
+             //满足添加继续执行
+             console.log(sty);
+             return options.fn(this);
+           }else{
+             //不满足条件执行{{else}}部分
+             return options.inverse(this);
+           }
   });
-  Handlebars.registerHelper("choice",function(option_A,options){
-    var sty =  option_A.slice(option_A.length-4,option_A.length);
-    if(sty !== ".jpg"){
-               //满足添加继续执行
-               console.log(sty);
-               return options.fn(this);
-             }else{
-               //不满足条件执行{{else}}部分
-               return options.inverse(this);
-             }
-    });
+  var myTemplate = Handlebars.compile($("#myTemplate").html());
   $("#handlebars").html(myTemplate(data));
+  var box = Handlebars.compile($("#box").html());
+  $("#box_li").html(box(data));
   $.init();
   //初始化结束
-  var classnum = document.getElementsByClassName('page');
-  for(var s = 1; s<=classnum.length;s++){
-    var li = document.createElement('li');
-    var ul = document.getElementById('box_li');
-    li.innerHTML = s;
-    ul.appendChild(li);
-    // var indexnum = $('page-current');
-    // console.log(indexnum)
-    // var j = document.getElementsByClassName('page-current').parent().getElementById.value;
-    // console.log(j);
-  }
+  //添加”dui“class
+  for(var t= 0 ;t<data.length;t++){
+      var answer = data[t].listen_answer;
+      switch(answer){
+        case "A": $('.selects').find('.select').eq(0).addClass('dui');break;
+        case "B": $('.selects').find('.select').eq(1).addClass('dui') ;break;
+        case "C": $('.selects').find('.select').eq(2).addClass('dui');break;
+      };
+    };
+    //盒子有大bug
+    // var classnum = document.getElementsByClassName('page'),
+    //     indexnum = $('.page-current').attr('id');
+    // for(var s = 1; s<=classnum.length;s++){
+    //   var li = document.createElement('li');
+    //   var ul = document.getElementById('box_li');
+    //   li.innerHTML = s;
+    //   if(s == indexnum){
+    //     li.className ='current';
+    //         }
+    //   ul.appendChild(li);
+    // };
 
   //一些使用到的全局变量
   var dui=0;
@@ -110,8 +124,9 @@ console.log(data);
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
+      console.log(flag);
       if (flag<$(".page").length) {
-          $('.flex:eq('+flag+')'). addClass('current').siblings().removeClass('current');
+          $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
           flag++;
           $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
           $.router.load("#"+flag+"");
