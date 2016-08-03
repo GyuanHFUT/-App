@@ -11,66 +11,100 @@
 
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/practice1.css">
-  </head>
-  <body>
-    <div class="page-group">
-        <!-- 你的html代码 -->
+<!--     <link rel="stylesheet" href="../src/css/practice1.css"> -->
+    <link rel="stylesheet" href="../src/css/simulation.css">
+    </head>
+    <body>
+    <div class="page-group" id="handlebars">
+      <div class="page" style="display:none"> </div>
+      </div>   
 
-                <div class="page" id="1">
-                    <!-- 标题栏 -->
+           <div class="popup">
+                  <header class="bar bar-nav close-popup">
+                      <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>                      
+                        <span class="title"> 题目目录</span>
+                    </header>
+                <div class="content-block">
+                <br>
+                     <div class="show-wapper"> 
+                       <div class="dati-info"> 
+                       <span class="dadui">答对 <b>0</b></span> 
+                       <span class="dacuo">答错 <b>0</b></span> 
+                       <span class="weida">未全答题 <b>1311</b></span> 
+                       </div> 
+                       <div class="box-wrap">
+                          <ul class="close-popup" id="hbs2">
+
+                          </ul>
+                      </div>
+                    </div>
+              </div>
+           </div>         
+
+    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
+         <script type="text/x-handlebars-template" id="myTemplate">
+            {{#each this}}
+           <div class="page {{xx}}" id="{{addOne @index}}">
+                    
                     <header class="bar bar-nav">
-                    <a href="#" class="back pull-left"><i class="icon iconfont">&#xe61e;</i></a>
-                         
-                        <span class="title">信息转换</span>
-                          <i class="icon iconfont pull-right">&#xe6a3;</i>
+                      <a href="../pages/choice_que.html#practice" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+                        <span class="title"> 信息转换</span>
+                         <div class="yinpin"> 
+                       <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
+                      <div class="yinpinicon"><span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
+                       <span class="stopn"  style="display:none"><i class="icon iconfont pull-right"  >&#xf0019;</i></span></div>
+                       </div>
                     </header>
 
-                    <!-- 工具栏 -->
                     <nav class="bar bar-tab">
-                        <a class="tab-item external" href="#">
+                        <a class="tab-item external shoucang" href="#">
                             <i class="icon iconfont">&#xf006c;</i>
                             <span class="tab-label">收藏</span>
                         </a>
-                         <a class="tab-item external active" href="#">
+                         <a class=" tab-item external open-popup" href="#">
                             <i class="icon iconfont">&#xf0015;</i>
-                            <span class="tab-label"> 2/1110</span>
+                            <span class="tab-label yeshu">{{addOne @index}}/1110</span>
                         </a>
-                        <a class="tab-item external" href="#">
+                        <a class="tab-item external open-xiangjie" href="#">
                             <i class="icon iconfont">&#xf0004;</i>
                             <span class="tab-label">打开详解</span>
                         </a>
                     </nav>
 
-                    <!-- 这里是页面内容区 -->
-                    <div class="content content-padded">
-                        <h3 >信息转换</h3>
-                       <div class="show_trans"><img src="../src/img/encouragement.jpg"></div>
-                       <div class="selects imgs">
-                       <div class="trans_input"><input type="text" name="test_answer" value="26."/></div>
-                       <div class="trans_input"><input type="text" name="test_answer" value="27."/></div>
-                       <div class="trans_input"><input type="text" name="test_answer" value="28."/></div>
-                       <div class="trans_input"><input type="text" name="test_answer" value="29."/></div>
-                       <div class="trans_input"><input type="text" name="test_answer" value="30."/></div>
-                       </div>
-
+                    
+                <div class="content content-padded">
+                       <h3>{{addOne @index}}.信息转换</h3>
+                  <div class="show_trans"><img src="{{form_url}}"></div>
+                  <div class="selects {{selects_type}} " value="{{addOne @index}}">
+                  <div class="trans_input"><input type="text" name="test_answer" value="26."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="27."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="28."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="29."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="30."/></div>
+                  </div>
+                   
                         <div class="xiangjie-wapper">
                           <h3>试题详解：</h3>
                             <div class="explain-p">
-                             <p>“违反道路交通安全法，违反法律法规即为<a href="#0">内联的新页面</a>违法行为。官方已无违章/违规的说法。</p>
+                             <p>{{answer}}</p>
                             </div>
                             <h3>听力原文：</h3>
                             <div class="explain-p">
-                             <p>Is there anything wrong with you,Peter?</p>
+                             <p>{{yuanwen}}</p>
                             </div>
                         </div>
-
                     </div>
-                </div>
-    </div>
+                </div>                
+            {{/each}}  
+     </script>
+     <script type="text/x-handlebars-template" id="myTemplate2">
+       {{#each this}}
+                      <li class="flex {{box}}">{{addOne @index}}</li>
+      {{/each}}  
+    </script>  
 
-    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
-    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='../src/js/practice.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/js/exercise5.js' charset='utf-8'></script> 
   </body>
 </html>
