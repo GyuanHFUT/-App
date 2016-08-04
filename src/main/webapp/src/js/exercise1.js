@@ -74,7 +74,13 @@ $(document).ready(function () {
 
        var dui=0;
        var cuo=0;
-       var zong=$(".weida").find('b').html();
+       var zong=data.length;//获取总题数
+        $(".weida").find('b').html(zong);
+        $.each($(".yeshu"),function(i,val){
+         var x= $(val).html();
+         var y=x.replace(/1110/, zong);
+          $(val).html(y);
+       })
         $(".select").on('tap',function(){
         var parent  =  $(this).parent();
         var parents  =  $(this).parent().parent();
@@ -219,7 +225,7 @@ $(document).ready(function () {
                   $('.flex:eq('+flag+')'). addClass('current') 
                        .siblings().removeClass('current');            
                   flag++;
-                  $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
+
                   $.router.load("#"+flag+"");        
               }else{
                  $.toast("已经是最后一题了")
@@ -232,7 +238,7 @@ $(document).ready(function () {
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
                  
-                  $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");  
+
                   $.router.load("#"+flag+"");        
                  }
                  else{
@@ -244,7 +250,7 @@ $(document).ready(function () {
                   var flag=$(this).html();       
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
-                  $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");       
+
                   $.router.load("#"+flag+"");        
                 })
 })

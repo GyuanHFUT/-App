@@ -1,105 +1,158 @@
 
 $(document).ready(function () {
+    var data=[
+    [{"listen_id":28,
+    "listen_type":3,
+    "listen_group":32,
+    "listen_question":"dsfsd",
+    "radio_url":"../src/audio/1.mp3",
+    "listen_answer":"A",
+    "option_A":"sdd",
+    "option_B":"dddd",
+    "option_C":"ddssss",
+    "listen_score":1,
+    "listen_degree":2,
+    "listen_text":"tyjy",
+    "listen_explain":"gfhg"
+  },
+    {
+      "listen_id":29,
+    "listen_type":3,
+    "listen_group":32,
+    "listen_question":"hgjh",
+   "radio_url":"../src/audio/1.mp3",
+    "listen_answer":"B",
+    "option_A":"sjhkj",
+    "option_B":"jjjj",
+    "option_C":"kkkk",
+    "listen_score":1,
+    "listen_degree":3,
+    "listen_text":"sdfddd",
+    "listen_explain":"dggg"},
+    {"listen_id":30,
+    "listen_type":3,
+    "listen_group":32,
+    "listen_question":"jkl",
+    "radio_url":"../src/audio/1.mp3",
+    "listen_answer":"C",
+    "option_A":"hghh",
+    "option_B":"tryt",
+    "option_C":"eeee",
+    "listen_score":1,
+    "listen_degree":2,
+    "listen_text":"ghh",
+    "listen_explain":"dfg"}],
 
-    var data = [
-                          { 
-                              "listen_id":1,
-                              "listen_type":2,
-                             "listen_title":"What will the weather be like lastday?",
-                             "option_A": "../src/img/encouragement.jpg",
-                             "option_B": "../src/img/encouragement.jpg",
-                             "option_C": "../src/img/encouragement.jpg",
-                              "listen_answer":"A",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?",
-                              "listen_style":"2"
-                          },
-                          {
-                              "listen_id":2,
-                              "listen_type":2,
-                             "listen_title":"What will the weather be like nowday?",
-                              "option_A": "sunshine",
-                              "option_B": "big",
-                              "option_C": "boy",
-                              "listen_answer":"B",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?",
-                                "listen_style":"1"
-                          },
-                          {
-                              "listen_id":3,
-                              "listen_type":2,
-                             "listen_title":"What will the weather be like tomorrow?",
-                             "option_A": "../src/img/encouragement.jpg",
-                             "option_B": "../src/img/encouragement.jpg",
-                             "option_C": "../src/img/encouragement.jpg",
-                              "listen_answer":"C",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?",
-                                "listen_style":"2"
-                          },
-                          { "listen_id":4,
-                             "listen_type":2,
-                             "listen_title":"What will the weather be like future?",
-                             "option_A": "../src/img/encouragement.jpg",
-                             "option_B": "../src/img/encouragement.jpg",
-                             "option_C": "../src/img/encouragement.jpg",
-                             "listen_answer":"A",
-                             "radio_url":"../src/audio/1.mp3",
-                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                             "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"2"
-                         }
-                       ] ;
-      data[0].xx="page-current";
-      data[0].box = "current";
+
+    [{"listen_id":9,"listen_type":3,"listen_group":31,"listen_question":"ertertertrr","radio_url":"../src/audio/1.mp3","listen_answer":"A","option_A":"sdfsd","option_B":"ddd","option_C":"ddddd","listen_score":1,"listen_degree":1,"listen_text":"听力作业","listen_explain":"完全"},{"listen_id":10,"listen_type":3,"listen_group":31,"listen_question":"saaaa","radio_url":"../src/audio/1.mp3","listen_answer":"C","option_A":"saszx","option_B":"vbnvb","option_C":"cccccc","listen_score":1,"listen_degree":1,"listen_text":"听力结束","listen_explain":"作业"}]]
+    // var data = [
+    //                     {"ti":[{ 
+    //                           "listen_id":1,
+    //                           "listen_type":1,
+    //                           "option_A": "1",
+    //                           "option_B": "big",
+    //                           "option_C": "boy",
+    //                           "listen_answer":"A",
+    //                               "radio_url":"../src/audio/1.mp3",
+    //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+    //                           "yuanwen":"Is there anything wrong with you,Peter?"
+    //                       },
+    //                      {
+    //                           "listen_id":1,
+    //                           "listen_type":1,
+    //                           "option_A": "2",
+    //                           "option_B": "big",
+    //                           "option_C": "two",
+    //                           "listen_answer":"B",
+    //                           "radio_url":"../src/audio/1.mp3",
+    //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+    //                           "yuanwen":"Is there anything wrong with you,Peter?"
+    //                       }]} ,
+    //                   {"ti":[
+    //                         { 
+    //                           "listen_id":6,
+    //                           "listen_type":1,
+    //                           "option_A": "6",
+    //                           "option_B": "big",
+    //                           "option_C": "boy",
+    //                           "listen_answer":"A",
+    //                           "radio_url":"../src/audio/1.mp3",
+    //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+    //                           "yuanwen":"Is there anything wrong with you,Peter?"
+    //                       },
+    //                       {
+    //                           "listen_id":7,
+    //                           "listen_type":1,
+    //                           "option_A": "7",
+    //                           "option_B": "big",
+    //                           "option_C": "two",
+    //                           "listen_answer":"B",
+    //                           "radio_url":"../src/audio/1.mp3",
+    //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+    //                           "yuanwen":"Is there anything wrong with you,Peter?"
+    //                       },
+    //                       { 
+    //                           "listen_id":8,
+    //                           "listen_type":1,
+    //                           "option_A": "8",
+    //                           "option_B": "big",
+    //                           "option_C": "boy",
+    //                           "listen_answer":"A",
+    //                           "radio_url":"../src/audio/1.mp3",
+    //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+    //                           "yuanwen":"Is there anything wrong with you,Peter?"
+    //                       }         
+    //                     ]
+    //                   }];
+      data[0][0].xx="page-current";
+      data[0][0].box = "current";
       
-      for (var t = 0; t <=data.length - 1 ; t++) {
-        var flag=data[t].listen_answer,
-        s = data[t].listen_style;
-        switch (flag)
-        {
-        case "A":
-          data[t].A="dui";
-          break;
-        case "B":
-          data[t].B="dui";
-          break;
-        case "C":
-          data[t].C="dui";
-          break;
-        };
-       switch(s){
-          case "1":data[t]["selects_type"]="words";break;
-          case "2":data[t]["selects_type"]="imgs"; break;
-          case "3":data[t]["selects_type"]=""; break;
-      };
-        // var x="<li class="flex">"+(i+1)+"</li>";
-        // $("#hbs2").append(x);
-        //字符串拼接方法，待验证
-      }
-        
-        //注册一个Handlebars模版，通过id找到某一个模版，获取模版的html框架
-        //$("#table-template").html()是jquery的语法，不懂的童鞋请恶补。。。
+      // for (var t = 0; t <=data.length - 1 ; t++) {
+      //   var flag=data[t].listen_answer; 
+      //   switch (flag)
+      //   {
+      //   case "A":
+      //     data[t].A="dui";
+      //     break;
+      //   case "B":
+      //     data[t].B="dui";
+      //     break;
+      //   case "C":
+      //     data[t].C="dui";
+      //     break;
+      //   };
+      // }
+       
+       var flag=1;
+       for (var t = 0; t <=data.length - 1 ; t++) {
+            var jishu=flag+(data[t].length - 1);
+            data[t][0].tishi="请听下面一段对话，回答第"+flag+"至第"+jishu+"小题。"
+            for (var i= 0; i<=data[t].length - 1 ;i++) {
+         var s=data[t][i].listen_answer; 
+          switch (s)
+          {
+          case "A":
+            data[t][i].A="dui";
+            break;
+          case "B":
+            data[t][i].B="dui";
+            break;
+          case "C":
+            data[t][i].C="dui";
+            break;
+          };
+               data[t][i].tihao=flag;
+               flag++;
+            }
+       } 
+        console.log(data);
         var myTemplate = Handlebars.compile($("#myTemplate").html());
         var myTemplate2 = Handlebars.compile($("#myTemplate2").html());
         //注册一个Handlebars Helper,用来将索引+1，因为默认是从0开始的
         Handlebars.registerHelper("addOne",function(index,options){
           return parseInt(index)+1;
         });
-        Handlebars.registerHelper("choice",function(option_A,options){
-          var sty =  option_A.slice(option_A.length-4,option_A.length);
-          if(sty !== ".jpg"){
-                     //满足添加继续执行
-                     return options.fn(this);
-                   }else{
-                     //不满足条件执行{{else}}部分
-                     return options.inverse(this);
-                   }
-          });
+        
         //将json对象用刚刚注册的Handlebars模版封装，得到最终的html，插入到基础table中。
         $('#handlebars').html(myTemplate(data));
         $('#hbs2').html(myTemplate2(data));
@@ -107,14 +160,14 @@ $(document).ready(function () {
 
        var dui=0;
        var cuo=0;
-       var zong=data.length;//获取总题数
-        $(".weida").find('b').html(zong);
+        var zong=(flag-1);//获取总题数
+       $(".weida").find('b').html(zong);
         $.each($(".yeshu"),function(i,val){
          var x= $(val).html();
          var y=x.replace(/1110/, zong);
           $(val).html(y);
        })
-        
+
         $(".select").on('tap',function(){
         var parent  =  $(this).parent();
         var parents  =  $(this).parent().parent();
@@ -271,7 +324,6 @@ $(document).ready(function () {
                      flag--;
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
-                 
 
                   $.router.load("#"+flag+"");        
                  }

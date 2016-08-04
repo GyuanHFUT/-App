@@ -96,10 +96,10 @@ ul, li {
     box-shadow:0px 0px 0px 1px black;
 }
 
-.duicolor, .dadui strong{
+.duicolor, .dadui strong,.dadui b{
   color:#18b4ed;
 }
-.cuocolor, .dacuo strong{
+.cuocolor, .dacuo strong,.dacuo b{
   color:red;
 }
 .popdui{
