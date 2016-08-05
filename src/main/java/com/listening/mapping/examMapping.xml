@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.listening.mapper.ExamMapper">
+    <select id="selectExamOfListen" resultType="com.listening.domain.Exam">
+        SELECT *
+        from question
+        WHERE listen_exam=#{listen_exam}
+        ORDER BY listen_type ASC;
+    </select>
+    
+    <select id="selectExamOfType" resultType="java.lang.Integer">
+        SELECT listen_exam
+        FROM question
+        GROUP BY listen_exam;
+    </select>
+
+
+
+
+
+</mapper>
