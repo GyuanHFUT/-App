@@ -307,7 +307,9 @@ $(document).ready(function () {
                   var flag=$(this).html();       
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                     .siblings().removeClass('current');           
-                    stopYinpin();
+                  for (var i = audio.length - 1; i >= 0; i--) {
+                      audio[i].pause();
+                    };
                   $.router.load("#"+flag+"");        
                 })
 })
