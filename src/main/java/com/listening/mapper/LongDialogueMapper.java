@@ -12,7 +12,7 @@ import java.util.List;
 public interface LongDialogueMapper {
     List<LongDialogue> selectAllLongDialogue();
 
-/*    int selectLongDialogueOfNum();
+    int selectLongDialogueOfNum();
 
-    int selectLongDialogueOfMin();*/
+    int selectLongDialogueOfMin();
 }

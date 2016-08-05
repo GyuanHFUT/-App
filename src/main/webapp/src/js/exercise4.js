@@ -1,60 +1,77 @@
 
 $(document).ready(function () {
+    var data=[
+    [{"listen_id":28,
+    "listen_type":3,
+    "listen_group":32,
+    "listen_question":"dsfsd",
+    "radio_url":"../src/audio/1.mp3",
+    "listen_answer":"A",
+    "option_A":"sdd",
+    "option_B":"dddd",
+    "option_C":"ddssss",
+    "listen_score":1,
+    "listen_degree":2,
+    "listen_text":"tyjy",
+    "listen_explain":"gfhg"
+  },
+    {
+      "listen_id":29,
+    "listen_type":3,
+    "listen_group":32,
+    "listen_question":"hgjh",
+   "radio_url":"../src/audio/1.mp3",
+    "listen_answer":"B",
+    "option_A":"sjhkj",
+    "option_B":"jjjj",
+    "option_C":"kkkk",
+    "listen_score":1,
+    "listen_degree":3,
+    "listen_text":"sdfddd",
+    "listen_explain":"dggg"},
+    {"listen_id":30,
+    "listen_type":3,
+    "listen_group":32,
+    "listen_question":"jkl",
+    "radio_url":"../src/audio/1.mp3",
+    "listen_answer":"C",
+    "option_A":"hghh",
+    "option_B":"tryt",
+    "option_C":"eeee",
+    "listen_score":1,
+    "listen_degree":2,
+    "listen_text":"ghh",
+    "listen_explain":"dfg"}],
 
-    var data = [
-                          { 
-                              "listen_id":1,
-                              "listen_type":1,
-                              "option_A": "sunshine",
-                              "option_B": "big",
-                              "option_C": "boy",
-                              "listen_answer":"A",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?"
-                          },
-                          {
-                              "listen_id":2,
-                              "listen_type":1,
-                              "option_A": "sunshine",
-                              "option_B": "big",
-                              "option_C": "two",
-                              "listen_answer":"B",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?"
-                          },
-                          {
-                              "listen_id":3,
-                              "listen_type":1,
-                              "option_A": "sunshine",
-                              "option_B": "big",
-                              "option_C": "three",
-                              "listen_answer":"C",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?"
-                          }
-                       ] ;
-      data[0].xx="page-current";
-      data[0].box = "current";
+
+    [{"listen_id":9,"listen_type":3,"listen_group":31,"listen_question":"ertertertrr","radio_url":"../src/audio/1.mp3","listen_answer":"A","option_A":"sdfsd","option_B":"ddd","option_C":"ddddd","listen_score":1,"listen_degree":1,"listen_text":"听力作业","listen_explain":"完全"},{"listen_id":10,"listen_type":3,"listen_group":31,"listen_question":"saaaa","radio_url":"../src/audio/1.mp3","listen_answer":"C","option_A":"saszx","option_B":"vbnvb","option_C":"cccccc","listen_score":1,"listen_degree":1,"listen_text":"听力结束","listen_explain":"作业"}]]
+
+      data[0][0].xx="page-current";
+      data[0][0].box = "current";
       
-      for (var t = 0; t <=data.length - 1 ; t++) {
-        var flag=data[t].listen_answer; 
-        switch (flag)
-        {
-        case "A":
-          data[t].A="dui";
-          break;
-        case "B":
-          data[t].B="dui";
-          break;
-        case "C":
-          data[t].C="dui";
-          break;
-        };
-
-      }
+       
+       var flag=1;
+       for (var t = 0; t <=data.length - 1 ; t++) {
+            var jishu=flag+(data[t].length - 1);
+            data[t][0].tishi="你将听到一篇短文，短文后有第"+flag+"至第"+jishu+"小题。请根据短文内容，在每小题所给的A.B.C三个选项中选出一个最佳选项。"
+            for (var i= 0; i<=data[t].length - 1 ;i++) {
+         var s=data[t][i].listen_answer; 
+          switch (s)
+          {
+          case "A":
+            data[t][i].A="dui";
+            break;
+          case "B":
+            data[t][i].B="dui";
+            break;
+          case "C":
+            data[t][i].C="dui";
+            break;
+          };
+               data[t][i].tihao=flag;
+               flag++;
+            }
+       } 
 
         var myTemplate = Handlebars.compile($("#myTemplate").html());
         var myTemplate2 = Handlebars.compile($("#myTemplate2").html());
@@ -70,13 +87,18 @@ $(document).ready(function () {
 
        var dui=0;
        var cuo=0;
-       var zong=data.length;//获取总题数
-        $(".weida").find('b').html(zong);
-        $.each($(".yeshu"),function(i,val){
+
+       var zong=(flag-1);
+       $(".weida").find('b').html(zong);
+
+       $.each($(".yeshu"),function(i,val){
          var x= $(val).html();
-         var y=x.replace(/1110/, zong);
+         var y=x.replace(/1311/, zong);
           $(val).html(y);
        })
+
+
+
         $(".select").on('tap',function(){
         var parent  =  $(this).parent();
         var parents  =  $(this).parent().parent();
@@ -99,7 +121,7 @@ $(document).ready(function () {
                  $('.flex:eq('+flag+')'). addClass('current')
                     .siblings().removeClass('current');
                   flag++;
-                  $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
+                  // $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
               }
@@ -117,6 +139,7 @@ $(document).ready(function () {
              zong--;
              $(".dacuo").find('b').html(cuo);
              $(".weida").find('b').html(zong);
+
              $('.flex:eq('+x+')').addClass("popcuo");
             }
             parent.addClass('yidian');
@@ -133,26 +156,34 @@ $(document).ready(function () {
 
         }})
         
-  //播放部分
+                function bofang(x)
+                    {
+                    x.Play();
+                    }
+                    function zhanting()
+                    {
+                    x.pause();
+                    }
+                // console.log("哈哈哈我最帅嘿嘿嘿");
+                // $(".playn").on('click',function(){
+                //     $(".playn").hide();
+                //     $(".stopn").show();
+                //     bofang();
+                // })
+                // $(".stopn").click(function(){
+                //     $(".stopn").hide();
+                //     $(".playn").show();
+                //     zhanting();
+                // })
                 $('.yinpinicon').tap(function(){
-
-                    $(this).find('.playn').toggle();  
-                    $(this).find('.stopn').toggle();  
-                    var $flag=$(this).parent().find('audio');  
-                    var flag=$flag[0];        //转化成dom对象！
-                    flag.paused ? flag.play() : flag.pause();        
-               });
-                  var $audio=$('audio');
-                   var audio=$audio[0];  
-                  audio.onended = function() {
-                          $('.playn').show();  
-                          $('.stopn').hide(); 
-                    };              
-                function stopYinpin(){
-                  audio.pause(); 
-                  $('.playn').show();  
-                  $('.stopn').hide();  
-                }
+                    $(".playn").toggle();
+                    $(".stopn").toggle();
+                    var flag=$(this).parent().find('audio');
+                   $(flag).click(function() {
+                    this.paused ? this.play() : this.pause();
+                });
+                    
+                } )
                 $(".open-xiangjie").click(function(){
                      var parents  =  $(this).parent().parent();
                      var flag=parents.find(".xiangjie-wapper");
@@ -213,7 +244,7 @@ $(document).ready(function () {
                   $('.flex:eq('+flag+')'). addClass('current') 
                        .siblings().removeClass('current');            
                   flag++;
-                  stopYinpin();
+                 
                   $.router.load("#"+flag+"");        
               }else{
                  $.toast("已经是最后一题了")
@@ -226,7 +257,7 @@ $(document).ready(function () {
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
                  
-                       stopYinpin();
+
                   $.router.load("#"+flag+"");        
                  }
                  else{
@@ -235,11 +266,10 @@ $(document).ready(function () {
                 })
 
                 $(".flex").tap(function(){//点击盒子切换页面
-                  stopYinpin();
                   var flag=$(this).html();       
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
-
+ 
                   $.router.load("#"+flag+"");        
                 })
 })

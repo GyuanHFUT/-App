@@ -11,4 +11,10 @@ public class RandomNumber {
         long s = s1 + (long)(Math.random()*(s2-s1));
         return s;
     }
+
+    public static int createNumber(int n){
+        //int s1 = 0;
+        int s = (int)(Math.random()*n);
+        return s;
+    }
 }
