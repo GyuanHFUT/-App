@@ -53,13 +53,9 @@ $(document).ready(function () {
           data[t].C="dui";
           break;
         };
-        // var x="<li class="flex">"+(i+1)+"</li>";
-        // $("#hbs2").append(x);
-        //字符串拼接方法，待验证
+
       }
-        
-        //注册一个Handlebars模版，通过id找到某一个模版，获取模版的html框架
-        //$("#table-template").html()是jquery的语法，不懂的童鞋请恶补。。。
+
         var myTemplate = Handlebars.compile($("#myTemplate").html());
         var myTemplate2 = Handlebars.compile($("#myTemplate2").html());
         //注册一个Handlebars Helper,用来将索引+1，因为默认是从0开始的
@@ -137,34 +133,26 @@ $(document).ready(function () {
 
         }})
         
-                function bofang(x)
-                    {
-                    x.Play();
-                    }
-                    function zhanting()
-                    {
-                    x.pause();
-                    }
-                // console.log("哈哈哈我最帅嘿嘿嘿");
-                // $(".playn").on('click',function(){
-                //     $(".playn").hide();
-                //     $(".stopn").show();
-                //     bofang();
-                // })
-                // $(".stopn").click(function(){
-                //     $(".stopn").hide();
-                //     $(".playn").show();
-                //     zhanting();
-                // })
+  //播放部分
                 $('.yinpinicon').tap(function(){
-                    $(".playn").toggle();
-                    $(".stopn").toggle();
-                    var flag=$(this).parent().find('audio');
-                   $(flag).click(function() {
-                    this.paused ? this.play() : this.pause();
-                });
-                    
-                } )
+
+                    $(this).find('.playn').toggle();  
+                    $(this).find('.stopn').toggle();  
+                    var $flag=$(this).parent().find('audio');  
+                    var flag=$flag[0];        //转化成dom对象！
+                    flag.paused ? flag.play() : flag.pause();        
+               });
+                  var $audio=$('audio');
+                   var audio=$audio[0];  
+                  audio.onended = function() {
+                          $('.playn').show();  
+                          $('.stopn').hide(); 
+                    };              
+                function stopYinpin(){
+                  audio.pause(); 
+                  $('.playn').show();  
+                  $('.stopn').hide();  
+                }
                 $(".open-xiangjie").click(function(){
                      var parents  =  $(this).parent().parent();
                      var flag=parents.find(".xiangjie-wapper");
@@ -225,7 +213,7 @@ $(document).ready(function () {
                   $('.flex:eq('+flag+')'). addClass('current') 
                        .siblings().removeClass('current');            
                   flag++;
-
+                  stopYinpin();
                   $.router.load("#"+flag+"");        
               }else{
                  $.toast("已经是最后一题了")
@@ -238,7 +226,7 @@ $(document).ready(function () {
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
                  
-
+                       stopYinpin();
                   $.router.load("#"+flag+"");        
                  }
                  else{
@@ -247,6 +235,7 @@ $(document).ready(function () {
                 })
 
                 $(".flex").tap(function(){//点击盒子切换页面
+                  stopYinpin();
                   var flag=$(this).html();       
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           

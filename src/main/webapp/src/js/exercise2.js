@@ -171,34 +171,24 @@ $(document).ready(function () {
 
         }})
         
-                function bofang(x)
-                    {
-                    x.Play();
-                    }
-                    function zhanting()
-                    {
-                    x.pause();
-                    }
-                // console.log("哈哈哈我最帅嘿嘿嘿");
-                // $(".playn").on('click',function(){
-                //     $(".playn").hide();
-                //     $(".stopn").show();
-                //     bofang();
-                // })
-                // $(".stopn").click(function(){
-                //     $(".stopn").hide();
-                //     $(".playn").show();
-                //     zhanting();
-                // })
-                $('.yinpinicon').tap(function(){
-                    $(".playn").toggle();
-                    $(".stopn").toggle();
-                    var flag=$(this).parent().find('audio');
-                   $(flag).click(function() {
-                    this.paused ? this.play() : this.pause();
-                });
-                    
-                } )
+                 $('.yinpinicon').tap(function(){
+                    $(this).find('.playn').toggle();  
+                    $(this).find('.stopn').toggle();  
+                    var $flag=$(this).parent().find('audio');  
+                    var flag=$flag[0];        //转化成dom对象！
+                    flag.paused ? flag.play() : flag.pause();        
+               });
+                  var $audio=$('audio');
+                   var audio=$audio[0];  
+                  audio.onended = function() {
+                          $('.playn').show();  
+                          $('.stopn').hide(); 
+                    };              
+                function stopYinpin(){
+                  audio.pause(); 
+                  $('.playn').show();  
+                  $('.stopn').hide();  
+                }
                 $(".open-xiangjie").click(function(){
                      var parents  =  $(this).parent().parent();
                      var flag=parents.find(".xiangjie-wapper");
@@ -259,7 +249,7 @@ $(document).ready(function () {
                   $('.flex:eq('+flag+')'). addClass('current') 
                        .siblings().removeClass('current');            
                   flag++;
-
+                  stopYinpin();
                   $.router.load("#"+flag+"");        
               }else{
                  $.toast("已经是最后一题了")
@@ -272,7 +262,7 @@ $(document).ready(function () {
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
                  
-
+                        stopYinpin();
                   $.router.load("#"+flag+"");        
                  }
                  else{
@@ -284,7 +274,7 @@ $(document).ready(function () {
                   var flag=$(this).html();       
                  $('.flex:eq('+(flag-1)+')'). addClass('current') 
                        .siblings().removeClass('current');           
-
+                        stopYinpin();
                   $.router.load("#"+flag+"");        
                 })
 })
