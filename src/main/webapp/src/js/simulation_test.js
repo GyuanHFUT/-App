@@ -1,151 +1,162 @@
 $(document).ready(function(){
-  var data = [
-                       {     "listen_id":"1",
-                             "listen_type":"1",
-                             "listen_title":"",
-                             "option_A": "../src/img/encouragement.jpg",
-                             "option_B": "../src/img/encouragement.jpg",
-                             "option_C": "../src/img/encouragement.jpg",
-                             "listen_answer":"A",
-                             "radio_url":"../src/audio/1.mp3",
-                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                             "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"2"
-                         },
-                         {     "listen_id":"1",
-                               "listen_type":"1",
-                               "listen_title":"",
-                               "option_A": "../src/img/encouragement.jpg",
-                               "option_B": "../src/img/encouragement.jpg",
-                               "option_C": "../src/img/encouragement.jpg",
-                               "listen_answer":"A",
-                               "radio_url":"../src/audio/1.mp3",
-                               "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                               "yuanwen":"Is there anything wrong with you,Peter?",
-                               "listen_style":"2"
-                           },
-                           {     "listen_id":"1",
-                                 "listen_type":"1",
-                                 "listen_title":"",
-                                 "option_A": "../src/img/encouragement.jpg",
-                                 "option_B": "../src/img/encouragement.jpg",
-                                 "option_C": "../src/img/encouragement.jpg",
-                                 "listen_answer":"A",
-                                 "radio_url":"../src/audio/1.mp3",
-                                 "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                                 "yuanwen":"Is there anything wrong with you,Peter?",
-                                 "listen_style":"2"
-                             },
-
-                         {
-                             "listen_id":"3",
-                             "listen_type":"2",
-                             "listen_title":"What is Lily's father",
-                             "option_A": "sunshine",
-                             "option_B": "big",
-                             "option_C": "three",
-                             "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
-                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                             "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"1"
-                         }, {
-                              "listen_id":"2",
-                              "listen_type":"5",
-                              "listen_title":"",
-                              "option_A": "sunshine",
-                              "option_B": "big",
-                              "option_C": "two",
-                              "listen_answer":"B",
-                              "radio_url":"../src/audio/1.mp3",
-                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                              "yuanwen":"Is there anything wrong with you,Peter?",
-                              "listen_style":"1",
-                              "form_url":"../src/img/encouragement.jpg"
-                          },
-                       ] ;
-//   $.ajax({
-//     type: 'get',
-//     url: '',
-//     success:function(data){
-//       var data = JSON.parse(data);
-//       for(var t= 0 ;t<data.length;t++){
-//          data[t].first = "";
-//          data[0].first="page-current";
-//          data[t].box = "";
-//          data[0].box = "current";
-//          var n = data[t].listen_type,
-//             title = data[t].listen_title,
-//             s = data[t].listen_style,
-//             answer = data[t].listen_answer;
-//          switch(n){
-//             case "1":data[t]["listen_name"]="关键词语选择";break;
-//             case "2":data[t]["listen_name"]="短对话理解"; break;
-//             case "3":data[t]["listen_name"]="长对话理解"; break;
-//             case "4":data[t]["listen_name"]="短文理解"; break;
-//             case "5":data[t]["listen_name"]="信息转换"; break;
-//          };
-//          if(title == ""){
-//            data[t].listen_title= data[t].listen_name;
-//          };
-//          switch(s){
-//               case "1":data[t]["selects_type"]="words";break;
-//               case "2":data[t]["selects_type"]="imgs"; break;
-//               case "3":data[t]["selects_type"]=""; break;
-//           };
-//       };
-//       var myTemplate = Handlebars.compile($("#myTemplate").html());
-//       $("#handlebars").html(myTemplate(data));
-//       var box = Handlebars.compile($("#box").html());
-//       $("#box_li").html(box(data));
-//     }
-// });
-data[0].first="page-current";
-data[0].box = "current";
+  // var data = [
+  //                      {     "listen_id":"1",
+  //                            "listen_type":"1",
+  //                            "listen_title":"",
+  //                            "option_A": "../src/img/encouragement.jpg",
+  //                            "option_B": "../src/img/encouragement.jpg",
+  //                            "option_C": "../src/img/encouragement.jpg",
+  //                            "listen_answer":"A",
+  //                            "radio_url":"../src/audio/1.mp3",
+  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+  //                            "yuanwen":"Is there anything wrong with you,Peter?",
+  //                            "listen_style":"2"
+  //                        },
+  //                        {     "listen_id":"1",
+  //                              "listen_type":"1",
+  //                              "listen_title":"",
+  //                              "option_A": "../src/img/encouragement.jpg",
+  //                              "option_B": "../src/img/encouragement.jpg",
+  //                              "option_C": "../src/img/encouragement.jpg",
+  //                              "listen_answer":"A",
+  //                              "radio_url":"../src/audio/1.mp3",
+  //                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+  //                              "yuanwen":"Is there anything wrong with you,Peter?",
+  //                              "listen_style":"2"
+  //                          },
+  //                          {     "listen_id":"1",
+  //                                "listen_type":"1",
+  //                                "listen_title":"",
+  //                                "option_A": "../src/img/encouragement.jpg",
+  //                                "option_B": "../src/img/encouragement.jpg",
+  //                                "option_C": "../src/img/encouragement.jpg",
+  //                                "listen_answer":"A",
+  //                                "radio_url":"../src/audio/1.mp3",
+  //                                "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+  //                                "yuanwen":"Is there anything wrong with you,Peter?",
+  //                                "listen_style":"2"
+  //                            },
+  //
+  //                        {
+  //                            "listen_id":"3",
+  //                            "listen_type":"2",
+  //                            "listen_title":"What is Lily's father",
+  //                            "option_A": "sunshine",
+  //                            "option_B": "big",
+  //                            "option_C": "three",
+  //                            "listen_answer":"C",
+  //                            "radio_url":"../src/audio/1.mp3",
+  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+  //                            "yuanwen":"Is there anything wrong with you,Peter?",
+  //                            "listen_style":"1"
+  //                        }, {
+  //                             "listen_id":"2",
+  //                             "listen_type":"5",
+  //                             "listen_title":"",
+  //                             "option_A": "sunshine",
+  //                             "option_B": "big",
+  //                             "option_C": "two",
+  //                             "listen_answer":"B",
+  //                             "radio_url":"../src/audio/1.mp3",
+  //                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
+  //                             "yuanwen":"Is there anything wrong with you,Peter?",
+  //                             "listen_style":"1",
+  //                             "form_url":"../src/img/encouragement.jpg"
+  //                         },
+  //                      ] ;
 var answer = [];
-for(var t= 0 ;t<data.length;t++){
-   var n = data[t].listen_type,
-      title = data[t].listen_title,
-      s = data[t].listen_style;
-      answer[t] = data[t].listen_answer;
-   switch(n){
-      case "1":data[t]["listen_name"]="关键词语选择";break;
-      case "2":data[t]["listen_name"]="短对话理解"; break;
-      case "3":data[t]["listen_name"]="长对话理解"; break;
-      case "4":data[t]["listen_name"]="短文理解"; break;
-      case "5":data[t]["listen_name"]="信息转换"; break;
-   };
-   if(title == ""){
-     data[t].listen_title= data[t].listen_name;
-   };
-   switch(s){
-        case "1":data[t]["selects_type"]="words";break;
-        case "2":data[t]["selects_type"]="imgs"; break;
-        case "3":data[t]["selects_type"]=""; break;
-    };
-};
-
-Handlebars.registerHelper("addOne",function(index,options){
-  return parseInt(index)+1;
+  $.ajax({
+    type: 'get',
+    url: '',
+    success:function(data){
+      var data = JSON.parse(data);
+      data[0].first="page-current";
+      data[0].box = "current";
+      for(var t= 0 ;t<data.length;t++){
+         var n = data[t].listen_type,
+            title = data[t].listen_title,
+            s = data[t].listen_style;
+            answer[t] = data[t].listen_answer;
+         switch(n){
+            case "1":data[t]["listen_name"]="关键词语选择";break;
+            case "2":data[t]["listen_name"]="短对话理解"; break;
+            case "3":data[t]["listen_name"]="长对话理解"; break;
+            case "4":data[t]["listen_name"]="短文理解"; break;
+            case "5":data[t]["listen_name"]="信息转换"; break;
+         };
+         if(title == ""){
+           data[t].listen_title= data[t].listen_name;
+         };
+         switch(s){
+              case "1":data[t]["selects_type"]="words";break;
+              case "2":data[t]["selects_type"]="imgs"; break;
+              case "3":data[t]["selects_type"]=""; break;
+          };
+      };
+      Handlebars.registerHelper("addOne",function(index,options){
+        return parseInt(index)+1;
+      });
+      Handlebars.registerHelper("choice",function(option_A,options){
+        var sty =  option_A.slice(option_A.length-4,option_A.length);
+        if(sty !== ".jpg"){
+                   //满足添加继续执行
+                   return options.fn(this);
+                 }else{
+                   //不满足条件执行{{else}}部分
+                   return options.inverse(this);
+                 }
+        });
+      var myTemplate = Handlebars.compile($("#myTemplate").html());
+      $("#handlebars").html(myTemplate(data));
+      var box = Handlebars.compile($("#box").html());
+      $("#box_li").html(box(data));
+    }
 });
-Handlebars.registerHelper("choice",function(option_A,options){
-  var sty =  option_A.slice(option_A.length-4,option_A.length);
-  if(sty !== ".jpg"){
-             //满足添加继续执行
-             return options.fn(this);
-           }else{
-             //不满足条件执行{{else}}部分
-             return options.inverse(this);
-           }
-  });
-var myTemplate = Handlebars.compile($("#myTemplate").html());
-$("#handlebars").html(myTemplate(data));
-var box = Handlebars.compile($("#box").html());
-$("#box_li").html(box(data));
+// data[0].first="page-current";
+// data[0].box = "current";
+var answer = [];
+// for(var t= 0 ;t<data.length;t++){
+//    var n = data[t].listen_type,
+//       title = data[t].listen_title,
+//       s = data[t].listen_style;
+//       answer[t] = data[t].listen_answer;
+//    switch(n){
+//       case "1":data[t]["listen_name"]="关键词语选择";break;
+//       case "2":data[t]["listen_name"]="短对话理解"; break;
+//       case "3":data[t]["listen_name"]="长对话理解"; break;
+//       case "4":data[t]["listen_name"]="短文理解"; break;
+//       case "5":data[t]["listen_name"]="信息转换"; break;
+//    };
+//    if(title == ""){
+//      data[t].listen_title= data[t].listen_name;
+//    };
+//    switch(s){
+//         case "1":data[t]["selects_type"]="words";break;
+//         case "2":data[t]["selects_type"]="imgs"; break;
+//         case "3":data[t]["selects_type"]=""; break;
+//     };
+// };
+//
+// Handlebars.registerHelper("addOne",function(index,options){
+//   return parseInt(index)+1;
+// });
+// Handlebars.registerHelper("choice",function(option_A,options){
+//   var sty =  option_A.slice(option_A.length-4,option_A.length);
+//   if(sty !== ".jpg"){
+//              //满足添加继续执行
+//              return options.fn(this);
+//            }else{
+//              //不满足条件执行{{else}}部分
+//              return options.inverse(this);
+//            }
+//   });
+// var myTemplate = Handlebars.compile($("#myTemplate").html());
+// $("#handlebars").html(myTemplate(data));
+// var box = Handlebars.compile($("#box").html());
+// $("#box_li").html(box(data));
   $.init();
   //初始化结束
   //添加”dui“class
-
   //一些使用到的全局变量
   var test_num=0,
       zong=$(".weida").find('strong').html(),
@@ -154,16 +165,14 @@ $("#box_li").html(box(data));
       personal.true = new Array();
       personal.trans = new Array();
       personal.opts = new Array();
-
   //倒计时效果
   var fm =3,
   lm = 0,
   fs = 0,
   ls = 0;
-  var time = document.getElementsByClassName('time');
-  time[0].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
+  var time = $('.time');
+  time[0].html()=fm +''+ lm + ':' + fs+'' + ls;
   setInterval(checkTime,1000);
-
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
@@ -206,7 +215,7 @@ $("#box_li").html(box(data));
      //   success:function(data){
       //     var success = JSON.parse(data);
       //     if(success){
-      //       return true;
+      //         $.router.load("./grade.html");
       //     } else{
       //       return false;
       //     }
@@ -218,7 +227,7 @@ $("#box_li").html(box(data));
       //交卷所要做到的携带内容与结果
       //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
       // var last = $(".trans_input input").val()
-      $.router.load("./grade.html");
+
     });
   });
   //选项选择后对应选项颜色样式的改变
