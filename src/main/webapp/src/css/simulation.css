@@ -78,7 +78,7 @@ padding:0.4rem;
  text-align:center;
 }
 .selects .option{
-   color:blue;
+   color:#18b4ed;
 }
 .selects .xiangjie-wapper {
     box-sizing: border-box;
@@ -102,23 +102,17 @@ ul, li {
 .box-wrap  ul li.current{
     box-shadow:0px 0px 0px 1px black;
 }
-
-<<<<<<< HEAD
 .test_num strong{
   color:#18b4ed;
 }
-.close-popup
-=======
-.duicolor, .dadui strong,.dadui b{
-  color:#18b4ed;
-}
-.cuocolor, .dacuo strong,.dacuo b{
-  color:red;
-}
->>>>>>> 47ec2d30590d4d191a268059149e3e6aca32750f
-.popdui{
+.close-popup .poplook{
   background:#18b4ed !important;
+
 }
+/*
+.popdui{
+
+}*/
 .box-wrap ul li{
     margin: 0.4rem;
     border-radius: 5px;

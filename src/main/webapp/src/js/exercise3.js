@@ -45,17 +45,15 @@ $(document).ready(function () {
 
 
     [{"listen_id":9,"listen_type":3,"listen_group":31,"listen_question":"ertertertrr","radio_url":"../src/audio/2.mp3","listen_answer":"A","option_A":"sdfsd","option_B":"ddd","option_C":"ddddd","listen_score":1,"listen_degree":1,"listen_text":"听力作业","listen_explain":"完全"},{"listen_id":10,"listen_type":3,"listen_group":31,"listen_question":"saaaa","radio_url":"../src/audio/2.mp3","listen_answer":"C","option_A":"saszx","option_B":"vbnvb","option_C":"cccccc","listen_score":1,"listen_degree":1,"listen_text":"听力结束","listen_explain":"作业"}]]
-   
+
       data[0][0].xx="page-current";
       data[0][0].box = "current";
-
-       
        var flag=1;
        for (var t = 0; t <=data.length - 1 ; t++) {
             var jishu=flag+(data[t].length - 1);
             data[t][0].tishi="请听下面一段对话，回答第"+flag+"至第"+jishu+"小题。"
             for (var i= 0; i<=data[t].length - 1 ;i++) {
-         var s=data[t][i].listen_answer; 
+         var s=data[t][i].listen_answer;
           switch (s)
           {
           case "A":
@@ -71,14 +69,14 @@ $(document).ready(function () {
                data[t][i].tihao=flag;
                flag++;
             }
-       } 
+       }
         var myTemplate = Handlebars.compile($("#myTemplate").html());
         var myTemplate2 = Handlebars.compile($("#myTemplate2").html());
         //注册一个Handlebars Helper,用来将索引+1，因为默认是从0开始的
         Handlebars.registerHelper("addOne",function(index,options){
           return parseInt(index)+1;
         });
-        
+
         //将json对象用刚刚注册的Handlebars模版封装，得到最终的html，插入到基础table中。
         $('#handlebars').html(myTemplate(data));
         $('#hbs2').html(myTemplate2(data));
@@ -121,7 +119,7 @@ $(document).ready(function () {
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面
               }
-                  else{ 
+                  else{
                      $.toast("已经是最后一题了")
               }
             };
@@ -150,42 +148,42 @@ $(document).ready(function () {
                 parentss.find(".open-xiangjie").addClass("active");
 
         }})
-     
+
                  $('.yinpinicon').tap(function(){
-                    var $flag=$(this).parent().find('audio');  
+                    var $flag=$(this).parent().find('audio');
                     var prev=$(this).parent().parent().parent().prev().find("audio");
                     console.log($flag.attr("src"));
                     console.log(prev.attr("src"));
                     console.log($flag.attr("src")==prev.attr("src"));
                     if ($flag.attr("src")==prev.attr("src")) {
-                           $(this).find('.stopn').show(); 
+                           $(this).find('.stopn').show();
                            $(this).find('.playn').hide();
                     }
                       else{
                     var flag=$flag[0];        //转化成dom对象！
                    if(flag.paused )  {
                           flag.play();
-                           $(this).find('.stopn').show(); 
+                           $(this).find('.stopn').show();
                            $(this).find('.playn').hide();
                         }
                     else{
                       flag.pause();
-                           $(this).find('.playn').show(); 
+                           $(this).find('.playn').show();
                            $(this).find('.stopn').hide();
                     }
-                   }        
+                   }
                });
                   var $audio=$('audio');
-                   var audio=$audio[0];  
+                   var audio=$audio[0];
                   audio.onended = function() {
-                          $('.playn').show();  
-                          $('.stopn').hide(); 
-                    };              
+                          $('.playn').show();
+                          $('.stopn').hide();
+                    };
                 function stopYinpin(){//停止音频
                   if (panduan) {
-                  audio.pause(); 
-                  $('.playn').show();  
-                  $('.stopn').hide();                      
+                  audio.pause();
+                  $('.playn').show();
+                  $('.stopn').hide();
                   };
                 }
                 $(".open-xiangjie").click(function(){
@@ -203,11 +201,11 @@ $(document).ready(function () {
                      // parents.find(".xiangjie-wapper").toggle(
                      //        ,
                      //        function(){ $(this).removeClass('active')}
-                     //    ) 
+                     //    )
                 })
                 //收藏部分！
                 $(".shoucang").tap(function(){
-                  if ($(this).hasClass('active')) 
+                  if ($(this).hasClass('active'))
                       {
                         $(this).removeClass('active');
                         $.ajax({
@@ -215,14 +213,14 @@ $(document).ready(function () {
                                 url: '',
                                 data: "users",
                                 success: function(data){
-                                  if(data.success){   
+                                  if(data.success){
                                     $.toast("取消收藏！")}
                                     else{
                                        $.toast("数据异常，请重试!");
                                        $(this).addClass('active');
                                     }
                                    },
-                          }  )          
+                          }  )
                   }
                   else{
                     $(this).addClass('active');
@@ -231,14 +229,14 @@ $(document).ready(function () {
                           url: '',
                           data: "users",
                           success: function(data){
-                            if(data.success){   
+                            if(data.success){
                               $.toast("收藏成功！")}
                               else{
                                  $.toast("数据异常，请重试!");
                                  $(this).removeClass('active');
                               }
                              },
-                        }) 
+                        })
                     }
                 })
                 //滑动翻页部分
@@ -250,11 +248,11 @@ $(document).ready(function () {
                   stopYinpin();
                   var flag=$(this).attr("id");
                   if (flag<$(".page").length) {
-                  $('.flex:eq('+flag+')'). addClass('current') 
-                       .siblings().removeClass('current');            
+                  $('.flex:eq('+flag+')'). addClass('current')
+                       .siblings().removeClass('current');
                   flag++;
-                   
-                  $.router.load("#"+flag+"");        
+
+                  $.router.load("#"+flag+"");
               }else{
                  $.toast("已经是最后一题了")
               }
@@ -263,14 +261,14 @@ $(document).ready(function () {
                  var flag=$(this).attr("id");
                  if (flag>1) {
                      flag--;
-                 $('.flex:eq('+(flag-1)+')'). addClass('current') 
-                       .siblings().removeClass('current');           
+                 $('.flex:eq('+(flag-1)+')'). addClass('current')
+                       .siblings().removeClass('current');
                    var $panduan=$(this).find('.tishi').html();
                   var patt=new RegExp("请听下面一段对话");
                   panduan=patt.test($panduan);
                    console.log(panduan);
                   stopYinpin();
-                  $.router.load("#"+flag+"");        
+                  $.router.load("#"+flag+"");
                  }
                  else{
                     $.toast("已经是第一题了")
@@ -278,10 +276,10 @@ $(document).ready(function () {
                 })
 
                 $(".flex").tap(function(){//点击盒子切换页面
-                  var flag=$(this).html();       
-                 $('.flex:eq('+(flag-1)+')'). addClass('current') 
-                       .siblings().removeClass('current');           
+                  var flag=$(this).html();
+                 $('.flex:eq('+(flag-1)+')'). addClass('current')
+                       .siblings().removeClass('current');
                        stopYinpin();
-                  $.router.load("#"+flag+"");        
+                  $.router.load("#"+flag+"");
                 })
 })
