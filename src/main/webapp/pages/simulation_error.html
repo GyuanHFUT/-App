@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/simulation.css">
+    <link rel="stylesheet" href="../src/css/simulation_check.css">
   </head>
   <body>
     <div class="page-group " id="handlebars" >
@@ -280,7 +280,8 @@
                  <br>
                    <div class="show-wapper">
                         <div class="dati-info">
-                        <span class="test_num">已答题 <strong>0</strong></span>
+                        <span class="dadui">答对 <strong>0</strong></span>
+                        <span class="dacuo">答错 <strong>0</strong></span>
                         <span class="weida">未答题 <strong>30</strong></span>
                         </div>
                         <div class="box-wrap" >
@@ -337,7 +338,7 @@
                   {{else}}
                     {{#choice option_A}}
                      <div class="selects {{selects_type}}"  value="{{addOne @index}}">
-                         <div class="select ">
+                         <div class="select dui">
                            <i class="icon iconfont">&#xe61b;</i>
                            <span>{{option_A}}</span>
                          </div>
@@ -348,7 +349,7 @@
                      </div>
                      {{else}}
                      <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                             <div class="select">
+                             <div class="select dui">
                                <i class="icon iconfont ">&#xe61b;</i>
                                <img src="{{option_A}}">
                              </div>
@@ -372,6 +373,6 @@
           <li class="flex {{box}}">{{addOne @index}}</li>
       {{/each}}
      </script>
-    <script type='text/javascript' src='../src/js/simulation_test.js'></script>
+    <script type='text/javascript' src='../src/js/simulation_check.js'></script>
   </body>
 </html>

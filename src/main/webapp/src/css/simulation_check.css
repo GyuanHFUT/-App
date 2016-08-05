@@ -71,14 +71,10 @@ padding:0.4rem;
   border:1px solid #ccc;
  text-align:center;
 }
-.selects .option{
-   color:blue;
-}
 .selects .xiangjie-wapper {
     box-sizing: border-box;
     padding: .96666667rem .7rem;
 }
-
 .xiangjie-wapper h3 {
     font-size: 1rem;
     color: #18b4ed;
@@ -97,12 +93,17 @@ ul, li {
     box-shadow:0px 0px 0px 1px black;
 }
 
-.test_num strong{
+.duicolor, .dadui strong{
   color:#18b4ed;
 }
-.close-popup
+.cuocolor, .dacuo strong{
+  color:red;
+}
 .popdui{
   background:#18b4ed !important;
+}
+.popcuo{
+  background: #f25e5e !important;
 }
 .box-wrap ul li{
     margin: 0.4rem;

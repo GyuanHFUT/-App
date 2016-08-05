@@ -75,9 +75,11 @@ $(document).ready(function(){
 //       $("#box_li").html(box(data));
 //     }
 // });
-data[0].first="page-current";
-data[0].box = "current";
 for(var t= 0 ;t<data.length;t++){
+   data[t].first = "";
+   data[0].first="page-current";
+   data[t].box = "";
+   data[0].box = "current";
    var n = data[t].listen_type,
       title = data[t].listen_title,
       s = data[t].listen_style,
@@ -105,21 +107,30 @@ Handlebars.registerHelper("choice",function(option_A,options){
   var sty =  option_A.slice(option_A.length-4,option_A.length);
   if(sty !== ".jpg"){
              //满足添加继续执行
+             console.log(sty);
              return options.fn(this);
            }else{
              //不满足条件执行{{else}}部分
              return options.inverse(this);
            }
   });
-
 var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
+
+
   $.init();
   //初始化结束
   //添加”dui“class
-
+  for(var t= 0 ;t<data.length;t++){
+      var answer = data[t].listen_answer;
+      switch(answer){
+        case "A": $('.selects').find('.select').eq(0).addClass('dui');break;
+        case "B": $('.selects').find('.select').eq(1).addClass('dui') ;break;
+        case "C": $('.selects').find('.select').eq(2).addClass('dui');break;
+      };
+    };
 
   //一些使用到的全局变量
   var dui=0;
@@ -163,29 +174,24 @@ $("#box_li").html(box(data));
     $.confirm('确定交卷?', function () {
       //交卷所要做到的携带内容与结果
       //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
+
       // var last = $(".trans_input input").val()
       $.router.load("./grade.html");
     });
   });
+
   //选项选择后对应选项颜色样式的改变
   $(".select").on('tap',function(){
      var parent  =  $(this).parent();
      var parents  =  $(this).parent().parent();
      var parentss=parents.parent();
      var x=parent.attr('value');
-     console.log(x);
      x--;
      if(!parent.hasClass('yidian')){
-       //是否有点击过
-       $(this).addClass("option");
-       $('.flex:eq('+x+')').addClass("popdui");
-       zong--;
-       dui++;
-       parent.addClass('yidian');
        if ($(this).hasClass("dui")) {
            $(this).find('i').html('&#xe61b');
            //在popup层找到相对应的box改变颜色！
-           $(this).addClass("option");
+           $(this).addClass("duicolor");
            $('.flex:eq('+x+')').addClass("popdui");
            zong--;
            dui++;
