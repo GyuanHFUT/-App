@@ -163,7 +163,7 @@ $(document).ready(function () {
                            if ($(".bofang")[0]) {
                               $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
                            }else{
-                            $.toast("请从本大题第一小题开始播放!");
+                            $.toast("请从本题第一小题开始播放!");
                            }
 
                     }
