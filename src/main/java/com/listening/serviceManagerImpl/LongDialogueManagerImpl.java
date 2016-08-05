@@ -26,30 +26,31 @@ public class LongDialogueManagerImpl implements LongDialogueManager {
 
         List<List> list = new ArrayList<List>();
         List<LongDialogue> longDialogues = longDialogueMapper.selectAllLongDialogue();
-        for(int i=0;i<longDialogues.size();i++){
+        for(int i=0;i<longDialogues.size();i++) {
             List<LongDialogue> list1 = new ArrayList<LongDialogue>();
             LongDialogue longDialogue = longDialogues.get(i);
-            if(longDialogue==null){
+            if (longDialogue == null) {
                 continue;
-            }
-            list1.add(longDialogue);
-            for(int j=i+1;j<longDialogues.size();j++){
-                if(longDialogue.getListen_group()==longDialogues.get(j).getListen_group()){
-                    //int key2 = longDialogues.get(j).getListen_id();
-                    list1.add(longDialogues.get(j));
-                    longDialogues.set(j, null);
-                    //list.add(list1);
+            } else {
+                list1.add(longDialogue);
+                for (int j = i + 1; j < longDialogues.size(); j++) {
+                    if (longDialogue.getListen_group() == longDialogues.get(j).getListen_group()) {
+                        //int key2 = longDialogues.get(j).getListen_id();
+                        list1.add(longDialogues.get(j));
+                        longDialogues.set(j, null);
+                        //list.add(list1);
+                    }
                 }
-            }
-            if(list1.size()>1){
-                list.add(list1);
-            }
+                if (list1.size() > 1) {
+                    list.add(list1);
+                }
 
+            }
         }
         return list;
     }
 
-/*    @Override
+    @Override
     public int selectLongDialogueOfNum() {
 
         return longDialogueMapper.selectLongDialogueOfNum();
@@ -58,5 +59,5 @@ public class LongDialogueManagerImpl implements LongDialogueManager {
     @Override
     public int selectLongDialogueOfMin() {
         return longDialogueMapper.selectLongDialogueOfMin();
-    }*/
+    }
 }

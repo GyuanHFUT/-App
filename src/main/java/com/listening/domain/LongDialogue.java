@@ -6,7 +6,7 @@ package com.listening.domain;
 public class LongDialogue {
     private int listen_id;
     private int listen_type;
-    private double listen_group;
+    private int listen_group;
     private String listen_question;
     private String radio_url;
     private String listen_answer;
@@ -34,11 +34,11 @@ public class LongDialogue {
         this.listen_type = listen_type;
     }
 
-    public double getListen_group() {
+    public int getListen_group() {
         return listen_group;
     }
 
-    public void setListen_group(double listen_group) {
+    public void setListen_group(int listen_group) {
         this.listen_group = listen_group;
     }
 

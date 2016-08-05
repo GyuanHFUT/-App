@@ -27,7 +27,7 @@ public class LongDialogueController {
     public Map<String, Object> showAllLongDialogue(){
         Map<String, Object> map = new HashMap<String, Object>();
         List<List> longDialogues = longDialogueManager.showAllLongDialogue();
-        int s1 = 0;
+        int s1 = 1;
         int count = longDialogues.size();
         int s2 = s1+count-1;
         List<List> longDialogue = RandomTitle.reconstructList(longDialogues, s1, s2, count);
