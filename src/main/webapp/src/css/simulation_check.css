@@ -2,9 +2,6 @@
 p {
 margin:0;
 }
-.xiangjie-wapper{
-  display:none;
-}
 .words{
 padding:0.4rem;
 }
@@ -36,9 +33,6 @@ padding:0.4rem;
 .imgs .select img{
   width:8rem;
   height:5rem;
-}
-.yinpinicon .iconfont{
-      font-size:1.4rem;
 }
 .imgs .select .iconfont{
     font-size:1.6rem;
@@ -77,14 +71,10 @@ padding:0.4rem;
   border:1px solid #ccc;
  text-align:center;
 }
-.selects .option{
-   color:#18b4ed;
-}
 .selects .xiangjie-wapper {
     box-sizing: border-box;
     padding: .96666667rem .7rem;
 }
-
 .xiangjie-wapper h3 {
     font-size: 1rem;
     color: #18b4ed;
@@ -102,17 +92,19 @@ ul, li {
 .box-wrap  ul li.current{
     box-shadow:0px 0px 0px 1px black;
 }
-.test_num strong{
+
+.duicolor, .dadui strong{
   color:#18b4ed;
 }
-.close-popup .poplook{
-  background:#18b4ed !important;
-
+.cuocolor, .dacuo strong{
+  color:red;
 }
-/*
 .popdui{
-
-}*/
+  background:#18b4ed !important;
+}
+.popcuo{
+  background: #f25e5e !important;
+}
 .box-wrap ul li{
     margin: 0.4rem;
     border-radius: 5px;
