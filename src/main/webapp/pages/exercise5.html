@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
 <!--     <link rel="stylesheet" href="../src/css/practice1.css"> -->
-    <link rel="stylesheet" href="../src/css/simulation.css">
+    <link rel="stylesheet" href="../src/css/exercise.css">
     </head>
     <body>
     <div class="page-group" id="handlebars">
@@ -78,11 +78,11 @@
                        <h3>{{addOne @index}}.信息转换</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
                   <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                  <div class="trans_input"><input type="text" name="test_answer" value="26."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="27."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="28."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="29."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="30."/></div>
+                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
                   </div>
                    
                         <div class="xiangjie-wapper">
@@ -104,7 +104,7 @@
                       <li class="flex {{box}}">{{addOne @index}}</li>
       {{/each}}  
     </script>  
-
+   <script type='text/javascript' src='../src/js/packge.js' charset='utf-8'></script> 
     <script type='text/javascript' src='../src/js/exercise5.js' charset='utf-8'></script> 
   </body>
 </html>
