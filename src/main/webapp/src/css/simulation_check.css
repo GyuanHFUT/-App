@@ -64,6 +64,12 @@ padding:0.4rem;
   background-color:#fff;
   /*text-align:center;*/
 }
+.selects .dui{
+    color:#18b4ed;
+}
+.selects .cuo{
+  color:red;
+}
 .choice_blank{
   display:inline-block;
   width:1.5rem;
@@ -71,19 +77,18 @@ padding:0.4rem;
   border:1px solid #ccc;
  text-align:center;
 }
-.selects .xiangjie-wapper {
+.xiangjie-wapper {
     box-sizing: border-box;
-    padding: .96666667rem .7rem;
+    padding: .96666667rem 0;
 }
 .xiangjie-wapper h3 {
-    font-size: 1rem;
     color: #18b4ed;
     font-weight: bold;
 
 }
 .xiangjie-wapper .explain-p {
-    font-size: 1rem;
-    line-height: 1.733;
+    font-size: 0.8rem;
+    line-height: 2;
     color: #8e734d;
 }
 ul, li {
@@ -92,18 +97,11 @@ ul, li {
 .box-wrap  ul li.current{
     box-shadow:0px 0px 0px 1px black;
 }
-
-.duicolor, .dadui strong{
-  color:#18b4ed;
-}
-.cuocolor, .dacuo strong{
-  color:red;
-}
-.popdui{
-  background:#18b4ed !important;
-}
 .popcuo{
   background: #f25e5e !important;
+}
+.popdui{
+   background:#18b4ed !important;
 }
 .box-wrap ul li{
     margin: 0.4rem;

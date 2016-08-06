@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>只看错题</title>
+    <title>查看试卷</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="../src/lib/SUI-Mobile-dev/docs/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/simulation_check.css">
+    <link rel="stylesheet" href="../src/css/common.css">
   </head>
   <body>
     <div class="page-group " id="handlebars" >
@@ -19,8 +19,8 @@
     </div>
        <div class="popup">
                  <header class="bar bar-nav close-popup">
-                   <a href="./grade.html" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
-                   <span class="title">题目目录</span>
+                   <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+                   <span class="title"> 题目目录</span>
                  </header>
                  <div class="content-block">
                  <br>
@@ -50,13 +50,13 @@
                        <span class="tab-label">收藏</span>
                    </a>
                    <a class="tab-item external open-popup" href="#">
-                     {{!-- 错题数与总题数 --}}
+                     {{!-- 错题数、对题数、总题数 --}}
                       <i class="icon iconfont">&#xf006c;</i>
                       <span class="tab-label">3/30</span>
                    </a>
-                   <a class="tab-item external" href="./simulation_check.html#1">
+                   <a class="tab-item external" href="./simulation_error.html#1">
                        <i class="icon iconfont">&#xf006c;</i>
-                       <span class="tab-label">查看试卷</span>
+                       <span class="tab-label">只看错题</span>
                    </a>
                </nav>
                <div class="content content-padded">
@@ -64,11 +64,11 @@
                   {{#if form_url}}
                   <div class="show_trans"><img src="{{form_url}}"></div>
                   <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="26."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="27."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="28."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="29."/></div>
+                  <div class="trans_input"><input type="text" name="test_answer" value="30."/></div>
                   </div>
                    {{else}}
                     {{#choice option_A}}
@@ -115,12 +115,14 @@
      </script>
      <script type="text/x-handlebars-template" id="box">
        <div class="dati-info">
+       <span class="dadui">答对 <strong>4</strong></span>
        <span class="dacuo">答错 <strong>3</strong></span>
+       <span class="weida">未答题 <strong>23</strong></span>
        </div>
           {{#each this}}
        <div class="box-wrap" >
           <ul class="close-popup">
-              <li class="flex popcuo">{{addOne @index}}</li>
+              <li class="flex popdui">{{addOne @index}}</li>
           </ul>
       </div>
       {{/each}}

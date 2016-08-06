@@ -2,9 +2,7 @@
 p {
 margin:0;
 }
-.xiangjie-wapper{
-  display:none;
-}
+/*当选项是文字的时候*/
 .words{
 padding:0.4rem;
 }
@@ -15,7 +13,6 @@ padding:0.4rem;
     text-align: left;
     font-weight: normal;
     font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
-
 }
 .words .select:hover{
     color:red;
@@ -29,29 +26,26 @@ padding:0.4rem;
     position:relative;
     bottom:0.2rem;
 }
+/*当选项为图片的时候*/
 .imgs{
   padding:0.4rem;
 }
-
 .imgs .select img{
   width:8rem;
   height:5rem;
-}
-.yinpinicon .iconfont{
-      font-size:1.4rem;
 }
 .imgs .select .iconfont{
     font-size:1.6rem;
     position:relative;
     bottom:4.2rem;
 }
-.news h3{
+/*.news h3{
   font-family: "Helvetica Neue",Helvetica,sans-serif;
   font-size:1rem;
   line-height: 1.5;
   color: #3d4145;
-}
-
+}*/
+/*信息转换*/
 .show_trans{
   text-align:center;
 }
@@ -66,53 +60,45 @@ padding:0.4rem;
   border:0px;
   border-bottom:#000000 1px solid;
 }
-.blank{
+/*.blank{
   background-color:#fff;
-  /*text-align:center;*/
+}*/
+/*当选项为对或者错的时候*/
+.selects .dui{
+    color:#18b4ed;
 }
-.choice_blank{
+.selects .cuo{
+  color:red;
+}
+/**/
+/*.choice_blank{
   display:inline-block;
   width:1.5rem;
   height:1.5rem;
   border:1px solid #ccc;
  text-align:center;
-}
-.selects .option{
-   color:#18b4ed;
-}
-.selects .xiangjie-wapper {
+}*/
+/*详解情况的样式*/
+.xiangjie-wapper {
     box-sizing: border-box;
-    padding: .96666667rem .7rem;
+    padding: .96666667rem 0;
 }
-
 .xiangjie-wapper h3 {
-    font-size: 1rem;
     color: #18b4ed;
     font-weight: bold;
-
 }
 .xiangjie-wapper .explain-p {
-    font-size: 1rem;
-    line-height: 1.733;
+    font-size: 0.8rem;
+    line-height: 2;
     color: #8e734d;
 }
+/*pop框的样式*/
 ul, li {
     list-style: none;
 }
 .box-wrap  ul li.current{
     box-shadow:0px 0px 0px 1px black;
 }
-.test_num strong{
-  color:#18b4ed;
-}
-.close-popup .poplook{
-  background:#18b4ed !important;
-  
-}
-/*
-.popdui{
-
-}*/
 .box-wrap ul li{
     margin: 0.4rem;
     border-radius: 5px;
@@ -124,4 +110,11 @@ ul, li {
     width: 2rem;
     display: inline;
     float: left;
+}
+/*针对对错框的样式*/
+.popcuo{
+  background: #f25e5e !important;
+}
+.popdui{
+   background:#18b4ed !important;
 }
