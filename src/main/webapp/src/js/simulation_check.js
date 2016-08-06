@@ -99,6 +99,7 @@ for(var t= 0 ;t<data.length;t++){
         case "2":data[t]["selects_type"]="imgs"; break;
         case "3":data[t]["selects_type"]=""; break;
     };
+    
 };
 Handlebars.registerHelper("addOne",function(index,options){
   return parseInt(index)+1;
@@ -123,27 +124,12 @@ $("#box_li").html(box(data));
   $.init();
   //初始化结束
   //添加”dui“class
-  for(var t= 0 ;t<data.length;t++){
-      var answer = data[t].listen_answer;
-      switch(answer){
-        case "A": $('.selects').find('.select').eq(0).addClass('dui');break;
-        case "B": $('.selects').find('.select').eq(1).addClass('dui') ;break;
-        case "C": $('.selects').find('.select').eq(2).addClass('dui');break;
-      };
-    };
 
   //一些使用到的全局变量
   var dui=0;
   var cuo=0;
   var zong=$(".weida").find('b').html();
   //倒计时效果
-  var fm =3,
-  lm = 0,
-  fs = 0,
-  ls = 0;
-  var time = document.getElementsByClassName('time');
-  time[0].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
-  setInterval(checkTime,1000);
 
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
@@ -235,62 +221,8 @@ $("#box_li").html(box(data));
      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
      $.router.load("#"+flag+"");
    })
-
   //倒计时的实现
-
-  function checkTime(){
-      if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
-          $.alert('时间到，请点击交卷', function () {
-              $.router.load("./grade.html");
-          });
-      }else{
-          fm = checkfm(fm,lm,fs,ls);
-          lm = checklm(lm,fs,ls);
-          fs = checkfs(fs,ls);
-          ls = checkls(ls);
-      }
-      for (var j = 0; j < time.length; j++) {
-          var each = time[j].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
-      }
-      return each;
-  };
-
-  function checkls(ls){
-     if(ls == 0){
-        ls = 9;
-     }else{
-        ls--;
-     }
-     return ls;
-   };
-  function checkfs(fs,ls){
-     if(fs == 0 && ls ==0){
-       fs = 5;
-     }else if(ls == 0){
-       fs--;
-     }else{
-       return fs;
-     }
-     return fs;
-   };
-  function checklm(lm,fs,ls){
-     if(lm == 0 && ls == 0 && fs == 0){
-       lm = 9;
-     }else if(ls== 0 &&fs == 0){
-       lm--;
-     }else{
-       return lm;
-     }
-     return lm;
-   };
-  function checkfm(fm,lm,fs,ls){
-     if(lm == 0 && fs == 0 && ls == 0 ){
-       fm--;
-     }
-     return fm;
-   };
   //音频的实现
-
   //ajax事件的学习，需要用这个做一些事情
 
 })
