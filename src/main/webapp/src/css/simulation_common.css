@@ -14,9 +14,7 @@ padding:0.4rem;
     font-weight: normal;
     font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
 }
-.words .select:hover{
-    color:red;
-}
+
 .words .select span{
     font-size:1.2rem;
     margin-left: 0.5rem;
@@ -38,6 +36,10 @@ padding:0.4rem;
     font-size:1.6rem;
     position:relative;
     bottom:4.2rem;
+}
+/*音频图标效果*/
+.yinpinicon .iconfont{
+   font-size:1.4rem;
 }
 /*.news h3{
   font-family: "Helvetica Neue",Helvetica,sans-serif;
@@ -70,6 +72,9 @@ padding:0.4rem;
 .selects .cuo{
   color:red;
 }
+.selects .option{
+   color:#18b4ed;
+}
 /**/
 /*.choice_blank{
   display:inline-block;
@@ -79,14 +84,15 @@ padding:0.4rem;
  text-align:center;
 }*/
 /*详解情况的样式*/
-.xiangjie-wapper {
-    box-sizing: border-box;
-    padding: .96666667rem 0;
-}
 .xiangjie-wapper h3 {
     color: #18b4ed;
     font-weight: bold;
 }
+.xiangjie-wapper {
+    box-sizing: border-box;
+    padding: .96666667rem 0;
+}
+
 .xiangjie-wapper .explain-p {
     font-size: 0.8rem;
     line-height: 2;
@@ -117,4 +123,12 @@ ul, li {
 }
 .popdui{
    background:#18b4ed !important;
+}
+/*已答题数目的样式*/
+.test_num strong{
+  color:#18b4ed;
+}
+/*答题之后添加的效果*/
+.close-popup .poplook{
+  background:#18b4ed !important;
 }

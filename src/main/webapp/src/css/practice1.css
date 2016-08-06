@@ -7,7 +7,7 @@ ul, li {
     list-style: none;
 }
 .box-wrap  ul li.current {
-    box-shadow:0px 0px 0px 1px black; 
+    box-shadow:0px 0px 0px 1px black;
 }
 
 .duicolor,.dadui b{
@@ -24,7 +24,6 @@ ul, li {
 }
 .box-wrap ul li{
     margin: 0.4rem;
-
     border-radius: 5px;
     line-height: 2rem;
     text-align: center;
@@ -68,7 +67,6 @@ padding:0.4rem;
     font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
 
 }
-
 .words .select span{
     font-size:1.2rem;
     margin-left: 0.5rem;

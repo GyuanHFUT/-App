@@ -75,11 +75,9 @@ $(document).ready(function(){
 //       $("#box_li").html(box(data));
 //     }
 // });
+data[0].first="page-current";
+data[0].box = "current";
 for(var t= 0 ;t<data.length;t++){
-   data[t].first = "";
-   data[0].first="page-current";
-   data[t].box = "";
-   data[0].box = "current";
    var n = data[t].listen_type,
       title = data[t].listen_title,
       s = data[t].listen_style,
@@ -99,7 +97,7 @@ for(var t= 0 ;t<data.length;t++){
         case "2":data[t]["selects_type"]="imgs"; break;
         case "3":data[t]["selects_type"]=""; break;
     };
-    
+
 };
 Handlebars.registerHelper("addOne",function(index,options){
   return parseInt(index)+1;
@@ -119,8 +117,6 @@ var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
-
-
   $.init();
   //初始化结束
   //添加”dui“class
@@ -128,7 +124,7 @@ $("#box_li").html(box(data));
   //一些使用到的全局变量
   var dui=0;
   var cuo=0;
-  var zong=$(".weida").find('b').html();
+  var zong=$(".weida").find('strong').html();
   //倒计时效果
 
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
