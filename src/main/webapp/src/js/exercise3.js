@@ -151,6 +151,11 @@ $(document).ready(function () {
 
         }})
      
+      function icon() {
+            $('.stopn').toggle(); 
+            $('.playn').toggle();
+      }
+
        $('.yinpinicon').tap(function(){
                     var $flag=$(this).parent().find('audio');  
                     var prev=$(this).parent().parent().parent().prev().find("audio");
@@ -158,21 +163,18 @@ $(document).ready(function () {
                     var nextNext=$(this).parent().parent().parent().next().next().find("audio");
                       console.log($flag.attr("src")==prev.attr("src"));
                     if ($flag.attr("src")==prev.attr("src")) {
-                           $(this).find('.stopn').toggle(); 
-                           $(this).find('.playn').toggle();
+                            icon();
                            if ($(".bofang")[0]) {
                               $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
                            }else{
                             $.toast("请从本题第一小题开始播放!");
                            }
-
                     }
                       else{
                           var flag=$flag[0]; 
                           $(flag).addClass("bofang");
                           $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
-                                  $(this).find('.stopn').toggle(); 
-                                  $(this).find('.playn').toggle();
+                          icon();
                            //         //转化成dom对象！
                            //  var s=true;//判断有没有音频在播放
                            //  for (var i = audio.length - 1; i >= 0; i--) {
@@ -208,8 +210,7 @@ $(document).ready(function () {
                       audio[i].pause();
                     };
 
-                  $('.playn').show();  
-                  $('.stopn').hide();                      
+                    icon();                   
                   };
             }
                 $(".open-xiangjie").click(function(){
