@@ -9,6 +9,7 @@ $(document).ready(function () {
                     "user_name":account
                      },
                   success: function(data){
+                      console.log(data);
                         if(data.success){
                             $.toast('验证码已发送，请查收!')
                         }
