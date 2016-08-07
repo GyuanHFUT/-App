@@ -2,22 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.listening.mapper.MistakeMapper">
-    <insert id="insertCollect">
-        insert INTO collect( user_id, listen_id) values ( #{user_id}, #{listen_id});
+    <insert id="insertMistake">
+        insert INTO mistake( user_id, listen_id) values ( #{user_id}, #{listen_id});
     </insert>
 
-    <select id="selectCollectByUL" resultType="com.listening.domain.Collect">
+    <select id="selectMistakeByUL" resultType="com.listening.domain.Mistake">
         SELECT *
-        FROM collect WHERE user_id=#{user_id} AND listen_id=#{listen_id};
+        FROM mistake WHERE user_id=#{user_id} AND listen_id=#{listen_id};
     </select>
 
-    <select id="selectCollectByUser" resultType="com.listening.domain.Collect">
+    <select id="selectMistakeByUser" resultType="com.listening.domain.Mistake">
         SELECT *
-        FROM collect WHERE user_id=#{user_id};
+        FROM mistake WHERE user_id=#{user_id};
     </select>
 
-    <delete id="deleteCollect">
-        DELETE FROM collect WHERE user_id=#{user_id} AND listen_id=#{listen_id};
+    <delete id="deleteMistake">
+        DELETE FROM mistake WHERE user_id=#{user_id} AND listen_id=#{listen_id};
     </delete>
 
 
