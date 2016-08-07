@@ -126,11 +126,11 @@ public class UserManagerImpl implements UserManager {
         }else{
             HttpSession httpSession = SessionUtils.getSession();
             String randomNo = (String) httpSession.getAttribute("randomNo");
-            String sentMsgTime = (String) httpSession.getAttribute("sentMsgTime");
+            long sentMsgTime = (Long) httpSession.getAttribute("sentMsgTime");
             if(!(user_code.equals(randomNo))){
                 map.put("success", false);
                 map.put("msg", "短信验证码输入错误！");
-            }else if((System.currentTimeMillis()-Long.parseLong(sentMsgTime))>300000){
+            }else if((System.currentTimeMillis()-sentMsgTime)>300000){
                 map.put("success", false);
                 map.put("msg", "手机验证码过期，请重新获取！");
             }
