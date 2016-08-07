@@ -69,13 +69,14 @@ function  select(dui,cuo,zong){
 //收藏
 function shoucang(){
  $(".shoucang").tap(function(){
-      listen_id=$(this)
+      listen_id=$(this).attr('shoucangid');
+
       if ($(this).hasClass('active')) 
           {
-            $(this).removeClass('active');
+
             $.ajax({
                     type: 'get',
-                    url: "/collect/deleteCollect/"+listen_id,                  
+                    url: "/JuniorHearing/collect/deleteCollect/"+listen_id,
                     success: function(data){
                       if(data.success){   
                         console.log(data);
@@ -92,7 +93,7 @@ function shoucang(){
       else{
         $.ajax({
               type: 'get',
-              url: "/collect/addCollect/"+listen_id,              
+              url: "/JuniorHearing/collect/addCollect/"+listen_id,
               success: function(data){
                 if(data.success){ 
                   $(this).addClass('active');
