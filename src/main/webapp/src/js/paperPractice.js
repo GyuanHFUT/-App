@@ -72,7 +72,19 @@ for(var t= 0 ;t<data.length;t++){
    var n = data[t].listen_type,
       title = data[t].listen_title,
       s = data[t].listen_style;
-
+     flag=data[t].listen_answer; 
+   switch (flag)
+      {
+      case "A":
+        data[t].A="dui";
+        break;
+      case "B":
+        data[t].B="dui";
+        break;
+      case "C":
+        data[t].C="dui";
+        break;
+      };
    switch(n){
       case "1":data[t]["listen_name"]="关键词语选择";break;
       case "2":data[t]["listen_name"]="短对话理解"; break;
@@ -114,11 +126,24 @@ $("#box_li").html(box(data));
    var dui=0;
    var cuo=0;
    var zong=30;//获取总题数
-    select(dui,cuo,zong);                  
-    shoucang();  //收藏部分！
-    xiangjie();//详解打开和关闭
+  select(dui,cuo,zong);                  
+  shoucang();  //收藏部分！
+  xiangjie();//详解打开和关闭
+
+    //播放部分
+  $('.yinpinicon').tap(function(){
+      $(this).find('.playn').toggle();  
+      $(this).find('.stopn').toggle();  
+      var $flag=$(this).parent().find('audio');  
+      var flag=$flag[0];        //转化成dom对象！
+      flag.paused ? flag.play() : flag.pause();        
+  });
+    var $audio=$('audio');
+     var audio=$audio[0];  
+  stopNow($audio);
   //页面翻转===这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
+      stopYinpin($audio);
       var flag=$(this).attr("id");
       if (flag<$(".page").length) {
           $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
@@ -130,6 +155,7 @@ $("#box_li").html(box(data));
       }
   });
   $(".page").swipeRight(function(){
+    stopYinpin($audio);
      var flag=$(this).attr("id");
      if (flag>1) {
            flag--;
@@ -141,16 +167,7 @@ $("#box_li").html(box(data));
      }
   });
 
-  //选项选择后对应选项颜色样式的改变
 
-
- $(".flex").tap(function(){//点击盒子切换页面
-     var flag=$(this).html();
-     $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
-     $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
-     $.router.load("#"+flag+"");
-   });
-  
-  //ajax事件的学习，需要用这个做一些事情
+box(audio);  
 
 })

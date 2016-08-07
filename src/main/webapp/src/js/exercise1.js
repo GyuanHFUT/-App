@@ -90,7 +90,7 @@ console.log(data);
      });
         var $audio=$('audio');
          var audio=$audio[0];  
-      stopNow(audio);            
+      stopNow($audio);            
 
         //滑动翻页部分
     $(".page").swipeLeft(function(){
@@ -99,7 +99,7 @@ console.log(data);
           $('.flex:eq('+flag+')'). addClass('current') 
                .siblings().removeClass('current');            
           flag++;
-          stopYinpin(audio);
+          stopYinpin($audio);
           $.router.load("#"+flag+"");        
       }else{
          $.toast("已经是最后一题了")
@@ -112,7 +112,7 @@ console.log(data);
          $('.flex:eq('+(flag-1)+')'). addClass('current') 
                .siblings().removeClass('current');           
          
-               stopYinpin(audio);
+               stopYinpin($audio);
           $.router.load("#"+flag+"");        
          }
          else{
@@ -120,5 +120,5 @@ console.log(data);
          }
         })
 
-    box(audio);      //盒子切换      
+    box($audio);      //盒子切换      
 })
