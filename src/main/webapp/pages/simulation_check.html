@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/common.css">
+    <link rel="stylesheet" href="../src/css/simulation_common.css">
   </head>
   <body>
     <div class="page-group " id="handlebars" >
@@ -40,7 +40,7 @@
                    <span class="title">{{listen_name}}</span>
                     <div class="yinpin">
                   <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
-                 <span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
+                 <span class="playn"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
                   <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
                   </div>
                </header>
@@ -64,11 +64,11 @@
                   {{#if form_url}}
                   <div class="show_trans"><img src="{{form_url}}"></div>
                   <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                  <div class="trans_input"><input type="text" name="test_answer" value="26."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="27."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="28."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="29."/></div>
-                  <div class="trans_input"><input type="text" name="test_answer" value="30."/></div>
+                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
                   </div>
                    {{else}}
                     {{#choice option_A}}
