@@ -41,11 +41,12 @@ public class UserManagerImpl implements UserManager {
                 HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
                 HttpSession httpSession = request.getSession();
                 String randomNo = (String) httpSession.getAttribute("randomNo");
-                String sentMsgTime = (String) httpSession.getAttribute("sentMsgTime");
+                //必须强制转化成Long对象类型
+                long sentMsgTime = (Long)(httpSession.getAttribute("sentMsgTime"));
                 if (!(user_code.equals(randomNo))) {
                     map.put("success", false);
                     map.put("msg", "短信验证码输入错误！");
-                } else if((System.currentTimeMillis()-Long.parseLong(sentMsgTime))>300000){
+                } else if((System.currentTimeMillis()-sentMsgTime)>300000){
                     map.put("success", false);
                     map.put("msg", "手机验证码过期，请重新获取！");
                 }
@@ -66,18 +67,18 @@ public class UserManagerImpl implements UserManager {
 
 
     @Override
-    public User userLogin(User user) {
+    public User userLogin(String user_name, String user_pwd) {
 
-        if(StringUtils.isEmpty(user.getUser_name())||StringUtils.isEmpty(user.getUser_pwd())){
+        if(StringUtils.isEmpty(user_name)||StringUtils.isEmpty(user_pwd)){
             throw new MessageException("用户名或密码不能为空！");
         }else {
-            User user1 = userMapper.selectUserByName(user.getUser_name());
+            User user1 = userMapper.selectUserByName(user_name);
             if(user1 == null){
                throw new MessageException("此用户不存在，请重新输入！");
-            }else if(!(user1.getUser_pwd().equals(user.getUser_pwd()))){
+            }else if(!(user1.getUser_pwd().equals(user_pwd))){
                 throw new MessageException("密码不正确，请重新输入！");
             }else {
-                User user2 = userMapper.userLogin(user.getUser_name(), user.getUser_pwd());
+                User user2 = userMapper.userLogin(user_name, user_pwd);
                 SessionUtils.bindSession("user", user2);
                 return user2;
             }

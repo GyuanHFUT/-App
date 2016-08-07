@@ -76,12 +76,14 @@ $(document).ready(function () {
          var yanzheng=$("#uyanzheng").val();
         if (yanzheng.length!=0&&name.length!=0){
            
-        var users = {"user_id":account, "user_name":name,"user_pwd":pwd,"yanzheng":yanzheng};
+        var users = {"user_name":account, "user_nickname":name,"user_pwd":pwd,"user_code":yanzheng};
+
             $.ajax({
               type: 'post',
-              url: 'user/addUser',
-              data: "users",
+              url: '/JuniorHearing/user/addUser',
+              data: users,
               success: function(data){
+                console.log(data);
                 if(data.success){
                     $.alert("注册成功!", function () {
                     $.router.load("../pages/choice_que.html"); 
