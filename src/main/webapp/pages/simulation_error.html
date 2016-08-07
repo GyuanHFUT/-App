@@ -38,10 +38,12 @@
                      <a  href="../pages/choice_que.html#chioce_que" class=" pull-left">
                        <i class="icon iconfont pull-left back">&#xe61e;</i></a>
                    <span class="title">{{listen_name}}</span>
-                    <div class="yinpin">
+                  <div class="yinpin">
                   <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
-                 <span class="playn"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
+                  <div class="yinpinicon">
+                  <span class="playn"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
                   <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
+                </div>
                   </div>
                </header>
                <nav class="bar bar-tab">
@@ -60,8 +62,8 @@
                    </a>
                </nav>
                <div class="content content-padded">
-                  <h3>{{addOne @index}}.{{listen_title}}</h3>
                   {{#if form_url}}
+                    <h3>26-30.{{listen_title}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
                   <div class="selects {{selects_type}} " value="{{addOne @index}}">
                   <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
@@ -71,6 +73,7 @@
                   <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
                   </div>
                    {{else}}
+                     <h3>{{addOne @index}}.{{listen_title}}</h3>
                     {{#choice option_A}}
                      <div class="selects {{selects_type}}"  value="{{addOne @index}}">
                          <div class="select dui">
@@ -117,14 +120,16 @@
        <div class="dati-info">
        <span class="dacuo">答错 <strong>3</strong></span>
        </div>
-          {{#each this}}
        <div class="box-wrap" >
           <ul class="close-popup">
+              {{#each this}}
               <li class="flex popcuo">{{addOne @index}}</li>
+              {{/each}}
           </ul>
       </div>
-      {{/each}}
+
      </script>
     <script type='text/javascript' src='../src/js/simulation_check.js'></script>
+
   </body>
 </html>

@@ -112,10 +112,14 @@ Handlebars.registerHelper("choice",function(option_A,options){
              return options.inverse(this);
            }
   });
+
 var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
+for(var n=27;n<31;n++){
+  $('.close-popup').append('<li class="flex">'+n+'</li> ');
+}
   $.init();
   //初始化结束
   //添加”dui“class

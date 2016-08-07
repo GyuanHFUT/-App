@@ -36,7 +36,7 @@ function  select(dui,cuo,zong){
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
               }
-                  else{ 
+                  else{
                      $.toast("已经是最后一题了")
               }
             };
@@ -69,7 +69,7 @@ function  select(dui,cuo,zong){
 //收藏
 function shoucang(){
  $(".shoucang").tap(function(){
-      if ($(this).hasClass('active')) 
+      if ($(this).hasClass('active'))
           {
             $(this).removeClass('active');
             $.ajax({
@@ -77,14 +77,14 @@ function shoucang(){
                     url: '',
                     data: "users",
                     success: function(data){
-                      if(data.success){   
+                      if(data.success){
                         $.toast("取消收藏！")}
                         else{
                            $.toast("数据异常，请重试!");
                            $(this).addClass('active');
                         }
                        },
-                  })          
+                  })
       }
       else{
         $(this).addClass('active');
@@ -93,26 +93,25 @@ function shoucang(){
               url: '',
               data: "users",
               success: function(data){
-                if(data.success){   
+                if(data.success){
                   $.toast("收藏成功！")}
                   else{
                      $.toast("数据异常，请重试!");
                      $(this).removeClass('active');
                   }
                  },
-            }) 
+            })
       }
     })
 }
 //停止音频
 function stopYinpin(x){
-
   var s=x.length;
   for (var i =s  - 1; i >= 0; i--) {
-    x[i].pause(); 
+    x[i].pause();
   };
-  $('.playn').show();  
-  $('.stopn').hide();  
+  $('.playn').show();
+  $('.stopn').hide();
 }
 //详解打开和关闭
 function xiangjie(){
@@ -131,22 +130,22 @@ function xiangjie(){
          // parents.find(".xiangjie-wapper").toggle(
          //        ,
          //        function(){ $(this).removeClass('active')}
-         //    ) 
+         //    )
     })
 }
 //盒子切换事件
 function box(x){
     $(".flex").tap(function(){//点击盒子切换页面
       stopYinpin(x);
-      var flag=$(this).html();       
-     $('.flex:eq('+(flag-1)+')'). addClass('current') 
-           .siblings().removeClass('current');           
-      $.router.load("#"+flag+"");        
-    })    
+      var flag=$(this).html();
+     $('.flex:eq('+(flag-1)+')'). addClass('current')
+           .siblings().removeClass('current');
+      $.router.load("#"+flag+"");
+    })
 }
 //播放暂停图标显示与隐藏
-   function icon() {
-    $('.stopn').toggle(); 
+function icon() {
+    $('.stopn').toggle();
     $('.playn').toggle();
  }
  //音频播放完自动暂停
@@ -155,8 +154,8 @@ function box(x){
   var s=x.length;
 for (var i = s - 1; i >= 0; i--) {
       x[i].onended = function() {
-          $('.playn').show();  
-          $('.stopn').hide(); 
-         };   
-      }     
+          $('.playn').show();
+          $('.stopn').hide();
+         };
+      }
  }

@@ -155,6 +155,7 @@ var answer = [];
 // var box = Handlebars.compile($("#box").html());
 // $("#box_li").html(box(data));
   $.init();
+
   //初始化结束
   //添加”dui“class
   //一些使用到的全局变量
@@ -174,6 +175,10 @@ var answer = [];
   time[0].html()=fm +''+ lm + ':' + fs+'' + ls;
   setInterval(checkTime,1000);
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
+  audio_play();
+  $('yinpinicon').tag(function(){
+     $.alert('考试期间，请勿暂停音频')
+  })
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
       if (flag<$(".page").length) {
@@ -297,8 +302,8 @@ var answer = [];
      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
      $.router.load("#"+flag+"");
    });
-  //倒计时的实现
 
+  //倒计时的实现
   function checkTime(){
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
@@ -362,6 +367,14 @@ var answer = [];
 
   //音频的实现
 
-  //ajax事件的学习，需要用这个做一些事情
+function audio_play(){
+   var audio = $(this).find('audio');
+   audio[0].play();
+   audio[0].onended = function(){
+     $('.playn').show();
+     $('.stopn').hide();
+   }
+}
 
+  //ajax事件的学习，需要用这个做一些事情
 })
