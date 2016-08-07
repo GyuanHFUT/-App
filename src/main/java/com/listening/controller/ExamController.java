@@ -27,14 +27,11 @@ public class ExamController {
 
     @RequestMapping(value = "/showExamOfListen")
     @ResponseBody
-    public Map<String, Object> showExamOfListen(){
+    public List<Exam> showExamOfListen(){
         Map<String, Object> map = new HashMap<String, Object>();
         int s = examManager.showExamOfType();
         List<Exam> exams = examManager.showExamOfListen(s);
-        map.put("exams", exams);
-        map.put("success", true);
-        map.put("msg", "查询成功！");
-        return map;
+        return exams;
     }
 
     @RequestMapping(value = "/addExamOfMistake")
