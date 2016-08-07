@@ -111,8 +111,8 @@ public class UserManagerImpl implements UserManager {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         long sentMsgTime = System.currentTimeMillis();
-        msgMap.put("sentMsgTime", sentMsgTime);
-        msgMap.put("randomNo", randomNo);
+        msgMap.put("success", true);
+        //msgMap.put("randomNo", randomNo);
         session.setAttribute("sentMsgTime", sentMsgTime);
         session.setAttribute("randomNo", randomNo);
         return msgMap;
