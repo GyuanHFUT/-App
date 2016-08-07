@@ -75,11 +75,9 @@ $(document).ready(function(){
 //       $("#box_li").html(box(data));
 //     }
 // });
+data[0].first="page-current";
+data[0].box = "current";
 for(var t= 0 ;t<data.length;t++){
-   data[t].first = "";
-   data[0].first="page-current";
-   data[t].box = "";
-   data[0].box = "current";
    var n = data[t].listen_type,
       title = data[t].listen_title,
       s = data[t].listen_style,
@@ -118,32 +116,9 @@ var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
-
-
   $.init();
   //初始化结束
   //添加”dui“class
-  for(var t= 0 ;t<data.length;t++){
-      var answer = data[t].listen_answer;
-      switch(answer){
-        case "A": $('.selects').find('.select').eq(0).addClass('dui');break;
-        case "B": $('.selects').find('.select').eq(1).addClass('dui') ;break;
-        case "C": $('.selects').find('.select').eq(2).addClass('dui');break;
-      };
-    };
-
-  //一些使用到的全局变量
-  var dui=0;
-  var cuo=0;
-  var zong=$(".weida").find('b').html();
-  //倒计时效果
-  var fm =3,
-  lm = 0,
-  fs = 0,
-  ls = 0;
-  var time = document.getElementsByClassName('time');
-  time[0].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
-  setInterval(checkTime,1000);
 
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
@@ -169,126 +144,12 @@ $("#box_li").html(box(data));
            $.toast("已经是第一题了")
      }
   });
-//交卷部分
-  $(document).on('tap','.confirm-ok', function () {
-    $.confirm('确定交卷?', function () {
-      //交卷所要做到的携带内容与结果
-      //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
-
-      // var last = $(".trans_input input").val()
-      $.router.load("./grade.html");
-    });
-  });
-
-  //选项选择后对应选项颜色样式的改变
-  $(".select").on('tap',function(){
-     var parent  =  $(this).parent();
-     var parents  =  $(this).parent().parent();
-     var parentss=parents.parent();
-     var x=parent.attr('value');
-     x--;
-     if(!parent.hasClass('yidian')){
-       if ($(this).hasClass("dui")) {
-           $(this).find('i').html('&#xe61b');
-           //在popup层找到相对应的box改变颜色！
-           $(this).addClass("duicolor");
-           $('.flex:eq('+x+')').addClass("popdui");
-           zong--;
-           dui++;
-           $(".dadui").find('b').html(dui);
-           $(".weida").find('b').html(zong);
-           parent.addClass('yidian');
-           var flag=parentss.attr("id");
-           if (flag<$(".page").length){
-                $('.flex:eq('+flag+')'). addClass('current')
-                   .siblings().removeClass('current');
-                 flag++;
-                 $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
-                 $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
-             }else{
-                 $.toast("已经是最后一题了")
-             }
-        }else{
-          $(this).find('i').html('&#xe624');
-          $(this).addClass("cuocolor");
-          cuo++;
-          zong--;
-          $(".dacuo").find('b').html(cuo);
-          $(".weida").find('b').html(zong);
-          $('.flex:eq('+x+')').addClass("popcuo");
-          parent.addClass('yidian');
-           //给正确答案加样式！
-          for(var i =parent.find(".select ").length - 1; i >= 0; i--){
-               var a=parent.find(".select ")[i];
-               if ($(a).hasClass("dui")){
-                         $(a).addClass("duicolor");
-                      };
-              }
-            }
-      }else{
-            $.toast("请注意不要重复选择！");
-           }
- });
  $(".flex").tap(function(){//点击盒子切换页面
      var flag=$(this).html();
      $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
      $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
      $.router.load("#"+flag+"");
    })
-
-  //倒计时的实现
-
-  function checkTime(){
-      if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
-          $.alert('时间到，请点击交卷', function () {
-              $.router.load("./grade.html");
-          });
-      }else{
-          fm = checkfm(fm,lm,fs,ls);
-          lm = checklm(lm,fs,ls);
-          fs = checkfs(fs,ls);
-          ls = checkls(ls);
-      }
-      for (var j = 0; j < time.length; j++) {
-          var each = time[j].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
-      }
-      return each;
-  };
-
-  function checkls(ls){
-     if(ls == 0){
-        ls = 9;
-     }else{
-        ls--;
-     }
-     return ls;
-   };
-  function checkfs(fs,ls){
-     if(fs == 0 && ls ==0){
-       fs = 5;
-     }else if(ls == 0){
-       fs--;
-     }else{
-       return fs;
-     }
-     return fs;
-   };
-  function checklm(lm,fs,ls){
-     if(lm == 0 && ls == 0 && fs == 0){
-       lm = 9;
-     }else if(ls== 0 &&fs == 0){
-       lm--;
-     }else{
-       return lm;
-     }
-     return lm;
-   };
-  function checkfm(fm,lm,fs,ls){
-     if(lm == 0 && fs == 0 && ls == 0 ){
-       fm--;
-     }
-     return fm;
-   };
   //音频的实现
 
   //ajax事件的学习，需要用这个做一些事情

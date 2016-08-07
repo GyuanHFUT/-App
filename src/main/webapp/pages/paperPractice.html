@@ -3,54 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>专项练习</title>
+    <title>试卷练习</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-     <!-- <link rel="shortcut icon" href="../src/lib/SUI-Mobile-dev/docs/favicon.ico"> -->
+    <link rel="shortcut icon" href="../src/lib/SUI-Mobile-dev/docs/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-<!--     <link rel="stylesheet" href="../src/css/practice1.css"> -->
     <link rel="stylesheet" href="../src/css/exercise.css">
-    </head>
-    <body>
-    <div class="page-group" id="handlebars">
-      <div class="page" style="display:none"> </div>
-      </div>   
-
+  </head>
+  <body>
+    <div class="page-group " id="handlebars" >
+        <!-- 你的html代码 -->
+          <div class="page" style="display:none"> </div>
+    </div>
            <div class="popup">
                   <header class="bar bar-nav close-popup">
-                      <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>                      
+                      <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
                         <span class="title"> 题目目录</span>
                     </header>
                 <div class="content-block">
                 <br>
-                     <div class="show-wapper"> 
-                       <div class="dati-info"> 
-                       <span class="dadui">答对 <b>0</b></span> 
-                       <span class="dacuo">答错 <b>0</b></span> 
-                       <span class="weida">未答题 <b>1311</b></span> 
-                       </div> 
+                     <div class="show-wapper">
+                       <div class="dati-info">
+                       <span class="dadui">答对 <b>0</b></span>
+                       <span class="dacuo">答错 <b>0</b></span>
+                       <span class="weida">未答题 <b>30</b></span>
+                       </div>
                        <div class="box-wrap">
-                          <ul class="close-popup" id="hbs2">
+                          <ul class="close-popup" id="box_li">
 
                           </ul>
                       </div>
                     </div>
               </div>
-           </div>         
+           </div>
 
-    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
-         <script type="text/x-handlebars-template" id="myTemplate">
-            {{#each this}}
-           <div class="page {{xx}}" id="{{addOne @index}}">
-                    
+    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
+     <script type="text/x-handlebars-template" id="myTemplate">
+       {{#each this}}
+           <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
+
                     <header class="bar bar-nav">
-                      <a href="../pages/choice_que.html#practice" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
-                        <span class="title"> 短对话理解</span>
+                      <a href="../pages/choice_que.html" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+                        <span class="title">{{listen_name}}</span>
                          <div class="yinpin"> 
                        <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
                       <div class="yinpinicon"><span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
@@ -65,45 +63,53 @@
                         </a>
                          <a class=" tab-item external open-popup" href="#">
                             <i class="icon iconfont">&#xf0015;</i>
-                            <span class="tab-label yeshu">{{addOne @index}}/1110</span>
+                            <span class="tab-label yeshu">{{addOne @index}}/30</span>
                         </a>
                         <a class="tab-item external open-xiangjie" href="#">
                             <i class="icon iconfont">&#xf0004;</i>
                             <span class="tab-label">打开详解</span>
                         </a>
                     </nav>
-
-                    
-                    <div class="content content-padded">
-                       <h3>{{addOne @index}}.{{listen_title}}</h3>
-                       
+               <div class="content content-padded">
+                  {{#if form_url}}
+                  <h3>26-30.{{listen_title}}</h3>
+                  <div class="show_trans"><img src="{{form_url}}"></div>
+                  <div class="selects {{selects_type}} " value="{{addOne @index}}">
+                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
+                  </div>
+                  {{else}}
+                  <h3>{{addOne @index}}.{{listen_title}}</h3>
                     {{#choice option_A}}
                      <div class="selects {{selects_type}}"  value="{{addOne @index}}">
-                         <div class="select {{A}}">
-                           <i class="icon iconfont">&#xe61b;</i><span>{{option_A}}</span></div>
-                         <div class="select {{B}}">
+                         <div class="select {{A}}" value="1">
+                           <i class="icon iconfont">&#xe61b;</i><span>{{option_A}}</span> </div>
+                         <div class="select {{B}}" value="2">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_B}}</span></div>
-                         <div class="select {{C}}">
+                         <div class="select {{C}}" value="3">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_C}}</span></div>
                      </div>
                      {{else}}
                      <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                             <div class="select {{A}}">
+                             <div class="select {{A}}" value="1">
                                <i class="icon iconfont ">&#xe61b;</i>
                                <img src="{{option_A}}">
                              </div>
-                             <div class="select {{B}}">
+                             <div class="select {{B}}" value="2">
                                <i class="icon iconfont">&#xe61b;</i>
                                <img src="{{option_B}}">
                              </div>
-                             <div class="select {{C}}">
+                             <div class="select {{C}}" value="3">
                                <i class="icon iconfont">&#xe61b;</i>
                                  <img src="{{option_C}}">
                              </div>
                      </div>
                      {{/choice}}
-
-                        <div class="xiangjie-wapper">
+                {{/if}}
+                      <div class="xiangjie-wapper">
                           <h3>试题详解：</h3>
                             <div class="explain-p">
                              <p>{{answer}}</p>
@@ -111,18 +117,17 @@
                             <h3>听力原文：</h3>
                             <div class="explain-p">
                              <p>{{yuanwen}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-            {{/each}}  
+                        </div></div>
+               </div>
+           </div>
+    {{/each}}
      </script>
-     <script type="text/x-handlebars-template" id="myTemplate2">
+     <script type="text/x-handlebars-template" id="box">
        {{#each this}}
-                      <li class="flex {{box}}">{{addOne @index}}</li>
-      {{/each}}  
-    </script>  
-    <script type='text/javascript' src='../src/js/packge.js' charset='utf-8'></script> 
-    <script type='text/javascript' src='../src/js/exercise2.js' charset='utf-8'></script> 
+          <li class="flex {{box}}">{{addOne @index}}</li>
+       {{/each}}
+     </script>
+    <script type='text/javascript' src='../src/js/packge.js'></script>
+    <script type='text/javascript' src='../src/js/paperPractice.js'></script>
   </body>
 </html>
