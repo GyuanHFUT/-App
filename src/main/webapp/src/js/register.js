@@ -5,7 +5,9 @@ $(document).ready(function () {
                  $.ajax({
                   type: 'post',
                   url: '/JuniorHearing/user/sentUserCode',
-                  data:account,
+                  data:{
+                    "user_name":account
+                     },
                   success: function(data){
                         if(data.success){
                             $.toast('验证码已发送，请查收!')
@@ -31,10 +33,13 @@ $(document).ready(function () {
              $.ajax({
                   type: 'post',
                   url: '/JuniorHearing/user/userMapping',
-                  data:account ,
+                  data:{
+                    "user_name":account
+                     },
                   success: function(data){
+                      console.log(data);
                         if(!data.success){                         
-                          $.alert('该手机号已被注册!')
+                          $.toast('该手机号已被注册!')
                           $("#account").focus();
                         }
                  }
