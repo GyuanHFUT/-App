@@ -100,7 +100,6 @@ public class UserManagerImpl implements UserManager {
             map.put("msg", "此用户已存在！");
         }else {
             map.put("success",true);
-
         }
         return map;
     }
