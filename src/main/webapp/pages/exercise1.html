@@ -16,21 +16,21 @@
     <body>
     <div class="page-group" id="handlebars">
       <div class="page" style="display:none"> </div>
-      </div> 
+      </div>
 
            <div class="popup">
                   <header class="bar bar-nav close-popup">
-                      <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>                      
+                      <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
                         <span class="title"> 题目目录</span>
                     </header>
                 <div class="content-block">
                 <br>
-                     <div class="show-wapper"> 
-                       <div class="dati-info"> 
-                       <span class="dadui">答对 <b>0</b></span> 
-                       <span class="dacuo">答错 <b>0</b></span> 
-                       <span class="weida">未答题 <b>1311</b></span> 
-                       </div> 
+                     <div class="show-wapper">
+                       <div class="dati-info">
+                       <span class="dadui">答对 <b>0</b></span>
+                       <span class="dacuo">答错 <b>0</b></span>
+                       <span class="weida">未答题 <b>1311</b></span>
+                       </div>
                        <div class="box-wrap">
                           <ul class="close-popup" id="hbs2">
 
@@ -38,7 +38,7 @@
                       </div>
                     </div>
               </div>
-           </div>         
+           </div>
 
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
@@ -46,13 +46,13 @@
          <script type="text/x-handlebars-template" id="myTemplate">
             {{#each this}}
            <div class="page {{xx}}" id="{{addOne @index}}">
-                    
+
                     <header class="bar bar-nav">
                       <a href="../pages/choice_que.html#practice" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
                         <span class="title"> 关键词语选择</span>
-                         <div class="yinpin"> 
+                         <div class="yinpin">
                        <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
-                      <div class="yinpinicon"><span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
+                       <div class="yinpinicon"><span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
                        <span class="stopn"  style="display:none"><i class="icon iconfont pull-right"  >&#xf0019;</i></span></div>
                        </div>
                     </header>
@@ -72,10 +72,10 @@
                         </a>
                     </nav>
 
-                    
+
                     <div class="content content-padded">
                        <h3>{{addOne @index}}.关键词语选择</h3>
-                       
+
                         <div class="selects words" value="{{addOne @index}}">
                             <div  class=" select {{A}}"><i class="icon iconfont">&#xe61b;</i><span>{{option_A}}</span><br></div>
                             <div  class=" select {{B}}"><i class="icon iconfont">&#xe61b;</i><span>{{option_B}}</span><br></div>
@@ -93,15 +93,15 @@
                         </div>
                         </div>
                     </div>
-                </div>                
-            {{/each}}  
+                </div>
+            {{/each}}
      </script>
      <script type="text/x-handlebars-template" id="myTemplate2">
        {{#each this}}
                       <li class="flex {{box}}">{{addOne @index}}</li>
-      {{/each}}  
-    </script>  
-    <script type='text/javascript' src='../src/js/packge.js' charset='utf-8'></script> 
-    <script type='text/javascript' src='../src/js/exercise1.js' charset='utf-8'></script> 
+      {{/each}}
+    </script>
+    <script type='text/javascript' src='../src/js/packge.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/js/exercise1.js' charset='utf-8'></script>
   </body>
 </html>
