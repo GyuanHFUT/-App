@@ -42,7 +42,7 @@ public class UserManagerImpl implements UserManager {
                 HttpSession httpSession = request.getSession();
                 String randomNo = (String) httpSession.getAttribute("randomNo");
                 String sentMsgTime = (String) httpSession.getAttribute("sentMsgTime");
-                if (!(user_code.equals(randomNo))) {
+                if (!(user_code.equals(randomNo))) { 
                     map.put("success", false);
                     map.put("msg", "短信验证码输入错误！");
                 } else if((System.currentTimeMillis()-Long.parseLong(sentMsgTime))>300000){
