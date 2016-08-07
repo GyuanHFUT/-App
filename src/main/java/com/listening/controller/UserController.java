@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,14 +55,16 @@ public class UserController {
 
     @RequestMapping(value = "/sentUserCode", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> sentUserCode(@RequestParam(value = "user_name") String user_name) {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public void sentUserCode(@RequestParam(value = "user_name") String user_name) {
+        //Map<String, Object> map = new HashMap<String, Object>();
+
         try {
-             map = userManager.sentUserCode(user_name);
-        } catch (Exception e) {
+             userManager.sentUserCode(user_name);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return map;
+
+
     }
 
     @RequestMapping(value = "/backUserPwd", method = RequestMethod.POST)
