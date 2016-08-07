@@ -1,20 +1,15 @@
 package com.listening.serviceManagerImpl;
 
 import com.listening.domain.User;
-import com.listening.domain.Word;
 import com.listening.mapper.UserMapper;
-import com.listening.mapper.WordMapper;
 import com.listening.serviceManager.UserManager;
 import com.listening.util.exception.MessageException;
 import com.listening.util.number.RandomNumber;
 import com.listening.util.sentmsg.SentMsgUtil;
 import com.listening.util.session.SessionUtils;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -22,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -105,17 +99,17 @@ public class UserManagerImpl implements UserManager {
     }
 
     @Override
-    public Map<String, Object> sentUserCode(String user_name) throws MessageException, IOException{
+    public void sentUserCode(String user_name) throws MessageException, IOException{
         String randomNo = RandomNumber.createRandom()+"";
         SentMsgUtil.sentUserCode("您的验证码是"+randomNo, user_name);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         long sentMsgTime = System.currentTimeMillis();
-        msgMap.put("success",true);
+        //msgMap.put("success",true);
         //msgMap.put("randomNo", randomNo);
         session.setAttribute("sentMsgTime", sentMsgTime);
         session.setAttribute("randomNo", randomNo);
-        return msgMap;
+        //return msgMap;
     }
 
     @Override

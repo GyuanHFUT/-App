@@ -55,15 +55,16 @@ public class UserController {
 
     @RequestMapping(value = "/sentUserCode", method = RequestMethod.POST)
     @ResponseBody
-    public void sentUserCode(@RequestParam(value = "user_name") String user_name) {
-        //Map<String, Object> map = new HashMap<String, Object>();
+    public Map<String, Object> sentUserCode(@RequestParam(value = "user_name") String user_name) {
+        Map<String, Object> map = new HashMap<String, Object>();
 
         try {
              userManager.sentUserCode(user_name);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        map.put("success",true);
+        return map;
 
     }
 
