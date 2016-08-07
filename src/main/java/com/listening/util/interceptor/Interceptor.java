@@ -22,7 +22,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
         String contextPath = request.getContextPath();
         String uri = requestUri.substring(contextPath.length());
 
-        if(requestUri.contains("/userLogin")||requestUri.contains("/showAllWord")||requestUri.contains("/showAllLongDialogue")){
+        if(requestUri.contains("/userLogin")||requestUri.contains("/showExamOfListen")||requestUri.contains("/collect")){
             return true;
         }else{
             String user = (String) request.getSession().getAttribute("user");

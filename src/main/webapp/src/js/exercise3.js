@@ -152,43 +152,43 @@ $(document).ready(function () {
         };
             }
                 //滑动翻页部分
-                $(".page").swipeLeft(function(){
-                  
-                  var $panduan=$(this).next().find('.tishi').html();
-                  var patt=new RegExp("请听下面一段对话");
-                  panduan=patt.test($panduan);
-                  stopYinpin();
-                 
-                  var flag=$(this).attr("id");
-                  if (flag<$(".page").length) {
-                  $('.flex:eq('+flag+')'). addClass('current') 
-                       .siblings().removeClass('current');            
-                  flag++;     
+      $(".page").swipeLeft(function(){
+        
+        var $panduan=$(this).next().find('.tishi').html();
+        var patt=new RegExp("请听下面一段对话");
+        panduan=patt.test($panduan);
+        stopYinpin();
+       
+        var flag=$(this).attr("id");
+        if (flag<$(".page").length) {
+        $('.flex:eq('+flag+')'). addClass('current') 
+             .siblings().removeClass('current');            
+        flag++;     
 
-                  $.router.load("#"+flag+"");        
-              }else{
-                 $.toast("已经是最后一题了")
-              }
-             })
-                $(".page").swipeRight(function(){
+        $.router.load("#"+flag+"");        
+    }else{
+       $.toast("已经是最后一题了")
+    }
+   })
+      $(".page").swipeRight(function(){
 
-                  var $panduan=$(this).find('.tishi').html();
-                  var patt=new RegExp("请听下面一段对话");
-                  panduan=patt.test($panduan);
-                  stopYinpin();         
+        var $panduan=$(this).find('.tishi').html();
+        var patt=new RegExp("请听下面一段对话");
+        panduan=patt.test($panduan);
+        stopYinpin();         
 
-                 var flag=$(this).attr("id");
-                 if (flag>1) {
-                     flag--;
-                 $('.flex:eq('+(flag-1)+')'). addClass('current') 
-                       .siblings().removeClass('current');           
+       var flag=$(this).attr("id");
+       if (flag>1) {
+           flag--;
+       $('.flex:eq('+(flag-1)+')'). addClass('current') 
+             .siblings().removeClass('current');           
 
-                  $.router.load("#"+flag+"");        
-                 }
-                 else{
-                    $.toast("已经是第一题了")
-                 }
-                })
+        $.router.load("#"+flag+"");        
+       }
+       else{
+          $.toast("已经是第一题了")
+       }
+      })
 
       $(".flex").tap(function(){//点击盒子切换页面
         var flag=$(this).html();       

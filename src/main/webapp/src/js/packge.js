@@ -69,35 +69,49 @@ function  select(dui,cuo,zong){
 //收藏
 function shoucang(){
  $(".shoucang").tap(function(){
+<<<<<<< HEAD
       if ($(this).hasClass('active'))
+=======
+      listen_id=$(this)
+      if ($(this).hasClass('active')) 
+>>>>>>> 5e229a470d3dad37be4552b5b440ce5be8494952
           {
             $(this).removeClass('active');
             $.ajax({
                     type: 'get',
-                    url: '',
-                    data: "users",
+                    url: "/collect/deleteCollect/"+listen_id,                  
                     success: function(data){
+<<<<<<< HEAD
                       if(data.success){
                         $.toast("取消收藏！")}
+=======
+                      if(data.success){   
+                        console.log(data);
+                        $.toast("取消收藏！");
+                        $(this).removeClass('active');
+                      }
+>>>>>>> 5e229a470d3dad37be4552b5b440ce5be8494952
                         else{
                            $.toast("数据异常，请重试!");
-                           $(this).addClass('active');
+                           
                         }
                        },
                   })
       }
       else{
-        $(this).addClass('active');
         $.ajax({
               type: 'get',
-              url: '',
-              data: "users",
+              url: "/collect/addCollect/"+listen_id,              
               success: function(data){
+<<<<<<< HEAD
                 if(data.success){
+=======
+                if(data.success){ 
+                  $(this).addClass('active');
+>>>>>>> 5e229a470d3dad37be4552b5b440ce5be8494952
                   $.toast("收藏成功！")}
                   else{
-                     $.toast("数据异常，请重试!");
-                     $(this).removeClass('active');
+                     $.toast("数据异常，请重试!");                    
                   }
                  },
             })
