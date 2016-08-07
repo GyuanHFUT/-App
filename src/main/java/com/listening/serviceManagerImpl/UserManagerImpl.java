@@ -1,20 +1,15 @@
 package com.listening.serviceManagerImpl;
 
 import com.listening.domain.User;
-import com.listening.domain.Word;
 import com.listening.mapper.UserMapper;
-import com.listening.mapper.WordMapper;
 import com.listening.serviceManager.UserManager;
 import com.listening.util.exception.MessageException;
 import com.listening.util.number.RandomNumber;
 import com.listening.util.sentmsg.SentMsgUtil;
 import com.listening.util.session.SessionUtils;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -22,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,11 +41,12 @@ public class UserManagerImpl implements UserManager {
                 HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
                 HttpSession httpSession = request.getSession();
                 String randomNo = (String) httpSession.getAttribute("randomNo");
-                String sentMsgTime = (String) httpSession.getAttribute("sentMsgTime");
+                //必须强制转化成Long对象类型
+                long sentMsgTime = (Long)(httpSession.getAttribute("sentMsgTime"));
                 if (!(user_code.equals(randomNo))) {
                     map.put("success", false);
                     map.put("msg", "短信验证码输入错误！");
-                } else if((System.currentTimeMillis()-Long.parseLong(sentMsgTime))>300000){
+                } else if((System.currentTimeMillis()-sentMsgTime)>300000){
                     map.put("success", false);
                     map.put("msg", "手机验证码过期，请重新获取！");
                 }
@@ -105,17 +100,17 @@ public class UserManagerImpl implements UserManager {
     }
 
     @Override
-    public Map<String, Object> sentUserCode(String user_name) throws MessageException, IOException{
+    public void sentUserCode(String user_name) throws MessageException, IOException{
         String randomNo = RandomNumber.createRandom()+"";
         SentMsgUtil.sentUserCode("您的验证码是"+randomNo, user_name);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         long sentMsgTime = System.currentTimeMillis();
-        msgMap.put("sentMsgTime", sentMsgTime);
-        msgMap.put("randomNo", randomNo);
+        //msgMap.put("success",true);
+        //msgMap.put("randomNo", randomNo);
         session.setAttribute("sentMsgTime", sentMsgTime);
         session.setAttribute("randomNo", randomNo);
-        return msgMap;
+        //return msgMap;
     }
 
     @Override
