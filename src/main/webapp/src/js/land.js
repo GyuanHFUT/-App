@@ -4,11 +4,11 @@ $(document).ready(function () {
         var account = $("#account").val();
         var pwd = $("#upwd").val();
        if (pwd.length!=0&&account.length!=0){
-        var users = {"user_id":account, "user_pwd":name};
+        var user = {"user_name":account, "user_pwd":name};
             $.ajax({
-              type: 'get',
-              url: 'user/userLogin',
-              data: "users",
+              type: 'post',
+              url: '/JuniorHearing/user/userLogin',
+              data: user,
               success: function(data){
                 if(data.success){   
                   $.alert("登陆成功!", function () {
