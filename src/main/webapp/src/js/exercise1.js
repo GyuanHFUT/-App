@@ -76,7 +76,7 @@ console.log(data);
        var dui=0;
        var cuo=0;
        var zong=data.length;//获取总题数
-        tiHuanZong(zong);
+        tiHuanZong (zong) ;
         select(dui,cuo,zong);                  
         shoucang();  //收藏部分！
         xiangjie();//详解打开和关闭

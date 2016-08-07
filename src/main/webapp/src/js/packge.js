@@ -69,35 +69,36 @@ function  select(dui,cuo,zong){
 //收藏
 function shoucang(){
  $(".shoucang").tap(function(){
+      listen_id=$(this)
       if ($(this).hasClass('active')) 
           {
             $(this).removeClass('active');
             $.ajax({
                     type: 'get',
-                    url: '',
-                    data: "users",
+                    url: "/collect/deleteCollect/"+listen_id,                  
                     success: function(data){
                       if(data.success){   
-                        $.toast("取消收藏！")}
+                        console.log(data);
+                        $.toast("取消收藏！");
+                        $(this).removeClass('active');
+                      }
                         else{
                            $.toast("数据异常，请重试!");
-                           $(this).addClass('active');
+                           
                         }
                        },
                   })          
       }
       else{
-        $(this).addClass('active');
         $.ajax({
               type: 'get',
-              url: '',
-              data: "users",
+              url: "/collect/addCollect/"+listen_id,              
               success: function(data){
-                if(data.success){   
+                if(data.success){ 
+                  $(this).addClass('active');
                   $.toast("收藏成功！")}
                   else{
-                     $.toast("数据异常，请重试!");
-                     $(this).removeClass('active');
+                     $.toast("数据异常，请重试!");                    
                   }
                  },
             }) 

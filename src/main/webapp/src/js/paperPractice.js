@@ -19,7 +19,7 @@ $(document).ready(function(){
                               "option_B": "big",
                               "option_C": "two",
                               "listen_answer":"B",
-                              "radio_url":"../src/audio/1.mp3",
+                              "radio_url":"../src/audio/2.mp3",
                               "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                               "yuanwen":"Is there anything wrong with you,Peter?",
                               "listen_style":"1",
@@ -43,7 +43,7 @@ $(document).ready(function(){
                               "option_B": "big",
                               "option_C": "two",
                               "listen_answer":"B",
-                              "radio_url":"../src/audio/1.mp3",
+                              "radio_url":"../src/audio/2.mp3",
                               "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                               "yuanwen":"Is there anything wrong with you,Peter?",
                               "listen_style":"1",
@@ -67,7 +67,7 @@ $(document).ready(function(){
                              "option_B": "../src/img/encouragement.jpg",
                              "option_C": "../src/img/encouragement.jpg",
                              "listen_answer":"A",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"2"
@@ -91,7 +91,7 @@ $(document).ready(function(){
                                "option_B": "../src/img/encouragement.jpg",
                                "option_C": "../src/img/encouragement.jpg",
                                "listen_answer":"A",
-                               "radio_url":"../src/audio/1.mp3",
+                               "radio_url":"../src/audio/2.mp3",
                                "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                                "yuanwen":"Is there anything wrong with you,Peter?",
                                "listen_style":"2"
@@ -115,7 +115,7 @@ $(document).ready(function(){
                                  "option_B": "../src/img/encouragement.jpg",
                                  "option_C": "../src/img/encouragement.jpg",
                                  "listen_answer":"A",
-                                 "radio_url":"../src/audio/1.mp3",
+                                 "radio_url":"../src/audio/2.mp3",
                                  "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                                  "yuanwen":"Is there anything wrong with you,Peter?",
                                  "listen_style":"2"
@@ -141,7 +141,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -167,7 +167,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -192,7 +192,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -204,7 +204,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -252,7 +252,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -264,7 +264,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -276,7 +276,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -288,7 +288,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -300,7 +300,7 @@ $(document).ready(function(){
                              "option_B": "big",
                              "option_C": "three",
                              "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
+                             "radio_url":"../src/audio/2.mp3",
                              "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
                              "yuanwen":"Is there anything wrong with you,Peter?",
                              "listen_style":"1"
@@ -383,6 +383,11 @@ $("#box_li").html(box(data));
 
     //播放部分
   $('.yinpinicon').tap(function(){
+    var $flag=$(this).parent().find('audio');
+    var prev=$(this).parent().parent().parent();
+    var now=$(prev).attr("id");
+    console.log(now);
+    if (now>16) {};
       $(this).find('.playn').toggle();  
       $(this).find('.stopn').toggle();  
       var $flag=$(this).parent().find('audio');  
@@ -390,8 +395,7 @@ $("#box_li").html(box(data));
       flag.paused ? flag.play() : flag.pause();        
   });
     var $audio=$('audio');
-     var audio=$audio[0];  
-  stopNow($audio);
+    stopNow($audio);
   //页面翻转===这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       stopYinpin($audio);
