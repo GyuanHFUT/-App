@@ -39,6 +39,9 @@
             <mvc:exclude-mapping path="/src/lib/**"/>
             <mvc:exclude-mapping path="/pages/**"/>
             <mvc:exclude-mapping path="/src/**"/>
+            <mvc:exclude-mapping path="/user/**"/>
+            <mvc:mapping path="/user/deleteUser"/>
+
             <bean id="Interceptor" class="com.listening.util.interceptor.Interceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
