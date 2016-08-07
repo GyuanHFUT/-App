@@ -1,10 +1,11 @@
 $(document).ready(function () {
           $.init();
            $("#yanzheng").click(function () {
+                var account = $("#account").val();
                  $.ajax({
-                  type: 'get',
-                  url: '',
-                  data:'' ,
+                  type: 'post',
+                  url: '/JuniorHearing/user/sentUserCode',
+                  data:account,
                   success: function(data){
                         if(data.success){
                             $.toast('验证码已发送，请查收!')
@@ -28,12 +29,13 @@ $(document).ready(function () {
             var flag=checkPhone(account);
             if(flag){
              $.ajax({
-                  type: 'get',
-                  url: '',
-                  data:'' ,
+                  type: 'post',
+                  url: '/JuniorHearing/user/userMapping',
+                  data:account ,
                   success: function(data){
-                        if(data.success){
-                            $.alert('该手机号已被注册!')
+                        if(!data.success){                         
+                          $.alert('该手机号已被注册!')
+                          $("#account").focus();
                         }
                  }
             })
@@ -70,7 +72,7 @@ $(document).ready(function () {
            
         var users = {"user_id":account, "user_name":name,"user_pwd":pwd,"yanzheng":yanzheng};
             $.ajax({
-              type: 'get',
+              type: 'post',
               url: 'user/addUser',
               data: "users",
               success: function(data){

@@ -36,7 +36,7 @@ function  select(dui,cuo,zong){
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
               }
-                  else{
+                  else{ 
                      $.toast("已经是最后一题了")
               }
             };
@@ -69,63 +69,52 @@ function  select(dui,cuo,zong){
 //收藏
 function shoucang(){
  $(".shoucang").tap(function(){
-<<<<<<< HEAD
-      if ($(this).hasClass('active'))
-=======
-      listen_id=$(this)
+      listen_id=$(this).attr('shoucangid');
+
       if ($(this).hasClass('active')) 
->>>>>>> 5e229a470d3dad37be4552b5b440ce5be8494952
           {
-            $(this).removeClass('active');
+
             $.ajax({
                     type: 'get',
-                    url: "/collect/deleteCollect/"+listen_id,                  
+                    url: "/JuniorHearing/collect/deleteCollect/"+listen_id,
                     success: function(data){
-<<<<<<< HEAD
-                      if(data.success){
-                        $.toast("取消收藏！")}
-=======
                       if(data.success){   
                         console.log(data);
                         $.toast("取消收藏！");
                         $(this).removeClass('active');
                       }
->>>>>>> 5e229a470d3dad37be4552b5b440ce5be8494952
                         else{
                            $.toast("数据异常，请重试!");
                            
                         }
                        },
-                  })
+                  })          
       }
       else{
         $.ajax({
               type: 'get',
-              url: "/collect/addCollect/"+listen_id,              
+              url: "/JuniorHearing/collect/addCollect/"+listen_id,
               success: function(data){
-<<<<<<< HEAD
-                if(data.success){
-=======
                 if(data.success){ 
                   $(this).addClass('active');
->>>>>>> 5e229a470d3dad37be4552b5b440ce5be8494952
                   $.toast("收藏成功！")}
                   else{
                      $.toast("数据异常，请重试!");                    
                   }
                  },
-            })
+            }) 
       }
     })
 }
 //停止音频
 function stopYinpin(x){
+
   var s=x.length;
   for (var i =s  - 1; i >= 0; i--) {
-    x[i].pause();
+    x[i].pause(); 
   };
-  $('.playn').show();
-  $('.stopn').hide();
+  $('.playn').show();  
+  $('.stopn').hide();  
 }
 //详解打开和关闭
 function xiangjie(){
@@ -144,22 +133,22 @@ function xiangjie(){
          // parents.find(".xiangjie-wapper").toggle(
          //        ,
          //        function(){ $(this).removeClass('active')}
-         //    )
+         //    ) 
     })
 }
 //盒子切换事件
 function box(x){
     $(".flex").tap(function(){//点击盒子切换页面
       stopYinpin(x);
-      var flag=$(this).html();
-     $('.flex:eq('+(flag-1)+')'). addClass('current')
-           .siblings().removeClass('current');
-      $.router.load("#"+flag+"");
-    })
+      var flag=$(this).html();       
+     $('.flex:eq('+(flag-1)+')'). addClass('current') 
+           .siblings().removeClass('current');           
+      $.router.load("#"+flag+"");        
+    })    
 }
 //播放暂停图标显示与隐藏
-function icon() {
-    $('.stopn').toggle();
+   function icon() {
+    $('.stopn').toggle(); 
     $('.playn').toggle();
  }
  //音频播放完自动暂停
@@ -168,8 +157,8 @@ function icon() {
   var s=x.length;
 for (var i = s - 1; i >= 0; i--) {
       x[i].onended = function() {
-          $('.playn').show();
-          $('.stopn').hide();
-         };
-      }
+          $('.playn').show();  
+          $('.stopn').hide(); 
+         };   
+      }     
  }

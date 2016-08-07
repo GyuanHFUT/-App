@@ -1,11 +1,11 @@
 
 $(document).ready(function () {
-  $.ajax({        //获取题目的json数据
-        type: 'get',
-        url: '',
-        success: function(data){},
-  })    
-console.log(data);
+//   $.ajax({        //获取题目的json数据
+//         type: 'get',
+//         url: '',
+//         success: function(data){},
+//   })    
+// console.log(data);
  var data = [
           { 
               "listen_id":1,
@@ -76,7 +76,7 @@ console.log(data);
        var dui=0;
        var cuo=0;
        var zong=data.length;//获取总题数
-        tiHuanZong (zong) ;
+        tiHuanZong (zong);
         select(dui,cuo,zong);                  
         shoucang();  //收藏部分！
         xiangjie();//详解打开和关闭
