@@ -98,6 +98,9 @@ public class UserManagerImpl implements UserManager {
         if(userMapper.selectUserByName(user_name)!=null){
             map.put("success", false);
             map.put("msg", "此用户已存在！");
+        }else {
+            map.put("success",true);
+
         }
         return map;
     }
