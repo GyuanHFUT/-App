@@ -71,8 +71,8 @@
                         </a>
                     </nav>
                <div class="content content-padded">
-                  <h3>{{addOne @index}}.{{listen_title}}</h3>
                   {{#if form_url}}
+                  <h3>26-30.{{listen_title}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
                   <div class="selects {{selects_type}} " value="{{addOne @index}}">
                   <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
@@ -82,6 +82,7 @@
                   <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
                   </div>
                   {{else}}
+                  <h3>{{addOne @index}}.{{listen_title}}</h3>
                     {{#choice option_A}}
                      <div class="selects {{selects_type}}"  value="{{addOne @index}}">
                          <div class="select {{A}}" value="1">
