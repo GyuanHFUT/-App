@@ -1,97 +1,77 @@
-$(document).ready(function(){
 
-var answer = [];
+$(document).ready(function(){
+    $.init();
   $.ajax({
     type: 'get',
-    url: '',
+    url: '/JuniorHearing/exam/showExamOfListen',
     success:function(data){
-      var data = JSON.parse(data);
-      data[0].first="page-current";
-      data[0].box = "current";
-      for(var t= 0 ;t<data.length;t++){
-         var n = data[t].listen_type,
-            title = data[t].listen_title,
-            s = data[t].listen_style;
-            answer[t] = data[t].listen_answer;
-         switch(n){
-            case "1":data[t]["listen_name"]="关键词语选择";break;
-            case "2":data[t]["listen_name"]="短对话理解"; break;
-            case "3":data[t]["listen_name"]="长对话理解"; break;
-            case "4":data[t]["listen_name"]="短文理解"; break;
-            case "5":data[t]["listen_name"]="信息转换"; break;
-         };
-         if(title == ""){
-           data[t].listen_title= data[t].listen_name;
-         };
-         switch(s){
-              case "1":data[t]["selects_type"]="words";break;
-              case "2":data[t]["selects_type"]="imgs"; break;
-              case "3":data[t]["selects_type"]=""; break;
-          };
-      };
-      Handlebars.registerHelper("addOne",function(index,options){
+      // var data = eval('{'+data+'}');
+        datapush(data);
+        console.log(data);
+        var myTemplate = Handlebars.compile($("#myTemplate").html());
+        $("#handlebars").html(myTemplate(data));
+        var box = Handlebars.compile($("#box").html());
+        $("#box_li").html(box(data));
+        time = $('.time');
+        console.log(time);
+        timing(time);
+        setTimeout(checkTime(time,fm,lm,fs,ls),1000);
+        // setTimeout(,1000);
+        // checkTime(time,fm,lm,fs,ls);
+    }
+
+});
+    console.log(time);
+    var fm =3,
+        lm = 0,
+        fs = 0,
+        ls = 0;
+    // setInterval(checkTime(time,fm,lm,fs,ls),1000);
+    var answer = [],
+        lis_id=[];
+    Handlebars.registerHelper("addOne",function(index,options){
         return parseInt(index)+1;
-      });
-      Handlebars.registerHelper("choice",function(option_A,options){
+    });
+    Handlebars.registerHelper("choice",function(option_A,options){
         var sty =  option_A.slice(option_A.length-4,option_A.length);
         if(sty !== ".jpg"){
-                   //满足添加继续执行
-                   return options.fn(this);
-                 }else{
-                   //不满足条件执行{{else}}部分
-                   return options.inverse(this);
-                 }
-        });
-      var myTemplate = Handlebars.compile($("#myTemplate").html());
-      $("#handlebars").html(myTemplate(data));
-      var box = Handlebars.compile($("#box").html());
-      $("#box_li").html(box(data));
-    }
-});
-// data[0].first="page-current";
-// data[0].box = "current";
-var answer = [];
-// for(var t= 0 ;t<data.length;t++){
-//    var n = data[t].listen_type,
-//       title = data[t].listen_title,
-//       s = data[t].listen_style;
-//       answer[t] = data[t].listen_answer;
-//    switch(n){
-//       case "1":data[t]["listen_name"]="关键词语选择";break;
-//       case "2":data[t]["listen_name"]="短对话理解"; break;
-//       case "3":data[t]["listen_name"]="长对话理解"; break;
-//       case "4":data[t]["listen_name"]="短文理解"; break;
-//       case "5":data[t]["listen_name"]="信息转换"; break;
-//    };
-//    if(title == ""){
-//      data[t].listen_title= data[t].listen_name;
-//    };
-//    switch(s){
-//         case "1":data[t]["selects_type"]="words";break;
-//         case "2":data[t]["selects_type"]="imgs"; break;
-//         case "3":data[t]["selects_type"]=""; break;
-//     };
-// };
-//
-// Handlebars.registerHelper("addOne",function(index,options){
-//   return parseInt(index)+1;
-// });
-// Handlebars.registerHelper("choice",function(option_A,options){
-//   var sty =  option_A.slice(option_A.length-4,option_A.length);
-//   if(sty !== ".jpg"){
-//              //满足添加继续执行
-//              return options.fn(this);
-//            }else{
-//              //不满足条件执行{{else}}部分
-//              return options.inverse(this);
-//            }
-//   });
-// var myTemplate = Handlebars.compile($("#myTemplate").html());
-// $("#handlebars").html(myTemplate(data));
-// var box = Handlebars.compile($("#box").html());
-// $("#box_li").html(box(data));
-  $.init();
 
+            //满足添加继续执行
+            return options.fn(this);
+        }else{
+            //不满足条件执行{{else}}部分
+            return options.inverse(this);
+        }
+    });
+    function datapush(data){
+        data[0].first="page-current";
+        data[0].box = "current";
+        for(var t= 0 ;t<data.length;t++){
+            var n = data[t].listen_type,
+                title = data[t].listen_question,
+                s = data[t].listen_style;
+            answer[t] = data[t].listen_answer;
+            lis_id[t] = data[t].listen_id;
+            switch(n){
+                case 1:data[t]["listen_name"]="关键词语选择";break;
+                case 2:data[t]["listen_name"]="短对话理解"; break;
+                case 3:data[t]["listen_name"]="长对话理解"; break;
+                case 4:data[t]["listen_name"]="短文理解"; break;
+                case 5:data[t]["listen_name"]="信息转换"; break;
+            };
+            if(title ==null){
+                data[t].listen_question= data[t].listen_name;
+            };
+            switch(s){
+                case 1:data[t]["selects_type"]="words";break;
+                case 2:data[t]["selects_type"]="imgs"; break;
+                case 3:data[t]["selects_type"]=""; break;
+            };
+        };
+
+    };
+
+var answer = [];
 
   //初始化结束
   //添加”dui“class
@@ -104,16 +84,10 @@ var answer = [];
       personal.trans = new Array();
       personal.opts = new Array();
   //倒计时效果
-  var fm =3,
-  lm = 0,
-  fs = 0,
-  ls = 0;
-  var time = $('.time');
- // time[0].html()=fm +''+ lm + ':' + fs+'' + ls;
-  setInterval(checkTime,1000);
+    
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   audio_play();
-  $('yinpinicon').tag(function(){
+  $('yinpinicon').tap(function(){
      $.alert('考试期间，请勿暂停音频')
   })
   $(".page").swipeLeft(function(){
@@ -241,7 +215,8 @@ var answer = [];
    });
 
   //倒计时的实现
-  function checkTime(){
+  function checkTime(time,fm,lm,fs,ls){
+      console.log(time+" "+fm+" "+lm+" "+fs+" "+ls);
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
               $.router.load("./grade.html");
@@ -253,9 +228,10 @@ var answer = [];
           ls = checkls(ls);
       }
       for (var j = 0; j < time.length; j++) {
-          var each = time[j].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
-      }
-      return each;
+          console.log(time[j]);
+          var each = time[j].html=fm +''+ lm + ':' + fs+'' + ls;
+      } setTimeout(checkTime(time,fm,lm,fs,ls),1000);
+    //  return each;
   };
 
   function checkls(ls){
@@ -306,12 +282,17 @@ var answer = [];
 
 function audio_play(){
    var audio = $(this).find('audio');
-   audio[0].play();
-   audio[0].onended = function(){
-     $('.playn').show();
-     $('.stopn').hide();
-   }
+   // audio[0].play();
+   // audio[0].onended = function(){
+   //   $('.playn').show();
+   //   $('.stopn').hide();
+   // }
 }
+    // window.onload=function (){
+        // console.log(time);
+        // return setInterval(checkTime(time,fm,lm,fs,ls),1000);
+
+    // }
 
   //ajax事件的学习，需要用这个做一些事情
 })
