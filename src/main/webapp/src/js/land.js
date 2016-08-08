@@ -1,21 +1,23 @@
 $(document).ready(function () {
           $.init();
-        $("#send").click(function () {
+        $("#send").tap(function () {
         var account = $("#account").val();
         var pwd = $("#upwd").val();
        if (pwd.length!=0&&account.length!=0){
-        var user = {"user_name":account, "user_pwd":name};
+        var user = {"user_name":account, "user_pwd":pwd};
             $.ajax({
               type: 'post',
               url: '/JuniorHearing/user/userLogin',
               data: user,
               success: function(data){
+                console.log(data);
                 if(data.success){   
+
                   $.alert("登陆成功!", function () {
                     $.router.load("../pages/choice_que.html"); 
         })}
                   else{
-                     $.alert("数据异常，请重试!");
+                     $.alert(data.msg);
                   }
                  }
             })}
@@ -47,38 +49,44 @@ $(document).ready(function () {
      } ) 
 
        $("#yanzheng").click(function () {
+        var account = $("#account2").val();
                  $.ajax({
-                  type: 'get',
-                  url: '',
-                  data:'' ,
+                  type: 'post',
+                  url: '/JuniorHearing/user/sentUserCode',
+                  data:{
+                    "user_name":account
+                     } ,
                   success: function(data){
+                    console.log(data);
                         if(data.success){
                             $.toast('验证码已发送，请查收!')
                         }
                         else{
-                          $.toast('数据异常，请重试!')
+                          $.toast(data.msg)
                         }
                  }
             })          
            })
 
-       $("#reset").click(function () {
-        var account = $("#account").val();
-        var pwd = $("#upwd").val();
+       $("#reset").tap(function () {
+        var account = $("#account2").val();
+        var pwd = $("#upwd2").val();
          var yanzheng=$("#uyanzheng").val();
         if (yanzheng.length!=0){
-        var users = {"user_id":account, "user_name":name,"user_pwd":pwd,"yanzheng":yanzheng};
+        var users = {"user_name":account,"user_pwd":pwd,"user_code":yanzheng};
+        console.log(users);
             $.ajax({
-              type: 'get',
-              url: '',
-              data: "users",
+              type: 'post',
+              url:'/JuniorHearing/user/backUserPwd',
+              data: users,
               success: function(data){
+                console.log(data);
                 if(data.success){
                     $.alert("密码重置成功!", function () {
                     $.router.load("../pages/choice_que.html"); 
                 })}  
                 else{
-                   $.alert("验证码错误，请重试!");
+                   $.alert(data.msg);
                 }
                 }
             })

@@ -32,7 +32,6 @@ function  select(dui,cuo,zong){
                  $('.flex:eq('+flag+')'). addClass('current')
                     .siblings().removeClass('current');
                   flag++;
-                  $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
               }
@@ -70,21 +69,20 @@ function  select(dui,cuo,zong){
 function shoucang(){
  $(".shoucang").tap(function(){
       listen_id=$(this).attr('shoucangid');
-
+      var that=this;
       if ($(this).hasClass('active')) 
           {
-
+             $(that).removeClass('active');
             $.ajax({
                     type: 'get',
                     url: "/JuniorHearing/collect/deleteCollect/"+listen_id,
                     success: function(data){
                       if(data.success){   
-                        console.log(data);
                         $.toast("取消收藏！");
-                        $(this).removeClass('active');
+                       
                       }
                         else{
-                           $.toast("数据异常，请重试!");
+                           $.toast(data.msg);
                            
                         }
                        },
@@ -95,11 +93,12 @@ function shoucang(){
               type: 'get',
               url: "/JuniorHearing/collect/addCollect/"+listen_id,
               success: function(data){
+                
                 if(data.success){ 
-                  $(this).addClass('active');
+                  $(that).addClass('active');
                   $.toast("收藏成功！")}
                   else{
-                     $.toast("数据异常，请重试!");                    
+                     $.toast(data.msg);                    
                   }
                  },
             }) 
@@ -153,7 +152,6 @@ function box(x){
  }
  //音频播放完自动暂停
  function stopNow(x){
-  console.log(x.length);
   var s=x.length;
 for (var i = s - 1; i >= 0; i--) {
       x[i].onended = function() {

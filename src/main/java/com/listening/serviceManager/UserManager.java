@@ -1,7 +1,5 @@
 package com.listening.serviceManager;
 
-import com.listening.domain.User;
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -11,7 +9,7 @@ import java.util.Map;
 public interface UserManager {
     public Map<String, Object> addUser(String user_name, String user_pwd, String user_nickname, String user_code);
 
-    public User userLogin(String user_name, String user_pwd);
+    public Map<String, Object> userLogin(String user_name, String user_pwd);
 
     public Map<String,Object> userMapping(String user_name);
 

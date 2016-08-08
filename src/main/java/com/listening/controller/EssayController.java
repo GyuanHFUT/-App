@@ -29,7 +29,7 @@ public class EssayController {
     public Map<String, Object> showAllEssay(){
         Map<String, Object> map = new HashMap<String, Object>();
         List<List> essays = essayManager.showAllEssay();
-        int s1 = 0;
+        int s1 = 1;
         int count = essays.size();
         int s2 = s1+count-1;
         List<List> essay = RandomTitle.reconstructList(essays, s1, s2, count);

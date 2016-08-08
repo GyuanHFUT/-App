@@ -1,4 +1,4 @@
-var time=3;
+
 $(document).ready(function(){
     $.init();
   $.ajax({
@@ -27,7 +27,6 @@ $(document).ready(function(){
         fs = 0,
         ls = 0;
     // setInterval(checkTime(time,fm,lm,fs,ls),1000);
-
     var answer = [],
         lis_id=[];
     Handlebars.registerHelper("addOne",function(index,options){
@@ -36,6 +35,7 @@ $(document).ready(function(){
     Handlebars.registerHelper("choice",function(option_A,options){
         var sty =  option_A.slice(option_A.length-4,option_A.length);
         if(sty !== ".jpg"){
+
             //满足添加继续执行
             return options.fn(this);
         }else{
@@ -71,6 +71,7 @@ $(document).ready(function(){
 
     };
 
+var answer = [];
 
   //初始化结束
   //添加”dui“class
@@ -83,11 +84,7 @@ $(document).ready(function(){
       personal.trans = new Array();
       personal.opts = new Array();
   //倒计时效果
-
-    function timing(time){
-        time[0].html=fm +''+ lm + ':' + fs+'' + ls+'';
-    }
-
+    
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   audio_play();
   $('yinpinicon').tap(function(){

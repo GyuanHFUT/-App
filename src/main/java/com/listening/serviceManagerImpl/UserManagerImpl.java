@@ -67,23 +67,32 @@ public class UserManagerImpl implements UserManager {
 
 
     @Override
-    public User userLogin(String user_name, String user_pwd) {
-
+    public Map<String, Object> userLogin(String user_name, String user_pwd) {
+        Map<String, Object> map = new HashMap<String, Object>();
         if(StringUtils.isEmpty(user_name)||StringUtils.isEmpty(user_pwd)){
-            throw new MessageException("用户名或密码不能为空！");
+            map.put("success", false);
+            map.put("msg","用户名或密码不能为空！");
+            //throw new MessageException("用户名或密码不能为空！");
         }else {
             User user1 = userMapper.selectUserByName(user_name);
             if(user1 == null){
-               throw new MessageException("此用户不存在，请重新输入！");
+                map.put("success", false);
+                map.put("msg","此用户不存在，请重新输入！");
+               //throw new MessageException("此用户不存在，请重新输入！");
             }else if(!(user1.getUser_pwd().equals(user_pwd))){
-                throw new MessageException("密码不正确，请重新输入！");
+                map.put("success", false);
+                map.put("msg","密码不正确，请重新输入！");
+                //throw new MessageException("密码不正确，请重新输入！");
             }else {
                 User user2 = userMapper.userLogin(user_name, user_pwd);
                 SessionUtils.bindSession("user", user2);
-                return user2;
+                map.put("success", true);
+                map.put("msg","登陆成功！");
+                //return map;
             }
 
         }
+        return map;
 
     }
 
@@ -126,11 +135,11 @@ public class UserManagerImpl implements UserManager {
         }else{
             HttpSession httpSession = SessionUtils.getSession();
             String randomNo = (String) httpSession.getAttribute("randomNo");
-            String sentMsgTime = (String) httpSession.getAttribute("sentMsgTime");
+            long sentMsgTime = (Long) httpSession.getAttribute("sentMsgTime");
             if(!(user_code.equals(randomNo))){
                 map.put("success", false);
                 map.put("msg", "短信验证码输入错误！");
-            }else if((System.currentTimeMillis()-Long.parseLong(sentMsgTime))>300000){
+            }else if((System.currentTimeMillis()-sentMsgTime)>300000){
                 map.put("success", false);
                 map.put("msg", "手机验证码过期，请重新获取！");
             }

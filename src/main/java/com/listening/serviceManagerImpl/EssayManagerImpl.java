@@ -25,7 +25,7 @@ public class EssayManagerImpl implements EssayManager {
 
         for(int i=0;i<essays.size();i++){
             List<Essay> list1 = new ArrayList<Essay>();
-            Essay essay = list1.get(i);
+            Essay essay = essays.get(i);
             if(essay==null){
                 continue;
             }
