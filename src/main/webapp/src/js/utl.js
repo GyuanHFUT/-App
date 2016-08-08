@@ -68,3 +68,10 @@ function audio_play(){
      $('.stopn').hide();
    }
  }
+function loadTime(){
+    $.showPreloader();
+    setTimeout(function () {
+        $.hidePreloader();
+    }, 10000);
+
+};
