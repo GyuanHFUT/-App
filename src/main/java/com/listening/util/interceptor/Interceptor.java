@@ -29,7 +29,9 @@ public class Interceptor extends HandlerInterceptorAdapter {
             User user = (User) request.getSession().getAttribute("user");
             if(user==null){
                 logger.info("拦截器发挥作用，跳转到登陆页面！！");
-                request.getRequestDispatcher("/pages/land.html").forward(request, response);
+                //request.getRequestDispatcher("/pages/land.html").forward(request, response);
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().append("login");
                 return false;
             }else {
                 return true;

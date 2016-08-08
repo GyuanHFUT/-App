@@ -93,14 +93,21 @@ function shoucang(){
               type: 'get',
               url: "/JuniorHearing/collect/addCollect/"+listen_id,
               success: function(data){
-                
+               if(data=="login"){
+                   $.confirm('收藏功能需要登录，是否登陆?',
+                       function () {
+                           $.router.load("../pages/land.html");
+                       }
+                   );
+               }else{
                 if(data.success){ 
                   $(that).addClass('active');
                   $.toast("收藏成功！")}
                   else{
                      $.toast(data.msg);                    
                   }
-                 },
+               }
+               },
             }) 
       }
     })
