@@ -152,7 +152,6 @@ function box(x){
  }
  //音频播放完自动暂停
  function stopNow(x){
-  console.log(x);
   var s=x.length;
 for (var i = s - 1; i >= 0; i--) {
       x[i].onended = function() {

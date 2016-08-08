@@ -74,7 +74,7 @@
                     </nav>
                <div class="content content-padded">
                   {{\#if form_url}}
-                  <h3>26-30.{{listen_title}}</h3>
+                  <h3>26-30.{{listen_question}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
                   <div class="selects {{selects_type}} " value="{{addOne @index}}">
                   <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
@@ -84,7 +84,7 @@
                   <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
                   </div>
                   {{else}}
-                  <h3>{{addOne @index}}.{{listen_title}}</h3>
+                  <h3>{{addOne @index}}.{{listen_question}}</h3>
                     {{#choice option_A}}
                      <div class="selects {{selects_type}}"  value="{{addOne @index}}">
                          <div class="select {{A}}" value="1">
@@ -114,11 +114,11 @@
                       <div class="xiangjie-wapper">
                           <h3>试题详解：</h3>
                             <div class="explain-p">
-                             <p>{{answer}}</p>
+                             <p>{{listen_explain}}</p>
                             </div>
                             <h3>听力原文：</h3>
                             <div class="explain-p">
-                             <p>{{yuanwen}}</p>
+                             <p>{{listen_text}}</p>
                         </div></div>
                </div>
            </div>
