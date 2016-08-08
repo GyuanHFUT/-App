@@ -4,6 +4,7 @@ $(document).ready(function () {
         type: 'get',
         url: '/JuniorHearing/shortDialogue/showAllShortDialogue',
         success: function(data){
+            console.log(data);
             var data=data.shortDialogues;
             data[0].xx="page-current";
             data[0].box = "current";

@@ -15,18 +15,20 @@ $(document).ready(function(){
         time = $('.time');
         console.log(time);
         timing(time);
-        setTimeout(checkTime(time,fm,lm,fs,ls),1000);
+        checkTime(time,fm,lm,fs,ls);
         // setTimeout(,1000);
         // checkTime(time,fm,lm,fs,ls);
     }
 
 });
-    console.log(time);
     var fm =3,
         lm = 0,
         fs = 0,
         ls = 0;
     // setInterval(checkTime(time,fm,lm,fs,ls),1000);
+    function timing(time){
+        time[0].html=fm +''+ lm + ':' + fs+'' + ls;
+    }
     var answer = [],
         lis_id=[];
     Handlebars.registerHelper("addOne",function(index,options){
@@ -84,7 +86,7 @@ var answer = [];
       personal.trans = new Array();
       personal.opts = new Array();
   //倒计时效果
-    
+
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   audio_play();
   $('yinpinicon').tap(function(){
@@ -229,8 +231,10 @@ var answer = [];
       }
       for (var j = 0; j < time.length; j++) {
           console.log(time[j]);
-          var each = time[j].html=fm +''+ lm + ':' + fs+'' + ls;
-      } setTimeout(checkTime(time,fm,lm,fs,ls),1000);
+          var each = time[j].html;
+              each =fm +''+ lm + ':' + fs+'' + ls;
+      }
+      //setTimeout(checkTime(time,fm,lm,fs,ls),1000);
     //  return each;
   };
 
