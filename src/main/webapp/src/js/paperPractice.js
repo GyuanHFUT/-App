@@ -1,4 +1,12 @@
 $(document).ready(function(){
+    $.ajax({        //获取题目的json数据
+        type: 'get',
+        url: '/JuniorHearing/exam/showExamOfListen',
+        success: function(data){
+          console.log(data);
+        },
+  })    
+
   var data = [    {
                               "listen_id":"1",
                               "listen_type":"1",

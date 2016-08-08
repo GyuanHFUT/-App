@@ -1,10 +1,12 @@
 
 $(document).ready(function () {
-        $.ajax({        //获取题目的json数据
-            type: 'get',
-            url: '',
-            success: function(data){},
-            })    
+  $.ajax({        //获取题目的json数据
+        type: 'get',
+        url: '/JuniorHearing/essay/showAllEssay',
+        success: function(data){
+          console.log(data);
+        },
+  })    
     var data=[
     [{"listen_id":28,
     "listen_type":3,
@@ -93,7 +95,8 @@ $(document).ready(function () {
        var dui=0;
        var cuo=0;
        var zong=(flag-1);
-      tiHuanZong (zong);
+
+        tiHuanZong (zong);
       select(dui,cuo,zong);
      shoucang();  //收藏部分！
      xiangjie();//详解打开和关闭

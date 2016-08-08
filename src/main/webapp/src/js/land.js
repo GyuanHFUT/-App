@@ -1,6 +1,6 @@
 $(document).ready(function () {
           $.init();
-        $("#send").click(function () {
+        $("#send").tap(function () {
         var account = $("#account").val();
         var pwd = $("#upwd").val();
        if (pwd.length!=0&&account.length!=0){
@@ -10,12 +10,14 @@ $(document).ready(function () {
               url: '/JuniorHearing/user/userLogin',
               data: user,
               success: function(data){
+                console.log(data);
                 if(data.success){   
+
                   $.alert("登陆成功!", function () {
                     $.router.load("../pages/choice_que.html"); 
         })}
                   else{
-                     $.alert("数据异常，请重试!");
+                     $.alert(data.msg);
                   }
                  }
             })}
@@ -60,7 +62,7 @@ $(document).ready(function () {
                             $.toast('验证码已发送，请查收!')
                         }
                         else{
-                          $.toast('数据异常，请重试!')
+                          $.toast(data.msg)
                         }
                  }
             })          

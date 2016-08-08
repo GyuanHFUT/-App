@@ -1,10 +1,12 @@
 
 $(document).ready(function () {
-      $.ajax({        //获取题目的json数据
-            type: 'get',
-            url: '',
-            success: function(data){},
-            })      
+  $.ajax({        //获取题目的json数据
+        type: 'get',
+        url: '/JuniorHearing/longDialogue/showAllLongDialogue',
+        success: function(data){
+          console.log(data);
+        },
+  })    
     var data=[
     [{"listen_id":28,
     "listen_type":3,
