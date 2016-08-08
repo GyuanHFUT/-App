@@ -1,5 +1,6 @@
 package com.listening.util.interceptor;
 
+import com.listening.domain.User;
 import com.listening.util.session.SessionUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts.util.RequestUtils;
@@ -25,7 +26,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
         if(requestUri.contains("/userLogin")||requestUri.contains("/showExamOfListen")||requestUri.contains("/userMapping")){
             return true;
         }else{
-            String user = (String) request.getSession().getAttribute("user");
+            User user = (User) request.getSession().getAttribute("user");
             if(user==null){
                 logger.info("拦截器发挥作用，跳转到登陆页面！！");
                 request.getRequestDispatcher("/pages/land.html").forward(request, response);
