@@ -32,7 +32,6 @@ function  select(dui,cuo,zong){
                  $('.flex:eq('+flag+')'). addClass('current')
                     .siblings().removeClass('current');
                   flag++;
-                  $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
 
                   $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
               }
@@ -153,7 +152,7 @@ function box(x){
  }
  //音频播放完自动暂停
  function stopNow(x){
-  console.log(x.length);
+  console.log(x);
   var s=x.length;
 for (var i = s - 1; i >= 0; i--) {
       x[i].onended = function() {
