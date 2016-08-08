@@ -93,14 +93,19 @@ function shoucang(){
               type: 'get',
               url: "/JuniorHearing/collect/addCollect/"+listen_id,
               success: function(data){
-                
+               if(data=="login"){
+                   
+                   $.toast("请先登录！");
+                   $.router.load("../pages/land.html");
+               }else{
                 if(data.success){ 
                   $(that).addClass('active');
                   $.toast("收藏成功！")}
                   else{
                      $.toast(data.msg);                    
                   }
-                 },
+               }
+               },
             }) 
       }
     })
