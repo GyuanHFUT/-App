@@ -94,9 +94,11 @@ function shoucang(){
               url: "/JuniorHearing/collect/addCollect/"+listen_id,
               success: function(data){
                if(data=="login"){
-                   
-                   $.toast("请先登录！");
-                   $.router.load("../pages/land.html");
+                   $.confirm('收藏功能需要登录，是否登陆?',
+                       function () {
+                           $.router.load("../pages/land.html");
+                       }
+                   );
                }else{
                 if(data.success){ 
                   $(that).addClass('active');
