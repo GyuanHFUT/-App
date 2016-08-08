@@ -44,6 +44,11 @@
             <mvc:exclude-mapping path="/user/addUser"/>
             <mvc:exclude-mapping path="/user/sentUserCode"/>
             <mvc:exclude-mapping path="/user/backUserPwd"/>
+            <mvc:exclude-mapping path="/word/showAllWord"/>
+            <mvc:exclude-mapping path="/shortDialogue/showAllShortDialogue"/>
+            <mvc:exclude-mapping path="/longDialogue/showAllLongDialogue"/>
+            <mvc:exclude-mapping path="/essay/showAllEssay"/>
+            <mvc:exclude-mapping path="/blank/showAllBlank"/>
 
 
             <bean id="Interceptor" class="com.listening.util.interceptor.Interceptor"/>
