@@ -17,7 +17,6 @@ $(document).ready(function(){
         timing(time);
         checkTime(time,fm,lm,fs,ls);
         // setTimeout(,1000);
-        // checkTime(time,fm,lm,fs,ls);
     }
 
 });
@@ -234,7 +233,7 @@ var answer = [];
           var each = time[j].html;
               each =fm +''+ lm + ':' + fs+'' + ls;
       }
-      //setTimeout(checkTime(time,fm,lm,fs,ls),1000);
+      setTimeout(checkTime(time,fm,lm,fs,ls),1000);
     //  return each;
   };
 
