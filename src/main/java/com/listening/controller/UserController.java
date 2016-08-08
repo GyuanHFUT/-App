@@ -24,12 +24,12 @@ public class UserController {
     @RequestMapping(value = "/userLogin", method  = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> userLogin(@RequestParam(value = "user_name") String user_name, @RequestParam(value = "user_pwd") String user_pwd){
-        Map<String, Object> map = new HashMap<String, Object>();
-        User user1 = userManager.userLogin(user_name,user_pwd);
+        //Map<String, Object> map = new HashMap<String, Object>();
+        return userManager.userLogin(user_name,user_pwd);
         //map.put("user", user1);
-        map.put("success", true);
-       //map.put("msg", "登陆成功！");
-        return map;
+        //map.put("success", true);
+        //map.put("msg", "登陆成功！");
+        //return map;
     }
     //判断用户名是否已经注册过
     @RequestMapping(value = "/userMapping", method = RequestMethod.POST)
