@@ -105,6 +105,7 @@ $(document).ready(function(){
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
                 $.confirm('确定交卷?', function () {
+                    audio_paused(audio);
                     var pages =$('.page');
                     var len = $('.page').length-2;
                     var ne = $($('.page')[len]).find('input');
@@ -128,6 +129,7 @@ $(document).ready(function(){
                         personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
                     grade =  personal.true.length + 5 - num.length;
+<<<<<<< HEAD
                     $('.find_emply').find('.tips span').html = grade;
                     console.log(personal);
                     var datas ={data:2};
@@ -148,6 +150,29 @@ $(document).ready(function(){
                        console.log('this is false!');
                     }
                     })
+=======
+                    $('#grade').find('.tips span').html(grade);
+                    var str = JSON.stringify(personal);
+                    var datas ={data:str};
+                    $.router.load("./simulation_test.html#grade");
+                    // $.ajax({
+                    //   type: 'post',
+                    //   url: '/JuniorHearing/exam/acceptExamOfMessage',
+                    //   data:datas,
+                    //   success:function(data){
+                    //       console.log(data);
+                    //     var success = JSON.parse(data);
+                    //     if(success){
+                    //         $.router.load("./simulation_test.html#grade");
+                    //     } else{
+                    //       return false;
+                    //     }
+                    //  },
+                    // error:function(){
+                    //    console.log('this is false!');
+                    // }
+                    // })
+>>>>>>> b09f36fb198b3fa7dbbffd78ea9c24448c7494c7
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
@@ -223,6 +248,7 @@ $(document).ready(function(){
       console.log(time+" "+fm+" "+lm+" "+fs+" "+ls);
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
+              audio_paused(audio);
               // $.router.load("./grade.html");
               //停止计时，所有其他操作都禁止
           });
@@ -283,17 +309,19 @@ $(document).ready(function(){
       return false;
       };
   //音频的实现
-function audio_play(audio){
-   audio[0].play();
-   audio[0].onended = function(){
-     $('.playn').show();
-     $('.stopn').hide();
-   }
-}
+    function audio_play(audio){
+       audio[0].play();
+       audio[0].onended = function(){
+         $('.playn').show();
+         $('.stopn').hide();
+       }
+    }
+    function audio_paused(audio){
+            audio[0].pause();
+    }
     // window.onload=function (){
         // console.log(time);
         // return setInterval(checkTime(time,fm,lm,fs,ls),1000);
-
     // }
 
   //ajax事件的学习，需要用这个做一些事情
