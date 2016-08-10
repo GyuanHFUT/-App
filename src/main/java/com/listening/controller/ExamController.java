@@ -8,10 +8,7 @@ import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +35,7 @@ public class ExamController {
     }
 
     @RequestMapping(value = "/acceptExamOfMessage", method = RequestMethod.POST)
-    public Map<String,Object> acceptExamOfMessage(@RequestBody JSONObject jsonObject){
+    public Map<String,Object> acceptExamOfMessage(@RequestParam(value = "data") String jsonObject){
         logger.info("已经进入该方法！");
         Map<String, Object> map = new HashMap<String, Object>();
         SessionUtils.bindSession("jsonObject",jsonObject);

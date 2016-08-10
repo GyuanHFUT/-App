@@ -10,7 +10,6 @@ import com.listening.serviceManager.ExamManager;
 import com.listening.util.exception.MessageException;
 import com.listening.util.number.RandomNumber;
 import com.listening.util.session.SessionUtils;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,8 +46,9 @@ public class ExamManagerImpl implements ExamManager {
     }
 
     @Override
-    public void addExamOfMistake(JSONObject jsonObject) {
-        JSONObject object = jsonObject.getJSONObject("wrong");
+    public void addExamOfMistake(String jsonObject) {
+        JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
+        JSONObject object = jsonObject1.getJSONObject("wrong");
         //JSONArray jsonArray1 = jsonObject.getJSONArray("trans");
         //int n = jsonArray.size();
         User user = SessionUtils.getCurrentUser();
