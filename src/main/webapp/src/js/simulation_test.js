@@ -128,13 +128,14 @@ $(document).ready(function(){
                         personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
                     grade =  personal.true.length + 5 - num.length;
-                    console.log(grade)
+                    $('.find_emply').find('.tips span').html = grade;
                     console.log(personal);
                     $.ajax({
                       type: 'post',
                       url: '/JuniorHearing/exam/acceptExamOfMessage',
                       data:'personal',
                       success:function(data){
+                          console.log(data);
                         var success = JSON.parse(data);
                         if(success){
                             $.router.load("./simulation_test.html#grade");
