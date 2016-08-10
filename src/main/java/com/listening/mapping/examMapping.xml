@@ -14,6 +14,12 @@
         FROM question
         GROUP BY listen_exam;
     </select>
+    
+    <select id="selectExamaOfUser" resultType="com.listening.domain.Exama">
+        SELECT question.*
+        FROM mistake, question
+        WHERE mistake.listen_id=question.listen_id AND mistake.user_id=#{user_id};
+    </select>
 
 
 

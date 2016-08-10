@@ -1,6 +1,7 @@
 package com.listening.serviceManagerImpl;
 
 import com.listening.domain.Exam;
+import com.listening.domain.Exama;
 import com.listening.domain.Mistake;
 import com.listening.domain.User;
 import com.listening.mapper.ExamMapper;
@@ -14,8 +15,10 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Asus on 2016/8/5.
@@ -45,24 +48,72 @@ public class ExamManagerImpl implements ExamManager {
 
     @Override
     public void addExamOfMistake(JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("wrong");
+        JSONObject object = jsonObject.getJSONObject("wrong");
+        //JSONArray jsonArray1 = jsonObject.getJSONArray("trans");
         //int n = jsonArray.size();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
-        if(jsonArray.isEmpty()){
-            throw new MessageException("您未有任何错题！");
-        }
-        Iterator iterator = jsonArray.iterator();
-        while (iterator.hasNext()){
-            Integer listen_id = (Integer) iterator.next();
-            Mistake mistake = mistakeMapper.selectMistakeByUL(user_id, listen_id);
-            if(mistake!=null){
-                continue;
-            }else {
-                mistakeMapper.insertMistake(user_id, listen_id);
+        if(object.isEmpty()){
+            return;
+        }else {
+            Set<Integer> it = object.keySet();
+            Iterator iterator = it.iterator();
+            while (iterator.hasNext()) {
+                Integer listen_id = (Integer) iterator.next();
+                Mistake mistake = mistakeMapper.selectMistakeByUL(user_id, listen_id);
+                if (mistake != null) {
+                    continue;
+                } else {
+                    mistakeMapper.insertMistake(user_id, listen_id);
+                }
             }
-
         }
+    }
 
+    @Override
+    public List<Exama> showExamOfMistake(JSONObject jsonObject) {
+        JSONObject object = jsonObject.getJSONObject("wrong");
+        List<Exama> examaList = new ArrayList<Exama>();
+        User user = SessionUtils.getCurrentUser();
+        int user_id = user.getUser_id();
+        if(object.isEmpty()){
+            return null;
+        }else {
+            //List<Mistake> mistakes = mistakeMapper.selectMistakeByUser(user_id);
+            List<Exama> examas = examMapper.selectExamaOfUser(user_id);
+            Set<Integer> set = object.keySet();
+            Iterator it = set.iterator();
+            while (it.hasNext()){
+                for(int i=0;i<examas.size();i++){
+                    String answer;
+                    int listen_id = (Integer) it.next();
+                    if(listen_id==examas.get(i).getListen_id()){
+                        if(examas.get(i).getListen_type()==5) {
+                            JSONObject object1 = (JSONObject) object.get(listen_id);
+                            examas.get(i).setExam_first((String) object1.get(0));
+                            examas.get(i).setExam_second((String) object1.get(1));
+                            examas.get(i).setExam_three((String) object1.get(2));
+                            examas.get(i).setExam_four((String) object1.get(3));
+                            examas.get(i).setExam_five((String) object1.get(4));
+                        }else{
+                            int exam_answer = (Integer) object.get(listen_id);
+                            if (exam_answer == 1) {
+                                answer = "A";
+                            } else if (exam_answer == 2) {
+                                answer = "B";
+                            } else if (exam_answer == 3) {
+                                answer = "C";
+                            } else {
+                                throw new MessageException("传入的数据异常！");
+                            }
+                            examas.get(i).setExam_answer(answer);
+                            //examaList.add(examas.get(i));
+                        }
+                        examaList.add(examas.get(i));
+                    }
+                }
+            }
+        }
+        return examaList;
     }
 }
