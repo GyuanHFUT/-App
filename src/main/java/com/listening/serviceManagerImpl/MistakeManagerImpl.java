@@ -22,7 +22,7 @@ public class MistakeManagerImpl implements MistakeManager {
     public void addMistake(int user_id, int listen_id) {
         Mistake mistake = mistakeMapper.selectMistakeByUL(user_id, listen_id);
         if (mistake != null) {
-            throw new MessageException("此题已经在错题集中！");
+            return;
         } else {
             mistakeMapper.insertMistake(user_id, listen_id);
         }
