@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>试卷练习</title>
+    <title>模拟测试</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="../src/lib/SUI-Mobile-dev/docs/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/simulation.css">
+    <link rel="stylesheet" href="../src/css/simulation_common.css">
   </head>
   <body>
     <div class="page-group " id="handlebars" >
@@ -50,9 +50,9 @@
                    <span class="title">{{listen_name}}</span>
                     <div class="yinpin">
                   <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
-                <div class="yinpinicon"
-                  <span class="playn"> <i class="icon iconfont pull-right"  >&#xf0004;</i></span>
-                  <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
+                   <div class="yinpinicon">
+                  <span class="playn"> <i class="icon iconfont pull-right"  >&#xf006c;</i></span>
+                  <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf006c;</i></span>
                 </div>
                   </div>
                </header>
@@ -68,16 +68,14 @@
                    <a class="tab-item external open-popup" href="#">
                        <i class="icon iconfont">&#xf0004;</i>
                        <span class="tab-label">{{addOne @index}}/30</span>
-
                    </a>
                </nav>
                <div class="content content-padded">
-
                   {{\#if form_url}}
-                  <h3>26-30.{{listen_title}}</h3>
+                  <h3>26-30.{{listen_question}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
-                  <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                  <div class="trans_input">26.<input type="text" name="test_answer" value="23"/></div>
+                  <div class="selects {{selects_type}} " value="{{addOne @index}}" listenid ="{{listen_id}}">
+                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
@@ -86,7 +84,7 @@
                   {{else}}
                   <h3>{{addOne @index}}.{{listen_question}}</h3>
                     {{#choice option_A}}
-                     <div class="selects {{selects_type}}"  value="{{addOne @index}}">
+                     <div class="selects {{selects_type}}"  value="{{addOne @index}}" listenid ="{{listen_id}}">
                          <div class="select" value="1">
                            <i class="icon iconfont">&#xe61b;</i>
                            <span>{{option_A}}</span>

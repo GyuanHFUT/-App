@@ -38,7 +38,13 @@ padding:0.4rem;
     bottom:4.2rem;
 }
 /*音频图标效果*/
+.yinpinicon{
+float:right;
+    height:100%;
+    width:2rem;
+}
 .yinpinicon .iconfont{
+
    font-size:1.4rem;
 }
 /*.news h3{
