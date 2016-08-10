@@ -129,10 +129,11 @@ $(document).ready(function(){
                         personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
                     grade =  personal.true.length + 5 - num.length;
-<<<<<<< HEAD
                     $('.find_emply').find('.tips span').html = grade;
                     console.log(personal);
-                    var datas ={data:2};
+                    var str = JSON.stringify(personal);
+                    var datas ={data:str};
+                    //var datas ={data:2};
                     $.ajax({
                       type: 'post',
                       url: '/JuniorHearing/exam/acceptExamOfMessage',
@@ -150,11 +151,11 @@ $(document).ready(function(){
                        console.log('this is false!');
                     }
                     })
-=======
-                    $('#grade').find('.tips span').html(grade);
-                    var str = JSON.stringify(personal);
-                    var datas ={data:str};
-                    $.router.load("./simulation_test.html#grade");
+                    //
+                    //$('#grade').find('.tips span').html(grade);
+                    //var str = JSON.stringify(personal);
+                    //var datas ={data:str};
+                    //$.router.load("./simulation_test.html#grade");
                     // $.ajax({
                     //   type: 'post',
                     //   url: '/JuniorHearing/exam/acceptExamOfMessage',
@@ -172,7 +173,6 @@ $(document).ready(function(){
                     //    console.log('this is false!');
                     // }
                     // })
->>>>>>> b09f36fb198b3fa7dbbffd78ea9c24448c7494c7
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
