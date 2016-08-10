@@ -130,7 +130,7 @@ $(document).ready(function(){
                     grade =  personal.true.length + 5 - num.length;
                     $('.find_emply').find('.tips span').html = grade;
                     console.log(personal);
-                    var datas =2;
+                    var datas ={data:2};
                     $.ajax({
                       type: 'post',
                       url: '/JuniorHearing/exam/acceptExamOfMessage',
