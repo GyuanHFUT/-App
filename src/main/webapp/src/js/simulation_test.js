@@ -145,8 +145,8 @@ $(document).ready(function(){
                         personal.wrong[traid.toString()]= num;
                         // personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
-                    grade =  personal.true.length + 5 - num.length;
-                    $('.find_emply').find('.tips span').html = grade;
+                    //grade =  personal.true.length + 5 - num.length;
+                    //$('.find_emply').find('.tips span').html = grade;
                     console.log(personal);
                     var str = JSON.stringify(personal);
                     var datas ={data:str};
@@ -168,40 +168,10 @@ $(document).ready(function(){
                        console.log('this is false!');
                     }
                     })
-<<<<<<< HEAD
-                    //
-                    //$('#grade').find('.tips span').html(grade);
-                    //var str = JSON.stringify(personal);
-                    //var datas ={data:str};
-                    //$.router.load("./simulation_test.html#grade");
-=======
-=======
-                    $('#grade').find('.tips span').html(grade);
-                    var str = JSON.stringify(personal);
-                    console.log(str);
-                    // var datas ={data:str};
-                    $.router.load("./simulation_test.html#grade");
->>>>>>> cc00f0c79733a917db851ecc31a02c30ee6f2073
-                    // $.ajax({
-                    //   type: 'post',
-                    //   url: '/JuniorHearing/exam/acceptExamOfMessage',
-                    //   data:datas,
-                    //   success:function(data){
-                    //       console.log(data);
-                    //     var success = JSON.parse(data);
-                    //     if(success){
-                    //         $.router.load("./simulation_test.html#grade");
-                    //     } else{
-                    //       return false;
-                    //     }
-                    //  },
-                    // error:function(){
-                    //    console.log('this is false!');
-                    // }
-                    // })
-                    //交卷所要做到的携带内容与结果
-                    //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
-                    // var last = $(".trans_input input").val()
+
+
+
+
 
                 });
             });
