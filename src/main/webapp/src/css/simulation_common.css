@@ -138,3 +138,65 @@ ul, li {
 .close-popup .poplook{
   background:#18b4ed !important;
 }
+/*成绩页面*/
+.find_emply{
+    margin:50% auto 0;
+    width:80%;
+    height:5rem;
+    text-align:center;
+}
+.find_emply .page_content{
+    border-radius: 1rem;
+    background: rgba(189, 189, 220, 0.07);
+    border: 0.1rem solid rgb(231, 231, 231);
+    border-image: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.find_emply  .img_content{
+    width: 46%;
+    height: 20%;
+    position: absolute;
+}
+.tou{
+    background: url("../img/grade/tou.png") no-repeat;
+    width: 4.85rem;
+    height: 4.6rem;
+    position: absolute;
+    top: -4.35rem;
+    left:52%;
+}
+
+.initial_left_hand{
+    background: url("../img/grade/hand.png") no-repeat;
+    width: 1.5rem;
+    height: 1rem;
+    position: absolute;
+    top: -0.6rem;
+    left: 20%;
+}
+.initial_right_hand{
+    background: url("../img/grade/hand.png") no-repeat;
+    width: 1.5rem;
+    height: 1rem;
+    position: absolute;
+    top: -0.6rem;
+    right: -44%;
+}
+.tips p{
+    line-height:1rem;
+    font-size:0.85rem;
+    color:rgb(238, 0, 0);
+    margin:1rem 0 ;
+}
+.tips a{
+    display:inline-block;
+    text-decoration:none;
+    border-radius: 1rem;
+    width:5rem;
+    height:2rem;
+    line-height:2rem;
+    font-size:1rem;
+    background-color:#fff;
+}

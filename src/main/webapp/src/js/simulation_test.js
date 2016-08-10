@@ -6,7 +6,6 @@ $(document).ready(function(){
         url: '/JuniorHearing/exam/showExamOfListen',
         success:function(data){
             datapush(data);
-            console.log(data);
             var myTemplate = Handlebars.compile($("#myTemplate").html());
             $("#handlebars").html(myTemplate(data));
             var box = Handlebars.compile($("#box").html());
@@ -17,7 +16,6 @@ $(document).ready(function(){
             // setTimeout(,1000);
             //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
             var audio = $('.audion');
-            console.log(audio);
             audio_play(audio);
             $('.yinpinicon').tap(function(){
                 $.alert('考试期间，请勿暂停音频')
@@ -97,7 +95,6 @@ $(document).ready(function(){
                 }
                 $(".test_num").find('strong').html(test_num);
                 $(".weida").find('strong').html(zong);
-                console.log(personal);
             });
             $(".flex").tap(function(){//点击盒子切换页面
                 var flag=$(this).html();
@@ -109,7 +106,7 @@ $(document).ready(function(){
             $(document).on('tap','.confirm-ok', function () {
                 $.confirm('确定交卷?', function () {
                     var pages =$('.page');
-                    var len = $('.page').length-1;
+                    var len = $('.page').length-2;
                     var ne = $($('.page')[len]).find('input');
                     var traid = data[len].listen_id;
                      var  judgment =true;
@@ -121,8 +118,6 @@ $(document).ready(function(){
                      console.log(personal.trans);
                     for(var z=0;z< personal.trans.length;z++){
                         if(answer[25][z]!== personal.trans[z]){
-                            console.log(answer[25][z]);
-                            console.log(personal.trans[z]);
                             judgment = false;
                             num.push(z+':'+personal.trans[z]);
                             }
@@ -132,27 +127,25 @@ $(document).ready(function(){
                        }else{
                         personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
-
-
-                    console.log(answer);
+                    grade =  personal.true.length + 5 - num.length;
+                    console.log(grade)
                     console.log(personal);
-                    //
-                    // $.ajax({
-                    //   type: 'post',
-                    //   url: '',
-                    //   data:'personal',
-                    //   success:function(data){
-                    //     var success = JSON.parse(data);
-                    //     if(success){
-                    //         $.router.load("./grade.html");
-                    //     } else{
-                    //       return false;
-                    //     }
-                    //  },
-                    // error:function(){
-                    //    console.log('this is false!');
-                    // }
-                    // })
+                    $.ajax({
+                      type: 'post',
+                      url: '/JuniorHearing/exam/acceptExamOfMessage',
+                      data:'personal',
+                      success:function(data){
+                        var success = JSON.parse(data);
+                        if(success){
+                            $.router.load("./simulation_test.html#grade");
+                        } else{
+                          return false;
+                        }
+                     },
+                    error:function(){
+                       console.log('this is false!');
+                    }
+                    })
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
@@ -170,12 +163,13 @@ $(document).ready(function(){
   //初始化结束
   //添加”dui“class
   //一些使用到的全局变量
-  var test_num=0,
+  var test_num=0,grade = 0,
       zong=$(".weida").find('strong').html(),
       personal = new Object;
       personal.wrong = new Array();
       personal.true = new Array();
       personal.trans = new Array();
+
     function datapush(data){
         data[0].first="page-current";
         data[0].box = "current";
@@ -210,7 +204,6 @@ $(document).ready(function(){
     Handlebars.registerHelper("choice",function(option_A,options){
         var sty =  option_A.slice(option_A.length-4,option_A.length);
         if(sty !== ".jpg"){
-
             //满足添加继续执行
             return options.fn(this);
         }else{
@@ -228,7 +221,8 @@ $(document).ready(function(){
       console.log(time+" "+fm+" "+lm+" "+fs+" "+ls);
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
-              $.router.load("./grade.html");
+              // $.router.load("./grade.html");
+              //停止计时，所有其他操作都禁止
           });
       }else{
           fm = checkfm(fm,lm,fs,ls);
@@ -286,10 +280,7 @@ $(document).ready(function(){
       }
       return false;
       };
-
-
   //音频的实现
-
 function audio_play(audio){
    audio[0].play();
    audio[0].onended = function(){
