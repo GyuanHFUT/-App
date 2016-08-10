@@ -122,7 +122,7 @@ $(document).ready(function(){
                     $.router.load("#"+flag+"");
                 }
             });
-
+            //点击弹框26-30题
             $(".open-popup").tap(function(){
                 console.log(inputlist);
                 $(inputlist).each(function(){
@@ -136,13 +136,6 @@ $(document).ready(function(){
                     }
                 });
             })
-            // EventUtil.addHandler($('.trans_input'),"touchend",function(event){
-            //     console.log('haha');
-            // });
-            // $('.trans_input').tap(function(){
-            //
-            //     if(this)
-            // })
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
                 $.confirm('确定交卷?', function () {
@@ -218,8 +211,6 @@ $(document).ready(function(){
       personal.wrong = new Object;
       personal.true = new Array();
       personal.trans = new Array();
-
-
     function datapush(data){
         data[0].first="page-current";
         data[0].box = "current";
