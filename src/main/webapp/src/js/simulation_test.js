@@ -162,9 +162,15 @@ $(document).ready(function(){
                         personal.wrong[traid.toString()]= num;
                         // personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
+<<<<<<< HEAD
+                    //grade =  personal.true.length + 5 - num.length;
+                    //$('.find_emply').find('.tips span').html = grade;
+                    console.log(personal);
+=======
                     grade =  personal.true.length + 5 - x;
                     $('#grade').find('.tips span').html(grade);
                     $.router.load("./simulation_test.html#grade");
+>>>>>>> a150a8bf261a889d34f66da678dcff61fddf38ff
                     var str = JSON.stringify(personal);
                     var datas ={data:str};
                     console.log(str);
@@ -187,9 +193,15 @@ $(document).ready(function(){
 
                     })
 
+<<<<<<< HEAD
+
+
+
+=======
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
+>>>>>>> a150a8bf261a889d34f66da678dcff61fddf38ff
 
                 });
             });

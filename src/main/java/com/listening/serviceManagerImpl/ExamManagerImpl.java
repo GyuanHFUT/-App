@@ -59,7 +59,7 @@ public class ExamManagerImpl implements ExamManager {
             Set<Integer> it = object.keySet();
             Iterator iterator = it.iterator();
             while (iterator.hasNext()) {
-                Integer listen_id = (Integer) iterator.next();
+                Integer listen_id = Integer.parseInt((String) iterator.next());
                 Mistake mistake = mistakeMapper.selectMistakeByUL(user_id, listen_id);
                 if (mistake != null) {
                     continue;
