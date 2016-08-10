@@ -5,10 +5,12 @@ import com.listening.domain.Exama;
 import com.listening.serviceManager.ExamManager;
 import com.listening.util.session.SessionUtils;
 import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/exam")
 public class ExamController {
+    private static Logger logger = Logger.getLogger(ExamController.class);
 
     @Autowired
     ExamManager examManager;
@@ -34,8 +37,9 @@ public class ExamController {
         return exams;
     }
 
-    @RequestMapping(value = "/acceptExamOfMessage")
+    @RequestMapping(value = "/acceptExamOfMessage", method = RequestMethod.POST)
     public Map<String,Object> acceptExamOfMessage(@RequestBody JSONObject jsonObject){
+        logger.info("已经进入该方法！");
         Map<String, Object> map = new HashMap<String, Object>();
         SessionUtils.bindSession("jsonObject",jsonObject);
         try {
@@ -43,6 +47,7 @@ public class ExamController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        logger.info("成功收取数据！");
         map.put("success",true);
         return map;
     }
