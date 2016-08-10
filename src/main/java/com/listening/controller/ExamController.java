@@ -35,14 +35,16 @@ public class ExamController {
     }
 
     @RequestMapping(value = "/acceptExamOfMessage")
-    public void acceptExamOfMessage(@RequestBody JSONObject jsonObject){
-        //Map<String, Object> map = new HashMap<String, Object>();
+    public Map<String,Object> acceptExamOfMessage(@RequestBody JSONObject jsonObject){
+        Map<String, Object> map = new HashMap<String, Object>();
         SessionUtils.bindSession("jsonObject",jsonObject);
         try {
             examManager.addExamOfMistake(jsonObject);
         }catch (Exception e){
             e.printStackTrace();
         }
+        map.put("success",true);
+        return map;
     }
 
     @RequestMapping(value = "/showExamOfMistake")
