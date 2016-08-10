@@ -130,10 +130,11 @@ $(document).ready(function(){
                     grade =  personal.true.length + 5 - num.length;
                     $('.find_emply').find('.tips span').html = grade;
                     console.log(personal);
+                    var datas =2;
                     $.ajax({
                       type: 'post',
                       url: '/JuniorHearing/exam/acceptExamOfMessage',
-                      data:'personal',
+                      data:datas,
                       success:function(data){
                           console.log(data);
                         var success = JSON.parse(data);
