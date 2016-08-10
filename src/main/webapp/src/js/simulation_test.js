@@ -16,16 +16,22 @@ $(document).ready(function(){
             // setTimeout(,1000);
             //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
             var audio = $('.audion');
+            var flexbox = $('.flex');
             audio_play(audio);
+            if(flexbox.length==26){
+                for(var n=27;n<31;n++){
+                    $('#box_li').append('<li class="flex">'+n+'</li> ');
+                }
+            };
             $('.yinpinicon').tap(function(){
                 $.alert('考试期间，请勿暂停音频')
             })
             $(".page").swipeLeft(function(){
                 var flag=$(this).attr("id");
-                if (flag<$(".page").length) {
+                if (flag<$(".page").length-1) {
                     $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
                     flag++;
-                    $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+                    //$("#"+flag+"").find(".yeshu").html(""+flag+"/30");
                     $.router.load("#"+flag+"");
                 }else{
                     $.toast("已经是最后一题了")
@@ -44,8 +50,8 @@ $(document).ready(function(){
             });
             //选项选择后对应选项颜色样式的改变
             $(".select").on('tap',function(){
-                var parent  =  $(this).parent(),
-                    parents  =  $(this).parent().parent();
+                var parent  =  $(this).parent();
+                    // parents  =  $(this).parent().parent();
                 var x=parent.attr('value'),
                     lisid = parent.attr('listenid'),
                     opt;
@@ -65,7 +71,7 @@ $(document).ready(function(){
                     test_num++;
                     parent.addClass('yidian');
                     if(op !== opt){
-                        personal.wrong.push(lisid+':'+op);
+                        personal.wrong[lisid.toString()]=op;
                     }else{
                         personal.true. push(lisid);
                     }
@@ -76,19 +82,21 @@ $(document).ready(function(){
                     zong++;
                     test_num--;
                     parent.removeClass('yidian');
-                    if(op == opt){
-                        personal.wrong.splice(lisid+':'+op,1);
+                    if(op !== opt){
+                        delete  personal.wrong[lisid.toString()];
+                        // personal.wrong.splice(lisid+':'+op,1);
                     }else{
                         personal.true.remove(lisid);
                     }
+                    console.log( personal.wrong);
                 }else{
                     //替换选项，先删后加
                     parent.find('.select').removeClass('option');
                     $(this).addClass('option');
-                    personal.wrong.splice(lisid+':'+op,1);
+                    delete  personal.wrong[lisid.toString()];
                     personal.true.remove(lisid);
                     if(op !== opt){
-                        personal.wrong.push(lisid+':'+op);
+                        personal.wrong[lisid.toString()]=op;
                     }else{
                         personal.true. push(lisid);
                     }
@@ -96,11 +104,19 @@ $(document).ready(function(){
                 $(".test_num").find('strong').html(test_num);
                 $(".weida").find('strong').html(zong);
             });
+            //点击
             $(".flex").tap(function(){//点击盒子切换页面
                 var flag=$(this).html();
-                $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
-                $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
-                $.router.load("#"+flag+"");
+                if(flag>=26){
+                    $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
+                    var yeshu =flag;
+                       flag = 26;
+                    $("#"+flag+"").find(".yeshu").html(yeshu+"/30");
+                    $.router.load("#"+flag+"");
+                }else{
+                    $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
+                    $.router.load("#"+flag+"");
+                }
             });
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
@@ -111,7 +127,7 @@ $(document).ready(function(){
                     var ne = $($('.page')[len]).find('input');
                     var traid = data[len].listen_id;
                      var  judgment =true;
-                    var num = new Array;
+                    var num = new Object;
                     $(ne).each(function(){
                          var text = $(this).val();
                         personal.trans.push(text);
@@ -120,13 +136,14 @@ $(document).ready(function(){
                     for(var z=0;z< personal.trans.length;z++){
                         if(answer[25][z]!== personal.trans[z]){
                             judgment = false;
-                            num.push(z+':'+personal.trans[z]);
+                            num[z.toString()]= personal.trans[z];
                             }
                     };
                     if(judgment){
                         personal.true.push(traid);
                        }else{
-                        personal.wrong.push(traid+':'+'{'+num+'}' );
+                        personal.wrong[traid.toString()]= num;
+                        // personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
                     grade =  personal.true.length + 5 - num.length;
                     $('.find_emply').find('.tips span').html = grade;
@@ -151,11 +168,20 @@ $(document).ready(function(){
                        console.log('this is false!');
                     }
                     })
+<<<<<<< HEAD
                     //
                     //$('#grade').find('.tips span').html(grade);
                     //var str = JSON.stringify(personal);
                     //var datas ={data:str};
                     //$.router.load("./simulation_test.html#grade");
+=======
+=======
+                    $('#grade').find('.tips span').html(grade);
+                    var str = JSON.stringify(personal);
+                    console.log(str);
+                    // var datas ={data:str};
+                    $.router.load("./simulation_test.html#grade");
+>>>>>>> cc00f0c79733a917db851ecc31a02c30ee6f2073
                     // $.ajax({
                     //   type: 'post',
                     //   url: '/JuniorHearing/exam/acceptExamOfMessage',
@@ -179,6 +205,7 @@ $(document).ready(function(){
 
                 });
             });
+
         }
 
     });
@@ -193,7 +220,7 @@ $(document).ready(function(){
   var test_num=0,grade = 0,
       zong=$(".weida").find('strong').html(),
       personal = new Object;
-      personal.wrong = new Array();
+      personal.wrong = new Object;
       personal.true = new Array();
       personal.trans = new Array();
 
@@ -248,7 +275,7 @@ $(document).ready(function(){
       console.log(time+" "+fm+" "+lm+" "+fs+" "+ls);
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
-              audio_paused(audio);
+              // audio_paused(audio);
               // $.router.load("./grade.html");
               //停止计时，所有其他操作都禁止
           });
