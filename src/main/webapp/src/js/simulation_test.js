@@ -128,6 +128,7 @@ $(document).ready(function(){
                     var traid = data[len].listen_id;
                      var  judgment =true;
                     var num = new Object;
+                    var x =0;
                     $(ne).each(function(){
                          var text = $(this).val();
                         personal.trans.push(text);
@@ -135,6 +136,7 @@ $(document).ready(function(){
                      console.log(personal.trans);
                     for(var z=0;z< personal.trans.length;z++){
                         if(answer[25][z]!== personal.trans[z]){
+                            x++;
                             judgment = false;
                             num[z.toString()]= personal.trans[z];
                             }
@@ -145,11 +147,13 @@ $(document).ready(function(){
                         personal.wrong[traid.toString()]= num;
                         // personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
-                    grade =  personal.true.length + 5 - num.length;
-<<<<<<< HEAD
-                    $('.find_emply').find('.tips span').html = grade;
-                    console.log(personal);
-                    var datas ={data:2};
+                    grade =  personal.true.length + 5 - x;
+                    console.log(grade);
+                   $($('.find_emply').find('.tips span')).html = grade;
+                    $.router.load("./simulation_test.html#grade");
+                    var str = JSON.stringify(personal);
+                    var datas ={data:str};
+                    console.log(str);
                     $.ajax({
                       type: 'post',
                       url: '/JuniorHearing/exam/acceptExamOfMessage',
@@ -166,31 +170,7 @@ $(document).ready(function(){
                     error:function(){
                        console.log('this is false!');
                     }
-                    })
-=======
-                    $('#grade').find('.tips span').html(grade);
-                    var str = JSON.stringify(personal);
-                    console.log(str);
-                    // var datas ={data:str};
-                    $.router.load("./simulation_test.html#grade");
-                    // $.ajax({
-                    //   type: 'post',
-                    //   url: '/JuniorHearing/exam/acceptExamOfMessage',
-                    //   data:datas,
-                    //   success:function(data){
-                    //       console.log(data);
-                    //     var success = JSON.parse(data);
-                    //     if(success){
-                    //         $.router.load("./simulation_test.html#grade");
-                    //     } else{
-                    //       return false;
-                    //     }
-                    //  },
-                    // error:function(){
-                    //    console.log('this is false!');
-                    // }
-                    // })
->>>>>>> b09f36fb198b3fa7dbbffd78ea9c24448c7494c7
+                    });
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
