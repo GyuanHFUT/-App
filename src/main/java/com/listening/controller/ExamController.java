@@ -37,6 +37,7 @@ public class ExamController {
     @RequestMapping(value = "/acceptExamOfMessage", method = RequestMethod.POST)
     public Map<String,Object> acceptExamOfMessage(@RequestParam(value = "data") String jsonObject){
         logger.info("已经进入该方法！");
+        logger.info(jsonObject);
         Map<String, Object> map = new HashMap<String, Object>();
         SessionUtils.bindSession("jsonObject",jsonObject);
         try {

@@ -10,6 +10,9 @@ $(document).ready(function(){
             $("#handlebars").html(myTemplate(data));
             var box = Handlebars.compile($("#box").html());
             $("#box_li").html(box(data));
+            var len = $('.page').length-2;
+            console.log(len);
+            var inputlist = $($('.page')[len]).find('input');
             time = $('.time');
             timing(time);
             checkTime(time,fm,lm,fs,ls);
@@ -105,7 +108,8 @@ $(document).ready(function(){
                 $(".weida").find('strong').html(zong);
             });
             //点击
-            $(".flex").tap(function(){//点击盒子切换页面
+            $(".flex").tap(function(){
+                //点击盒子切换页面
                 var flag=$(this).html();
                 if(flag>=26){
                     $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
@@ -118,18 +122,36 @@ $(document).ready(function(){
                     $.router.load("#"+flag+"");
                 }
             });
+
+            $(".open-popup").tap(function(){
+                console.log(inputlist);
+                $(inputlist).each(function(){
+                    var text = $(this).val();
+                    var test = $(this).parent().html();
+                        test = test.split('.',1)-1;
+                    if(text !==''){
+                        $('.flex:eq('+test+')').addClass('poplook');
+                    }else{
+                        $('.flex:eq('+test+')').removeClass('poplook');
+                    }
+                });
+            })
+            // EventUtil.addHandler($('.trans_input'),"touchend",function(event){
+            //     console.log('haha');
+            // });
+            // $('.trans_input').tap(function(){
+            //
+            //     if(this)
+            // })
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
                 $.confirm('确定交卷?', function () {
                     audio_paused(audio);
-                    var pages =$('.page');
-                    var len = $('.page').length-2;
-                    var ne = $($('.page')[len]).find('input');
                     var traid = data[len].listen_id;
                      var  judgment =true;
                     var num = new Object;
                     var x =0;
-                    $(ne).each(function(){
+                    $(inputlist).each(function(){
                          var text = $(this).val();
                         personal.trans.push(text);
                     });
@@ -148,8 +170,7 @@ $(document).ready(function(){
                         // personal.wrong.push(traid+':'+'{'+num+'}' );
                     }
                     grade =  personal.true.length + 5 - x;
-                    console.log(grade);
-                   $($('.find_emply').find('.tips span')).html = grade;
+                    $('#grade').find('.tips span').html(grade);
                     $.router.load("./simulation_test.html#grade");
                     var str = JSON.stringify(personal);
                     var datas ={data:str};
@@ -170,7 +191,9 @@ $(document).ready(function(){
                     error:function(){
                        console.log('this is false!');
                     }
-                    });
+
+                    })
+
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
@@ -195,6 +218,7 @@ $(document).ready(function(){
       personal.wrong = new Object;
       personal.true = new Array();
       personal.trans = new Array();
+
 
     function datapush(data){
         data[0].first="page-current";
