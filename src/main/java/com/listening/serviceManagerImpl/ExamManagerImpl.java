@@ -126,9 +126,41 @@ public class ExamManagerImpl implements ExamManager {
         JSONArray object2 = jsonObject.getJSONArray("trans");
         Set<String> set = object.keySet();
         Iterator it = set.iterator();
+        List<Exama> examas = new ArrayList<Exama>();
         if(!set.isEmpty()){
             int listen_exam = examMapper.selectExamById(Integer.parseInt((String) it.next()));
-            List<Exama> examas = examMapper.selectAllExama(listen_exam);
+            examas = examMapper.selectAllExama(listen_exam);
+        }else{
+            int listen_exam = examMapper.selectExamById(Integer.parseInt((String) object1.get(0)));
+            examas = examMapper.selectAllExama(listen_exam);
+        }
+        for(int i=0;i<examas.size();i++){
+            for(String j:set) {
+                int listen_id = Integer.parseInt(j);
+                String answer;
+                if(listen_id==examas.get(i).getListen_id()){
+                    if(examas.get(i).getListen_type()==5){
+                        JSONObject object3 = (JSONObject) object.get(j);
+                        examas.get(i).setExam_first((String) object3.get("0"));
+                        examas.get(i).setExam_second((String) object3.get("1"));
+                        examas.get(i).setExam_three((String) object3.get("2"));
+                        examas.get(i).setExam_four((String) object3.get("3"));
+                        examas.get(i).setExam_five((String) object3.get("4"));
+                        examas.get(i).setExam_judge(21);
+                    }else {
+                        int exam_answer = Integer.parseInt((String) object.get(j));
+                        if (exam_answer==1) {
+                            answer = "A";
+                        }else if(exam_answer==2){
+                            answer = "B";
+                        }else if(exam_answer==3){
+                            answer = "C";
+                        }else {
+
+                        }
+                    }
+                }
+            }
         }
 
         return null;
