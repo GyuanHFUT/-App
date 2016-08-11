@@ -191,7 +191,7 @@ public class ExamManagerImpl implements ExamManager {
                     }
                 }
             }
-            if(fix){
+            if(fix&&flag){
                 examas.get(i).setExam_judge(12);
             }
         }
