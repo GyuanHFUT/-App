@@ -17,4 +17,6 @@ public interface ExamManager {
     void addExamOfMistake(String jsonObject);
 
     List<Exama> showExamOfMistake(JSONObject jsonObject);
+
+    List<Exama> showAllExam(JSONObject jsonObject);
 }

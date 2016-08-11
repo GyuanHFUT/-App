@@ -32,6 +32,15 @@ public class Exama {
     private String exam_three;
     private String exam_four;
     private String exam_five;
+    private int exam_judge;
+
+    public int getExam_judge() {
+        return exam_judge;
+    }
+
+    public void setExam_judge(int exam_judge) {
+        this.exam_judge = exam_judge;
+    }
 
     public String getExam_first() {
         return exam_first;

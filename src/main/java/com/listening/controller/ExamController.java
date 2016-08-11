@@ -52,14 +52,24 @@ public class ExamController {
 
     @RequestMapping(value = "/showExamOfMistake")
     public ModelAndView showExamOfMistake(){
-        JSONObject jsonObject = (JSONObject) SessionUtils.getSession().getAttribute("jsonObject");
+        String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
+        JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
         //JSONObject object = jsonObject.getJSONObject("wrong");
-        List<Exama> exams = examManager.showExamOfMistake(jsonObject);
+        List<Exama> exams = examManager.showExamOfMistake(jsonObject1);
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("exams",exams);
         JSONObject object = JSONObject.fromObject(map);
+        logger.info(object);
         String exam = object.toString();
         return new ModelAndView("/simulation_error","exam",exam);
+    }
+
+    @RequestMapping(value = "/showAllExam")
+    public ModelAndView showAllExam(){
+        String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
+        JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
+        List<Exama> examas = examManager.showAllExam(jsonObject1);
+        return null;
     }
 
 }

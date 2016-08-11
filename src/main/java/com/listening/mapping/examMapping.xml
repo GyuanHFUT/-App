@@ -8,6 +8,13 @@
         WHERE listen_exam=#{listen_exam}
         ORDER BY listen_type ASC;
     </select>
+
+    <select id="selectAllExama" resultType="com.listening.domain.Exama">
+        SELECT *
+        FROM question
+        WHERE listen_exam=#{listen_exam}
+        ORDER BY listen_type ASC;
+    </select>
     
     <select id="selectExamOfType" resultType="java.lang.Integer">
         SELECT listen_exam
@@ -21,8 +28,11 @@
         WHERE mistake.listen_id=question.listen_id AND mistake.user_id=#{user_id};
     </select>
 
-
-
+    <select id="selectExamById" resultType="java.lang.Integer">
+        SELECT listen_exam
+        FROM question
+        WHERE listen_id=#{listen_id};
+    </select>
 
 
 </mapper>
