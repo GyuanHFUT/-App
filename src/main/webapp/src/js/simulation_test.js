@@ -174,7 +174,6 @@ $(document).ready(function(){
                       data:datas,
                       success:function(data){
                         if(data.success){
-                            console.log(data);
                             $.router.load("./simulation_test.html#grade");
                         } else{
                             console.log("hheh");
@@ -184,7 +183,6 @@ $(document).ready(function(){
                     error:function(){
                        console.log('this is false!');
                     }
-
                     })
 
                     //交卷所要做到的携带内容与结果

@@ -1,85 +1,74 @@
 $(document).ready(function(){
-  var data = [
-                       {     "listen_id":"1",
-                             "listen_type":"1",
-                             "listen_title":"",
-                             "option_A": "../src/img/encouragement.jpg",
-                             "option_B": "../src/img/encouragement.jpg",
-                             "option_C": "../src/img/encouragement.jpg",
-                             "listen_answer":"A",
-                             "radio_url":"../src/audio/1.mp3",
-                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                             "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"2"
-                         },
-                         {
-                             "listen_id":"2",
-                             "listen_type":"3",
-                             "listen_title":"",
-                             "option_A": "sunshine",
-                             "option_B": "big",
-                             "option_C": "two",
-                             "listen_answer":"B",
-                             "radio_url":"../src/audio/1.mp3",
-                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                             "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"1",
-                             "form_url":"../src/img/encouragement.jpg"
-                         },
-                         {
-                             "listen_id":"3",
-                             "listen_type":"2",
-                             "listen_title":"What is Lily's father",
-                             "option_A": "sunshine",
-                             "option_B": "big",
-                             "option_C": "three",
-                             "listen_answer":"C",
-                             "radio_url":"../src/audio/1.mp3",
-                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-                             "yuanwen":"Is there anything wrong with you,Peter?",
-                             "listen_style":"1"
-                         }] ;
-//   $.ajax({
-//     type: 'get',
-//     url: '',
-//     success:function(data){
-//       var data = JSON.parse(data);
-//       for(var t= 0 ;t<data.length;t++){
-//          data[t].first = "";
-//          data[0].first="page-current";
-//          data[t].box = "";
-//          data[0].box = "current";
-//          var n = data[t].listen_type,
-//             title = data[t].listen_title,
-//             s = data[t].listen_style,
-//             answer = data[t].listen_answer;
-//          switch(n){
-//             case "1":data[t]["listen_name"]="关键词语选择";break;
-//             case "2":data[t]["listen_name"]="短对话理解"; break;
-//             case "3":data[t]["listen_name"]="长对话理解"; break;
-//             case "4":data[t]["listen_name"]="短文理解"; break;
-//             case "5":data[t]["listen_name"]="信息转换"; break;
-//          };
-//          if(title == ""){
-//            data[t].listen_title= data[t].listen_name;
-//          };
-//          switch(s){
-//               case "1":data[t]["selects_type"]="words";break;
-//               case "2":data[t]["selects_type"]="imgs"; break;
-//               case "3":data[t]["selects_type"]=""; break;
-//           };
-//       };
-//       var myTemplate = Handlebars.compile($("#myTemplate").html());
-//       $("#handlebars").html(myTemplate(data));
-//       var box = Handlebars.compile($("#box").html());
-//       $("#box_li").html(box(data));
+//   var data = {"exams":[
+//     {   "exam_answer":"A",
+//         "exam_first":"",
+//         "exam_five":"",
+//         "exam_four":"",
+//         "exam_judge":0,
+//         "exam_radio":"../src/audio/1.mp3",
+//         "exam_second":"",
+//         "exam_three":"",
+//         "first_answer":"",
+//         "five_answer":"",
+//         "form_url":"",
+//         "four_answer":"",
+//         "listen_answer":"B",
+//         "listen_degree":3,
+//         "listen_exam":1,
+//         "listen_explain":"可以这样做",
+//         "listen_group":0,
+//         "listen_id":2,
+//         "listen_question":"",
+//         "listen_score":1,
+//         "listen_style":1,
+//         "listen_text":"听力开始",
+//         "listen_type":1,
+//         "option_A":"received",
+//         "option_B":"got",
+//         "option_C":"heard",
+//         "radio_url":"../src/audio/1.mp3",
+//         "second_answer":"",
+//         "three_answer":""
+//     },
+//     { "exam_answer":"",
+//         "exam_first":"",
+//         "exam_five":"",
+//         "exam_four":"",
+//         "exam_judge":0,
+//         "exam_radio":"../src/audio/1.mp3",
+//         "exam_second":"",
+//         "exam_three":"",
+//         "first_answer":"happy",
+//         "five_answer":"ten",
+//         "form_url":"../src/img/encouragement.jpg",
+//         "four_answer":"year",
+//         "listen_answer":"",
+//         "listen_degree":2,
+//         "listen_exam":1,
+//         "listen_explain":"可以",
+//         "listen_group":0,
+//         "listen_id":26
+//         "listen_question":"",
+//         "listen_score":1,
+//         "listen_style":3,
+//         "listen_text":"原文",
+//         "listen_type":5,
+//         "option_A":"",
+//         "option_B":"",
+//         "option_C":"",
+//         "radio_url":"../src/audio/1.mp3",
+//         "second_answer":"shop",
+//         "three_answer":"home"
 //     }
-// });
+//     ]
+// };
+    var data = $('.exam').html();
+    console.log(data);
 data[0].first="page-current";
 data[0].box = "current";
 for(var t= 0 ;t<data.length;t++){
    var n = data[t].listen_type,
-      title = data[t].listen_title,
+      title = data[t].listen_question,
       s = data[t].listen_style,
       answer = data[t].listen_answer;
    switch(n){
@@ -97,6 +86,7 @@ for(var t= 0 ;t<data.length;t++){
         case "2":data[t]["selects_type"]="imgs"; break;
         case "3":data[t]["selects_type"]=""; break;
     };
+
 };
 Handlebars.registerHelper("addOne",function(index,options){
   return parseInt(index)+1;
@@ -121,6 +111,7 @@ for(var n=27;n<31;n++){
   $('.close-popup').append('<li class="flex">'+n+'</li> ');
 }
   $.init();
+
   //初始化结束
   //添加”dui“class
 
