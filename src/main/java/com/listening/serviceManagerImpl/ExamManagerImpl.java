@@ -130,7 +130,6 @@ public class ExamManagerImpl implements ExamManager {
             int listen_exam = examMapper.selectExamById(Integer.parseInt((String) it.next()));
             List<Exama> examas = examMapper.selectAllExama(listen_exam);
         }
-        it.next()
 
         return null;
     }

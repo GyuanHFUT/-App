@@ -18,4 +18,6 @@ public interface ExamMapper {
     List<Exama> selectExamaOfUser(int user_id);
 
     int selectExamById(int listen_id);
+
+    List<Exama> selectAllExama(int listen_exam);
 }
