@@ -107,6 +107,7 @@ $(document).ready(function(){
                 }
                 $(".test_num").find('strong').html(test_num);
                 $(".weida").find('strong').html(zong);
+                console.log(personal);
             });
             //点击
             $(".flex").tap(function(){

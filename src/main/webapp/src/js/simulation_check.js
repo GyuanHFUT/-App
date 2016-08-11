@@ -81,7 +81,7 @@ for(var t= 0 ;t<data.length;t++){
       case 5:data[t]["listen_name"]="信息转换"; break;
    };
    if(title == ""){
-     data[t].listen_title= data[t].listen_name;
+     data[t].listen_question= data[t].listen_name;
    };
    switch(s){
         case 1:data[t]["selects_type"]="words";break;
@@ -117,7 +117,7 @@ $("#box_li").html(box(data));
 //   $('.close-popup').append('<li class="flex">'+n+'</li> ');
 // }
   $.init();
-  //js控制页面对错渲染。
+  //js控制页面对错渲染及错题数渲染。
     for(var i= 0 ;i<data.length;i++){
         var sele =$( $('.page')[i]).find('.selects');
             switch(data[i].listen_answer){
@@ -136,17 +136,27 @@ $("#box_li").html(box(data));
     $('.page').find('.errorlen').html(data.length);
     $('.popup').find('.dacuo strong').html(data.length) ;
     console.log(data.length);
+    var audio = $('.audion');
+    audio_play(audio,0);
+    //音频控制
+    $('.yinpinicon').tap(function(){
+        var flag = $(this).attr('id');
+        $(this).find('.playn').toggle();
+        $(this).find('.stopn').toggle();
+        audio.paused ? audio[flag].play(): audio[flag].pause();
+       // audio.paused? audio_play(audio,flag): audio_paused(audio,flag);
+
+    });
   //初始化结束
   //添加”dui“class
-
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
       console.log(flag);
-      if (flag<$(".page").length) {
+      if (flag<$(".page").length-1) {
           $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
           flag++;
-          $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+          // $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
           $.router.load("#"+flag+"");
       }else{
           $.toast("已经是最后一题了")
@@ -157,19 +167,32 @@ $("#box_li").html(box(data));
      if (flag>1) {
            flag--;
            $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-           $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+           // $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
            $.router.load("#"+flag+"");
      }else{
            $.toast("已经是第一题了")
      }
   });
+
+    //主要还是那个内联id的问题=====完美解决,查找前面li个数,内联id，小意思啦
  $(".flex").tap(function(){//点击盒子切换页面
-     var flag=$(this).html();
+     var flag= $(this).prevAll().length;
+     flag++;
      $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
-     $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
      $.router.load("#"+flag+"");
-   })
-  //音频的实现
+   });
+  //音频的实现；完全一题一播放；
+    function audio_play(audio,t){
+        audio[t].play();
+        audio[t].onended = function(){
+            $('.playn').show();
+            $('.stopn').hide();
+        }
+    }
+    function audio_paused(audio,t){
+        audio[t].pause();
+    }
+  //收藏的页面功能实现
 
   //ajax事件的学习，需要用这个做一些事情
 
