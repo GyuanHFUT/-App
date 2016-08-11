@@ -173,11 +173,11 @@ $(document).ready(function(){
                       url: '/JuniorHearing/exam/acceptExamOfMessage',
                       data:datas,
                       success:function(data){
-                          console.log(data);
-                        var success = JSON.parse(data);
-                        if(success){
+                        if(data.success){
+                            console.log(data);
                             $.router.load("./simulation_test.html#grade");
                         } else{
+                            console.log("hheh");
                           return false;
                         }
                      },
