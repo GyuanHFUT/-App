@@ -26,6 +26,7 @@ $(document).ready(function(){
                     $('#box_li').append('<li class="flex">'+n+'</li> ');
                 }
             };
+            console.log(data);
             $('.yinpinicon').tap(function(){
                 $.alert('考试期间，请勿暂停音频')
             })
@@ -59,7 +60,7 @@ $(document).ready(function(){
                     lisid = parent.attr('listenid'),
                     opt;
                 var op = $(this).attr('value');
-                var ans = answer[x];
+                var ans = answer[x-1];
                 switch(ans){
                     case 'A': opt='1';break;
                     case 'B': opt='2';break;

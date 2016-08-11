@@ -119,16 +119,23 @@ $("#box_li").html(box(data));
   $.init();
   //js控制页面对错渲染。
     for(var i= 0 ;i<data.length;i++){
-        var sele = $('.selects').find('.select');
+        var sele =$( $('.page')[i]).find('.selects');
             switch(data[i].listen_answer){
-                case 'A':data[t]["selects_type"]="words";break;
-                case 'B':data[t]["selects_type"]="imgs"; break;
-                case 'C':data[t]["selects_type"]=""; break;
+                case 'A':$(sele).find('.select:eq(0)').addClass('dui');break;
+                case 'B':$(sele).find('.select:eq(1)').addClass('dui'); break;
+                case 'C':$(sele).find('.select:eq(2)').addClass('dui'); break;
                 case '': ; break;
             };
-
+        switch(data[i].exam_answer){
+            case 'A':$(sele).find('.select:eq(0)').addClass('cuo');break;
+            case 'B':$(sele).find('.select:eq(1)').addClass('cuo'); break;
+            case 'C':$(sele).find('.select:eq(2)').addClass('cuo');break;
+            case '': ; break;
+        };
     }
-    
+    $('.page').find('.errorlen').html(data.length);
+    $('.popup').find('.dacuo strong').html(data.length) ;
+    console.log(data.length);
   //初始化结束
   //添加”dui“class
 
