@@ -62,32 +62,35 @@ $(document).ready(function(){
 //     }
 //     ]
 // };
-    var data = $('.exam').html();
+var data = $('#exam').html();
+    data = JSON.parse(data);
     console.log(data);
 data[0].first="page-current";
+    console.log(data[0]);
 data[0].box = "current";
 for(var t= 0 ;t<data.length;t++){
    var n = data[t].listen_type,
       title = data[t].listen_question,
-      s = data[t].listen_style,
+       s= data[t].listen_style,
       answer = data[t].listen_answer;
    switch(n){
-      case "1":data[t]["listen_name"]="关键词语选择";break;
-      case "2":data[t]["listen_name"]="短对话理解"; break;
-      case "3":data[t]["listen_name"]="长对话理解"; break;
-      case "4":data[t]["listen_name"]="短文理解"; break;
-      case "5":data[t]["listen_name"]="信息转换"; break;
+      case 1:data[t]["listen_name"]="关键词语选择";break;
+      case 2:data[t]["listen_name"]="短对话理解"; break;
+      case 3:data[t]["listen_name"]="长对话理解"; break;
+      case 4:data[t]["listen_name"]="短文理解"; break;
+      case 5:data[t]["listen_name"]="信息转换"; break;
    };
    if(title == ""){
      data[t].listen_title= data[t].listen_name;
    };
    switch(s){
-        case "1":data[t]["selects_type"]="words";break;
-        case "2":data[t]["selects_type"]="imgs"; break;
-        case "3":data[t]["selects_type"]=""; break;
+        case 1:data[t]["selects_type"]="words";break;
+        case 2:data[t]["selects_type"]="imgs"; break;
+        case 3:data[t]["selects_type"]=""; break;
     };
 
 };
+    console.log(data);
 Handlebars.registerHelper("addOne",function(index,options){
   return parseInt(index)+1;
 });
@@ -102,16 +105,30 @@ Handlebars.registerHelper("choice",function(option_A,options){
              return options.inverse(this);
            }
   });
-
+// Handlebars.registerHelper("render",function(){
+//    var
+//
+//     })
 var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
-for(var n=27;n<31;n++){
-  $('.close-popup').append('<li class="flex">'+n+'</li> ');
-}
+// for(var n=27;n<31;n++){
+//   $('.close-popup').append('<li class="flex">'+n+'</li> ');
+// }
   $.init();
+  //js控制页面对错渲染。
+    var sele = $('.selects').find('.select')
+    for(var i= 0 ;i<data.length;i++){
+            switch(data[i].listen_answer){
+                case 'A':data[t]["selects_type"]="words";break;
+                case 'B':data[t]["selects_type"]="imgs"; break;
+                case 'C':data[t]["selects_type"]=""; break;
+                case '': ; break;
+            };
 
+    }
+    
   //初始化结束
   //添加”dui“class
 

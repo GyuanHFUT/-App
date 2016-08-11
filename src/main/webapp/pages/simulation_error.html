@@ -18,8 +18,7 @@
         <div id="handlebars" >
             <div class="page"  style="display:none"></div>
         </div>
-        <div class="page exam" style="display:none">${exam}</div>
-
+        <div class="page" id ="exam">${exam}</div>
     </div>
        <div class="popup">
                  <header class="bar bar-nav close-popup">
@@ -80,22 +79,22 @@
                      <h3>{{addOne @index}}.{{listen_title}}</h3>
                     {{#choice option_A}}
                      <div class="selects {{selects_type}}"  value="{{addOne @index}}">
-                         <div class="select dui">
+                         <div class="select ">
                            <i class="icon iconfont">&#xe61b;</i>
                            <span>{{option_A}}</span>
                          </div>
                          <div class="select">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_B}}</span></div>
-                         <div class="select cuo">
+                         <div class="select">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_C}}</span></div>
                      </div>
                      {{else}}
                      <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                             <div class="select dui">
+                             <div class="select">
                                <i class="icon iconfont ">&#xe61b;</i>
                                <img src="{{option_A}}">
                              </div>
-                             <div class="select cuo">
+                             <div class="select">
                                <i class="icon iconfont">&#xe61b;</i>
                                <img src="{{option_B}}">
                              </div>
@@ -107,13 +106,13 @@
                      {{/choice}}
                 {{/if}}
                   <div class="xiangjie-wapper">
-                    <h3>听力原文：</h3>
-                    <div class="explain-p">
-                     <p>{{yuanwen}}</p>
-                    </div>
-                    <h3>试题详解：</h3>
+                   <h3>试题详解：</h3>
                       <div class="explain-p">
-                       <p>{{answer}}</p>
+                       <p>{{listen_explain}}</p>
+                      </div>
+                   <h3>听力原文：</h3>
+                      <div class="explain-p">
+                          <p>{{listen_text}}</p>
                       </div>
                   </div>
                </div>

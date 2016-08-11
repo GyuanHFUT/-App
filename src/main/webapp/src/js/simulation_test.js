@@ -141,14 +141,13 @@ $(document).ready(function(){
                 $.confirm('确定交卷?', function () {
                     audio_paused(audio);
                     var traid = data[len].listen_id;
-                     var  judgment =true;
+                    var  judgment =true;
                     var num = new Object;
                     var x =0;
                     $(inputlist).each(function(){
                          var text = $(this).val();
                         personal.trans.push(text);
                     });
-                     console.log(personal.trans);
                     for(var z=0;z< personal.trans.length;z++){
                         if(answer[25][z]!== personal.trans[z]){
                             x++;
@@ -164,7 +163,6 @@ $(document).ready(function(){
                     }
                     grade =  personal.true.length + 5 - x;
                     $('#grade').find('.tips span').html(grade);
-                    // $.router.load("./simulation_test.html#grade");
                     var str = JSON.stringify(personal);
                     var datas ={data:str};
                     console.log(str);
@@ -179,11 +177,11 @@ $(document).ready(function(){
                             console.log("hheh");
                           return false;
                         }
-                     },
-                    error:function(){
+                      },
+                      error:function(){
                        console.log('this is false!');
-                    }
-                    })
+                      }
+                    });
 
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
