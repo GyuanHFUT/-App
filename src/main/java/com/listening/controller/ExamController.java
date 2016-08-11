@@ -71,7 +71,10 @@ public class ExamController {
         String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
         JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
         List<Exama> examas = examManager.showAllExam(jsonObject1);
-        return null;
+        JSONArray jsonArray = JSONArray.fromObject(examas);
+        logger.info(jsonArray);
+        String exams = jsonArray.toString();
+        return new ModelAndView("/simulation_check","exams",exams);
     }
 
 }
