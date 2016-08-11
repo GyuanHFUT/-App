@@ -35,6 +35,7 @@ public class ExamController {
     }
 
     @RequestMapping(value = "/acceptExamOfMessage", method = RequestMethod.POST)
+    @ResponseBody
     public Map<String,Object> acceptExamOfMessage(@RequestParam(value = "data") String jsonObject){
         logger.info("已经进入该方法！");
         logger.info(jsonObject);
