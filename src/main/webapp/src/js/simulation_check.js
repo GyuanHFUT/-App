@@ -118,7 +118,7 @@ $("#box_li").html(box(data));
 // }
   $.init();
   //js控制页面对错渲染。
-    var sele = $('.selects').find('.select')
+    var sele = $('.selects').find('.select');
     for(var i= 0 ;i<data.length;i++){
             switch(data[i].listen_answer){
                 case 'A':data[t]["selects_type"]="words";break;
