@@ -81,9 +81,11 @@ public class ExamManagerImpl implements ExamManager {
             return null;
         }else {
             //List<Mistake> mistakes = mistakeMapper.selectMistakeByUser(user_id);
-            List<Exama> examas = examMapper.selectExamaOfUser(user_id);
+            //List<Exama> examas = examMapper.selectExamaOfUser(user_id);
             Set<String> set = object.keySet();
-            //Iterator it = set.iterator();
+            Iterator it = set.iterator();
+            int listen_exam = examMapper.selectExamById(Integer.parseInt((String) it.next()));
+            List<Exama> examas = examMapper.selectAllExama(listen_exam);
             for(String j:set){
                 int listen_id = Integer.parseInt(j);
                 for(int i=0;i<examas.size();i++){
@@ -97,6 +99,7 @@ public class ExamManagerImpl implements ExamManager {
                             examas.get(i).setExam_three((String) object1.get("2"));
                             examas.get(i).setExam_four((String) object1.get("3"));
                             examas.get(i).setExam_five((String) object1.get("4"));
+                            examas.get(i).setExam_number(i+1);
                         }else{
                             int exam_answer = Integer.parseInt((String) object.get(j));
                             if (exam_answer == 1) {
@@ -109,6 +112,7 @@ public class ExamManagerImpl implements ExamManager {
                                 throw new MessageException("传入的数据异常！");
                             }
                             examas.get(i).setExam_answer(answer);
+                            examas.get(i).setExam_number(i+1);
                             //examaList.add(examas.get(i));
                         }
                         examaList.add(examas.get(i));
@@ -129,16 +133,24 @@ public class ExamManagerImpl implements ExamManager {
         List<Exama> examas = new ArrayList<Exama>();
         if(!set.isEmpty()){
             int listen_exam = examMapper.selectExamById(Integer.parseInt((String) it.next()));
-            examas = examMapper.selectAllExama(listen_exam);
+            try {
+                examas = examMapper.selectAllExama(listen_exam);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }else{
             int listen_exam = examMapper.selectExamById(Integer.parseInt((String) object1.get(0)));
             examas = examMapper.selectAllExama(listen_exam);
         }
         for(int i=0;i<examas.size();i++){
+            boolean flag = true;
+            boolean fix = true;
             for(String j:set) {
                 int listen_id = Integer.parseInt(j);
                 String answer;
+                //boolean flag;
                 if(listen_id==examas.get(i).getListen_id()){
+                    flag = false;
                     if(examas.get(i).getListen_type()==5){
                         JSONObject object3 = (JSONObject) object.get(j);
                         examas.get(i).setExam_first((String) object3.get("0"));
@@ -156,13 +168,33 @@ public class ExamManagerImpl implements ExamManager {
                         }else if(exam_answer==3){
                             answer = "C";
                         }else {
-
+                            throw new MessageException("传入的数据错误！");
                         }
+                        examas.get(i).setExam_answer(answer);
+                        examas.get(i).setExam_judge(21);
                     }
                 }
             }
+            if(flag){
+                for(int k=0;k<object1.size();k++) {
+                    int listen_id = Integer.parseInt((String) object1.get(k));
+                    if (listen_id == examas.get(i).getListen_id()) {
+                    fix = false;
+                        if(examas.get(i).getListen_type()==5){
+                            examas.get(i).setExam_first(examas.get(i).getFirst_answer());
+                            examas.get(i).setExam_second(examas.get(i).getSecond_answer());
+                            examas.get(i).setExam_three(examas.get(i).getThree_answer());
+                            examas.get(i).setExam_four(examas.get(i).getFour_answer());
+                            examas.get(i).setExam_five(examas.get(i).getFive_answer());
+                        }
+                        examas.get(i).setExam_judge(22);
+                    }
+                }
+            }
+            if(fix){
+                examas.get(i).setExam_judge(12);
+            }
         }
-
-        return null;
+        return examas;
     }
 }
