@@ -140,24 +140,25 @@ $("#box_li").html(box(data));
     audio_play(audio,0);
     //音频控制
     $('.yinpinicon').tap(function(){
-        var flag = $(this).attr('id');
+        var flag = $(this).parents('.page').attr('id')-1;
+        console.log(flag);
         $(this).find('.playn').toggle();
         $(this).find('.stopn').toggle();
-        audio.paused ? audio[flag].play(): audio[flag].pause();
-       // audio.paused? audio_play(audio,flag): audio_paused(audio,flag);
-
+        var s = $(audio)[0];
+       audio[flag].paused? audio_play(audio,flag): audio_paused(audio,flag);
     });
-  //初始化结束
-  //添加”dui“class
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
       console.log(flag);
       if (flag<$(".page").length-1) {
+          audio_paused(audio,flag-1);
+          audio[flag-1].currentTime= 0;
           $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
           flag++;
-          // $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
           $.router.load("#"+flag+"");
+          $('.page').find('.stopn').show();
+          $('.page').find('.playn').hide();
       }else{
           $.toast("已经是最后一题了")
       }
@@ -165,15 +166,18 @@ $("#box_li").html(box(data));
   $(".page").swipeRight(function(){
      var flag=$(this).attr("id");
      if (flag>1) {
+           audio_paused(audio,flag-1);
+           audio[flag-1].currentTime= 0;
            flag--;
            $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-           // $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
            $.router.load("#"+flag+"");
+         $('.page').find('.stopn').show();
+         $('.page').find('.playn').hide();
+
      }else{
            $.toast("已经是第一题了")
      }
   });
-
     //主要还是那个内联id的问题=====完美解决,查找前面li个数,内联id，小意思啦
  $(".flex").tap(function(){//点击盒子切换页面
      var flag= $(this).prevAll().length;
@@ -193,7 +197,7 @@ $("#box_li").html(box(data));
         audio[t].pause();
     }
   //收藏的页面功能实现
-
+    shoucang();
   //ajax事件的学习，需要用这个做一些事情
 
 })
