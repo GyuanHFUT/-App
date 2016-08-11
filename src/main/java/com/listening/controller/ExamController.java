@@ -4,6 +4,7 @@ import com.listening.domain.Exam;
 import com.listening.domain.Exama;
 import com.listening.serviceManager.ExamManager;
 import com.listening.util.session.SessionUtils;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,11 @@ public class ExamController {
         JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
         //JSONObject object = jsonObject.getJSONObject("wrong");
         List<Exama> exams = examManager.showExamOfMistake(jsonObject1);
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("exams",exams);
-        JSONObject object = JSONObject.fromObject(map);
-        logger.info(object);
-        String exam = object.toString();
+        /*Map<String,Object> map = new HashMap<String, Object>();
+        map.put("exams",exams);*/
+        JSONArray jsonArray = JSONArray.fromObject(exams);
+        logger.info(jsonArray);
+        String exam = jsonArray.toString();
         return new ModelAndView("/simulation_error","exam",exam);
     }
 
