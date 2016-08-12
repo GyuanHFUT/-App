@@ -23,12 +23,13 @@ public class Interceptor extends HandlerInterceptorAdapter {
         String contextPath = request.getContextPath();
         String uri = requestUri.substring(contextPath.length());
 
-        if(requestUri.contains("/userLogin")||requestUri.contains("/showExamOfListen")||requestUri.contains("/userMapping")||requestUri.contains("/acceptExamOfMessage")){
+        if(requestUri.contains("/userLogin")||requestUri.contains("/userMapping")){
             return true;
         }else{
             User user = (User) request.getSession().getAttribute("user");
-            if(user==null){
+            if(user.getUser_name()==null){
                 logger.info("拦截器发挥作用，跳转到登陆页面！！");
+                logger.info("user是："+user.getUser_name());
                 //request.getRequestDispatcher("/pages/land.html").forward(request, response);
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().append("login");
@@ -37,6 +38,5 @@ public class Interceptor extends HandlerInterceptorAdapter {
                 return true;
             }
         }
-
     }
 }

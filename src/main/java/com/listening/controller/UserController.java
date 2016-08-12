@@ -74,5 +74,10 @@ public class UserController {
             return userManager.backUserPwd(user_name, user_pwd, user_code);
     }
 
+    @RequestMapping(value = "/sendUser")
+    @ResponseBody
+    public Map<String, Object> sendUser(){
+        return userManager.sendUser();
+    }
 
 }

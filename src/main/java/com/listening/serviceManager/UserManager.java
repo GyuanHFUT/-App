@@ -19,4 +19,6 @@ public interface UserManager {
 
 
     Map<String,Object> deleteUser(int user_id);
+
+    Map<String,Object> sendUser();
 }

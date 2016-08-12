@@ -49,9 +49,6 @@
             <mvc:exclude-mapping path="/longDialogue/showAllLongDialogue"/>
             <mvc:exclude-mapping path="/essay/showAllEssay"/>
             <mvc:exclude-mapping path="/blank/showAllBlank"/>
-            <mvc:exclude-mapping path="/exam/acceptExamOfMessage"/>
-
-
             <bean id="Interceptor" class="com.listening.util.interceptor.Interceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

@@ -167,5 +167,13 @@ public class UserManagerImpl implements UserManager {
         return map;
     }
 
+    @Override
+    public Map<String, Object> sendUser() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        User user = SessionUtils.getCurrentUser();
+        map.put("user",user);
+        return map;
+    }
+
 
 }
