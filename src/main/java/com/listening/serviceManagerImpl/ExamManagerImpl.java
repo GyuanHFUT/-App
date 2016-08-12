@@ -74,8 +74,8 @@ public class ExamManagerImpl implements ExamManager {
     @Override
     public List<Exama> showExamOfMistake(JSONObject jsonObject) {
         JSONObject object = jsonObject.getJSONObject("wrong");
-        
-        List<Exama> examas = new ArrayList<Exama>();
+        JSONArray jsonArray = jsonObject.getJSONArray("trans");
+        List<Exama> examaList = new ArrayList<Exama>();
         //User user = SessionUtils.getCurrentUser();
         //int user_id = user.getUser_id();
         if(object.isEmpty()){
@@ -86,20 +86,20 @@ public class ExamManagerImpl implements ExamManager {
             Set<String> set = object.keySet();
             Iterator it = set.iterator();
             int listen_exam = examMapper.selectExamById(Integer.parseInt((String) it.next()));
-            examas = examMapper.selectAllExama(listen_exam);
-            for(String j:set){
-                int listen_id = Integer.parseInt(j);
-                for(int i=0;i<examas.size();i++){
+            List<Exama> examas = examMapper.selectAllExama(listen_exam);
+            for(int i=0;i<examas.size();i++){
+                //int listen_id = Integer.parseInt(j);
+                for(String j:set){
                     String answer;
-                    //int listen_id = j;
+                    int listen_id = Integer.parseInt(j);
                     if(listen_id==examas.get(i).getListen_id()){
                         if(examas.get(i).getListen_type()==5) {
-                            JSONObject object1 = (JSONObject) object.get(j);
-                            examas.get(i).setExam_first((String) object1.get("0"));
-                            examas.get(i).setExam_second((String) object1.get("1"));
-                            examas.get(i).setExam_three((String) object1.get("2"));
-                            examas.get(i).setExam_four((String) object1.get("3"));
-                            examas.get(i).setExam_five((String) object1.get("4"));
+                            //JSONObject object1 = (JSONObject) object.get(j);
+                            examas.get(i).setExam_first((String) jsonArray.get(0));
+                            examas.get(i).setExam_second((String) jsonArray.get(1));
+                            examas.get(i).setExam_three((String) jsonArray.get(2));
+                            examas.get(i).setExam_four((String) jsonArray.get(3));
+                            examas.get(i).setExam_five((String) jsonArray.get(4));
                             examas.get(i).setExam_number(i+1);
                         }else{
                             int exam_answer = Integer.parseInt((String) object.get(j));
@@ -116,12 +116,12 @@ public class ExamManagerImpl implements ExamManager {
                             examas.get(i).setExam_number(i+1);
                             //examaList.add(examas.get(i));
                         }
-                        //examaList.add(examas.get(i));
+                        examaList.add(examas.get(i));
                     }
                 }
             }
         }
-        return examas;
+        return examaList;
     }
 
     @Override
@@ -152,13 +152,14 @@ public class ExamManagerImpl implements ExamManager {
                 //boolean flag;
                 if(listen_id==examas.get(i).getListen_id()){
                     flag = false;
+                    examas.get(i).setExam_number(i+1);
                     if(examas.get(i).getListen_type()==5){
-                        JSONObject object3 = (JSONObject) object.get(j);
-                        examas.get(i).setExam_first((String) object3.get("0"));
-                        examas.get(i).setExam_second((String) object3.get("1"));
-                        examas.get(i).setExam_three((String) object3.get("2"));
-                        examas.get(i).setExam_four((String) object3.get("3"));
-                        examas.get(i).setExam_five((String) object3.get("4"));
+                        //JSONObject object3 = (JSONObject) object.get(j);
+                        examas.get(i).setExam_first((String) object2.get(0));
+                        examas.get(i).setExam_second((String) object2.get(1));
+                        examas.get(i).setExam_three((String) object2.get(2));
+                        examas.get(i).setExam_four((String) object2.get(3));
+                        examas.get(i).setExam_five((String) object2.get(4));
                         examas.get(i).setExam_judge(21);
                     }else {
                         int exam_answer = Integer.parseInt((String) object.get(j));
@@ -181,6 +182,7 @@ public class ExamManagerImpl implements ExamManager {
                     int listen_id = Integer.parseInt((String) object1.get(k));
                     if (listen_id == examas.get(i).getListen_id()) {
                     fix = false;
+                        examas.get(i).setExam_number(i+1);
                         if(examas.get(i).getListen_type()==5){
                             examas.get(i).setExam_first(examas.get(i).getFirst_answer());
                             examas.get(i).setExam_second(examas.get(i).getSecond_answer());
@@ -193,6 +195,7 @@ public class ExamManagerImpl implements ExamManager {
                 }
             }
             if(fix&&flag){
+                examas.get(i).setExam_number(i+1);
                 examas.get(i).setExam_judge(12);
             }
         }
