@@ -14,8 +14,7 @@ $(document).ready(function () {
     $('#simulation').tap(function(){
         $.ajax({
                 type: 'get',
-                url: "/JuniorHearing/collect/addCollect/",
-                data:'1',
+                url: "/JuniorHearing/collect/addCollect/"+"1",
                 success: function(data){
                     if(data=="login"){
                         $.confirm('模拟考试需要登录，是否登陆?',
