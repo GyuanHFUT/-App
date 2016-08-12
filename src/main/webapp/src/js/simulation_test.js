@@ -113,18 +113,17 @@ $(document).ready(function(){
             $(".flex").tap(function(){
                 //点击盒子切换页面
                 var flag=$(this).html();
+                $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
                 if(flag>=26){
-                    $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
                     var yeshu =flag;
                        flag = 26;
                     $("#"+flag+"").find(".yeshu").html(yeshu+"/30");
                     $.router.load("#"+flag+"");
                 }else{
-                    $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
                     $.router.load("#"+flag+"");
                 }
             });
-            //点击弹框26-30题
+            //点击弹框26-30题改变
             $(".open-popup").tap(function(){
                 console.log(inputlist);
                 $(inputlist).each(function(){

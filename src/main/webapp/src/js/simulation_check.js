@@ -105,18 +105,13 @@ Handlebars.registerHelper("choice",function(option_A,options){
              return options.inverse(this);
            }
   });
-// Handlebars.registerHelper("render",function(){
-//    var
-//
-//     })
 var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
-// for(var n=27;n<31;n++){
-//   $('.close-popup').append('<li class="flex">'+n+'</li> ');
-// }
+
   $.init();
+    var len = data.length;
   //js控制页面对错渲染及错题数渲染。
     for(var i= 0 ;i<data.length;i++){
         var sele =$( $('.page')[i]).find('.selects');
@@ -130,14 +125,38 @@ $("#box_li").html(box(data));
             case 'A':$(sele).find('.select:eq(0)').addClass('cuo');break;
             case 'B':$(sele).find('.select:eq(1)').addClass('cuo'); break;
             case 'C':$(sele).find('.select:eq(2)').addClass('cuo');break;
-            case '': ; break;
+            case '':  ; break;
         };
+        if(data[i].form_url !=="" ){
+            var number_ans = [data[i].first_answer,data[i].second_answer,data[i].three_answer,data[i].four_answer,data[i].five_answer],
+                exam_ans =  [data[i].exam_first,data[i].exam_second,data[i].exam_three,data[i].exam_four,data[i].exam_five];
+            for(var a = 0;a<number_ans.length;a++){
+                console.log(number_ans);
+                if(number_ans[a] == exam_ans[a] ){
+                    $('.page')[i].find('.trans_input')[a].removeClass('cuo');
+                    if(a==0){
+                        $($('#box_li').find('li')[i]).removeClass('.popcuo');
+                    }else{
+                        var flexbox = a+26;
+                        $('#box_li').find('ul').append('<li class="flex">'+flexbox+'</li> ');
+                    }
+                }else {
+                    if(a!==0){
+                        len++;
+                        var flexbox = a+26;
+                        $('#box_li').find('ul').append('<li class="flex popcuo">'+flexbox+'</li> ');
+                    }else{
+                        $($('#box_li').find('li')[i]).addClass('trans');
+                    }
+                }
+            }
+
+        }
     }
-    $('.page').find('.errorlen').html(data.length);
-    $('.popup').find('.dacuo strong').html(data.length) ;
+    $('.page').find('.errorlen').html(len);
+    $('.popup').find('.dacuo strong').html(len) ;
     console.log(data.length);
     var audio = $('.audion');
-    audio_play(audio,0);
     //音频控制
     $('.yinpinicon').tap(function(){
         var flag = $(this).parents('.page').attr('id')-1;
@@ -180,10 +199,21 @@ $("#box_li").html(box(data));
   });
     //主要还是那个内联id的问题=====完美解决,查找前面li个数,内联id，小意思啦
  $(".flex").tap(function(){//点击盒子切换页面
-     var flag= $(this).prevAll().length;
-     flag++;
-     $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
-     $.router.load("#"+flag+"");
+     stopYinpin(audio);
+     $('.page').find('.stopn').show();
+     $('.page').find('.playn').hide();
+     var flaglen= $(this).prevAll().length;
+         flaglen++;
+     var flag =$(this).html();
+     $('.flex:eq('+(flaglen-1)+')'). addClass('current').siblings().removeClass('current');
+     if(flag>26){
+         var yeshu =$('.trans').prevAll().length;
+         console.log(yeshu);
+         yeshu++;
+         $.router.load("#"+yeshu+"");
+     }else{
+         $.router.load("#"+flaglen+"");
+     }
    });
   //音频的实现；完全一题一播放；
     function audio_play(audio,t){
