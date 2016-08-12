@@ -1,6 +1,7 @@
 package com.listening.mapper;
 
 import com.listening.domain.Exam;
+import com.listening.domain.Exama;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,4 +14,10 @@ public interface ExamMapper {
     List<Integer> selectExamOfType();
 
     List<Exam> selectExamOfListen(int s);
+
+    List<Exama> selectExamaOfUser(int user_id);
+
+    int selectExamById(int listen_id);
+
+    List<Exama> selectAllExama(int listen_exam);
 }

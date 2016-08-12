@@ -1,6 +1,7 @@
 package com.listening.serviceManager;
 
 import com.listening.domain.Exam;
+import com.listening.domain.Exama;
 import net.sf.json.JSONObject;
 
 import java.util.List;
@@ -13,5 +14,9 @@ public interface ExamManager {
 
     List<Exam> showExamOfListen(int s);
 
-    void addExamOfMistake(JSONObject jsonObject);
+    void addExamOfMistake(String jsonObject);
+
+    List<Exama> showExamOfMistake(JSONObject jsonObject);
+
+    List<Exama> showAllExam(JSONObject jsonObject);
 }

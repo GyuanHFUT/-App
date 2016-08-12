@@ -1,48 +1,213 @@
 
 $(document).ready(function(){
     $.init();
-  $.ajax({
-    type: 'get',
-    url: '/JuniorHearing/exam/showExamOfListen',
-    success:function(data){
-      // var data = eval('{'+data+'}');
-        datapush(data);
-        console.log(data);
-        var myTemplate = Handlebars.compile($("#myTemplate").html());
-        $("#handlebars").html(myTemplate(data));
-        var box = Handlebars.compile($("#box").html());
-        $("#box_li").html(box(data));
-        time = $('.time');
-        console.log(time);
-        timing(time);
-        setTimeout(checkTime(time,fm,lm,fs,ls),1000);
-        // setTimeout(,1000);
-        // checkTime(time,fm,lm,fs,ls);
-    }
+      $.ajax({
+        type: 'get',
+        url: '/JuniorHearing/exam/showExamOfListen',
+        success:function(data){
+            datapush(data);
+            var myTemplate = Handlebars.compile($("#myTemplate").html());
+            $("#handlebars").html(myTemplate(data));
+            var box = Handlebars.compile($("#box").html());
+            $("#box_li").html(box(data));
+            var len = $('.page').length-2;
+            console.log(len);
+            var inputlist = $($('.page')[len]).find('input');
+            time = $('.time');
+            timing(time);
+            checkTime(time,fm,lm,fs,ls);
+            // setTimeout(,1000);
+            //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
+            var audio = $('.audion');
+            var flexbox = $('.flex');
+            audio_play(audio);
+            if(flexbox.length==26){
+                for(var n=27;n<31;n++){
+                    $('#box_li').append('<li class="flex">'+n+'</li> ');
+                }
+            };
+            console.log(data);
+            $('.yinpinicon').tap(function(){
+                $.alert('考试期间，请勿暂停音频')
+            })
+            $(".page").swipeLeft(function(){
+                var flag=$(this).attr("id");
+                if (flag<$(".page").length-1) {
+                    $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
+                    flag++;
+                    //$("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+                    $.router.load("#"+flag+"");
+                }else{
+                    $.toast("已经是最后一题了")
+                }
+            });
+            $(".page").swipeRight(function(){
+                var flag=$(this).attr("id");
+                if (flag>1) {
+                    flag--;
+                    $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
+                    $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+                    $.router.load("#"+flag+"");
+                }else{
+                    $.toast("已经是第一题了")
+                }
+            });
+            //选项选择后对应选项颜色样式的改变
+            $(".select").on('tap',function(){
+                var parent  =  $(this).parent();
+                    // parents  =  $(this).parent().parent();
+                var x=parent.attr('value'),
+                    lisid = parent.attr('listenid'),
+                    opt;
+                var op = $(this).attr('value');
+                var ans = answer[x-1];
+                switch(ans){
+                    case 'A': opt='1';break;
+                    case 'B': opt='2';break;
+                    case 'C': opt='3';break;
+                }
+                x--;
+                if(!parent.hasClass('yidian')){
+                    //没有点击过,有错：错题加一
+                    $(this).addClass('option');
+                    $('.flex:eq('+x+')').addClass('poplook');
+                    zong--;
+                    test_num++;
+                    parent.addClass('yidian');
+                    if(op !== opt){
+                        personal.wrong[lisid.toString()]=op;
+                    }else{
+                        personal.true. push(lisid);
+                    }
+                }else if($(this).hasClass('option')){
+                    //双次点击，删除所有曾经的痕迹
+                    $(this).removeClass('option');
+                    $('.flex:eq('+x+')').removeClass('poplook');
+                    zong++;
+                    test_num--;
+                    parent.removeClass('yidian');
+                    if(op !== opt){
+                        delete  personal.wrong[lisid.toString()];
+                        // personal.wrong.splice(lisid+':'+op,1);
+                    }else{
+                        personal.true.remove(lisid);
+                    }
+                    console.log( personal.wrong);
+                }else{
+                    //替换选项，先删后加
+                    parent.find('.select').removeClass('option');
+                    $(this).addClass('option');
+                    delete  personal.wrong[lisid.toString()];
+                    personal.true.remove(lisid);
+                    if(op !== opt){
+                        personal.wrong[lisid.toString()]=op;
+                    }else{
+                        personal.true. push(lisid);
+                    }
+                }
+                $(".test_num").find('strong').html(test_num);
+                $(".weida").find('strong').html(zong);
+                console.log(personal);
+            });
+            //点击
+            $(".flex").tap(function(){
+                //点击盒子切换页面
+                var flag=$(this).html();
+                $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
+                if(flag>=26){
+                    var yeshu =flag;
+                       flag = 26;
+                    $("#"+flag+"").find(".yeshu").html(yeshu+"/30");
+                    $.router.load("#"+flag+"");
+                }else{
+                    $.router.load("#"+flag+"");
+                }
+            });
+            //点击弹框26-30题改变
+            $(".open-popup").tap(function(){
+                console.log(inputlist);
+                $(inputlist).each(function(){
+                    var text = $(this).val();
+                    var test = $(this).parent().html();
+                        test = test.split('.',1)-1;
+                    if(text !==''){
+                        $('.flex:eq('+test+')').addClass('poplook');
+                    }else{
+                        $('.flex:eq('+test+')').removeClass('poplook');
+                    }
+                });
+            })
+            //交卷部分
+            $(document).on('tap','.confirm-ok', function () {
+                $.confirm('确定交卷?', function () {
+                    audio_paused(audio);
+                    var traid = data[len].listen_id;
+                    var  judgment =true;
+                    var num = new Object;
+                    var x =0;
+                    $(inputlist).each(function(){
+                         var text = $(this).val();
+                        personal.trans.push(text);
+                    });
+                    for(var z=0;z< personal.trans.length;z++){
+                        if(answer[25][z]!== personal.trans[z]){
+                            x++;
+                            judgment = false;
+                            num[z.toString()]= personal.trans[z];
+                            }
+                    };
+                    if(judgment){
+                        personal.true.push(traid);
+                       }else{
+                        personal.wrong[traid.toString()]= num;
+                        // personal.wrong.push(traid+':'+'{'+num+'}' );
+                    }
+                    grade =  personal.true.length + 5 - x;
+                    $('#grade').find('.tips span').html(grade);
+                    var str = JSON.stringify(personal);
+                    var datas ={data:str};
+                    console.log(str);
+                    $.ajax({
+                      type: 'post',
+                      url: '/JuniorHearing/exam/acceptExamOfMessage',
+                      data:datas,
+                      success:function(data){
+                        if(data.success){
+                            $.router.load("./simulation_test.html#grade");
+                        } else{
+                            console.log("hheh");
+                          return false;
+                        }
+                      },
+                      error:function(){
+                       console.log('this is false!');
+                      }
+                    });
 
-});
-    console.log(time);
+                    //交卷所要做到的携带内容与结果
+                    //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
+                    // var last = $(".trans_input input").val()
+
+                });
+            });
+
+        }
+
+    });
     var fm =3,
         lm = 0,
         fs = 0,
         ls = 0;
-    // setInterval(checkTime(time,fm,lm,fs,ls),1000);
-    var answer = [],
-        lis_id=[];
-    Handlebars.registerHelper("addOne",function(index,options){
-        return parseInt(index)+1;
-    });
-    Handlebars.registerHelper("choice",function(option_A,options){
-        var sty =  option_A.slice(option_A.length-4,option_A.length);
-        if(sty !== ".jpg"){
-
-            //满足添加继续执行
-            return options.fn(this);
-        }else{
-            //不满足条件执行{{else}}部分
-            return options.inverse(this);
-        }
-    });
+    var answer = [];
+  //初始化结束
+  //添加”dui“class
+  //一些使用到的全局变量
+  var test_num=0,grade = 0,
+      zong=$(".weida").find('strong').html(),
+      personal = new Object;
+      personal.wrong = new Object;
+      personal.true = new Array();
+      personal.trans = new Array();
     function datapush(data){
         data[0].first="page-current";
         data[0].box = "current";
@@ -51,7 +216,6 @@ $(document).ready(function(){
                 title = data[t].listen_question,
                 s = data[t].listen_style;
             answer[t] = data[t].listen_answer;
-            lis_id[t] = data[t].listen_id;
             switch(n){
                 case 1:data[t]["listen_name"]="关键词语选择";break;
                 case 2:data[t]["listen_name"]="短对话理解"; break;
@@ -68,158 +232,36 @@ $(document).ready(function(){
                 case 3:data[t]["selects_type"]=""; break;
             };
         };
-
+        answer[25]=[data[25].first_answer,data[25].second_answer,data[25].three_answer,data[25].four_answer,data[25].five_answer]
+        // personal.wrong[transform]="25";
+        // console.log( personal.wrong)
     };
-
-var answer = [];
-
-  //初始化结束
-  //添加”dui“class
-  //一些使用到的全局变量
-  var test_num=0,
-      zong=$(".weida").find('strong').html(),
-      personal = new Object;
-      personal.wrong = new Array();
-      personal.true = new Array();
-      personal.trans = new Array();
-      personal.opts = new Array();
-  //倒计时效果
-    
-  //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
-  audio_play();
-  $('yinpinicon').tap(function(){
-     $.alert('考试期间，请勿暂停音频')
-  })
-  $(".page").swipeLeft(function(){
-      var flag=$(this).attr("id");
-      if (flag<$(".page").length) {
-          $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
-          flag++;
-          $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
-          $.router.load("#"+flag+"");
-      }else{
-          $.toast("已经是最后一题了")
-      }
-  });
-  $(".page").swipeRight(function(){
-     var flag=$(this).attr("id");
-     if (flag>1) {
-           flag--;
-           $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-           $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
-           $.router.load("#"+flag+"");
-     }else{
-           $.toast("已经是第一题了")
-     }
-  });
-//交卷部分
-  $(document).on('tap','.confirm-ok', function () {
-    $.confirm('确定交卷?', function () {
-      var pages =$('.page');
-      var len = $('.page').length-1;
-      var ne = $($('.page')[len]).find('input');
-     $(ne).each(function(){
-       var text = $(this).val();
-        personal.trans.push(text);
-      })
-      console.log(personal);
-      //
-      // $.ajax({
-      //   type: 'post',
-      //   url: '',
-     //    data:'personal',
-     //   success:function(data){
-      //     var success = JSON.parse(data);
-      //     if(success){
-      //         $.router.load("./grade.html");
-      //     } else{
-      //       return false;
-      //     }
-      //  },
-       // error:function(){
-       //    console.log('this is false!');
-    // }
-      // })
-      //交卷所要做到的携带内容与结果
-      //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
-      // var last = $(".trans_input input").val()
-
+    Handlebars.registerHelper("addOne",function(index,options){
+        return parseInt(index)+1;
     });
-  });
-  //选项选择后对应选项颜色样式的改变
-  $(".select").on('tap',function(){
-        var parent  =  $(this).parent(),
-            parents  =  $(this).parent().parent(),
-            parentss=parents.parent();
-        var x=parent.attr('value'),
-            opt;
-        var op = $(this).attr('value');
-        var ans = answer[x];
-            switch(ans){
-              case 'A': opt='1';break;
-              case 'B': opt='2';break;
-              case 'C': opt='3';break;
-            }
-            x--;
-        if(!parent.hasClass('yidian')){
-           //没有点击过
-           $(this).addClass('option');
-           $('.flex:eq('+x+')').addClass('poplook');
-           zong--;
-           test_num++;
-           parent.addClass('yidian');
-           personal.opts[x] = $(this).attr('value');
-           if(op == opt){
-             personal.wrong.push(parent.attr('value'));
-           }else{
-             personal.true. push(parent.attr('value'));
-           }
-         }else if($(this).hasClass('option')){
-           //双次点击
-           $(this).removeClass('option');
-           $('.flex:eq('+x+')').removeClass('poplook');
-           zong++;
-           test_num--;
-           parent.removeClass('yidian');
-           personal.opts.splice(x,1);
-           if(op == opt){
-             var s =parent.attr('value');
-             personal.wrong.remove(s);
-           }else{
-              var s =parent.attr('value');
-              personal.true.remove(s);
-           }
-         }else{
-           //替换选项
-           parent.find('.select').removeClass('option');
-           $(this).addClass('option');
-           personal.opts[x] = $(this).attr('value');
-           var s =parent.attr('value');
-           personal.wrong.remove(s);
-           personal.true.remove(s);
-           if(op == opt){
-             personal.wrong.push(parent.attr('value'));
-           }else{
-             personal.true. push(parent.attr('value'));
-           }
-         }
-        $(".test_num").find('strong').html(test_num);
-        $(".weida").find('strong').html(zong);
-     console.log(personal);
- });
- $(".flex").tap(function(){//点击盒子切换页面
-     var flag=$(this).html();
-     $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
-     $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
-     $.router.load("#"+flag+"");
-   });
+    Handlebars.registerHelper("choice",function(option_A,options){
+        var sty =  option_A.slice(option_A.length-4,option_A.length);
+        if(sty !== ".jpg"){
+            //满足添加继续执行
+            return options.fn(this);
+        }else{
+            //不满足条件执行{{else}}部分
+            return options.inverse(this);
+        }
+    });
+  //倒计时效果
+    function timing(time){
+        time[0].html=fm +''+ lm + ':' + fs+'' + ls;
+    }
 
   //倒计时的实现
   function checkTime(time,fm,lm,fs,ls){
       console.log(time+" "+fm+" "+lm+" "+fs+" "+ls);
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
-              $.router.load("./grade.html");
+              // audio_paused(audio);
+              // $.router.load("./grade.html");
+              //停止计时，所有其他操作都禁止
           });
       }else{
           fm = checkfm(fm,lm,fs,ls);
@@ -228,9 +270,10 @@ var answer = [];
           ls = checkls(ls);
       }
       for (var j = 0; j < time.length; j++) {
-          console.log(time[j]);
-          var each = time[j].html=fm +''+ lm + ':' + fs+'' + ls;
-      } setTimeout(checkTime(time,fm,lm,fs,ls),1000);
+          var each = time[j].html;
+              each =fm +''+ lm + ':' + fs+'' + ls;
+      }
+      //setTimeout(checkTime(time,fm,lm,fs,ls),1000);
     //  return each;
   };
 
@@ -276,22 +319,20 @@ var answer = [];
       }
       return false;
       };
-
-
   //音频的实现
-
-function audio_play(){
-   var audio = $(this).find('audio');
-   // audio[0].play();
-   // audio[0].onended = function(){
-   //   $('.playn').show();
-   //   $('.stopn').hide();
-   // }
-}
+    function audio_play(audio){
+       audio[0].play();
+       audio[0].onended = function(){
+         $('.playn').show();
+         $('.stopn').hide();
+       }
+    }
+    function audio_paused(audio){
+            audio[0].pause();
+    }
     // window.onload=function (){
         // console.log(time);
         // return setInterval(checkTime(time,fm,lm,fs,ls),1000);
-
     // }
 
   //ajax事件的学习，需要用这个做一些事情

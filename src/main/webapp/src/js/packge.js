@@ -114,7 +114,6 @@ function shoucang(){
 }
 //停止音频
 function stopYinpin(x){
-
   var s=x.length;
   for (var i =s  - 1; i >= 0; i--) {
     x[i].pause(); 

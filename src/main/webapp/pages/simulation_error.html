@@ -13,13 +13,16 @@
     <link rel="stylesheet" href="../src/css/simulation_common.css">
   </head>
   <body>
-    <div class="page-group " id="handlebars" >
+    <div class="page-group " >
         <!-- 你的html代码 -->
-          <div class="page" style="display:none"> </div>
+        <div id="handlebars" >
+            <div class="page"  style="display:none"></div>
+        </div>
+        <div class="page" id ="exam" style="display:none">${exam}</div>
     </div>
        <div class="popup">
                  <header class="bar bar-nav close-popup">
-                   <a href="./grade.html" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+                     <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
                    <span class="title">题目目录</span>
                  </header>
                  <div class="content-block">
@@ -33,7 +36,7 @@
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
      <script type="text/x-handlebars-template" id="myTemplate">
        {{#each this}}
-           <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
+           <div class="page {{first}}" id="{{addOne @index}}" curr="{{listen_id}}">
                <header class="bar bar-nav">
                      <a  href="../pages/choice_que.html#chioce_que" class=" pull-left">
                        <i class="icon iconfont pull-left back">&#xe61e;</i></a>
@@ -41,57 +44,57 @@
                   <div class="yinpin">
                   <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
                   <div class="yinpinicon">
-                  <span class="playn"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
-                  <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
+                  <span class="playn" style="display:none"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
+                  <span class="stopn"  ><i class="icon iconfont pull-right"  >&#xf006c;</i></span>
                 </div>
                   </div>
                </header>
                <nav class="bar bar-tab">
-                   <a class="tab-item external shoucang" href="#">
+                   <a class="tab-item external shoucang" href="#" shoucangid="{{listen_id}}">
                        <i class="icon iconfont">&#xf006c;</i>
                        <span class="tab-label">收藏</span>
                    </a>
                    <a class="tab-item external open-popup" href="#">
                      {{!-- 错题数与总题数 --}}
                       <i class="icon iconfont">&#xf006c;</i>
-                      <span class="tab-label">3/30</span>
+                      <span class="tab-label"><span class="errorlen">3</span>/30</span>
                    </a>
-                   <a class="tab-item external" href="./simulation_check.html#1">
+                   <a class="tab-item external" href="/JuniorHearing/exam/showAllExam">
                        <i class="icon iconfont">&#xf006c;</i>
                        <span class="tab-label">查看试卷</span>
                    </a>
                </nav>
                <div class="content content-padded">
-                  {{#if form_url}}
-                    <h3>26-30.{{listen_title}}</h3>
+                  {{\#if form_url}}
+                    <h3>26-30.{{listen_question}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
-                  <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
+                  <div class="selects {{selects_type}} " value="{{addOne @index}}"  listenid ="{{listen_id}}">
+                  <div class="trans_input cuo">26.<input type="text" name="test_answer" value="{{exam_first}}"/></div>
+                  <div class="trans_input cuo">27.<input type="text" name="test_answer" value="{{exam_second}}"/></div>
+                  <div class="trans_input cuo">28.<input type="text" name="test_answer" value="{{exam_three}}"/></div>
+                  <div class="trans_input cuo">29.<input type="text" name="test_answer" value="{{exam_four}}"/></div>
+                  <div class="trans_input cuo">30.<input type="text" name="test_answer" value="{{exam_five}}"/></div>
                   </div>
                    {{else}}
-                     <h3>{{addOne @index}}.{{listen_title}}</h3>
+                     <h3>{{exam_number}}.{{listen_question}}</h3>
                     {{#choice option_A}}
-                     <div class="selects {{selects_type}}"  value="{{addOne @index}}">
-                         <div class="select dui">
+                     <div class="selects {{selects_type}}"  value="{{addOne @index}}"  listenid ="{{listen_id}}">
+                         <div class="select ">
                            <i class="icon iconfont">&#xe61b;</i>
                            <span>{{option_A}}</span>
                          </div>
                          <div class="select">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_B}}</span></div>
-                         <div class="select cuo">
+                         <div class="select">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_C}}</span></div>
                      </div>
                      {{else}}
-                     <div class="selects {{selects_type}} " value="{{addOne @index}}">
-                             <div class="select dui">
+                     <div class="selects {{selects_type}} " value="{{addOne @index}}"  listenid ="{{listen_id}}">
+                             <div class="select">
                                <i class="icon iconfont ">&#xe61b;</i>
                                <img src="{{option_A}}">
                              </div>
-                             <div class="select cuo">
+                             <div class="select">
                                <i class="icon iconfont">&#xe61b;</i>
                                <img src="{{option_B}}">
                              </div>
@@ -103,13 +106,13 @@
                      {{/choice}}
                 {{/if}}
                   <div class="xiangjie-wapper">
-                    <h3>听力原文：</h3>
-                    <div class="explain-p">
-                     <p>{{yuanwen}}</p>
-                    </div>
-                    <h3>试题详解：</h3>
+                   <h3>试题详解：</h3>
                       <div class="explain-p">
-                       <p>{{answer}}</p>
+                       <p>{{listen_explain}}</p>
+                      </div>
+                   <h3>听力原文：</h3>
+                      <div class="explain-p">
+                          <p>{{listen_text}}</p>
                       </div>
                   </div>
                </div>
@@ -123,13 +126,13 @@
        <div class="box-wrap" >
           <ul class="close-popup">
               {{#each this}}
-              <li class="flex popcuo">{{addOne @index}}</li>
+              <li class="flex popcuo" >{{exam_number}}</li>
               {{/each}}
           </ul>
       </div>
-
      </script>
-    <script type='text/javascript' src='../src/js/simulation_check.js'></script>
+    <script type='text/javascript' src='../src/js/packge.js'></script>
+    <script type='text/javascript' src='../src/js/simulation_error.js'></script>
 
   </body>
 </html>

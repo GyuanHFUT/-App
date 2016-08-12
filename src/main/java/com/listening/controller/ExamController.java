@@ -1,17 +1,17 @@
 package com.listening.controller;
 
 import com.listening.domain.Exam;
+import com.listening.domain.Exama;
 import com.listening.serviceManager.ExamManager;
+import com.listening.util.session.SessionUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +21,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/exam")
 public class ExamController {
+    private static Logger logger = Logger.getLogger(ExamController.class);
 
     @Autowired
     ExamManager examManager;
@@ -34,20 +35,46 @@ public class ExamController {
         return exams;
     }
 
-    @RequestMapping(value = "/addExamOfMistake")
+    @RequestMapping(value = "/acceptExamOfMessage", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> addExamOfMistake(@RequestBody JSONObject jsonObject){
+    public Map<String,Object> acceptExamOfMessage(@RequestParam(value = "data") String jsonObject){
+        logger.info("已经进入该方法！");
+        logger.info(jsonObject);
         Map<String, Object> map = new HashMap<String, Object>();
-        examManager.addExamOfMistake(jsonObject);
+        SessionUtils.bindSession("jsonObject",jsonObject);
+        try {
+            examManager.addExamOfMistake(jsonObject);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        logger.info("成功收取数据！");
         map.put("success",true);
-        map.put("msg","添加成功！");
         return map;
     }
 
+    @RequestMapping(value = "/showExamOfMistake")
+    public ModelAndView showExamOfMistake(){
+        String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
+        JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
+        //JSONObject object = jsonObject.getJSONObject("wrong");
+        List<Exama> exams = examManager.showExamOfMistake(jsonObject1);
+        /*Map<String,Object> map = new HashMap<String, Object>();
+        map.put("exams",exams);*/
+        JSONArray jsonArray = JSONArray.fromObject(exams);
+        logger.info(jsonArray);
+        String exam = jsonArray.toString();
+        return new ModelAndView("/simulation_error","exam",exam);
+    }
 
-
-
-
-
+    @RequestMapping(value = "/showAllExam")
+    public ModelAndView showAllExam(){
+        String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
+        JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
+        List<Exama> examas = examManager.showAllExam(jsonObject1);
+        JSONArray jsonArray = JSONArray.fromObject(examas);
+        logger.info(jsonArray);
+        String exams = jsonArray.toString();
+        return new ModelAndView("/simulation_check","exams",exams);
+    }
 
 }
