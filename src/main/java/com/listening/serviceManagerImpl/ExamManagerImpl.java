@@ -74,9 +74,10 @@ public class ExamManagerImpl implements ExamManager {
     @Override
     public List<Exama> showExamOfMistake(JSONObject jsonObject) {
         JSONObject object = jsonObject.getJSONObject("wrong");
-        List<Exama> examaList = new ArrayList<Exama>();
-        User user = SessionUtils.getCurrentUser();
-        int user_id = user.getUser_id();
+        
+        List<Exama> examas = new ArrayList<Exama>();
+        //User user = SessionUtils.getCurrentUser();
+        //int user_id = user.getUser_id();
         if(object.isEmpty()){
             return null;
         }else {
@@ -85,7 +86,7 @@ public class ExamManagerImpl implements ExamManager {
             Set<String> set = object.keySet();
             Iterator it = set.iterator();
             int listen_exam = examMapper.selectExamById(Integer.parseInt((String) it.next()));
-            List<Exama> examas = examMapper.selectAllExama(listen_exam);
+            examas = examMapper.selectAllExama(listen_exam);
             for(String j:set){
                 int listen_id = Integer.parseInt(j);
                 for(int i=0;i<examas.size();i++){
@@ -115,12 +116,12 @@ public class ExamManagerImpl implements ExamManager {
                             examas.get(i).setExam_number(i+1);
                             //examaList.add(examas.get(i));
                         }
-                        examaList.add(examas.get(i));
+                        //examaList.add(examas.get(i));
                     }
                 }
             }
         }
-        return examaList;
+        return examas;
     }
 
     @Override
