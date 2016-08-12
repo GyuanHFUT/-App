@@ -1,69 +1,7 @@
 $(document).ready(function(){
-//   var data = {"exams":[
-//     {   "exam_answer":"A",
-//         "exam_first":"",
-//         "exam_five":"",
-//         "exam_four":"",
-//         "exam_judge":0,
-//         "exam_radio":"../src/audio/1.mp3",
-//         "exam_second":"",
-//         "exam_three":"",
-//         "first_answer":"",
-//         "five_answer":"",
-//         "form_url":"",
-//         "four_answer":"",
-//         "listen_answer":"B",
-//         "listen_degree":3,
-//         "listen_exam":1,
-//         "listen_explain":"可以这样做",
-//         "listen_group":0,
-//         "listen_id":2,
-//         "listen_question":"",
-//         "listen_score":1,
-//         "listen_style":1,
-//         "listen_text":"听力开始",
-//         "listen_type":1,
-//         "option_A":"received",
-//         "option_B":"got",
-//         "option_C":"heard",
-//         "radio_url":"../src/audio/1.mp3",
-//         "second_answer":"",
-//         "three_answer":""
-//     },
-//     { "exam_answer":"",
-//         "exam_first":"",
-//         "exam_five":"",
-//         "exam_four":"",
-//         "exam_judge":0,
-//         "exam_radio":"../src/audio/1.mp3",
-//         "exam_second":"",
-//         "exam_three":"",
-//         "first_answer":"happy",
-//         "five_answer":"ten",
-//         "form_url":"../src/img/encouragement.jpg",
-//         "four_answer":"year",
-//         "listen_answer":"",
-//         "listen_degree":2,
-//         "listen_exam":1,
-//         "listen_explain":"可以",
-//         "listen_group":0,
-//         "listen_id":26
-//         "listen_question":"",
-//         "listen_score":1,
-//         "listen_style":3,
-//         "listen_text":"原文",
-//         "listen_type":5,
-//         "option_A":"",
-//         "option_B":"",
-//         "option_C":"",
-//         "radio_url":"../src/audio/1.mp3",
-//         "second_answer":"shop",
-//         "three_answer":"home"
-//     }
-//     ]
-// };
     var data = $('#exam').html();
     data = JSON.parse(data);
+    console.log(data);
     data[0].first="page-current";
     data[0].box = "current";
     for(var t= 0 ;t<data.length;t++){
