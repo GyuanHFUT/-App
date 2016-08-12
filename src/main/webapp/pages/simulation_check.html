@@ -18,7 +18,7 @@
       <div id="handlebars" >
           <div class="page"  style="display:none"></div>
       </div>
-      <div class="page" id ="exam">${exams}</div>
+      <div class="page" id ="exam" style="display:none">${exams}</div>
   </div>
        <div class="popup">
                  <header class="bar bar-nav close-popup">
@@ -35,33 +35,34 @@
     <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
      <script type="text/x-handlebars-template" id="myTemplate">
-       {{#each this}}
-           <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
-               <header class="bar bar-nav">
-                     <a  href="../pages/choice_que.html#chioce_que" class=" pull-left">
-                       <i class="icon iconfont pull-left back">&#xe61e;</i></a>
-                   <span class="title">{{listen_name}}</span>
-                    <div class="yinpin">
-                  <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
-                 <span class="playn"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
-                  <span class="stopn" ><i class="icon iconfont pull-right"  style="display:none">&#xf0019;</i></span>
-                  </div>
-               </header>
-               <nav class="bar bar-tab">
-                   <a class="tab-item external shoucang" href="#">
-                       <i class="icon iconfont">&#xf006c;</i>
-                       <span class="tab-label">收藏</span>
-                   </a>
-                   <a class="tab-item external open-popup" href="#">
+         <div class="page {{first}}" id="{{addOne @index}}" curr="{{listen_id}}">
+             <header class="bar bar-nav">
+                 <a  href="../pages/choice_que.html#chioce_que" class=" pull-left">
+                     <i class="icon iconfont pull-left back">&#xe61e;</i></a>
+                 <span class="title">{{listen_name}}</span>
+                 <div class="yinpin">
+                     <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
+                     <div class="yinpinicon">
+                         <span class="playn" style="display:none"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
+                         <span class="stopn"  ><i class="icon iconfont pull-right"  >&#xf006c;</i></span>
+                     </div>
+                 </div>
+             </header>
+             <nav class="bar bar-tab">
+                 <a class="tab-item external shoucang" href="#" shoucangid="{{listen_id}}">
+                     <i class="icon iconfont">&#xf006c;</i>
+                     <span class="tab-label">收藏</span>
+                 </a>
+                 <a class="tab-item external open-popup" href="#">
                      {{!-- 错题数、对题数、总题数 --}}
-                      <i class="icon iconfont">&#xf006c;</i>
-                      <span class="tab-label">3/30</span>
-                   </a>
-                   <a class="tab-item external" href="/JuniorHearing/exam/showExamOfMistake">
-                       <i class="icon iconfont">&#xf006c;</i>
-                       <span class="tab-label">只看错题</span>
-                   </a>
-               </nav>
+                     <i class="icon iconfont">&#xf006c;</i>
+                     <span class="tab-label"><span class="errorlen">3</span>/30</span>
+                 </a>
+                 <a class="tab-item external" href=/JuniorHearing/exam/showExamOfMistake">
+                     <i class="icon iconfont">&#xf006c;</i>
+                     <span class="tab-label">只看错题</span>
+                 </a>
+             </nav>
                <div class="content content-padded">
                   {{\#if form_url}}
                     <h3>26-30.{{listen_title}}</h3>
@@ -130,8 +131,8 @@
               {{/each}}
           </ul>
       </div>
-
      </script>
+    <script type='text/javascript' src='../src/js/packge.js'></script>
     <script type='text/javascript' src='../src/js/simulation_check.js'></script>
   </body>
 </html>
