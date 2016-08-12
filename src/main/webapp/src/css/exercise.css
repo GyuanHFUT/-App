@@ -6,13 +6,13 @@ margin:0;
 padding:0.4rem;
 }
 .words .select{
-    height: 4rem;
+
     line-height:2rem;
     display: block;
     text-align: left;
     font-weight: normal;
     font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
-
+    margin-top: 0.4rem;
 }
 .words .select:hover{
     color:red;
@@ -23,8 +23,9 @@ padding:0.4rem;
 }
 .words .iconfont{
     font-size:1.6rem;
-    position:relative;
-    bottom:0.2rem;
+    display: block;
+    float: left;
+    height: 100%;
 }
 .imgs{
   padding:0.4rem;

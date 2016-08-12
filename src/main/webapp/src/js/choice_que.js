@@ -4,7 +4,7 @@
 
 // }
 $(document).ready(function () {
-    $.init()
+    $.init();
   $(document).on('click', '.open-preloader', function () {
           $.showPreloader();
           setTimeout(function () {
