@@ -81,7 +81,7 @@ for(var t= 0 ;t<data.length;t++){
       case 5:data[t]["listen_name"]="信息转换"; break;
    };
    if(title == ""){
-     data[t].listen_title= data[t].listen_name;
+     data[t].listen_question= data[t].listen_name;
    };
    switch(s){
         case 1:data[t]["selects_type"]="words";break;
@@ -105,42 +105,79 @@ Handlebars.registerHelper("choice",function(option_A,options){
              return options.inverse(this);
            }
   });
-// Handlebars.registerHelper("render",function(){
-//    var
-//
-//     })
 var myTemplate = Handlebars.compile($("#myTemplate").html());
 $("#handlebars").html(myTemplate(data));
 var box = Handlebars.compile($("#box").html());
 $("#box_li").html(box(data));
-// for(var n=27;n<31;n++){
-//   $('.close-popup').append('<li class="flex">'+n+'</li> ');
-// }
+
   $.init();
-  //js控制页面对错渲染。
-    var sele = $('.selects').find('.select');
+    var len = data.length;
+  //js控制页面对错渲染及错题数渲染。
     for(var i= 0 ;i<data.length;i++){
+        var sele =$( $('.page')[i]).find('.selects');
             switch(data[i].listen_answer){
-                case 'A':data[t]["selects_type"]="words";break;
-                case 'B':data[t]["selects_type"]="imgs"; break;
-                case 'C':data[t]["selects_type"]=""; break;
+                case 'A':$(sele).find('.select:eq(0)').addClass('dui');break;
+                case 'B':$(sele).find('.select:eq(1)').addClass('dui'); break;
+                case 'C':$(sele).find('.select:eq(2)').addClass('dui'); break;
                 case '': ; break;
             };
+        switch(data[i].exam_answer){
+            case 'A':$(sele).find('.select:eq(0)').addClass('cuo');break;
+            case 'B':$(sele).find('.select:eq(1)').addClass('cuo'); break;
+            case 'C':$(sele).find('.select:eq(2)').addClass('cuo');break;
+            case '':  ; break;
+        };
+        if(data[i].form_url !=="" ){
+            var number_ans = [data[i].first_answer,data[i].second_answer,data[i].three_answer,data[i].four_answer,data[i].five_answer],
+                exam_ans =  [data[i].exam_first,data[i].exam_second,data[i].exam_three,data[i].exam_four,data[i].exam_five];
+            for(var a = 0;a<number_ans.length;a++){
+                console.log(number_ans);
+                if(number_ans[a] == exam_ans[a] ){
+                    $('.page')[i].find('.trans_input')[a].removeClass('cuo');
+                    if(a==0){
+                        $($('#box_li').find('li')[i]).removeClass('.popcuo');
+                    }else{
+                        var flexbox = a+26;
+                        $('#box_li').find('ul').append('<li class="flex">'+flexbox+'</li> ');
+                    }
+                }else {
+                    if(a!==0){
+                        len++;
+                        var flexbox = a+26;
+                        $('#box_li').find('ul').append('<li class="flex popcuo">'+flexbox+'</li> ');
+                    }else{
+                        $($('#box_li').find('li')[i]).addClass('trans');
+                    }
+                }
+            }
 
+        }
     }
-    
-  //初始化结束
-  //添加”dui“class
-
+    $('.page').find('.errorlen').html(len);
+    $('.popup').find('.dacuo strong').html(len) ;
+    console.log(data.length);
+    var audio = $('.audion');
+    //音频控制
+    $('.yinpinicon').tap(function(){
+        var flag = $(this).parents('.page').attr('id')-1;
+        console.log(flag);
+        $(this).find('.playn').toggle();
+        $(this).find('.stopn').toggle();
+        var s = $(audio)[0];
+       audio[flag].paused? audio_play(audio,flag): audio_paused(audio,flag);
+    });
   //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
   $(".page").swipeLeft(function(){
       var flag=$(this).attr("id");
       console.log(flag);
-      if (flag<$(".page").length) {
+      if (flag<$(".page").length-1) {
+          audio_paused(audio,flag-1);
+          audio[flag-1].currentTime= 0;
           $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
           flag++;
-          $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
           $.router.load("#"+flag+"");
+          $('.page').find('.stopn').show();
+          $('.page').find('.playn').hide();
       }else{
           $.toast("已经是最后一题了")
       }
@@ -148,22 +185,49 @@ $("#box_li").html(box(data));
   $(".page").swipeRight(function(){
      var flag=$(this).attr("id");
      if (flag>1) {
+           audio_paused(audio,flag-1);
+           audio[flag-1].currentTime= 0;
            flag--;
            $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-           $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
            $.router.load("#"+flag+"");
+         $('.page').find('.stopn').show();
+         $('.page').find('.playn').hide();
+
      }else{
            $.toast("已经是第一题了")
      }
   });
+    //主要还是那个内联id的问题=====完美解决,查找前面li个数,内联id，小意思啦
  $(".flex").tap(function(){//点击盒子切换页面
-     var flag=$(this).html();
-     $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
-     $("#"+flag+"").find(".yeshu").html(""+flag+"/1311");
-     $.router.load("#"+flag+"");
-   })
-  //音频的实现
-
+     stopYinpin(audio);
+     $('.page').find('.stopn').show();
+     $('.page').find('.playn').hide();
+     var flaglen= $(this).prevAll().length;
+         flaglen++;
+     var flag =$(this).html();
+     $('.flex:eq('+(flaglen-1)+')'). addClass('current').siblings().removeClass('current');
+     if(flag>26){
+         var yeshu =$('.trans').prevAll().length;
+         console.log(yeshu);
+         yeshu++;
+         $.router.load("#"+yeshu+"");
+     }else{
+         $.router.load("#"+flaglen+"");
+     }
+   });
+  //音频的实现；完全一题一播放；
+    function audio_play(audio,t){
+        audio[t].play();
+        audio[t].onended = function(){
+            $('.playn').show();
+            $('.stopn').hide();
+        }
+    }
+    function audio_paused(audio,t){
+        audio[t].pause();
+    }
+  //收藏的页面功能实现
+    shoucang();
   //ajax事件的学习，需要用这个做一些事情
 
 })

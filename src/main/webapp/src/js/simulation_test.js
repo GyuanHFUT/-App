@@ -26,6 +26,7 @@ $(document).ready(function(){
                     $('#box_li').append('<li class="flex">'+n+'</li> ');
                 }
             };
+            console.log(data);
             $('.yinpinicon').tap(function(){
                 $.alert('考试期间，请勿暂停音频')
             })
@@ -59,7 +60,7 @@ $(document).ready(function(){
                     lisid = parent.attr('listenid'),
                     opt;
                 var op = $(this).attr('value');
-                var ans = answer[x];
+                var ans = answer[x-1];
                 switch(ans){
                     case 'A': opt='1';break;
                     case 'B': opt='2';break;
@@ -106,23 +107,23 @@ $(document).ready(function(){
                 }
                 $(".test_num").find('strong').html(test_num);
                 $(".weida").find('strong').html(zong);
+                console.log(personal);
             });
             //点击
             $(".flex").tap(function(){
                 //点击盒子切换页面
                 var flag=$(this).html();
+                $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
                 if(flag>=26){
-                    $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
                     var yeshu =flag;
                        flag = 26;
                     $("#"+flag+"").find(".yeshu").html(yeshu+"/30");
                     $.router.load("#"+flag+"");
                 }else{
-                    $('.flex:eq('+(flag-1)+')'). addClass('current').siblings().removeClass('current');
                     $.router.load("#"+flag+"");
                 }
             });
-            //点击弹框26-30题
+            //点击弹框26-30题改变
             $(".open-popup").tap(function(){
                 console.log(inputlist);
                 $(inputlist).each(function(){
