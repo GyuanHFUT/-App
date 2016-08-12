@@ -123,6 +123,15 @@ ul, li {
     display: inline;
     float: left;
 }
+.dadui strong{
+    color:#18b4ed;
+}
+.dacuo strong{
+    color: #f25e5e;
+}
+.weida strong{
+    color:#ccc;
+}
 /*针对对错框的样式*/
 .popcuo{
   background: #f25e5e !important;

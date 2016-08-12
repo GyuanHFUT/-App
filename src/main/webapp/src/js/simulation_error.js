@@ -66,12 +66,11 @@ $(document).ready(function(){
                 exam_ans =  [data[i].exam_first,data[i].exam_second,data[i].exam_three,data[i].exam_four,data[i].exam_five];
             for(var a = 0;a<number_ans.length;a++){
                 if(number_ans[a] == exam_ans[a] ){
-                    $('.page')[i].find('.trans_input')[a].removeClass('cuo');
+                    $($($('.page')[i]).find('.trans_input')[a]).removeClass('cuo').addClass('dui');
                     if(a==0){
                         $($('#box_li').find('li')[i]).removeClass('.popcuo');
                     }else{
                         var flexbox = a+26;
-                        $('#box_li').find('ul').append('<li class="flex">'+flexbox+'</li> ');
                     }
                 }else {
                     if(a!==0){
