@@ -1,35 +1,17 @@
-// window.onload{
-//   var name = getElementsByClassName('page-current').getElementsById(),
-//   var href = getElementsByClassName('tab-item')
 
-// }
 $(document).ready(function () {
     $.init();
+    //侧边栏点击控制事件
+    $('.panel-left .control p').tap(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+    })
   $(document).on('click', '.open-preloader', function () {
           $.showPreloader();
           setTimeout(function () {
               $.hidePreloader();
           }, 2000);
         });
-    $('#simulation').tap(function(){
-        $.ajax({
-                type: 'get',
-                url: "/JuniorHearing/user/sendUser",
-                success: function(data){
-                    console.log(data);
-                    if(data=="login"){
-                        $.confirm('模拟考试需要登录，是否登陆?',
-                            function () {
-                                $.router.load("../pages/land.html");
-                            }
-                        );
-                    }else{
-
-                            $.router.load("../pages/simulation_test.html#1");
-
-                    }
-                }
-            })
-
-    })
-})
+    judgment('#simulation','模板测试功能','../pages/simulation_test.html#1');
+    judgment('.collect','收藏功能','#');
+    judgment('.mistakes','错题功能','/JuniorHearing/mistake/showMistakeByUser');
+});

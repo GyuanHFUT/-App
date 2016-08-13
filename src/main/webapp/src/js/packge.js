@@ -166,3 +166,27 @@ for (var i = s - 1; i >= 0; i--) {
          };   
       }     
  }
+//登陆检测
+function judgment(name,words,url){
+    console.log(name);
+    $(name).tap(function(){
+        console.log(name);
+        $.ajax({
+            type: 'get',
+            url: "/JuniorHearing/user/sendUser",
+            success: function(data){
+                console.log(data);
+                if(data=="login"){
+                    $.confirm(words+'需要登录，是否登陆?',
+                        function () {
+                            $.router.load("../pages/land.html");
+                        }
+                    );
+                }else{
+                    $.router.load(url);
+
+                }
+            }
+        })
+    })
+}
