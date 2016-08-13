@@ -4,7 +4,7 @@ $(document).ready(function () {
     //侧边栏点击控制事件
     var name = $('.panel-left').find('#exam').html();
     name = JSON.parse(name);
-    console.log(name);
+    console.log(name.user_nickname);
     $('.panel-left .control p').tap(function(){
         $(this).addClass('active').siblings().removeClass('active');
     })
