@@ -81,12 +81,12 @@ $(document).ready(function(){
 
 // 点击事件
 $('input').focus(function(){
-    if($("input").blur(function(){
+    // if($("input").blur(function(){
 
         console.log($(this));
         console.log("hhhe");
         // $("input").css("background-color","#D6D6FF");
-    });
+    // });
 }) ;
     //点击选项判断对错
     function  selects(dui,cuo,zong){
