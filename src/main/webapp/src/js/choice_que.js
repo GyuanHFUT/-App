@@ -4,6 +4,7 @@ $(document).ready(function () {
     //侧边栏点击控制事件
     var name = $('.panel-left').find('#exam').html();
     if(name !== '${exam}'){
+        console.log(name);
         name = JSON.parse(name);
         $('.panel-left').find('.login').hide();
         $('.panel-left').find('#nickname').show();
