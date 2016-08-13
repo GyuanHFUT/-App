@@ -30,10 +30,10 @@ public class CollectController {
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
-        collectManager.addCollect(user_id, listen_id);
-        map.put("success", true);
+        return collectManager.addCollect(user_id, listen_id);
+/*        map.put("success", true);
         map.put("msg", "收藏成功！");
-        return map;
+        return map;*/
     }
 
     @RequestMapping(value = "/showCollectByUser")
