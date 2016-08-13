@@ -53,20 +53,20 @@
             <div class="yinpin">
                 <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
                 <div class="yinpinicon">
-                    <span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
-                    <span class="stopn"  style="display:none"><i class="icon iconfont pull-right"  >&#xf0019;</i></span></div>
+                    <span class="playn" style="display:none"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
+                    <span class="stopn"  ><i class="icon iconfont pull-right"  >&#xf006c;</i></span></div>
             </div>
         </header>
 
 
         <nav class="bar bar-tab">
-            <a class="tab-item external shoucang" href="#" listenid="{{listen_id}}">
+            <a class="tab-item external shoucang" href="#" shoucangid="{{listen_id}}">
                 <i class="icon iconfont">&#xf006c;</i>
                 <span class="tab-label">收藏</span>
             </a>
             <a class=" tab-item external open-popup" href="#">
                 <i class="icon iconfont">&#xf0015;</i>
-                <span class="tab-label yeshu">{{addOne @index}}/30</span>
+                <span class="tab-label yeshu">{{addOne @index}}/<span class="wronglen">30</span></span>
             </a>
             <a class="tab-item external open-xiangjie" href="#">
                 <i class="icon iconfont">&#xf0004;</i>
@@ -112,7 +112,7 @@
             </div>
             {{/choice}}
             {{/if}}
-            <div class="xiangjie-wapper">
+            <div class="xiangjie-wapper" style="display:none">
                 <h3>试题详解：</h3>
                 <div class="explain-p">
                     <p>{{listen_explain}}</p>

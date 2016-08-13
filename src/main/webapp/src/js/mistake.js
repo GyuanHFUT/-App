@@ -72,48 +72,79 @@ $(document).ready(function(){
     $("#box_li").html(box(data));
 
     $.init();
-    var len = data.length;
-    //js控制页面对错渲染及错题数渲染。
-    for(var i= 0 ;i<data.length;i++){
-        var sele =$( $('.page')[i]).find('.selects');
-        switch(data[i].listen_answer){
-            case 'A':$(sele).find('.select:eq(0)').addClass('dui');break;
-            case 'B':$(sele).find('.select:eq(1)').addClass('dui'); break;
-            case 'C':$(sele).find('.select:eq(2)').addClass('dui'); break;
-            case '': ; break;
-        };
-        switch(data[i].exam_answer){
-            case 'A':$(sele).find('.select:eq(0)').addClass('cuo');break;
-            case 'B':$(sele).find('.select:eq(1)').addClass('cuo'); break;
-            case 'C':$(sele).find('.select:eq(2)').addClass('cuo');break;
-            case '':  ; break;
-        };
-        if(data[i].form_url !=="" ){
-            var number_ans = [data[i].first_answer,data[i].second_answer,data[i].three_answer,data[i].four_answer,data[i].five_answer],
-                exam_ans =  [data[i].exam_first,data[i].exam_second,data[i].exam_three,data[i].exam_four,data[i].exam_five];
-            for(var a = 0;a<number_ans.length;a++){
-                if(number_ans[a] == exam_ans[a] ){
-                    $($($('.page')[i]).find('.trans_input')[a]).removeClass('cuo').addClass('dui');
-                    if(a==0){
-                        $($('#box_li').find('li')[i]).removeClass('.popcuo');
-                    }else{
-                        var flexbox = a+26;
-                    }
-                }else {
-                    if(a!==0){
-                        len++;
-                        var flexbox = a+26;
-                        $('#box_li').find('ul').append('<li class="flex popcuo">'+flexbox+'</li> ');
-                    }else{
-                        $($('#box_li').find('li')[i]).addClass('trans');
-                    }
-                }
-            }
+    var len = data.length, dui=0, cuo=0;
+    var zong=len;//获取总题数
+   $('.page').find('.wronglen').html(data.length);
+    selects(dui,cuo,zong);
+    shoucang();  //收藏部分！
+    xiangjie();//详解打开和关闭
 
-        }
+// 点击事件
+$('input').focus(function(){
+    if($("input").blur(function(){
+
+        console.log($(this));
+        console.log("hhhe");
+        // $("input").css("background-color","#D6D6FF");
+    });
+}) ;
+    //点击选项判断对错
+    function  selects(dui,cuo,zong){
+        $(".select").on('tap',function(){
+            var parent  =  $(this).parent();
+            var parents  =  $(this).parent().parent();
+            var parentss=parents.parent();
+            var x=parent.attr('value');
+            x--;
+            if ($(this).hasClass("dui")) {
+                $(this).find('i').html('&#xe61b;');
+                //在popup层找到相对应的box改变颜色！
+                $(this).addClass("duicolor");
+                $('.flex:eq('+x+')').addClass("popdui");
+                if (!parent.hasClass('yidian')) {//确认此题有没有被点击
+                    zong--;
+                    dui++;
+                    $(".dadui").find('strong').html(dui);
+                    $(".weida").find('strong').html(zong);
+                    parent.addClass('yidian');
+                    var flag=parentss.attr("id");
+                    if (flag<$(".page").length) {
+                        $('.flex:eq('+flag+')'). addClass('current')
+                            .siblings().removeClass('current');
+                        flag++;
+
+                        $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
+                    }
+                    else{
+                        $.toast("已经是最后一题了")
+                    }
+                };
+
+            }
+            else{
+                $(this).addClass("cuocolor");
+                $(this).find('i').html('&#xf0011');
+                if (!parent.hasClass('yidian')) {
+                    cuo++;
+                    zong--;
+                    $(".dacuo").find('strong').html(cuo);
+                    $(".weida").find('strong').html(zong);
+                    $('.flex:eq('+x+')').addClass("popcuo");
+                }
+                parent.addClass('yidian');
+                //给正确答案加样式！
+                for (var i =parent.find(".select ").length - 1; i >= 0; i--) {
+                    var a=parent.find(".select ")[i];
+                    if ($(a).hasClass("dui"))
+                    {
+                        $(a).addClass("duicolor");
+                    };
+                }
+                parents.find(".xiangjie-wapper").show();
+                parentss.find(".open-xiangjie").addClass("active");
+
+            }})
     }
-    $('.page').find('.errorlen').html(len);
-    $('.popup').find('.dacuo strong').html(len) ;
     var audio = $('.audion');
     //音频控制
     $('.yinpinicon').tap(function(){
