@@ -29,5 +29,9 @@ public class SessionUtils {
     public static User getCurrentUser(){
         return (User) getSession().getAttribute("user");
     }
+    //清空session中的user对象
+    public static void resetSession(String str){
+        getSession().setAttribute(str, null);
+    }
     
 }

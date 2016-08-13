@@ -96,8 +96,8 @@ public class UserController {
     public ModelAndView showUserMessage(){
         User user = SessionUtils.getCurrentUser();
         logger.info("进入该方法："+user.getUser_name());
-        //JSONObject jsonObject = JSONObject.fromObject(user);
-        String exam = user.toString();
+        JSONObject jsonObject = JSONObject.fromObject(user);
+        String exam = jsonObject.toString();
         logger.info(exam);
         return new ModelAndView("choice_que","exam",exam);
     }

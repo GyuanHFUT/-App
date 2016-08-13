@@ -160,6 +160,7 @@ public class UserManagerImpl implements UserManager {
         Map<String, Object> map = new HashMap<String, Object>();
         try{
             userMapper.deleteUser(user_id);
+            SessionUtils.resetSession("user");
             map.put("success", true);
             map.put("msg", "注销成功！");
         }catch (Exception e){
