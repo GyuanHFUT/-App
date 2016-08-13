@@ -5,11 +5,13 @@ import com.listening.domain.Mistake;
 import com.listening.domain.User;
 import com.listening.serviceManager.MistakeManager;
 import com.listening.util.session.SessionUtils;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +41,7 @@ public class MistakeController {
 
     @RequestMapping(value = "/showMistakeByUser")
     @ResponseBody
-    public List<Exam> showMistakeByUser(){
+    public ModelAndView showMistakeByUser(){
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
@@ -47,7 +49,9 @@ public class MistakeController {
         //map.put("mistakes", mistakes);
         //map.put("success", true);
         //map.put("msg", "查询成功！");
-        return mistakes;
+        JSONArray jsonArray = JSONArray.fromObject(mistakes);
+        String exam = jsonArray.toString();
+        return new ModelAndView("/mistakes","exam",exam);
     }
 
     @RequestMapping(value = "/deleteMistake/{listen_id}")
