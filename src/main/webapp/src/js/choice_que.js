@@ -24,9 +24,9 @@ $(document).ready(function () {
                             }
                         );
                     }else{
-                        if(data.success){
+
                             $.router.load("../pages/simulation_test.html#1");
-                        }
+
                     }
                 }
             })
