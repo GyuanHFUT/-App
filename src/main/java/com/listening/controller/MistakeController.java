@@ -6,6 +6,7 @@ import com.listening.domain.User;
 import com.listening.serviceManager.MistakeManager;
 import com.listening.util.session.SessionUtils;
 import net.sf.json.JSONArray;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/mistake")
 public class MistakeController {
+    private static Logger logger = Logger.getLogger(MistakeController.class);
 
     @Autowired
     private MistakeManager mistakeManager;
@@ -40,7 +42,6 @@ public class MistakeController {
     }
 
     @RequestMapping(value = "/showMistakeByUser")
-    @ResponseBody
     public ModelAndView showMistakeByUser(){
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
@@ -50,6 +51,7 @@ public class MistakeController {
         //map.put("success", true);
         //map.put("msg", "查询成功！");
         JSONArray jsonArray = JSONArray.fromObject(mistakes);
+        logger.info(jsonArray);
         String exam = jsonArray.toString();
         return new ModelAndView("/mistakes","exam",exam);
     }
