@@ -19,6 +19,12 @@
         FROM sentence;
     </select>
 
+    <select id="selectSentenceOfId" resultType="com.listening.domain.Sentence">
+        SELECT *
+        FROM sentence
+        WHERE sentence_id=#{sentence_id};
+    </select>
+
     <update id="updateUserByName">
         UPDATE user SET user_pwd=#{user_pwd} WHERE user_name=#{user_name};
     </update>

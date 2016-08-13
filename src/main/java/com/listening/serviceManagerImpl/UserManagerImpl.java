@@ -184,8 +184,10 @@ public class UserManagerImpl implements UserManager {
         int m = RandomNumber.createNumber(list.size());
         //int s = list.get(m);
         Sentence sentence = userMapper.selectSentenceOfId(list.get(m));
-
-        return null;
+        map.put("sentence",sentence);
+        map.put("success",true);
+        map.put("msg","查询成功！");
+        return map;
     }
 
 }

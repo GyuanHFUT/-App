@@ -85,5 +85,4 @@ public class UserController {
     public Map<String, Object> sendUserDay(){
         return userManager.showSentence();
     }
-
 }
