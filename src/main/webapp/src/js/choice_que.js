@@ -27,7 +27,15 @@ $(document).ready(function () {
             type:'get',
             url:'/JuniorHearing/user/deleteUser',
             success:function(data){
+                // var data = JSON.parse(data);
                 console.log(data);
+                if(data.success){
+                    $.toast(data.msg);
+                    $.router.load("../pages/choice_que.html");
+                }
+                else{
+                    $.toast(data.msg);
+                }
             }
         })
     })
