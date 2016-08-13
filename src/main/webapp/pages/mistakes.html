@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/exercise.css">
+    <link rel="stylesheet" href="../src/css/simulation_common.css">
 </head>
 <body>
 <div class="page-group " >
@@ -45,17 +45,15 @@
 <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
 <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
 <script type="text/x-handlebars-template" id="myTemplate">
-    {{#with }}
     {{#each this}}
     <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
-
-
         <header class="bar bar-nav">
             <a href="../pages/choice_que.html" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
             <span class="title">{{listen_name}}</span>
             <div class="yinpin">
                 <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
-                <div class="yinpinicon"><span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
+                <div class="yinpinicon">
+                    <span class="playn"> <i class="icon iconfont pull-right"  >&#xf001b;</i></span>
                     <span class="stopn"  style="display:none"><i class="icon iconfont pull-right"  >&#xf0019;</i></span></div>
             </div>
         </header>
