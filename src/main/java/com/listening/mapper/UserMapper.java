@@ -21,5 +21,5 @@ public interface UserMapper {
 
     List<Integer> selectSentenceOfType();
 
-    Sentence selectSentenceOfId(Integer integer);
+    Sentence selectSentenceOfId(int s);
 }
