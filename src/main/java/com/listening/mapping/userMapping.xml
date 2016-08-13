@@ -28,4 +28,9 @@
     <update id="updateUserByName">
         UPDATE user SET user_pwd=#{user_pwd} WHERE user_name=#{user_name};
     </update>
+
+    <delete id="deleteUser">
+        DELETE FROM user
+        WHERE user_id=#{user_id};
+    </delete>
 </mapper>
