@@ -1,5 +1,6 @@
 package com.listening.controller;
 
+import com.listening.domain.Exam;
 import com.listening.domain.Mistake;
 import com.listening.domain.User;
 import com.listening.serviceManager.MistakeManager;
@@ -38,15 +39,15 @@ public class MistakeController {
 
     @RequestMapping(value = "/showMistakeByUser")
     @ResponseBody
-    public Map<String, Object> showMistakeByUser(){
+    public List<Exam> showMistakeByUser(){
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
-        List<Mistake> mistakes = mistakeManager.showMistakeByUser(user_id);
-        map.put("mistakes", mistakes);
-        map.put("success", true);
-        map.put("msg", "查询成功！");
-        return map;
+        List<Exam> mistakes = mistakeManager.showMistakeByUser(user_id);
+        //map.put("mistakes", mistakes);
+        //map.put("success", true);
+        //map.put("msg", "查询成功！");
+        return mistakes;
     }
 
     @RequestMapping(value = "/deleteMistake/{listen_id}")

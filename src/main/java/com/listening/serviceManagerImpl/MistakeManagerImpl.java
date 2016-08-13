@@ -1,5 +1,6 @@
 package com.listening.serviceManagerImpl;
 
+import com.listening.domain.Exam;
 import com.listening.domain.Mistake;
 import com.listening.mapper.MistakeMapper;
 import com.listening.serviceManager.MistakeManager;
@@ -29,7 +30,7 @@ public class MistakeManagerImpl implements MistakeManager {
     }
 
     @Override
-    public List<Mistake> showMistakeByUser(int user_id) {
+    public List<Exam> showMistakeByUser(int user_id) {
         return mistakeMapper.selectMistakeByUser(user_id);
     }
 

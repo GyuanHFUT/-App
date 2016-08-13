@@ -175,5 +175,13 @@ public class UserManagerImpl implements UserManager {
         return map;
     }
 
+    @Override
+    public Map<String, Object> showSentence() {
+        Map<String,Object> map = new HashMap<String, Object>();
+
+
+        return null;
+    }
+
 
 }
