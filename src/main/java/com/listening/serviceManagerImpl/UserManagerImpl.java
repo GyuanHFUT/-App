@@ -165,7 +165,6 @@ public class UserManagerImpl implements UserManager {
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return map;
     }
 
