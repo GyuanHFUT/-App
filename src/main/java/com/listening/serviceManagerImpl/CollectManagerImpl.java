@@ -1,6 +1,7 @@
 package com.listening.serviceManagerImpl;
 
 import com.listening.domain.Collect;
+import com.listening.domain.Exam;
 import com.listening.mapper.CollectMapper;
 import com.listening.serviceManager.CollectManager;
 import com.listening.util.exception.MessageException;
@@ -35,7 +36,7 @@ public class CollectManagerImpl implements CollectManager {
     }
 
     @Override
-    public List<Collect> showCollectByUser(int user_id) {
+    public List<Exam> showCollectByUser(int user_id) {
         return collectMapper.selectCollectByUser(user_id);
     }
 

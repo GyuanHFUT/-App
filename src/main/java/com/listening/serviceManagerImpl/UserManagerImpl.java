@@ -1,5 +1,6 @@
 package com.listening.serviceManagerImpl;
 
+import com.listening.domain.Sentence;
 import com.listening.domain.User;
 import com.listening.mapper.UserMapper;
 import com.listening.serviceManager.UserManager;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -178,10 +180,12 @@ public class UserManagerImpl implements UserManager {
     @Override
     public Map<String, Object> showSentence() {
         Map<String,Object> map = new HashMap<String, Object>();
-
+        List<Integer> list = userMapper.selectSentenceOfType();
+        int m = RandomNumber.createNumber(list.size());
+        //int s = list.get(m);
+        Sentence sentence = userMapper.selectSentenceOfId(list.get(m));
 
         return null;
     }
-
 
 }
