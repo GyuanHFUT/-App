@@ -1,5 +1,6 @@
 package com.listening.mapper;
 
+import com.listening.domain.Exam;
 import com.listening.domain.Mistake;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ public interface MistakeMapper {
 
     void insertMistake(@Param(value = "user_id") int user_id, @Param(value = "listen_id") int listen_id);
 
-    List<Mistake> selectMistakeByUser(int user_id);
+    List<Exam> selectMistakeByUser(int user_id);
 
     void deleteMistake(@Param(value = "user_id") int user_id, @Param(value = "listen_id") int listen_id);
 

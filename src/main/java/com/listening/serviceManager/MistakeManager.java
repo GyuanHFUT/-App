@@ -1,5 +1,6 @@
 package com.listening.serviceManager;
 
+import com.listening.domain.Exam;
 import com.listening.domain.Mistake;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public interface MistakeManager {
     void addMistake(int user_id, int listen_id);
 
-    List<Mistake> showMistakeByUser(int user_id);
+    List<Exam> showMistakeByUser(int user_id);
 
     void deleteMistake(int user_id, int listen_id);
 }

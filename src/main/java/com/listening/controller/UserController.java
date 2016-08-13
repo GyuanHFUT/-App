@@ -80,4 +80,10 @@ public class UserController {
         return userManager.sendUser();
     }
 
+    @RequestMapping(value = "/sendUserDay")
+    @ResponseBody
+    public Map<String, Object> sendUserDay(){
+        return userManager.showSentence();
+    }
+
 }

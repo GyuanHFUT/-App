@@ -1,6 +1,7 @@
 package com.listening.mapper;
 
 import com.listening.domain.Collect;
+import com.listening.domain.Exam;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ public interface CollectMapper {
 
     Collect selectCollectByUL(@Param(value = "user_id") int user_id, @Param(value = "listen_id") int listen_id);
 
-    List<Collect> selectCollectByUser(@Param(value = "user_id") int user_id);
+    List<Exam> selectCollectByUser(@Param(value = "user_id") int user_id);
 
     void deleteCollect(@Param(value = "user_id") int user_id, @Param(value = "listen_id") int listen_id);
 }

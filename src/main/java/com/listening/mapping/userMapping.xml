@@ -13,6 +13,12 @@
         SELECT *
         FROM user WHERE user_name=#{user_name};
     </select>
+
+    <select id="selectSentenceOfType" resultType="java.lang.Integer">
+        SELECT sentence_id
+        FROM sentence;
+    </select>
+
     <update id="updateUserByName">
         UPDATE user SET user_pwd=#{user_pwd} WHERE user_name=#{user_name};
     </update>
