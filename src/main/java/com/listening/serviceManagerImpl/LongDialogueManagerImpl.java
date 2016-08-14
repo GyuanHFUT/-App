@@ -3,6 +3,7 @@ package com.listening.serviceManagerImpl;
 import com.listening.domain.LongDialogue;
 import com.listening.mapper.LongDialogueMapper;
 import com.listening.serviceManager.LongDialogueManager;
+import com.listening.util.active.ActiveUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,7 @@ public class LongDialogueManagerImpl implements LongDialogueManager {
 
         List<List> list = new ArrayList<List>();
         List<LongDialogue> longDialogues = longDialogueMapper.selectAllLongDialogue();
+        ActiveUtils.insertActive(longDialogues);
         for(int i=0;i<longDialogues.size();i++) {
             List<LongDialogue> list1 = new ArrayList<LongDialogue>();
             LongDialogue longDialogue = longDialogues.get(i);

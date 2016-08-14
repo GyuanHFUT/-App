@@ -3,7 +3,7 @@ package com.listening.domain;
 /**
  * Created by Asus on 2016/7/30.
  */
-public class ShortDialogue {
+public class ShortDialogue extends Exam {
     private int listen_id;
     private int listen_type;
     private String listen_question;
@@ -17,6 +17,15 @@ public class ShortDialogue {
     private String listen_text;
     private String listen_explain;
     private int listen_style;
+    private String listen_collect;
+
+    public String getListen_collect() {
+        return listen_collect;
+    }
+
+    public void setListen_collect(String listen_collect) {
+        this.listen_collect = listen_collect;
+    }
 
     public int getListen_id() {
         return listen_id;

@@ -2,6 +2,7 @@ package com.listening.controller;
 
 import com.listening.domain.Blank;
 import com.listening.serviceManager.BlankManager;
+import com.listening.util.active.ActiveUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class BlankController {
     public Map<String, Object> showAllBlank(){
         Map<String, Object> map = new HashMap<String, Object>();
         List<Blank> blanks = blankManager.showAllBlank();
+        ActiveUtils.insertActive(blanks);
         map.put("blanks", blanks);
         map.put("success", true);
         map.put("msg", "查询成功！");
