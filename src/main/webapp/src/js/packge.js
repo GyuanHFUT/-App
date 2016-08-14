@@ -24,7 +24,21 @@ function  select(dui,cuo,zong){
             if (!parent.hasClass('yidian')) {//确认此题有没有被点击
             zong--;
             dui++;
-            $(".dadui").find('b').html(dui);
+                $.ajax({
+                    type: 'get',
+                    url: "/JuniorHearing/collect/deleteCollect/"+listen_id,
+                    success: function(data){
+                        if(data.success){
+                            $.toast("取消收藏！");
+
+                        }
+                        else{
+                            $.toast(data.msg);
+
+                        }
+                    },
+                })
+                $(".dadui").find('b').html(dui);
             $(".weida").find('b').html(zong);
             parent.addClass('yidian');
             var flag=parentss.attr("id");
@@ -32,8 +46,7 @@ function  select(dui,cuo,zong){
                  $('.flex:eq('+flag+')'). addClass('current')
                     .siblings().removeClass('current');
                   flag++;
-
-                  $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
+                  $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面
               }
                   else{ 
                      $.toast("已经是最后一题了")
@@ -50,6 +63,7 @@ function  select(dui,cuo,zong){
              $(".dacuo").find('b').html(cuo);
              $(".weida").find('b').html(zong);
              $('.flex:eq('+x+')').addClass("popcuo");
+
             }
             parent.addClass('yidian');
              //给正确答案加样式！
@@ -166,6 +180,40 @@ for (var i = s - 1; i >= 0; i--) {
          };   
       }     
  }
+
+ //切换页面就停下来.这个功能待定！
+// (function() {
+//    if (typeof pageVisibility.hidden !== "undefined") {
+//        var eleVideo = document.querySelector(".audio");
+//        // 视频时间更新的时候
+//        eleVideo.addEventListener("timeupdate", function() {
+//            document.title = "第" + Math.floor(videoElement.currentTime) + "秒";
+//        }, false);
+//        // 视频暂停的时候
+//        eleVideo.addEventListener("pause", function(){
+//            if (pageVisibility.hidden) {
+//                // 如果是因为页面不可见导致的视频暂停
+//                sessionStorage.pauseByVisibility = "true";
+//            }
+//        }, false);
+//        // 视频播放时候
+//        eleVideo.addEventListener("play", function() {
+//            sessionStorage.pauseByVisibility = "false";
+//        }, false);
+//        // 本页面可见性改变的时候
+//        pageVisibility.visibilitychange(function() {
+//            if (this.hidden) {
+//                // 页面不可见
+//                eleVideo.pause();
+//            } else if (sessionStorage.pauseByVisibility === "true") {
+//                // 页面可见
+//                eleVideo.play();
+//            }
+//        });
+//    } else {
+//        alert("弹框？？？没错，因为你的这个浏览器不支持Page Visibility API的啦！");
+//    }
+//})();
 //登陆检测
 function judgment(name,words,url){
     console.log(name);
@@ -189,4 +237,17 @@ function judgment(name,words,url){
             }
         })
     })
+}
+//只用来判断是否登陆
+function judgment2(islogin){
+        $.ajax({
+            type: 'get',
+            url: "/JuniorHearing/user/sendUser",
+            success: function(data){
+                console.log(data);
+                if(!data=="login"){
+                    islogin=true;
+                }
+            }
+        })
 }
