@@ -108,7 +108,7 @@ public class UserController {
         Map<String,Object> map = new HashMap<String, Object>();
         SessionUtils.resetSession("user");
         map.put("success",true);
-        map.put("msg","用户注销成功！");
+        map.put("msg","退出登录成功！");
         return map;
     }
 

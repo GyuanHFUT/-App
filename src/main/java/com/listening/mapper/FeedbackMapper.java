@@ -1,5 +1,6 @@
 package com.listening.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 /**
@@ -7,5 +8,5 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface FeedbackMapper {
-    void insertFeedback(String phone_number, String feedback_info);
+    void insertFeedback(@Param(value = "phone_number") String phone_number,@Param(value = "feedback_info") String feedback_info);
 }
