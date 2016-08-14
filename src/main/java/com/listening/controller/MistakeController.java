@@ -34,11 +34,15 @@ public class MistakeController {
     public Map<String, Object> addMistake(@PathVariable("listen_id") int listen_id){
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
-        int user_id = user.getUser_id();
-        mistakeManager.addMistake(user_id, listen_id);
-        map.put("success", true);
-        map.put("msg", "收藏成功！");
-        return map;
+        if(user==null){
+            return null;
+        }else {
+            int user_id = user.getUser_id();
+            mistakeManager.addMistake(user_id, listen_id);
+            map.put("success", true);
+            map.put("msg", "添加成功！");
+            return map;
+        }
     }
 
     @RequestMapping(value = "/showMistakeByUser")
