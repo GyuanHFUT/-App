@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>选择题型</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="../src/lib/SUI-Mobile-dev1/docs/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -26,18 +25,15 @@
         </header>
         <div class="content">
             <div class="content-block">
-                <form action="" method = 'get'>
-                    <p><label>反馈内容：</label><input type="text" name="content"/></p>
-                    <p><label>联系方式：</label><input type="tel"name="telphone"/></p>
+                <form  action="/JuniorHearing/feedback/addFeedback" method = 'post'>
+                    <p><label>反馈内容：</label><input type="text" name="feedback_info"/></p>
+                    <p><label>联系方式：</label><input type="tel"name="phone_number"/></p>
                     <input type="submit" value="submit" />
                 </form>
 
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 
