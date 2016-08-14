@@ -3,7 +3,7 @@ package com.listening.domain;
 /**
  * Created by Asus on 2016/7/23.
  */
-public class Word {
+public class Word extends Exam {
     private int listen_id;
     private int listen_type;
     private String radio_url;

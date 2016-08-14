@@ -3,6 +3,7 @@ package com.listening.serviceManagerImpl;
 import com.listening.domain.Essay;
 import com.listening.mapper.EssayMapper;
 import com.listening.serviceManager.EssayManager;
+import com.listening.util.active.ActiveUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class EssayManagerImpl implements EssayManager {
     public List<List> showAllEssay() {
         List<List> list = new ArrayList<List>();
         List<Essay> essays = essayMapper.selectAllEssay();
-
+        ActiveUtils.insertActive(essays);
         for(int i=0;i<essays.size();i++){
             List<Essay> list1 = new ArrayList<Essay>();
             Essay essay = essays.get(i);

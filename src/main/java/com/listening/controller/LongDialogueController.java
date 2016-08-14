@@ -2,6 +2,7 @@ package com.listening.controller;
 
 import com.listening.domain.LongDialogue;
 import com.listening.serviceManager.LongDialogueManager;
+import com.listening.util.active.ActiveUtils;
 import com.listening.util.random.RandomTitle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

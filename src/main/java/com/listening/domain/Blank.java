@@ -3,7 +3,7 @@ package com.listening.domain;
 /**
  * Created by Asus on 2016/7/31.
  */
-public class Blank {
+public class Blank extends Exam {
     private int listen_id;
     private int listen_type;
     private String radio_url;
@@ -17,6 +17,16 @@ public class Blank {
     private int listen_degree;
     private String listen_text;
     private String listen_explain;
+    private String listen_collect;
+
+
+    public String getListen_collect() {
+        return listen_collect;
+    }
+
+    public void setListen_collect(String listen_collect) {
+        this.listen_collect = listen_collect;
+    }
 
     public int getListen_id() {
         return listen_id;

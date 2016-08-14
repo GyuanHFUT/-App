@@ -17,5 +17,5 @@ public interface CollectManager {
 
     void deleteCollect(int user_id, int listen_id);
 
-    //List<Word> showCollectOfWord(int user_id);
+    //List<Word> showCollectOfWord(int );
 }

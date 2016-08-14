@@ -1,7 +1,12 @@
 package com.listening.controller;
 
+import com.listening.domain.Exam;
 import com.listening.domain.ShortDialogue;
+import com.listening.domain.User;
+import com.listening.serviceManager.CollectManager;
 import com.listening.serviceManager.ShortDialogueManager;
+import com.listening.util.active.ActiveUtils;
+import com.listening.util.session.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,10 +32,10 @@ public class ShortDialogueController {
     public Map<String, Object> showAllShortDialogue(){
         Map<String, Object> map = new HashMap<String, Object>();
         List<ShortDialogue> shortDialogues = shortDialogueManager.showAllShortDialogue();
+        ActiveUtils.insertActive(shortDialogues);
         map.put("shortDialogues", shortDialogues);
         map.put("success", true);
         map.put("msg", "查询成功！");
         return map;
     }
-
 }

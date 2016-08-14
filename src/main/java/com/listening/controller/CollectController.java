@@ -40,7 +40,7 @@ public class CollectController {
     @RequestMapping(value = "/showCollectByUser")
     @ResponseBody
     public List<Exam> showCollectByUser(){
-        Map<String, Object> map = new HashMap<String, Object>();
+        //Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
         List<Exam> collects = collectManager.showCollectByUser(user_id);

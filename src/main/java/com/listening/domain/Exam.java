@@ -26,6 +26,15 @@ public class Exam {
     private int listen_degree;
     private int listen_exam;
     private String exam_radio;
+    private String listen_collect;
+
+    public String getListen_collect() {
+        return listen_collect;
+    }
+
+    public void setListen_collect(String listen_collect) {
+        this.listen_collect = listen_collect;
+    }
 
     public String getExam_radio() {
         return exam_radio;
