@@ -166,3 +166,36 @@ for (var i = s - 1; i >= 0; i--) {
          };   
       }     
  }
+ //切换页面就停下来.这个功能待定！
+ (function() {
+    if (typeof pageVisibility.hidden !== "undefined") {
+        var eleVideo = document.querySelector(".audio");
+        // 视频时间更新的时候
+        eleVideo.addEventListener("timeupdate", function() {
+            document.title = "第" + Math.floor(videoElement.currentTime) + "秒";    
+        }, false);
+        // 视频暂停的时候
+        eleVideo.addEventListener("pause", function(){
+            if (pageVisibility.hidden) {
+                // 如果是因为页面不可见导致的视频暂停
+                sessionStorage.pauseByVisibility = "true";
+            }
+        }, false);
+        // 视频播放时候
+        eleVideo.addEventListener("play", function() {
+            sessionStorage.pauseByVisibility = "false";    
+        }, false);
+        // 本页面可见性改变的时候
+        pageVisibility.visibilitychange(function() {
+            if (this.hidden) {
+                // 页面不可见
+                eleVideo.pause();    
+            } else if (sessionStorage.pauseByVisibility === "true") {
+                // 页面可见
+                eleVideo.play();    
+            }
+        });
+    } else {
+        alert("弹框？？？没错，因为你的这个浏览器不支持Page Visibility API的啦！");    
+    }
+})();
