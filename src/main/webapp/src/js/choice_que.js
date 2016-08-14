@@ -7,10 +7,10 @@ $(document).ready(function () {
         type:'get',
         url:'/JuniorHearing/user/sendUserDay',
         success:function(data){
+            var data = data.sentence;
             console.log(data);
-            data = JSON.parse(data);
             var myTemplate = Handlebars.compile($("#myTemplate").html());
-            $("#handlebars").html(myTemplate(data));
+            $("#day_word").html(myTemplate(data));
         }
     });
     //侧边栏点击控制事件
