@@ -1,11 +1,14 @@
 package com.listening.controller;
 
 import com.listening.domain.Feedback;
+import com.listening.domain.User;
 import com.listening.serviceManager.FeedbackManager;
+import com.listening.util.session.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -20,8 +23,9 @@ public class FeedbackController {
     FeedbackManager feedbackManager;
 
     @RequestMapping(value = "/addFeedback")
-    @ResponseBody
-    public Map<String,Object> addFeedback(Feedback feedback){
-        return feedbackManager.addFeedback(feedback);
+    public ModelAndView addFeedback(Feedback feedback) {
+        //User user = SessionUtils.getCurrentUser();
+        feedbackManager.addFeedback(feedback);
+        return new ModelAndView("feedback");
     }
 }
