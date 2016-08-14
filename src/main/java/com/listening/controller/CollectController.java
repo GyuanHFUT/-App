@@ -4,8 +4,10 @@ import com.listening.domain.Collect;
 import com.listening.domain.Exam;
 import com.listening.domain.User;
 import com.listening.serviceManager.CollectManager;
+import com.listening.util.active.ActiveUtils;
 import com.listening.util.session.SessionUtils;
 import net.sf.json.JSONArray;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/collect")
 public class CollectController {
+    private static Logger logger = Logger.getLogger(CollectController.class);
 
     @Autowired
     private CollectManager collectManager;
@@ -41,11 +44,11 @@ public class CollectController {
 
     @RequestMapping(value = "/showCollectByUser")
     public ModelAndView showCollectByUser(){
-        //Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
         List<Exam> collects = collectManager.showCollectByUser(user_id);
         JSONArray jsonArray = JSONArray.fromObject(collects);
+        logger.info(jsonArray);
         String exam = jsonArray.toString();
         return new ModelAndView("collect","exam",exam);
     }
