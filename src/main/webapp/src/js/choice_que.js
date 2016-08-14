@@ -1,6 +1,18 @@
 
 $(document).ready(function () {
     $.init();
+    //每日一句渲染
+
+    $.ajax({
+        type:'get',
+        url:'/JuniorHearing/user/sendUserDay',
+        success:function(data){
+            console.log(data);
+            var myTemplate = Handlebars.compile($("#myTemplate").html());
+            $("#handlebars").html(myTemplate(data));
+        }
+    })
+
     //侧边栏点击控制事件
     var name = $('.panel-left').find('#exam').html();
     if(name !== '${exam}'){

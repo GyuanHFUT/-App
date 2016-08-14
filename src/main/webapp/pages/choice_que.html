@@ -40,10 +40,8 @@
                     </nav>
                     <!-- 这里是页面内容区 -->
                     <div class="content">
-                      <div class="content-block day_word">
-                        <img src="../src/img/word.jpg"/>
-                        <p>Don't hide, don't be afraid of the dark,follow the lights,then you can find tomorrow</p>
-                        <p>不要躲避，不要害怕黑暗，向着太阳，你就能找到明天! —《疯狂原始人》</p>
+                      <div class="content-block day_word" id="day_word">
+
                       </div>
                       <div class="content-block">
                         <p><a href="#practice" class="button button-big button-round">专项听力学习 </a></p>
@@ -153,7 +151,15 @@
     </div>
 
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
+    <script type="text/x-handlebars-template" id="myTemplate">
+    {{#with sentence}}
+        <img src="{{picture_url}}"/>
+        <p>{{sentence_english}}</p>
+        <p>{{sentence_chinese}}</p>
+    {{/with}}
+        </script>
     <script type='text/javascript' src='../src/js/packge.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/js/choice_que.js' charset='utf-8'></script> 
 
