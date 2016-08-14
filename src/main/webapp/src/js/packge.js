@@ -119,7 +119,8 @@ function shoucang(){
                   $(that).addClass('active');
                   $.toast("收藏成功！")}
                   else{
-                     $.toast(data.msg);                    
+                    $(that).addClass('active');
+                     $.toast(data.msg);
                   }
                }
                },
