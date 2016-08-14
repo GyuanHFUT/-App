@@ -8,11 +8,11 @@ $(document).ready(function () {
         url:'/JuniorHearing/user/sendUserDay',
         success:function(data){
             console.log(data);
+            data = JSON.parse(data);
             var myTemplate = Handlebars.compile($("#myTemplate").html());
             $("#handlebars").html(myTemplate(data));
         }
-    })
-
+    });
     //侧边栏点击控制事件
     var name = $('.panel-left').find('#exam').html();
     if(name !== '${exam}'){
