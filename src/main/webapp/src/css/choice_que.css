@@ -72,3 +72,7 @@ margin:1rem;
 .panel-left p #nickname{
   display:none;
 }
+/*反馈页面样式*/
+.feedback form label{
+  display:block;
+}

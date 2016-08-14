@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/simulation_common.css">
+    <link rel="stylesheet" href="../src/css/choice_que.css">
 </head>
 <body>
 
@@ -18,13 +18,13 @@
     <!-- 你的html代码 -->
     <div class="page page-current" >
         <header class="bar bar-nav">
-            <a class="pull-left open-panel" >
-                <i class="icon iconfont">&#xe6a3;</i></a>
-            <a class="button button-link button-nav pull-left back" href="/docs-demos/router">返回上一页</a>
+            <a class="button button-link button-nav pull-left back" href="#">
+                <i class="icon iconfont">&#xe61e;</i>
+            </a>
             <h1 class="title">唤醒听力</h1>
         </header>
         <div class="content">
-            <div class="content-block">
+            <div class="content-block" class="feedback">
                 <form  action="/JuniorHearing/feedback/addFeedback" method = 'post'>
                     <p><label>反馈内容：</label><input type="text" name="feedback_info"/></p>
                     <p><label>联系方式：</label><input type="tel"name="phone_number"/></p>
