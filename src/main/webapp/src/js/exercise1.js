@@ -42,10 +42,14 @@ $(document).ready(function () {
                 var dui=0;
                 var cuo=0;
                 var zong=data.length;//获取总题数
+                var islogin=false;
+                judgment2(islogin);
+                console.log(islogin);
                 tiHuanZong (zong);
                 select(dui,cuo,zong);
                 shoucang();  //收藏部分！
                 xiangjie();//详解打开和关闭
+
                 //播放部分
                 $('.yinpinicon').tap(function(){
                     $(this).find('.playn').toggle();
@@ -92,43 +96,5 @@ $(document).ready(function () {
             }
 
         },
-  })    
-
- //var data = [
- //         {
- //             "listen_id":1,
- //             "listen_type":1,
- //             "option_A": "sunshine",
- //             "option_B": "big",
- //             "option_C": "boy",
- //             "listen_answer":"A",
- //             "radio_url":"../src/audio/1.mp3",
- //             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
- //             "yuanwen":"Is there anything wrong with you,Peter?"
- //         },
- //         {
- //             "listen_id":2,
- //             "listen_type":1,
- //             "option_A": "sunshine",
- //             "option_B": "big",
- //             "option_C": "two",
- //             "listen_answer":"B",
- //             "radio_url":"../src/audio/1.mp3",
- //             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
- //             "yuanwen":"Is there anything wrong with you,Peter?"
- //         },
- //         {
- //             "listen_id":3,
- //             "listen_type":1,
- //             "option_A": "sunshine",
- //             "option_B": "big",
- //             "option_C": "three",
- //             "listen_answer":"C",
- //             "radio_url":"../src/audio/1.mp3",
- //             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
- //             "yuanwen":"Is there anything wrong with you,Peter?"
- //         }
- //      ] ;
-
-      //盒子切换
+  })
 })
