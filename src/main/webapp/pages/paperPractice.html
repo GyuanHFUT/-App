@@ -76,7 +76,7 @@
                   {{\#if form_url}}
                   <h3>26-30.{{listen_question}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
-                  <div class="selects {{selects_type}} " value="{{addOne @index}}">
+                  <div class="selects {{selects_type}} " value="{{addOne @index}}" shoucangid="{{listen_id}}">
                   <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
@@ -86,7 +86,7 @@
                   {{else}}
                   <h3>{{addOne @index}}.{{listen_question}}</h3>
                     {{#choice option_A}}
-                     <div class="selects {{selects_type}}"  value="{{addOne @index}}">
+                     <div class="selects {{selects_type}}"  value="{{addOne @index}}" shoucangid="{{listen_id}}">
                          <div class="select {{A}}" value="1">
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_A}}</span> </div>
                          <div class="select {{B}}" value="2">
@@ -95,7 +95,7 @@
                            <i class="icon iconfont">&#xe61b;</i><span>{{option_C}}</span></div>
                      </div>
                      {{else}}
-                     <div class="selects {{selects_type}} " value="{{addOne @index}}">
+                     <div class="selects {{selects_type}} " value="{{addOne @index}}" shoucangid="{{listen_id}}">
                              <div class="select {{A}}" value="1">
                                <i class="icon iconfont ">&#xe61b;</i>
                                <img src="{{option_A}}">

@@ -42,11 +42,15 @@ $(document).ready(function () {
                 var dui=0;
                 var cuo=0;
                 var zong=data.length;//获取总题数
-                var islogin=false;
-                judgment2(islogin);
-                console.log(islogin);
+                var islogin;
+                judgment2(islogin,function(islogin){
+                    select(dui,cuo,zong,islogin);
+                    if(islogin){
+                        $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                    }
+                });
                 tiHuanZong (zong);
-                select(dui,cuo,zong);
+
                 shoucang();  //收藏部分！
                 xiangjie();//详解打开和关闭
 
@@ -89,7 +93,6 @@ $(document).ready(function () {
                         $.toast("已经是第一题了")
                     }
                 })
-
                 box($audio);
             }else{
                 $toast("抽题失败！")
