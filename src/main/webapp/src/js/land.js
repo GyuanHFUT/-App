@@ -14,7 +14,7 @@ $(document).ready(function () {
                 if(data.success){   
 
                   $.alert("登陆成功!", function () {
-                    $.router.load("../pages/choice_que.html"); 
+                    $.router.load("/JuniorHearing/user/showUserMessage");
         })}
                   else{
                      $.alert(data.msg);
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 console.log(data);
                 if(data.success){
                     $.alert("密码重置成功!", function () {
-                    $.router.load("../pages/choice_que.html"); 
+                    $.router.load("/JuniorHearing/user/showUserMessage");
                 })}  
                 else{
                    $.alert(data.msg);

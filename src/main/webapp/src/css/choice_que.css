@@ -69,3 +69,6 @@ margin:1rem;
 #practice .content-block{
   margin:auto 0;
 }
+.panel-left p #nickname{
+  display:none;
+}

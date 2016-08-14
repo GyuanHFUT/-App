@@ -4,9 +4,13 @@ import com.listening.domain.User;
 import com.listening.domain.Word;
 import com.listening.serviceManager.UserManager;
 import com.listening.util.session.SessionUtils;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,6 +22,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+    private static Logger logger = Logger.getLogger(UserController.class);
+
     @Autowired
     private UserManager userManager;
 
@@ -74,5 +80,25 @@ public class UserController {
             return userManager.backUserPwd(user_name, user_pwd, user_code);
     }
 
+    @RequestMapping(value = "/sendUser")
+    @ResponseBody
+    public Map<String, Object> sendUser(){
+        return userManager.sendUser();
+    }
 
+    @RequestMapping(value = "/sendUserDay")
+    @ResponseBody
+    public Map<String, Object> sendUserDay(){
+        return userManager.showSentence();
+    }
+
+    @RequestMapping(value = "/showUserMessage")
+    public ModelAndView showUserMessage(){
+        User user = SessionUtils.getCurrentUser();
+        logger.info("进入该方法："+user.getUser_name());
+        JSONObject jsonObject = JSONObject.fromObject(user);
+        String exam = jsonObject.toString();
+        logger.info(exam);
+        return new ModelAndView("choice_que","exam",exam);
+    }
 }

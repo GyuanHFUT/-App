@@ -1,6 +1,7 @@
 package com.listening.controller;
 
 import com.listening.domain.Collect;
+import com.listening.domain.Exam;
 import com.listening.domain.User;
 import com.listening.serviceManager.CollectManager;
 import com.listening.util.session.SessionUtils;
@@ -30,23 +31,23 @@ public class CollectController {
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
-        collectManager.addCollect(user_id, listen_id);
-        map.put("success", true);
+        return collectManager.addCollect(user_id, listen_id);
+/*        map.put("success", true);
         map.put("msg", "收藏成功！");
-        return map;
+        return map;*/
     }
 
     @RequestMapping(value = "/showCollectByUser")
     @ResponseBody
-    public Map<String, Object> showCollectByUser(){
+    public List<Exam> showCollectByUser(){
         Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
-        List<Collect> collects = collectManager.showCollectByUser(user_id);
-        map.put("collects", collects);
+        List<Exam> collects = collectManager.showCollectByUser(user_id);
+        /*map.put("collects", collects);
         map.put("success", true);
-        map.put("msg", "查询成功！");
-        return map;
+        map.put("msg", "查询成功！");*/
+        return collects;
     }
 
     @RequestMapping(value = "/deleteCollect/{listen_id}")

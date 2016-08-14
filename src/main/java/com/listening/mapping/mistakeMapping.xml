@@ -11,9 +11,9 @@
         FROM mistake WHERE user_id=#{user_id} AND listen_id=#{listen_id};
     </select>
 
-    <select id="selectMistakeByUser" resultType="com.listening.domain.Mistake">
-        SELECT *
-        FROM mistake WHERE user_id=#{user_id};
+    <select id="selectMistakeByUser" resultType="com.listening.domain.Exam">
+        SELECT question.*
+        FROM mistake,question WHERE question.listen_id=mistake.listen_id AND mistake.user_id=#{user_id} ORDER BY question.listen_type ASC;
     </select>
 
     <delete id="deleteMistake">

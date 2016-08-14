@@ -1,8 +1,11 @@
 package com.listening.mapper;
 
+import com.listening.domain.Sentence;
 import com.listening.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created by Asus on 2016/7/20.
@@ -15,4 +18,8 @@ public interface UserMapper {
     void updateUserByName(@Param(value = "user_name") String user_name,@Param(value="user_pwd") String user_pwd);
 
     void deleteUser(int user_id);
+
+    List<Integer> selectSentenceOfType();
+
+    Sentence selectSentenceOfId(int s);
 }

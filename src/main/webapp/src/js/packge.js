@@ -33,7 +33,7 @@ function  select(dui,cuo,zong){
                     .siblings().removeClass('current');
                   flag++;
 
-                  $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面，并且播放语音
+                  $.router.load("#"+flag+"");                //自动下一页，然后改变box当前页面
               }
                   else{ 
                      $.toast("已经是最后一题了")
@@ -166,6 +166,7 @@ for (var i = s - 1; i >= 0; i--) {
          };   
       }     
  }
+
  //切换页面就停下来.这个功能待定！
  (function() {
     if (typeof pageVisibility.hidden !== "undefined") {
@@ -199,3 +200,27 @@ for (var i = s - 1; i >= 0; i--) {
         alert("弹框？？？没错，因为你的这个浏览器不支持Page Visibility API的啦！");    
     }
 })();
+//登陆检测
+function judgment(name,words,url){
+    console.log(name);
+    $(name).tap(function(){
+        console.log(name);
+        $.ajax({
+            type: 'get',
+            url: "/JuniorHearing/user/sendUser",
+            success: function(data){
+                console.log(data);
+                if(data=="login"){
+                    $.confirm(words+'需要登录，是否登陆?',
+                        function () {
+                            $.router.load("../pages/land.html");
+                        }
+                    );
+                }else{
+                    $.router.load(url);
+
+                }
+            }
+        })
+    })
+}

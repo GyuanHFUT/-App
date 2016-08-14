@@ -11,15 +11,14 @@
         FROM collect WHERE user_id=#{user_id} AND listen_id=#{listen_id};
     </select>
 
-    <select id="selectCollectByUser" resultType="com.listening.domain.Collect">
-        SELECT *
-        FROM collect WHERE user_id=#{user_id};
+    <select id="selectCollectByUser" resultType="com.listening.domain.Exam">
+        SELECT question.*
+        FROM question,collect WHERE question.listen_id=collect.listen_id AND collect.user_id=#{user_id} ORDER BY question.listen_type ASC;
     </select>
 
     <delete id="deleteCollect">
         DELETE FROM collect WHERE user_id=#{user_id} AND listen_id=#{listen_id};
     </delete>
-
 
 
 </mapper>

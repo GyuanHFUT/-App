@@ -1,14 +1,18 @@
 package com.listening.controller;
 
+import com.listening.domain.Exam;
 import com.listening.domain.Mistake;
 import com.listening.domain.User;
 import com.listening.serviceManager.MistakeManager;
 import com.listening.util.session.SessionUtils;
+import net.sf.json.JSONArray;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +24,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/mistake")
 public class MistakeController {
+    private static Logger logger = Logger.getLogger(MistakeController.class);
 
     @Autowired
     private MistakeManager mistakeManager;
@@ -37,16 +42,18 @@ public class MistakeController {
     }
 
     @RequestMapping(value = "/showMistakeByUser")
-    @ResponseBody
-    public Map<String, Object> showMistakeByUser(){
-        Map<String, Object> map = new HashMap<String, Object>();
+    public ModelAndView showMistakeByUser(){
+        //Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
-        List<Mistake> mistakes = mistakeManager.showMistakeByUser(user_id);
-        map.put("mistakes", mistakes);
-        map.put("success", true);
-        map.put("msg", "查询成功！");
-        return map;
+        List<Exam> mistakes = mistakeManager.showMistakeByUser(user_id);
+        //map.put("mistakes", mistakes);
+        //map.put("success", true);
+        //map.put("msg", "查询成功！");
+        JSONArray jsonArray = JSONArray.fromObject(mistakes);
+        logger.info(jsonArray);
+        String exam = jsonArray.toString();
+        return new ModelAndView("/mistakes","exam",exam);
     }
 
     @RequestMapping(value = "/deleteMistake/{listen_id}")

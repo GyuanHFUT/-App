@@ -1,5 +1,6 @@
 package com.listening.serviceManagerImpl;
 
+import com.listening.domain.Sentence;
 import com.listening.domain.User;
 import com.listening.mapper.UserMapper;
 import com.listening.serviceManager.UserManager;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -158,14 +160,34 @@ public class UserManagerImpl implements UserManager {
         Map<String, Object> map = new HashMap<String, Object>();
         try{
             userMapper.deleteUser(user_id);
+            SessionUtils.resetSession("user");
             map.put("success", true);
             map.put("msg", "注销成功！");
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return map;
     }
 
+    @Override
+    public Map<String, Object> sendUser() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        User user = SessionUtils.getCurrentUser();
+        map.put("user",user);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> showSentence() {
+        Map<String,Object> map = new HashMap<String, Object>();
+        List<Integer> list = userMapper.selectSentenceOfType();
+        int m = RandomNumber.createNumber(list.size());
+        //int s = list.get(m);
+        Sentence sentence = userMapper.selectSentenceOfId(list.get(m));
+        map.put("sentence",sentence);
+        map.put("success",true);
+        map.put("msg","查询成功！");
+        return map;
+    }
 
 }
