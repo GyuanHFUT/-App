@@ -15,6 +15,15 @@ public class Word {
     private String listen_explain;
     private int listen_score;
     private int listen_degree;
+    private String listen_collect;
+
+    public String getListen_collect() {
+        return listen_collect;
+    }
+
+    public void setListen_collect(String listen_collect) {
+        this.listen_collect = listen_collect;
+    }
 
     public String getListen_text() {
         return listen_text;

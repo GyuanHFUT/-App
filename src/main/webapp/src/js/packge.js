@@ -9,12 +9,13 @@ function tiHuanZong (zong) {
        })
 }
 //点击选项判断对错
-function  select(dui,cuo,zong){
+function  select(dui,cuo,zong,islogin){
         $(".select").on('tap',function(){
         var parent  =  $(this).parent();
         var parents  =  $(this).parent().parent();
         var parentss=parents.parent();
         var x=parent.attr('value');
+        var listen_id=parent.attr('shoucangid');
         x--;
         if ($(this).hasClass("dui")) {
             $(this).find('i').html('&#xe61b;');
@@ -24,21 +25,7 @@ function  select(dui,cuo,zong){
             if (!parent.hasClass('yidian')) {//确认此题有没有被点击
             zong--;
             dui++;
-                $.ajax({
-                    type: 'get',
-                    url: "/JuniorHearing/collect/deleteCollect/"+listen_id,
-                    success: function(data){
-                        if(data.success){
-                            $.toast("取消收藏！");
-
-                        }
-                        else{
-                            $.toast(data.msg);
-
-                        }
-                    },
-                })
-                $(".dadui").find('b').html(dui);
+            $(".dadui").find('b').html(dui);
             $(".weida").find('b').html(zong);
             parent.addClass('yidian');
             var flag=parentss.attr("id");
@@ -60,6 +47,21 @@ function  select(dui,cuo,zong){
              if (!parent.hasClass('yidian')) {
              cuo++;
              zong--;
+             if (islogin){
+                 $.ajax({
+                     type: 'get',
+                     url: "/JuniorHearing/mistake/addMistake/"+listen_id,
+                     success: function(data){
+                         console.log(data);
+                         if(data.success){
+                            console.log("错题收集成功！");
+                         }
+                         else{
+                             console.log("错题收集出问题了！");
+                         }
+                     },
+                 })
+             }
              $(".dacuo").find('b').html(cuo);
              $(".weida").find('b').html(zong);
              $('.flex:eq('+x+')').addClass("popcuo");
@@ -82,7 +84,7 @@ function  select(dui,cuo,zong){
 //收藏
 function shoucang(){
  $(".shoucang").tap(function(){
-      listen_id=$(this).attr('shoucangid');
+      var  listen_id=$(this).attr('shoucangid');
       var that=this;
       if ($(this).hasClass('active')) 
           {
@@ -97,7 +99,6 @@ function shoucang(){
                       }
                         else{
                            $.toast(data.msg);
-                           
                         }
                        },
                   })          
@@ -118,7 +119,8 @@ function shoucang(){
                   $(that).addClass('active');
                   $.toast("收藏成功！")}
                   else{
-                     $.toast(data.msg);                    
+                    $(that).addClass('active');
+                     $.toast(data.msg);
                   }
                }
                },
@@ -218,35 +220,35 @@ for (var i = s - 1; i >= 0; i--) {
 function judgment(name,words,url){
     console.log(name);
     $(name).tap(function(){
-        console.log(name);
         $.ajax({
             type: 'get',
             url: "/JuniorHearing/user/sendUser",
             success: function(data){
-                console.log(data);
                 if(data=="login"){
                     $.confirm(words+'需要登录，是否登陆?',
                         function () {
                             $.router.load("../pages/land.html");
-                        }
-                    );
+                        });
                 }else{
                     $.router.load(url);
-
                 }
             }
         })
     })
 }
 //只用来判断是否登陆
-function judgment2(islogin){
+function judgment2(islogin,callback){
         $.ajax({
             type: 'get',
             url: "/JuniorHearing/user/sendUser",
             success: function(data){
                 console.log(data);
-                if(!data=="login"){
+                if(data=="login"){
+                     islogin=false;
+                     callback(islogin);
+                }else{
                     islogin=true;
+                    callback(islogin);
                 }
             }
         })

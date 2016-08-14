@@ -2,6 +2,7 @@ package com.listening.serviceManager;
 
 import com.listening.domain.Collect;
 import com.listening.domain.Exam;
+import com.listening.domain.Word;
 
 import java.util.List;
 import java.util.Map;
@@ -15,4 +16,6 @@ public interface CollectManager {
     List<Exam> showCollectByUser(int user_id);
 
     void deleteCollect(int user_id, int listen_id);
+
+    //List<Word> showCollectOfWord(int user_id);
 }

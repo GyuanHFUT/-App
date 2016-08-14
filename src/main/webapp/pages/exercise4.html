@@ -60,7 +60,7 @@
                     </header>
 
                     <nav class="bar bar-tab">
-                        <a class="tab-item external shoucang" href="#">
+                        <a class="tab-item external shoucang {{listen_collect}}" href="#">
                             <i class="icon iconfont">&#xf006c;</i>
                             <span class="tab-label">收藏</span>
                         </a>
@@ -79,7 +79,7 @@
                     <span class="tishi">{{tishi}}</span>
                        <h3>{{tihao}}.{{listen_question}}</h3>
                        
-                        <div class="selects words" value="{{tihao}}">
+                        <div class="selects words" value="{{tihao}}" shoucangid="{{listen_id}}">
                             <div  class=" select {{A}}"><i class="icon iconfont">&#xe61b;</i><span>{{option_A}}</span><br></div>
                             <div  class=" select {{B}}"><i class="icon iconfont">&#xe61b;</i><span>{{option_B}}</span><br></div>
                             <div  class=" select {{C}}"><i class="icon iconfont">&#xe61b;</i><span>{{option_C}}</span><br></div>

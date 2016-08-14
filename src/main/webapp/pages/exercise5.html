@@ -59,7 +59,7 @@
                     </header>
 
                     <nav class="bar bar-tab">
-                        <a class="tab-item external shoucang" href="#">
+                        <a class="tab-item external shoucang {{listen_collect}}" href="#">
                             <i class="icon iconfont">&#xf006c;</i>
                             <span class="tab-label">收藏</span>
                         </a>
@@ -77,7 +77,7 @@
                 <div class="content content-padded">
                        <h3>{{addOne @index}}.信息转换</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
-                  <div class="selects {{selects_type}} " value="{{addOne @index}}">
+                  <div class="selects {{selects_type}} " value="{{addOne @index}}" shoucangid="{{listen_id}}">
                   <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
                   <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
