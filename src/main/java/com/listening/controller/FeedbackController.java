@@ -23,9 +23,14 @@ public class FeedbackController {
     FeedbackManager feedbackManager;
 
     @RequestMapping(value = "/addFeedback")
-    public ModelAndView addFeedback(Feedback feedback) {
-        //User user = SessionUtils.getCurrentUser();
+    public String addFeedback(Feedback feedback) {
+        User user = SessionUtils.getCurrentUser();
         feedbackManager.addFeedback(feedback);
-        return new ModelAndView("feedback");
+        if(user==null){
+            return "choice_que";
+        }else{
+            return "redirect:/user/showUserMessage";
+        }
+
     }
 }
