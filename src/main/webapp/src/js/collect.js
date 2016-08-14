@@ -1,31 +1,8 @@
+/**
+ * Created by Gy on 2016/8/14.
+ */
 $(document).ready(function(){
     $.init();
-    // [
-    //     {
-    //         "listen_id":1,
-    //         "listen_type":1,
-    //         "listen_style":1,
-    //         "listen_group":0,
-    //         "listen_question":null,
-    //         "radio_url":"../src/audio/1.mp3",
-    //         "form_url":null,
-    //         "option_A":"received",
-    //         "option_B":"got",
-    //         "option_C":"heard",
-    //         "listen_answer":"A",
-    //         "listen_text":"听力第一题",
-    //         "listen_explain":"不应该这样做",
-    //         "first_answer":null,
-    //         "second_answer":null,
-    //         "three_answer":null,
-    //         "four_answer":null,
-    //         "five_answer":null,
-    //         "listen_score":1,
-    //         "listen_degree":2,
-    //         "listen_exam":1,
-    //         "exam_radio":"../src/audio/1.mp3"
-    //     }
-    // ]
     var data = $('#exam').html();
     data = JSON.parse(data);
     console.log(data);
@@ -51,18 +28,18 @@ $(document).ready(function(){
             case 2:data[t]["selects_type"]="imgs"; break;
             case 3:data[t]["selects_type"]=""; break;
         };
-            switch (answer)
-            {
-                case "A":
-                    data[t].A="true";
-                    break;
-                case "B":
-                    data[t].B="true";
-                    break;
-                case "C":
-                    data[t].C="true";
-                    break;
-            };
+        switch (answer)
+        {
+            case "A":
+                data[t].A="true";
+                break;
+            case "B":
+                data[t].B="true";
+                break;
+            case "C":
+                data[t].C="true";
+                break;
+        };
 
 
     };
@@ -87,22 +64,13 @@ $(document).ready(function(){
     $.init();
     var len = data.length, dui=0, cuo=0;
     var zong=len;//获取总题数
-   $('.page').find('.wronglen').html(data.length);
+    $('.page').find('.wronglen').html(data.length);
     // $('.page').find('.weida').html(data.length);
     $(".weida").find('strong').html(len);
     selects(dui,cuo,zong);
     shoucang();  //收藏部分！
     xiangjie();//详解打开和关闭
 
-// 点击事件
-// $('input').focus(function(){
-    // if($("input").blur(function(){
-    //     console.log($(this));
-    //     console.log("hhhe");
-        // $("input").css("background-color","#D6D6FF");
-    // });
-// }) ;
-    //点击选项判断对错
     function  selects(dui,cuo,zong){
         $(".select").on('tap',function(){
             var parent  =  $(this).parent();
@@ -122,7 +90,7 @@ $(document).ready(function(){
                     $(".weida").find('strong').html(zong);
                     parent.addClass('yidian');
                     var flag=parentss.attr("id");
-                    if (flag<$(".page").length-1) {
+                    if (flag<$(".page").length) {
                         $('.flex:eq('+flag+')'). addClass('current')
                             .siblings().removeClass('current');
                         flag++;

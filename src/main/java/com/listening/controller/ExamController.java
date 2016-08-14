@@ -57,11 +57,8 @@ public class ExamController {
     public ModelAndView showExamOfMistake(){
         String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
         JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
-        //JSONObject object = jsonObject.getJSONObject("wrong");
         List<Exama> exams = examManager.showExamOfMistake(jsonObject1);
         ActiveUtils.insertActive(exams);
-        /*Map<String,Object> map = new HashMap<String, Object>();
-        map.put("exams",exams);*/
         JSONArray jsonArray = JSONArray.fromObject(exams);
         logger.info(jsonArray);
         String exam = jsonArray.toString();
