@@ -60,7 +60,13 @@ $(document).ready(function () {
             var cuo=0;
             var zong=data.length;//获取总题数
             tiHuanZong (zong);
-            select(dui,cuo,zong);
+            var islogin;
+            judgment2(islogin,function(islogin){
+                select(dui,cuo,zong,islogin);
+                if(islogin){
+                    $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                }
+            });
             shoucang();  //收藏部分！
             xiangjie();//详解打开和关闭
             $('.yinpinicon').tap(function(){
