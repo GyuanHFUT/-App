@@ -32,14 +32,8 @@ $(document).ready(function () {
             var cuo=0;
             var zong=data.length;//获取总题数
             tiHuanZong(zong);
-            var islogin;
-            var islogin;
-            judgment2(islogin,function(islogin){
-                select(dui,cuo,zong,islogin);
-                if(islogin){
-                    $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
-                }
-            });
+            var islogin = judgment2();
+            select(dui,cuo,zong,islogin);
             shoucang();  //收藏部分！
             xiangjie();//详解打开和关闭
             $('.yinpinicon').tap(function(){
@@ -78,7 +72,9 @@ $(document).ready(function () {
                     $.toast("已经是第一题了")
                 }
             })
-
+            if(islogin){
+                $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+            }
             box($audio);      //盒子切换
         },
   })    

@@ -14,9 +14,7 @@ padding:0.4rem;
     font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
     margin-top: 0.4rem;
 }
-.words .select:hover{
-    color:red;
-}
+
 .words .select span{
     font-size:1.2rem;
     margin-left: 0.5rem;
