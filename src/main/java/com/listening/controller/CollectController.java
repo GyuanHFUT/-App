@@ -5,11 +5,13 @@ import com.listening.domain.Exam;
 import com.listening.domain.User;
 import com.listening.serviceManager.CollectManager;
 import com.listening.util.session.SessionUtils;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,16 +40,14 @@ public class CollectController {
     }
 
     @RequestMapping(value = "/showCollectByUser")
-    @ResponseBody
-    public List<Exam> showCollectByUser(){
+    public ModelAndView showCollectByUser(){
         //Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
         List<Exam> collects = collectManager.showCollectByUser(user_id);
-        /*map.put("collects", collects);
-        map.put("success", true);
-        map.put("msg", "查询成功！");*/
-        return collects;
+        JSONArray jsonArray = JSONArray.fromObject(collects);
+        String exam = jsonArray.toString();
+        return new ModelAndView("","exam",exam);
     }
 
     @RequestMapping(value = "/deleteCollect/{listen_id}")

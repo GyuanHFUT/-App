@@ -3,7 +3,7 @@ package com.listening.domain;
 /**
  * Created by Asus on 2016/8/9.
  */
-public class Exama {
+public class Exama extends Exam {
     private int listen_id;
     private int listen_type;
     private int listen_style;
@@ -34,6 +34,17 @@ public class Exama {
     private String exam_five;
     private int exam_judge;
     private int exam_number;
+    private String listen_collect;
+
+
+    public String getListen_collect() {
+        return listen_collect;
+    }
+
+
+    public void setListen_collect(String listen_collect) {
+        this.listen_collect = listen_collect;
+    }
 
     public int getExam_number() {
         return exam_number;
