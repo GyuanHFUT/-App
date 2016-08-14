@@ -9,6 +9,15 @@ public class User {
     private String user_name;
     private String user_nickname;
     private String user_pwd;
+    private String photo_url;
+
+    public String getPhoto_url() {
+        return photo_url;
+    }
+
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
 
     public int getUser_id() {
         return user_id;

@@ -3,6 +3,7 @@ package com.listening.controller;
 import com.listening.domain.Exam;
 import com.listening.domain.Exama;
 import com.listening.serviceManager.ExamManager;
+import com.listening.util.active.ActiveUtils;
 import com.listening.util.session.SessionUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -58,6 +59,7 @@ public class ExamController {
         JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
         //JSONObject object = jsonObject.getJSONObject("wrong");
         List<Exama> exams = examManager.showExamOfMistake(jsonObject1);
+        ActiveUtils.insertActive(exams);
         /*Map<String,Object> map = new HashMap<String, Object>();
         map.put("exams",exams);*/
         JSONArray jsonArray = JSONArray.fromObject(exams);
@@ -71,6 +73,7 @@ public class ExamController {
         String jsonObject = (String) SessionUtils.getSession().getAttribute("jsonObject");
         JSONObject jsonObject1 = JSONObject.fromObject(jsonObject);
         List<Exama> examas = examManager.showAllExam(jsonObject1);
+        ActiveUtils.insertActive(examas);
         JSONArray jsonArray = JSONArray.fromObject(examas);
         logger.info(jsonArray);
         String exams = jsonArray.toString();
