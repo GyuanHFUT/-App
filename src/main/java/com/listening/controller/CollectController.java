@@ -47,7 +47,7 @@ public class CollectController {
         List<Exam> collects = collectManager.showCollectByUser(user_id);
         JSONArray jsonArray = JSONArray.fromObject(collects);
         String exam = jsonArray.toString();
-        return new ModelAndView("","exam",exam);
+        return new ModelAndView("collect","exam",exam);
     }
 
     @RequestMapping(value = "/deleteCollect/{listen_id}")
