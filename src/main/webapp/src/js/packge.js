@@ -47,9 +47,11 @@ function  select(dui,cuo,zong,islogin){
              if (!parent.hasClass('yidian')) {
              cuo++;
              zong--;
+             console.log(listen_id);
              if (islogin){
                  $.ajax({
                      type: 'get',
+                     async: false,
                      url: "/JuniorHearing/mistake/addMistake/"+listen_id,
                      success: function(data){
                          console.log(data);
@@ -85,6 +87,7 @@ function  select(dui,cuo,zong,islogin){
 function shoucang(){
  $(".shoucang").tap(function(){
       var  listen_id=$(this).attr('shoucangid');
+     console.log(listen_id);
       var that=this;
       if ($(this).hasClass('active')) 
           {
@@ -111,7 +114,40 @@ function shoucang(){
                if(data=="login"){
                    $.confirm('收藏功能需要登录，是否登陆?',
                        function () {
-                           $.router.load("../pages/land.html");
+                           $.modal({
+                               title:  '请输入账号和密码',
+                               afterText:  '<input type="text" placeholder="phone number" id="modal-phonenumeber" class="modal-text-input"/>'+
+                               '<input type="text" placeholder="password" id="modal-password" class="modal-text-input" />',
+                               buttons: [
+                                   {
+                                       text: '取消',
+                                   },
+                                   {
+                                       text: '登录',
+                                       onClick: function() {
+                                           var user = {"user_name":$("#modal-phonenumeber").val(), "user_pwd":$("#modal-password").val()};
+                                           console.log(user);
+                                           $.ajax({
+                                               type: 'post',
+                                               url: '/JuniorHearing/user/userLogin',
+                                               data: user,
+                                               success: function(data){
+                                                   console.log(data);
+                                                   if(data.success){
+                                                       $.alert("登陆成功!");
+                                                       islogin=true;
+                                                       $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                                                       return islogin;
+                                                   }
+                                                   else{
+                                                       $.alert(data.msg);
+                                                   }
+                                               }
+                                           })
+                                       }
+                                   },
+                               ]
+                           })
                        }
                    );
                }else{
@@ -237,19 +273,21 @@ function judgment(name,words,url){
     })
 }
 //只用来判断是否登陆
-function judgment2(islogin,callback){
+function judgment2(islogin){
         $.ajax({
             type: 'get',
             url: "/JuniorHearing/user/sendUser",
-            success: function(data){
-                console.log(data);
+            async: false,
+            success: function (data){
+
                 if(data=="login"){
-                     islogin=false;
-                     callback(islogin);
+
+                    islogin=false;
                 }else{
+
                     islogin=true;
-                    callback(islogin);
                 }
             }
         })
+    return islogin;
 }
