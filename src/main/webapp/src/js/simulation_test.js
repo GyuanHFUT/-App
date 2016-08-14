@@ -46,7 +46,7 @@ $(document).ready(function(){
                 if (flag>1) {
                     flag--;
                     $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-                    $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+                    // $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
                     $.router.load("#"+flag+"");
                 }else{
                     $.toast("已经是第一题了")
