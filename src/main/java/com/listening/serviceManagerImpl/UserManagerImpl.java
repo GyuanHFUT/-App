@@ -162,7 +162,7 @@ public class UserManagerImpl implements UserManager {
             userMapper.deleteUser(user_id);
             SessionUtils.resetSession("user");
             map.put("success", true);
-            map.put("msg", "注销成功！");
+            map.put("msg", "用户删除成功！");
         }catch (Exception e){
             e.printStackTrace();
         }

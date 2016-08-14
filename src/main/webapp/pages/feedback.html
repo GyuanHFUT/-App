@@ -6,44 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>选择题型</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="../src/lib/SUI-Mobile-dev1/docs/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
-    <link rel="stylesheet" href="../src/css/simulation_common.css">
+    <link rel="stylesheet" href="../src/css/choice_que.css">
 </head>
 <body>
+
 <div class="page-group">
     <!-- 你的html代码 -->
     <div class="page page-current" >
         <header class="bar bar-nav">
-            <a class="pull-left open-panel" >
-                <i class="icon iconfont">&#xe6a3;</i></a>
-            <a class="button button-link button-nav pull-left back" href="/docs-demos/router">返回上一页</a>
+            <a class="button button-link button-nav pull-left back" href="#">
+                <i class="icon iconfont">&#xe61e;</i>
+            </a>
             <h1 class="title">唤醒听力</h1>
         </header>
         <div class="content">
-            <div class="content-block">
-                <form action="" method = 'get'>
-                    <p><label>反馈内容：</label><input type="text" name="content"/></p>
-                    <p><label>联系方式：</label><input type="tel"name="telphone"/></p>
-                    <input type="submit" value="submit" />
+            <div class="content-block" class="feedback">
+                <form  action="/JuniorHearing/feedback/addFeedback" method = 'post'>
+                    <p><label>反馈内容：</label><input type="text" name="feedback_info"/></p>
+                    <p><label>联系方式：</label><input type="tel"name="phone_number"/></p>
+                    <input id="submit" type="submit" value="submit" />
                 </form>
 
             </div>
         </div>
     </div>
-
-
-
 </div>
-
-
 <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
 <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
-
 <script>$.init()</script>
 </body>
 </html>

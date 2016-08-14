@@ -101,4 +101,15 @@ public class UserController {
         logger.info(exam);
         return new ModelAndView("choice_que","exam",exam);
     }
+
+    @RequestMapping(value = "/cancelUser")
+    @ResponseBody
+    public Map<String,Object> cancelUser(){
+        Map<String,Object> map = new HashMap<String, Object>();
+        SessionUtils.resetSession("user");
+        map.put("success",true);
+        map.put("msg","退出登录成功！");
+        return map;
+    }
+
 }
