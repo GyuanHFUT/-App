@@ -4,6 +4,7 @@ import com.listening.domain.Exam;
 import com.listening.domain.Mistake;
 import com.listening.domain.User;
 import com.listening.serviceManager.MistakeManager;
+import com.listening.util.active.ActiveUtils;
 import com.listening.util.session.SessionUtils;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
@@ -51,9 +52,7 @@ public class MistakeController {
         User user = SessionUtils.getCurrentUser();
         int user_id = user.getUser_id();
         List<Exam> mistakes = mistakeManager.showMistakeByUser(user_id);
-        //map.put("mistakes", mistakes);
-        //map.put("success", true);
-        //map.put("msg", "查询成功！");
+        ActiveUtils.insertActive(mistakes);
         JSONArray jsonArray = JSONArray.fromObject(mistakes);
         logger.info(jsonArray);
         String exam = jsonArray.toString();
