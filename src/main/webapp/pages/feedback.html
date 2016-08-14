@@ -11,6 +11,61 @@
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
     <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
     <link rel="stylesheet" href="../src/css/choice_que.css">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        #feedback{
+            margin:0;
+            padding:0;
+            text-align: center;
+        }
+        #feedback p{
+            margin:0 ;
+            font-size:1rem;
+            color:#000;
+            padding-bottom:0.2rem;
+            text-align: center;
+            /*font-size:1px solid #333;*/
+        }
+        #feedback .back_content{
+            text-align: left;
+            padding:0.5rem 0 0 0.5rem;
+        }
+        #feedback p input{
+            border: 1px solid #69B2DC;
+            border-radius: 0.15rem;
+            /*float: left;*/
+            font-size: 1rem;
+            margin:0.5rem;
+            outline: medium none;
+            padding:1rem;
+            width: 95%;
+            /*height:20rem;*/
+        }
+        #feedback p textarea{
+          border: 1px solid #69B2DC;
+          border-radius: 0.15rem;
+          /*float: left;*/
+          font-size: 1rem;
+          margin:0.5rem;
+          outline: medium none;
+          padding:1rem;
+          color:#ccc;
+          width: 95%;
+        }
+        #feedback input[type=submit].button{
+            margin:1rem auto;
+            width:8rem;
+            font-size:1.3rem;
+            background-color:#4d90fe;
+            color:#fff;
+        }
+        /*#feedback p .suggest{*/
+            /*min-height:10rem;*/
+        /*}*/
+    </style>
 </head>
 <body>
 
@@ -24,11 +79,14 @@
             <h1 class="title">唤醒听力</h1>
         </header>
         <div class="content">
-            <div class="content-block" class="feedback">
+            <div class="content-block" id="feedback">
                 <form  action="/JuniorHearing/feedback/addFeedback" method = 'post'>
-                    <p><label>反馈内容：</label><input type="text" name="feedback_info"/></p>
-                    <p><label>联系方式：</label><input type="tel"name="phone_number"/></p>
-                    <input id="submit" type="submit" value="submit" />
+                    <p class="back_content">反馈内容： </p>
+                    <!--<p ><input class="suggest" type="text"  name="feedback_info" maxlength="140"  placeholder="请输入您的建议，限140字以内"/></p>-->
+                    <P><textarea rows="5">请输入您的建议，限140字以内</textarea></P>
+                    <p class="back_content">联系方式： </p>
+                    <p><input type="tel"name="phone_number"  placeholder="请输入您的手机号码"/></p>
+                    <input   class="button button-big button-round" id="submit" type="submit" value="提交" />
                 </form>
 
             </div>
