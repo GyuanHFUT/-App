@@ -51,6 +51,19 @@ $(document).ready(function(){
             case 2:data[t]["selects_type"]="imgs"; break;
             case 3:data[t]["selects_type"]=""; break;
         };
+            switch (answer)
+            {
+                case "A":
+                    data[t].A="true";
+                    break;
+                case "B":
+                    data[t].B="true";
+                    break;
+                case "C":
+                    data[t].C="true";
+                    break;
+            };
+
 
     };
     Handlebars.registerHelper("addOne",function(index,options){
@@ -75,19 +88,20 @@ $(document).ready(function(){
     var len = data.length, dui=0, cuo=0;
     var zong=len;//获取总题数
    $('.page').find('.wronglen').html(data.length);
+    // $('.page').find('.weida').html(data.length);
+    $(".weida").find('strong').html(len);
     selects(dui,cuo,zong);
     shoucang();  //收藏部分！
     xiangjie();//详解打开和关闭
 
 // 点击事件
-$('input').focus(function(){
+// $('input').focus(function(){
     // if($("input").blur(function(){
-
-        console.log($(this));
-        console.log("hhhe");
+    //     console.log($(this));
+    //     console.log("hhhe");
         // $("input").css("background-color","#D6D6FF");
     // });
-}) ;
+// }) ;
     //点击选项判断对错
     function  selects(dui,cuo,zong){
         $(".select").on('tap',function(){
@@ -96,10 +110,10 @@ $('input').focus(function(){
             var parentss=parents.parent();
             var x=parent.attr('value');
             x--;
-            if ($(this).hasClass("dui")) {
+            if ($(this).hasClass("true")) {
                 $(this).find('i').html('&#xe61b;');
                 //在popup层找到相对应的box改变颜色！
-                $(this).addClass("duicolor");
+                $(this).addClass("dui");
                 $('.flex:eq('+x+')').addClass("popdui");
                 if (!parent.hasClass('yidian')) {//确认此题有没有被点击
                     zong--;
@@ -122,7 +136,7 @@ $('input').focus(function(){
 
             }
             else{
-                $(this).addClass("cuocolor");
+                $(this).addClass("cuo");
                 $(this).find('i').html('&#xf0011');
                 if (!parent.hasClass('yidian')) {
                     cuo++;
@@ -135,9 +149,9 @@ $('input').focus(function(){
                 //给正确答案加样式！
                 for (var i =parent.find(".select ").length - 1; i >= 0; i--) {
                     var a=parent.find(".select ")[i];
-                    if ($(a).hasClass("dui"))
+                    if ($(a).hasClass("true"))
                     {
-                        $(a).addClass("duicolor");
+                        $(a).addClass("dui");
                     };
                 }
                 parents.find(".xiangjie-wapper").show();
