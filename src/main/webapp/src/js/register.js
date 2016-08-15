@@ -20,13 +20,13 @@ $(document).ready(function () {
             })          
            })
 
-            function checkPhone(phone){ 
-              if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))){ 
-                 $.toast("请输入正确的手机号码。");  
-                 $("#account").focus();
-                  return false; 
-              } return true; 
-          }
+        function checkPhone(phone){
+          if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))){
+             $.toast("请输入正确的手机号码。");
+             $("#account").focus();
+              return false;
+          } return true;
+        }
          $("#account").blur(function () {
             var account = $("#account").val();
             var flag=checkPhone(account);
@@ -96,5 +96,12 @@ $(document).ready(function () {
           }
         else {$.alert("验证码和昵称不能为空！")}
     });
+
+    //上传头像
+    $(".head_photo img").tap(function(){
+        console.log("haha");
+        //$("#f").trigger("click");
+        $("#f").click();
+    })
 
 })
