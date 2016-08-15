@@ -4,7 +4,7 @@ package com.listening.util.upload;
  * Created by Asus on 2016/8/15.
  */
 public class CheckFileType {
-    private static String[] imageType = {".jpg",".jpeg",".png",".gif",".bmp",".psd",".svg",".tiff"};
+    private static String[] imageType = {".jpg",".JPG",".jpeg",".JPEG",".png",".PNG",".gif",".GIF",".bmp",".BMP",".psd",".PSD",".svg",".SVG",".tiff",".TIFF"};
 
     public static String checkType(String fileName, String type) {
         if(type.equals("image")){

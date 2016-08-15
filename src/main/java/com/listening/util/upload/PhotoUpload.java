@@ -7,6 +7,9 @@ import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ import java.util.List;
  * Created by Asus on 2016/8/15.
  */
 public class PhotoUpload {
+    private static final Logger logger = Logger.getLogger(PhotoUpload.class);
     private static final String PHOTO_SAVE_PATH = "/src/photos/";
 
     public static String upload(HttpServletRequest request, String type) throws ServletException, UnsupportedEncodingException {
@@ -27,45 +31,48 @@ public class PhotoUpload {
         request.setCharacterEncoding("UTF-8");
         String photo_url = null;
         if(FileUpload.isMultipartContent(req)){
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            ServletFileUpload fileUpload = new ServletFileUpload(factory);
-
-            List items = new ArrayList();
-            try {
+            //logger.info("lalalallala");
+/*            DiskFileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload fileUpload = new ServletFileUpload(factory);*/
+            MultipartHttpServletRequest items = (MultipartHttpServletRequest) request;
+            //List items = new ArrayList();
+/*            try {
                 items = fileUpload.parseRequest(request);
             } catch (FileUploadException e) {
                 e.printStackTrace();
-            }
+            }*/
 
-            Iterator it = items.iterator();
+            Iterator it = items.getFileNames();
             while (it.hasNext()){
-                FileItem fileItem = (FileItem) it.next();
-                if(fileItem.isFormField()){
+                //FileItem fileItem = (FileItem) it.next();
+                MultipartFile file = items.getFile(it.next().toString());
+/*                if(file.isFormField()){
                     System.out.println(fileItem.getFieldName()+" "+fileItem.getName()+" "+new String(fileItem.getString().getBytes("ISO-8859-1"),"GBK"));
-                }else{
-                    System.out.println(fileItem.getFieldName()+" "+fileItem.getName()+" "+fileItem.getContentType()+" "+fileItem.isInMemory()+" "+fileItem.getSize()+" "+request.getSession().getServletContext().getRealPath("/"));
-                    if(fileItem.getName()!=null && fileItem.getSize()!=0){
-                        File fullFile = new File(fileItem.getName());
-                        String fileName = fullFile.getName();
+                }else{*/
+                    //System.out.println(file.getFieldName()+" "+fileItem.getName()+" "+fileItem.getContentType()+" "+fileItem.isInMemory()+" "+fileItem.getSize()+" "+request.getSession().getServletContext().getRealPath("/"));
+                    if(file!=null){
+                        //File fullFile = new File(fileItem.getName());
+                        String fileName = file.getOriginalFilename();
                         String suffix = CheckFileType.checkType(fileName,type);
                         if(!suffix.isEmpty()){
-                            File newFile = new File(request.getSession().getServletContext().getRealPath("/")+File.separator+PHOTO_SAVE_PATH.replace("/",File.separator)+fullFile.getName());
+                            File newFile = new File(request.getSession().getServletContext().getRealPath("/")+File.separator+PHOTO_SAVE_PATH.replace("/",File.separator)+fileName);
+                            System.out.println(request.getSession().getServletContext().getRealPath("")+PHOTO_SAVE_PATH.replace("/",File.separator)+fileName);
                             if(!newFile.getParentFile().exists()){
                                 newFile.getParentFile().mkdirs();
                             }
                             try {
-                                fileItem.write(newFile);
+                                file.transferTo(newFile);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }else{
                             return null;
                         }
-                        photo_url = request.getSession().getServletContext().getRealPath("/")+File.separator+PHOTO_SAVE_PATH.replace("/",File.separator)+fullFile.getName();
+                        photo_url = request.getSession().getServletContext().getRealPath("/")+File.separator+PHOTO_SAVE_PATH.replace("/",File.separator)+fileName;
                     }
                 }
             }
+          return photo_url;
         }
-        return photo_url;
     }
-}
+
