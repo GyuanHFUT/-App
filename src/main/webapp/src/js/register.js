@@ -103,25 +103,29 @@ $(document).ready(function () {
     $(".head_photo img").tap(function(){
         console.log("haha");
         //$("#f").trigger("click");
-        $("#f").click();
-        $("#f").click();
+        $("#file").click();
+        $("#file").click();
 
     })
 
 
 })
 function myFunction(){
-    console.log("keyila")
     var form=document.getElementById("form1");
     var formdata=new FormData(form);
+    console.log(formdata);
     $.ajax({
         type : 'post',
-        url : '#',
+        url : '/JuniorHearing/user/photoUpload',
         data : formdata,
         cache : false,
         processData : false,  //  不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
         contentType : false,  //  不设置Content-type请求头
-        success : function(){},
-        error : function(){ }
-    })
-}
+        success : function(data){
+            console.log(data);
+            if(data.success){
+                console.log(data.msg)
+        }else{
+                console.log(data.msg)}
+    }
+})}
