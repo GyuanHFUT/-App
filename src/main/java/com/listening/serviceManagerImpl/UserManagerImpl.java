@@ -190,4 +190,9 @@ public class UserManagerImpl implements UserManager {
         return map;
     }
 
+    @Override
+    public void updateUserOfPhoto(int user_id, String photo_url) {
+        userMapper.updateUserOfPhoto(user_id,photo_url);
+    }
+
 }

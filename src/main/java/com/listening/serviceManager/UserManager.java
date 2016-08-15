@@ -23,4 +23,6 @@ public interface UserManager {
     Map<String,Object> sendUser();
 
     Map<String,Object> showSentence();
+
+    void updateUserOfPhoto(int user_id, String photo_url);
 }
