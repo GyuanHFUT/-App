@@ -22,4 +22,6 @@ public interface UserMapper {
     List<Integer> selectSentenceOfType();
 
     Sentence selectSentenceOfId(int s);
+
+    void updateUserOfPhoto(@Param(value = "user_id") int user_id,@Param(value = "photo_url") String photo_url);
 }
