@@ -1,5 +1,11 @@
 $(document).ready(function () {
     $.init();
+    //上传头像
+    $("#form1 img").tap(function(){
+        $("#file").click();
+        $("#file").click();
+
+    })
     //每日一句渲染
 
     $.ajax({
@@ -71,3 +77,22 @@ $(document).ready(function () {
         })
     })
 });
+function myFunction(){
+    var form=document.getElementById("form1");
+    var formdata=new FormData(form);
+    console.log(formdata);
+    $.ajax({
+        type : 'post',
+        url : '/JuniorHearing/user/photoUpload',
+        data : formdata,
+        cache : false,
+        processData : false,  //  不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+        contentType : false,  //  不设置Content-type请求头
+        success : function(data){
+            console.log(data);
+            if(data.success){
+                console.log(data.msg)
+            }else{
+                console.log(data.msg)}
+        }
+    })}

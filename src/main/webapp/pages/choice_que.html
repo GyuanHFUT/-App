@@ -131,12 +131,15 @@
     <div class="panel-overlay"></div>
     <!-- Left Panel with Reveal effect -->
     <div class="panel panel-left panel-reveal">
-        <span class="content-block">
+        <div class="content-block">
             <p class="head_photo">
-              <img src="../src/img/headphoto.jpg"/>
+              <form name="form1" id="form1"  enctype="multipart/form-data">
+                  <img src="../src/img/headphoto.jpg"/>
+                  <input type="file" name="file" id="file"  style="display: none" onchange="myFunction()"/>
+              </form>
                 <span id ="exam" style="display:none">${exam}</span>
-              <a class="login" href="../pages/land.html" ><span>立即登陆</span></a>
-                <a id="nickname"></a>
+               <a class="login" href="../pages/land.html" ><span>立即登陆</span></a>
+               <span id="nickname"></span>
             </p>
 
             <div class="control">
