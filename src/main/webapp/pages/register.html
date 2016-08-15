@@ -21,10 +21,10 @@
                           <h1 class='title'>注册</h1>
                         </header>
                         <div class="content">
-                            <p class="head_photo">
+                            <form name="form1" id="form1" class="head_photo">
                                 <img src="../src/img/headphoto.jpg"/>
-                                <input type="file" name="f" id="f" style="display: none"/>
-                            </p>
+                                <input type="file" name="f" id="f"  style="display: none" onchange="myFunction()"/>
+                            </form>
                           <div class="list-block">
                             <ul>
                               <!-- Text inputs -->
@@ -86,7 +86,6 @@
                         </div>
                 </div>         
     </div>
-   
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/js/register.js' charset='utf-8'></script>

@@ -2,6 +2,8 @@ $(document).ready(function () {
           $.init();
            $("#yanzheng").click(function () {
                 var account = $("#account").val();
+               var flag=checkPhone(account);
+               if(flag){
                  $.ajax({
                   type: 'post',
                   url: '/JuniorHearing/user/sentUserCode',
@@ -17,7 +19,7 @@ $(document).ready(function () {
                           $.toast('数据异常，请重试!')
                         }
                  }
-            })          
+            })  }
            })
 
         function checkPhone(phone){
@@ -102,6 +104,24 @@ $(document).ready(function () {
         console.log("haha");
         //$("#f").trigger("click");
         $("#f").click();
+        $("#f").click();
+
     })
 
+
 })
+function myFunction(){
+    console.log("keyila")
+    var form=document.getElementById("form1");
+    var formdata=new FormData(form);
+    $.ajax({
+        type : 'post',
+        url : '#',
+        data : formdata,
+        cache : false,
+        processData : false,  //  不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+        contentType : false,  //  不设置Content-type请求头
+        success : function(){},
+        error : function(){ }
+    })
+}
