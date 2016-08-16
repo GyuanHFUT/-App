@@ -170,16 +170,18 @@ $(document).ready(function(){
                     });
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
-                    // var last = $(".trans_input input").val()
-
                 });
-            // });
+            $(".return").on('tap',function(){
+                $.confirm('正在考试中，退出此次考试将无效', function () {
+                    $.router.load("/JuniorHearing/user/showUserMessage");
+                });
+
+            });
 
   //初始化结束
   //添加”dui“class
   //一些使用到的全局变量
-
-    function datapush(data){
+   function datapush(data){
         console.log(data);
         data[0].first="page-current";
         data[0].box = "current";
@@ -208,7 +210,7 @@ $(document).ready(function(){
     };
 
   //倒计时效果
-    function timing(){
+   function timing(){
         time[0].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
     }
 
@@ -311,7 +313,6 @@ function submit_paper(data){
         personal.true.push(traid);
     }else{
         personal.wrong[traid.toString()]= num;
-        // personal.wrong.push(traid+':'+'{'+num+'}' );
     }
     grade =  personal.true.length + 5 - x;
     $('#grade').find('.tips span').html(grade);
