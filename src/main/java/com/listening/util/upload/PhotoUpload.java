@@ -68,7 +68,8 @@ public class PhotoUpload {
                         }else{
                             return null;
                         }
-                        photo_url = request.getSession().getServletContext().getRealPath("/")+File.separator+PHOTO_SAVE_PATH.replace("/",File.separator)+fileName;
+                        photo_url = ".."+PHOTO_SAVE_PATH+fileName;
+                        System.out.println(photo_url);
                     }
                 }
             }
