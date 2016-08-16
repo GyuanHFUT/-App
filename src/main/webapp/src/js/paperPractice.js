@@ -6,7 +6,9 @@ $(document).ready(function(){
             console.log(data);
             data[0].first="page-current";
             data[0].box = "current";
-
+            data[15].tishi="请听下面一段对话，回答第16至第17小题。"
+            data[17].tishi="请听下面一段对话，回答第18至第20小题。"
+            data[20].tishi="请听下面一段对话，回答第21至第25小题。"
             for(var t= 0 ;t<data.length;t++){
                 var n = data[t].listen_type,
                     title = data[t].listen_question,
@@ -72,43 +74,80 @@ $(document).ready(function(){
             //播放部分
             $('.yinpinicon').tap(function(){
                 var $flag=$(this).parent().find('audio');
-                var prev=$(this).parent().parent().parent();
-                var now=$(prev).attr("id");
-                console.log(now);
-                if (now>16) {};
-                $(this).find('.playn').toggle();
-                $(this).find('.stopn').toggle();
-                var $flag=$(this).parent().find('audio');
-                var flag=$flag[0];        //转化成dom对象！
-                flag.paused ? flag.play() : flag.pause();
+                var prev=$(this).parent().parent().parent().prev().find("audio");
+                var next=$(this).parent().parent().parent().next().find("audio");
+                var nextNext=$(this).parent().parent().parent().next().next().find("audio");
+                console.log($flag.attr("src")==prev.attr("src"));
+                if ($flag.attr("src")==prev.attr("src")) {
+                    icon();
+                    if ($(".bofang")[0]) {
+                        $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
+                    }else{
+                        $.toast("请从本题第一小题开始播放!");
+                    }
+                }
+                else{
+                    var flag=$flag[0];
+                    $(flag).addClass("bofang");
+                    $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
+                    icon();
+
+                }
             });
+            //$('.yinpinicon').tap(function(){
+            //    var $flag=$(this).parent().find('audio');
+            //    var prev=$(this).parent().parent().parent();
+            //    var now=$(prev).attr("id");
+            //    console.log(now);
+            //    if (now>16) {};
+            //    $(this).find('.playn').toggle();
+            //    $(this).find('.stopn').toggle();
+            //    var $flag=$(this).parent().find('audio');
+            //    var flag=$flag[0];        //转化成dom对象！
+            //    flag.paused ? flag.play() : flag.pause();
+            //});
             var $audio=$('audio');
             stopNow($audio);
-            //页面翻转===这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
+            //滑动翻页部分
             $(".page").swipeLeft(function(){
+
+                var $panduan=$(this).next().find('.tishi').html();
+                var patt=new RegExp("请听下面一段对话");
+                panduan=patt.test($panduan);
+                console.log(panduan);
+                if(panduan){
                 stopYinpin($audio);
+                }
                 var flag=$(this).attr("id");
                 if (flag<$(".page").length) {
-                    $('.flex:eq('+flag+')').addClass('current').siblings().removeClass('current');
+                    $('.flex:eq('+flag+')'). addClass('current')
+                        .siblings().removeClass('current');
                     flag++;
-                    $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+
                     $.router.load("#"+flag+"");
                 }else{
                     $.toast("已经是最后一题了")
                 }
-            });
+            })
             $(".page").swipeRight(function(){
-                stopYinpin($audio);
+                var $panduan=$(this).find('.tishi').html();
+                var patt=new RegExp("请听下面一段对话");
+                panduan=patt.test($panduan);
+                if(panduan){
+                    stopYinpin($audio);
+                }
                 var flag=$(this).attr("id");
                 if (flag>1) {
                     flag--;
-                    $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-                    $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
+                    $('.flex:eq('+(flag-1)+')'). addClass('current')
+                        .siblings().removeClass('current');
+
                     $.router.load("#"+flag+"");
-                }else{
+                }
+                else{
                     $.toast("已经是第一题了")
                 }
-            });
+            })
 
             if(islogin){
                 $("header a").attr("href",'/JuniorHearing/user/showUserMessage');
@@ -151,325 +190,5 @@ $(document).ready(function(){
                 });
             });
         },
-  })    
-
-  //var data = [    {
-  //                            "listen_id":"1",
-  //                            "listen_type":"1",
-  //                            "listen_title":"",
-  //                            "option_A": "sunshine",
-  //                            "option_B": "big",
-  //                            "option_C": "two",
-  //                            "listen_answer":"B",
-  //                            "radio_url":"../src/audio/1.mp3",
-  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                            "yuanwen":"Is there anything wrong with you,Peter?",
-  //                            "listen_style":"1",
-  //                        },{
-  //                            "listen_id":"2",
-  //                            "listen_type":"1",
-  //                            "listen_title":"",
-  //                            "option_A": "sunshine",
-  //                            "option_B": "big",
-  //                            "option_C": "two",
-  //                            "listen_answer":"B",
-  //                            "radio_url":"../src/audio/2.mp3",
-  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                            "yuanwen":"Is there anything wrong with you,Peter?",
-  //                            "listen_style":"1",
-  //                        },{
-  //                            "listen_id":"3",
-  //                            "listen_type":"1",
-  //                            "listen_title":"",
-  //                            "option_A": "sunshine",
-  //                            "option_B": "big",
-  //                            "option_C": "two",
-  //                            "listen_answer":"B",
-  //                            "radio_url":"../src/audio/1.mp3",
-  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                            "yuanwen":"Is there anything wrong with you,Peter?",
-  //                            "listen_style":"1",
-  //                        },{
-  //                            "listen_id":"4",
-  //                            "listen_type":"1",
-  //                            "listen_title":"",
-  //                            "option_A": "sunshine",
-  //                            "option_B": "big",
-  //                            "option_C": "two",
-  //                            "listen_answer":"B",
-  //                            "radio_url":"../src/audio/2.mp3",
-  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                            "yuanwen":"Is there anything wrong with you,Peter?",
-  //                            "listen_style":"1",
-  //                        },{
-  //                            "listen_id":"5",
-  //                            "listen_type":"1",
-  //                            "listen_title":"",
-  //                            "option_A": "sunshine",
-  //                            "option_B": "big",
-  //                            "option_C": "two",
-  //                            "listen_answer":"B",
-  //                            "radio_url":"../src/audio/1.mp3",
-  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                            "yuanwen":"Is there anything wrong with you,Peter?",
-  //                            "listen_style":"1",
-  //                        },
-  //                        {  "listen_id":"6",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is wrong with the girl?",
-  //                           "option_A": "../src/img/encouragement.jpg",
-  //                           "option_B": "../src/img/encouragement.jpg",
-  //                           "option_C": "../src/img/encouragement.jpg",
-  //                           "listen_answer":"A",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"2"
-  //                       },
-  //                     {     "listen_id":"7",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is wrong with the girl?",
-  //                           "option_A": "../src/img/encouragement.jpg",
-  //                           "option_B": "../src/img/encouragement.jpg",
-  //                           "option_C": "../src/img/encouragement.jpg",
-  //                           "listen_answer":"A",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"2"
-  //                       },
-  //                       {     "listen_id":"8",
-  //                             "listen_type":"2",
-  //                             "listen_title":"What is wrong with the girl?",
-  //                             "option_A": "../src/img/encouragement.jpg",
-  //                             "option_B": "../src/img/encouragement.jpg",
-  //                             "option_C": "../src/img/encouragement.jpg",
-  //                             "listen_answer":"A",
-  //                             "radio_url":"../src/audio/2.mp3",
-  //                             "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                             "yuanwen":"Is there anything wrong with you,Peter?",
-  //                             "listen_style":"2"
-  //                         },
-  //                         {     "listen_id":"9",
-  //                               "listen_type":"2",
-  //                               "listen_title":"What is wrong with the girl?",
-  //                               "option_A": "../src/img/encouragement.jpg",
-  //                               "option_B": "../src/img/encouragement.jpg",
-  //                               "option_C": "../src/img/encouragement.jpg",
-  //                               "listen_answer":"A",
-  //                               "radio_url":"../src/audio/1.mp3",
-  //                               "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                               "yuanwen":"Is there anything wrong with you,Peter?",
-  //                               "listen_style":"2"
-  //                           },
-  //                           {     "listen_id":"10",
-  //                               "listen_type":"2",
-  //                               "listen_title":"What is wrong with the girl?",
-  //                               "option_A": "../src/img/encouragement.jpg",
-  //                               "option_B": "../src/img/encouragement.jpg",
-  //                               "option_C": "../src/img/encouragement.jpg",
-  //                               "listen_answer":"A",
-  //                               "radio_url":"../src/audio/2.mp3",
-  //                               "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                               "yuanwen":"Is there anything wrong with you,Peter?",
-  //                               "listen_style":"2"
-  //                           },
-  //                       {
-  //                           "listen_id":"11",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },
-  //                       {
-  //                           "listen_id":"12",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },
-  //                       {
-  //                           "listen_id":"13",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },
-  //                       {
-  //                           "listen_id":"14",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },
-  //                       {
-  //                           "listen_id":"15",
-  //                           "listen_type":"2",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"16",
-  //                           "listen_type":"3",
-  //                           "listen_title":"长对话理解",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"17",
-  //                           "listen_type":"3",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"18",
-  //                           "listen_type":"3",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"19",
-  //                           "listen_type":"3",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"20",
-  //                           "listen_type":"3",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/1.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       }, {
-  //                           "listen_id":"21",
-  //                           "listen_type":"4",
-  //                           "listen_title":"这里是短文理解了",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"22",
-  //                           "listen_type":"4",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"23",
-  //                           "listen_type":"4",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"24",
-  //                           "listen_type":"4",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       },{
-  //                           "listen_id":"25",
-  //                           "listen_type":"4",
-  //                           "listen_title":"What is Lily's father",
-  //                           "option_A": "sunshine",
-  //                           "option_B": "big",
-  //                           "option_C": "three",
-  //                           "listen_answer":"C",
-  //                           "radio_url":"../src/audio/2.mp3",
-  //                           "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                           "yuanwen":"Is there anything wrong with you,Peter?",
-  //                           "listen_style":"1"
-  //                       }, {
-  //                            "listen_id":"26",
-  //                            "listen_type":"5",
-  //                            "listen_title":"",
-  //                            "radio_url":"../src/audio/1.mp3",
-  //                            "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-  //                            "yuanwen":"Is there anything wrong with you,Peter?",
-  //                            "listen_style":"1",
-  //                            "form_url":"../src/img/encouragement.jpg"
-  //                        },
-  //                     ] ;
-
-
-
+  })
 })

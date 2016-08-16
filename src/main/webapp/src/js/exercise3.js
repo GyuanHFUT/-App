@@ -72,25 +72,7 @@ $(document).ready(function () {
                     $(flag).addClass("bofang");
                     $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
                     icon();
-                    //         //转化成dom对象！
-                    //  var s=true;//判断有没有音频在播放
-                    //  for (var i = audio.length - 1; i >= 0; i--) {
-                    //       if (!audio[i].paused) {
-                    //        s = false;
-                    //        return s}
-                    //    }
-                    //    console.log(s);
-                    // if(s){
-                    //        flag.play();
-                    //         $(flag).addClass("bofang");
-                    //         $(this).find('.stopn').show();
-                    //         $(this).find('.playn').hide();
-                    //      }
-                    //  else{
-                    //       $(".bofang")[0].pause();
-                    //       $(this).find('.playn').show();
-                    //       $(this).find('.stopn').hide();
-                    //  }
+
                 }
             });
             // var $audio=$('audio');
@@ -126,7 +108,6 @@ $(document).ready(function () {
                 }
             })
             $(".page").swipeRight(function(){
-
                 var $panduan=$(this).find('.tishi').html();
                 var patt=new RegExp("请听下面一段对话");
                 panduan=patt.test($panduan);
@@ -157,52 +138,5 @@ $(document).ready(function () {
                 $.router.load("#"+flag+"");
             })
         },
-  })    
-//    var data=[
-//    [{"listen_id":28,
-//    "listen_type":3,
-//    "listen_group":32,
-//    "listen_question":"dsfsd",
-//    "radio_url":"../src/audio/1.mp3",
-//    "listen_answer":"A",
-//    "option_A":"sdd",
-//    "option_B":"dddd",
-//    "option_C":"ddssss",
-//    "listen_score":1,
-//    "listen_degree":2,
-//   "yuanwen":"Is there anything wrong with you,Peter?",
-//"answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。"
-//  },
-//    {
-//      "listen_id":29,
-//    "listen_type":3,
-//    "listen_group":32,
-//    "listen_question":"hgjh",
-//   "radio_url":"../src/audio/1.mp3",
-//    "listen_answer":"B",
-//    "option_A":"sjhkj",
-//    "option_B":"jjjj",
-//    "option_C":"kkkk",
-//    "listen_score":1,
-//    "listen_degree":3,
-//   "yuanwen":"Is there anything wrong with you,Peter?",
-//"answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。"},
-//    {"listen_id":30,
-//    "listen_type":3,
-//    "listen_group":32,
-//    "listen_question":"jkl",
-//    "radio_url":"../src/audio/1.mp3",
-//    "listen_answer":"C",
-//    "option_A":"hghh",
-//    "option_B":"tryt",
-//    "option_C":"eeee",
-//    "listen_score":1,
-//    "listen_degree":2,
-//    "yuanwen":"Is there anything wrong with you,Peter?",
-//  "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。"}],
-//
-//
-//    [{"listen_id":9,"listen_type":3,"listen_group":31,"listen_question":"ertertertrr","radio_url":"../src/audio/2.mp3","listen_answer":"A","option_A":"sdfsd","option_B":"ddd","option_C":"ddddd","listen_score":1,"listen_degree":1,"listen_text":"听力作业","listen_explain":"完全"},{"listen_id":10,"listen_type":3,"listen_group":31,"listen_question":"saaaa","radio_url":"../src/audio/2.mp3","listen_answer":"C","option_A":"saszx","option_B":"vbnvb","option_C":"cccccc","listen_score":1,"listen_degree":1,"listen_text":"听力结束","listen_explain":"作业"}]]
-
-
+  })
 })
