@@ -51,6 +51,7 @@
             <mvc:exclude-mapping path="/blank/showAllBlank"/>
             <mvc:exclude-mapping path="/feedback/addFeedback"/>
             <mvc:exclude-mapping path="/user/sendUserDay"/>
+            <mvc:exclude-mapping path="/exam/showExamOfListen"/>
             <bean id="Interceptor" class="com.listening.util.interceptor.Interceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

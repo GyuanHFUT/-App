@@ -41,7 +41,7 @@
 
     <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='../src/lib/handlebars/handlebars-v3.0.1.js'></script>
-    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../src/lib/SUI-Mobile-dev/js/sm.js' charset='utf-8'></script>
      <script type="text/x-handlebars-template" id="myTemplate">
        {{#each this}}
            <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
@@ -73,6 +73,7 @@
                         </a>
                     </nav>
                <div class="content content-padded">
+                   <span class="tishi">{{tishi}}</span>
                   {{\#if form_url}}
                   <h3>26-30.{{listen_question}}</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>

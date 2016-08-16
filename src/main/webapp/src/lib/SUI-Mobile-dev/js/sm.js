@@ -7189,6 +7189,18 @@ Device/OS Detection
      * @param {String} url url
      * @param {Boolean=} ignoreCache 是否强制请求不使用缓存，对 document 生效，默认是 false
      */
+    Router.prototype.load2 = function(url, ignoreCache) {
+        if (ignoreCache === undefined) {
+            ignoreCache = false;
+        }
+
+        if (this._isTheSameDocument(location.href, url)) {
+            this._switchToSection2(Util.getUrlFragment(url));
+        } else {
+            this._saveDocumentIntoCache($(document), location.href);
+            this._switchToDocument(url, ignoreCache);
+        }
+    };
     Router.prototype.load = function(url, ignoreCache) {
         if (ignoreCache === undefined) {
             ignoreCache = false;
@@ -7245,8 +7257,22 @@ Device/OS Detection
         if ($curPage === $newPage) {
             return;
         }
+        this._animateSection($curPage, $newPage, DIRECTION.rightToLeft);
+        this._pushNewState('#' + sectionId, sectionId);
+    };
+        Router.prototype._switchToSection2 = function(sectionId) {
+        if (!sectionId) {
+            return;
+        }
+
+        var $curPage = this._getCurrentSection(),
+            $newPage = $('#' + sectionId);
+
+        // 如果已经是当前页，不做任何处理
+        if ($curPage === $newPage) {
+            return;
+        }
         this._animateSection($curPage, $newPage, DIRECTION.leftToRight);
-        // this._animateSection($curPage, $newPage, DIRECTION.rightToLeft);
         this._pushNewState('#' + sectionId, sectionId);
     };
 

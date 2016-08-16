@@ -66,7 +66,7 @@ $(document).ready(function () {
                     $('.flex:eq('+(flag-1)+')'). addClass('current')
                         .siblings().removeClass('current');
                     stopYinpin($audio);
-                    $.router.load("#"+flag+"");
+                    $.router.load2("#"+flag+"");
                 }
                 else{
                     $.toast("已经是第一题了")
