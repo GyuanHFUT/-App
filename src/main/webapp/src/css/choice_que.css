@@ -59,7 +59,10 @@ a{
   position:relative;
   left:-0.5rem;
   bottom:1rem;
-  color:#fff;
+  color:#F1F2F2;
+}
+.panel-left #nickname{
+  display:none;
 }
 .content .day_word{
   text-align:center;
