@@ -111,7 +111,7 @@ $(document).ready(function(){
             var x=parent.attr('value');
             x--;
             if ($(this).hasClass("true")) {
-                $(this).find('i').html('&#xe61b;');
+                $(this).find('i').html('&#xe674;');
                 //在popup层找到相对应的box改变颜色！
                 $(this).addClass("dui");
                 $('.flex:eq('+x+')').addClass("popdui");
@@ -137,7 +137,7 @@ $(document).ready(function(){
             }
             else{
                 $(this).addClass("cuo");
-                $(this).find('i').html('&#xf0011');
+                $(this).find('i').html('&#xe8a3;');
                 if (!parent.hasClass('yidian')) {
                     cuo++;
                     zong--;
@@ -152,6 +152,7 @@ $(document).ready(function(){
                     if ($(a).hasClass("true"))
                     {
                         $(a).addClass("dui");
+                        $(a).find('i').html('&#xe674;');
                     };
                 }
                 parents.find(".xiangjie-wapper").show();

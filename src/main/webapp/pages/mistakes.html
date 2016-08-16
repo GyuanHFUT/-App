@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="../src/lib/SUI-Mobile-dev/css/sm.min.css">
-    <link rel="stylesheet" href="../src/lib/icon2/iconfont.css">
+    <link rel="stylesheet" href="../src/lib/icon4/iconfont.css">
     <link rel="stylesheet" href="../src/css/simulation_common.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
 </div>
 <div class="popup">
     <header class="bar bar-nav close-popup">
-        <a href="#" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+        <a href="#" class=" pull-left"><i class="icon iconfont">&#xe63f;</i></a>
         <span class="title"> 题目目录</span>
     </header>
     <div class="content-block">
@@ -48,28 +48,28 @@
     {{#each this}}
     <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
         <header class="bar bar-nav">
-            <a href="/JuniorHearing/user/showUserMessage" class=" pull-left"><i class="icon iconfont">&#xe61e;</i></a>
+            <a href="/JuniorHearing/user/showUserMessage" class=" pull-left"><i class="icon iconfont">&#xe63f;</i></a>
             <span class="title">{{listen_name}}</span>
             <div class="yinpin">
                 <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
                 <div class="yinpinicon">
-                    <span class="playn" style="display:none"> <i class="icon iconfont pull-right"  >&#xe61b;</i></span>
-                    <span class="stopn"  ><i class="icon iconfont pull-right"  >&#xf006c;</i></span></div>
+                    <span class="playn" style="display:none"> <i class="icon iconfont pull-right"  >&#xe6ad;</i></span>
+                    <span class="stopn"  ><i class="icon iconfont pull-right"  >&#xe62b;</i></span></div>
             </div>
         </header>
 
 
         <nav class="bar bar-tab">
             <a class="tab-item external shoucang {{listen_collect}}" href="#" shoucangid="{{listen_id}}">
-                <i class="icon iconfont">&#xf006c;</i>
+                <i class="icon iconfont">&#xe637;</i>
                 <span class="tab-label">收藏</span>
             </a>
             <a class=" tab-item external open-popup" href="#">
-                <i class="icon iconfont">&#xf0015;</i>
+                <i class="icon iconfont">&#xe606;</i>
                 <span class="tab-label yeshu">{{addOne @index}}/<span class="wronglen">30</span></span>
             </a>
             <a class="tab-item external open-xiangjie" href="#">
-                <i class="icon iconfont">&#xf0004;</i>
+                <i class="icon iconfont">&#xe69c;</i>
                 <span class="tab-label">打开详解</span>
             </a>
         </nav>
@@ -89,24 +89,24 @@
             {{#choice option_A}}
             <div class="selects {{selects_type}}"  value="{{addOne @index}}">
                 <div class="select {{A}}" value="1">
-                    <i class="icon iconfont">&#xe61b;</i><span>{{option_A}}</span> </div>
+                    <i class="icon iconfont">&#xe681;</i><span>{{option_A}}</span> </div>
                 <div class="select {{B}}" value="2">
-                    <i class="icon iconfont">&#xe61b;</i><span>{{option_B}}</span></div>
+                    <i class="icon iconfont">&#xe682;</i><span>{{option_B}}</span></div>
                 <div class="select {{C}}" value="3">
-                    <i class="icon iconfont">&#xe61b;</i><span>{{option_C}}</span></div>
+                    <i class="icon iconfont">&#xe683;</i><span>{{option_C}}</span></div>
             </div>
             {{else}}
             <div class="selects {{selects_type}} " value="{{addOne @index}}">
                 <div class="select {{A}}" value="1">
-                    <i class="icon iconfont ">&#xe61b;</i>
+                    <i class="icon iconfont ">&#xe681;</i>
                     <img src="{{option_A}}">
                 </div>
                 <div class="select {{B}}" value="2">
-                    <i class="icon iconfont">&#xe61b;</i>
+                    <i class="icon iconfont">&#xe682;</i>
                     <img src="{{option_B}}">
                 </div>
                 <div class="select {{C}}" value="3">
-                    <i class="icon iconfont">&#xe61b;</i>
+                    <i class="icon iconfont">&#xe683;</i>
                     <img src="{{option_C}}">
                 </div>
             </div>
