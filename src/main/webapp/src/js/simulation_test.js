@@ -1,22 +1,51 @@
 
 $(document).ready(function(){
     $.init();
+    var fm =3,
+        lm = 0,
+        fs = 0,
+        ls = 0;
+    var answer = [];
+    var test_num=0,grade = 0,
+        zong=$(".weida").find('strong').html(),
+        personal = new Object;
+        personal.wrong = new Object;
+        personal.true = new Array();
+        personal.trans = new Array();
+    var time;
       $.ajax({
         type: 'get',
+        async : false,
         url: '/JuniorHearing/exam/showExamOfListen',
         success:function(data){
+            console.log(data);
             datapush(data);
+            Handlebars.registerHelper("addOne",function(index,options){
+                return parseInt(index)+1;
+            });
+            Handlebars.registerHelper("choice",function(option_A,options){
+                var sty =  option_A.slice(option_A.length-4,option_A.length);
+                if(sty !== ".jpg"){
+                    //满足添加继续执行
+                    return options.fn(this);
+                }else{
+                    //不满足条件执行{{else}}部分
+                    return options.inverse(this);
+                }
+            });
             var myTemplate = Handlebars.compile($("#myTemplate").html());
             $("#handlebars").html(myTemplate(data));
             var box = Handlebars.compile($("#box").html());
             $("#box_li").html(box(data));
+
+        }
+
+      });
             var len = $('.page').length-2;
-            console.log(len);
             var inputlist = $($('.page')[len]).find('input');
             time = $('.time');
-            timing(time);
-            checkTime(time,fm,lm,fs,ls);
-            // setTimeout(,1000);
+            timing();
+            setInterval(checkTime,1000);
             //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
             var audio = $('.audion');
             var flexbox = $('.flex');
@@ -26,7 +55,6 @@ $(document).ready(function(){
                     $('#box_li').append('<li class="flex">'+n+'</li> ');
                 }
             };
-            console.log(data);
             $('.yinpinicon').tap(function(){
                 $.alert('考试期间，请勿暂停音频')
             })
@@ -139,6 +167,7 @@ $(document).ready(function(){
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
                 $.confirm('确定交卷?', function () {
+                    
                     audio_paused(audio);
                     var traid = data[len].listen_id;
                     var  judgment =true;
@@ -174,7 +203,7 @@ $(document).ready(function(){
                         if(data.success){
                             $.router.load("./simulation_test.html#grade");
                         } else{
-                            console.log("hheh");
+                            console.log("出错啦！！！");
                           return false;
                         }
                       },
@@ -182,7 +211,6 @@ $(document).ready(function(){
                        console.log('this is false!');
                       }
                     });
-
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
@@ -190,24 +218,12 @@ $(document).ready(function(){
                 });
             });
 
-        }
-
-    });
-    var fm =3,
-        lm = 0,
-        fs = 0,
-        ls = 0;
-    var answer = [];
   //初始化结束
   //添加”dui“class
   //一些使用到的全局变量
-  var test_num=0,grade = 0,
-      zong=$(".weida").find('strong').html(),
-      personal = new Object;
-      personal.wrong = new Object;
-      personal.true = new Array();
-      personal.trans = new Array();
+
     function datapush(data){
+        console.log(data);
         data[0].first="page-current";
         data[0].box = "current";
         for(var t= 0 ;t<data.length;t++){
@@ -232,34 +248,19 @@ $(document).ready(function(){
             };
         };
         answer[25]=[data[25].first_answer,data[25].second_answer,data[25].three_answer,data[25].four_answer,data[25].five_answer]
-        // personal.wrong[transform]="25";
-        // console.log( personal.wrong)
     };
-    Handlebars.registerHelper("addOne",function(index,options){
-        return parseInt(index)+1;
-    });
-    Handlebars.registerHelper("choice",function(option_A,options){
-        var sty =  option_A.slice(option_A.length-4,option_A.length);
-        if(sty !== ".jpg"){
-            //满足添加继续执行
-            return options.fn(this);
-        }else{
-            //不满足条件执行{{else}}部分
-            return options.inverse(this);
-        }
-    });
+
   //倒计时效果
-    function timing(time){
-        time[0].html=fm +''+ lm + ':' + fs+'' + ls;
+    function timing(){
+        time[0].innerHTML=fm +''+ lm + ':' + fs+'' + ls;
     }
 
+
   //倒计时的实现
-  function checkTime(time,fm,lm,fs,ls){
-      console.log(time+" "+fm+" "+lm+" "+fs+" "+ls);
+  function checkTime(){
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
           $.alert('时间到，请点击交卷', function () {
               // audio_paused(audio);
-              // $.router.load("./grade.html");
               //停止计时，所有其他操作都禁止
           });
       }else{
@@ -269,11 +270,8 @@ $(document).ready(function(){
           ls = checkls(ls);
       }
       for (var j = 0; j < time.length; j++) {
-          var each = time[j].html;
-              each =fm +''+ lm + ':' + fs+'' + ls;
+          time[j].innerHTML =fm +''+ lm + ':' + fs+'' + ls;
       }
-      //setTimeout(checkTime(time,fm,lm,fs,ls),1000);
-    //  return each;
   };
 
   function checkls(ls){
