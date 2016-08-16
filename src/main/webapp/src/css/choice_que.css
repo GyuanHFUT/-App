@@ -14,12 +14,11 @@ a{
   margin-top:0;
 }
 .panel-left .head_photo {
-    margin:1rem;
-
+    margin:0;
 }
 .panel-left #form1{
   display:inline-block;
-  margin:1rem;
+  margin:1rem 0.5rem;
 }
 .panel-left #form1 img{
   display:inline-block;
@@ -54,13 +53,14 @@ a{
 }
 .panel-left .login,#nickname{
   display:inline-block;
-  width:6rem;
+  width:8rem;
   height:2.5rem;
   line-height:2.5rem;
   position:relative;
-  left:-0.5rem;
+  left:-1rem;
   bottom:1rem;
   color:#F1F2F2;
+  border:0;
 }
 .panel-left #nickname{
   display:none;
@@ -80,7 +80,5 @@ a{
 #practice .content-block{
   margin:auto 0;
 }
-.panel-left p #nickname{
-  display:none;
-}
+
 /*反馈页面样式*/
