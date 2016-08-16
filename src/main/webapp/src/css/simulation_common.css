@@ -17,6 +17,7 @@ padding:0.4rem;
 
 .words .select span{
     font-size:1.2rem;
+    text-align:left;
     margin-left: 0.5rem;
 }
 .words .iconfont{
@@ -47,12 +48,7 @@ float:right;
 
    font-size:1.4rem;
 }
-/*.news h3{
-  font-family: "Helvetica Neue",Helvetica,sans-serif;
-  font-size:1rem;
-  line-height: 1.5;
-  color: #3d4145;
-}*/
+
 /*信息转换*/
 .show_trans{
   text-align:center;
@@ -68,9 +64,6 @@ float:right;
   border:0px;
   border-bottom:#000000 1px solid;
 }
-/*.blank{
-  background-color:#fff;
-}*/
 /*当选项为对或者错的时候*/
 .selects .dui{
     color:#18b4ed;

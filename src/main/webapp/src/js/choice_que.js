@@ -24,10 +24,13 @@ $(document).ready(function () {
         console.log(name);
         name = JSON.parse(name);
         $('.panel-left').find('.login').hide();
-        $('.panel-left').find('#nickname').show();
+        $('.panel-left').find('#nickname').css('display','inline-block').show();
         $('.panel-left').find('#nickname').html(name.user_nickname);
-    }
-    ;
+        if(name.photo_url){
+            $('.panel-left').find('#form1 img').attr('src',name.photo_url);
+        };
+
+    };
     $('.panel-left .control p').tap(function () {
         $(this).addClass('active').siblings().removeClass('active');
     })
@@ -91,7 +94,7 @@ function myFunction(){
         success : function(data){
             console.log(data);
             if(data.success){
-                console.log(data.msg)
+                history.go(0);
             }else{
                 console.log(data.msg)}
         }
