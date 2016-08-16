@@ -98,34 +98,4 @@ $(document).ready(function () {
           }
         else {$.alert("验证码和昵称不能为空！")}
     });
-
-    //上传头像
-    $(".head_photo img").tap(function(){
-        console.log("haha");
-        //$("#f").trigger("click");
-        $("#file").click();
-        $("#file").click();
-
-    })
-
-
 })
-function myFunction(){
-    var form=document.getElementById("form1");
-    var formdata=new FormData(form);
-    console.log(formdata);
-    $.ajax({
-        type : 'post',
-        url : '/JuniorHearing/user/photoUpload',
-        data : formdata,
-        cache : false,
-        processData : false,  //  不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
-        contentType : false,  //  不设置Content-type请求头
-        success : function(data){
-            console.log(data);
-            if(data.success){
-                console.log(data.msg)
-        }else{
-                console.log(data.msg)}
-    }
-})}

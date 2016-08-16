@@ -253,14 +253,9 @@ for (var i = s - 1; i >= 0; i--) {
 //    }
 //})();
 //登陆检测
-function judgment(name,words,url){
-    console.log(name);
+function judgment(name,words,url,islogin){
     $(name).tap(function(){
-        $.ajax({
-            type: 'get',
-            url: "/JuniorHearing/user/sendUser",
-            success: function(data){
-                if(data=="login"){
+                if(!islogin){
                     $.confirm(words+'需要登录，是否登陆?',
                         function () {
                             $.router.load("../pages/land.html");
@@ -268,8 +263,8 @@ function judgment(name,words,url){
                 }else{
                     $.router.load(url);
                 }
-            }
-        })
+
+
     })
 }
 //只用来判断是否登陆
@@ -279,12 +274,9 @@ function judgment2(islogin){
             url: "/JuniorHearing/user/sendUser",
             async: false,
             success: function (data){
-
                 if(data=="login"){
-
                     islogin=false;
                 }else{
-
                     islogin=true;
                 }
             }
