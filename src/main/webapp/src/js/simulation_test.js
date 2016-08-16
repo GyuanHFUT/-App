@@ -74,7 +74,7 @@ $(document).ready(function(){
                     flag--;
                     $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
                     // $("#"+flag+"").find(".yeshu").html(""+flag+"/30");
-                    $.router.load("#"+flag+"");
+                    $.router.load2("#"+flag+"");
                 }else{
                     $.toast("已经是第一题了")
                 }

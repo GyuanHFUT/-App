@@ -7245,8 +7245,8 @@ Device/OS Detection
         if ($curPage === $newPage) {
             return;
         }
-
-        this._animateSection($curPage, $newPage, DIRECTION.rightToLeft);
+        this._animateSection($curPage, $newPage, DIRECTION.leftToRight);
+        // this._animateSection($curPage, $newPage, DIRECTION.rightToLeft);
         this._pushNewState('#' + sectionId, sectionId);
     };
 

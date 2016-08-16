@@ -128,7 +128,7 @@ $(document).ready(function(){
            audio[flag-1].currentTime= 0;
            flag--;
            $('.flex:eq('+(flag-1)+')').addClass('current').siblings().removeClass('current');
-           $.router.load("#"+flag+"");
+           $.router.load2("#"+flag+"");
          $('.page').find('.stopn').show();
          $('.page').find('.playn').hide();
 
