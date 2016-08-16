@@ -79,3 +79,49 @@ a{
 }
 
 /*反馈页面样式*/
+#feedback{
+  margin:0;
+  padding:0;
+  text-align: center;
+}
+#feedback p{
+  margin:0 ;
+  font-size:1rem;
+  color:#000;
+  padding-bottom:0.2rem;
+  text-align: center;
+  /*font-size:1px solid #333;*/
+}
+#feedback .back_content{
+  text-align: left;
+  padding:0.5rem 0 0 0.5rem;
+}
+#feedback p input{
+  border: 1px solid #69B2DC;
+  border-radius: 0.5rem;
+  /*float: left;*/
+  font-size: 1rem;
+  margin:0.5rem;
+  outline: medium none;
+  padding:1rem;
+  width: 95%;
+  /*height:20rem;*/
+}
+#feedback p textarea{
+  border: 1px solid #69B2DC;
+  border-radius: 0.5rem;
+  /*float: left;*/
+  font-size: 1rem;
+  margin:0.5rem;
+  outline: medium none;
+  padding:1rem;
+  /*color:#ccc;*/
+  width: 95%;
+}
+#feedback input[type=submit].button{
+  margin:1rem auto;
+  width:8rem;
+  font-size:1.3rem;
+  background-color:#4d90fe;
+  color:#fff;
+}

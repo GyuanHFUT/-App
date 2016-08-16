@@ -52,15 +52,15 @@ $(document).ready(function(){
     for(var i= 0 ;i<data.length;i++){
         var sele =$( $('.page')[i]).find('.selects');
             switch(data[i].listen_answer){
-                case 'A':$(sele).find('.select:eq(0)').addClass('dui');break;
-                case 'B':$(sele).find('.select:eq(1)').addClass('dui'); break;
-                case 'C':$(sele).find('.select:eq(2)').addClass('dui'); break;
+                case 'A':$(sele).find('.select:eq(0)').addClass('dui');$(sele).find('.select:eq(0)').find('i').html('&#xe674;');break;
+                case 'B':$(sele).find('.select:eq(1)').addClass('dui');$(sele).find('.select:eq(1)').find('i').html('&#xe674;') ;break;
+                case 'C':$(sele).find('.select:eq(2)').addClass('dui');$(sele).find('.select:eq(2)').find('i').html('&#xe674;'); break;
                 case '': ; break;
             };
         switch(data[i].exam_answer){
-            case 'A':$(sele).find('.select:eq(0)').addClass('cuo');break;
-            case 'B':$(sele).find('.select:eq(1)').addClass('cuo'); break;
-            case 'C':$(sele).find('.select:eq(2)').addClass('cuo');break;
+            case 'A':$(sele).find('.select:eq(0)').addClass('cuo');$(sele).find('.select:eq(0)').find('i').html('&#xe8a3;');break;
+            case 'B':$(sele).find('.select:eq(1)').addClass('cuo');$(sele).find('.select:eq(1)').find('i').html('&#xe8a3;'); break;
+            case 'C':$(sele).find('.select:eq(2)').addClass('cuo');$(sele).find('.select:eq(2)').find('i').html('&#xe8a3;');break;
             case '':  ; break;
         };
         switch(data[i].exam_judge){
