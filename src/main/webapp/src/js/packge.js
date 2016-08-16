@@ -261,10 +261,14 @@ function judgment(name,words,url,islogin){
                             $.router.load("../pages/land.html");
                         });
                 }else{
-                    $.router.load(url);
+                    if(url=="1"){
+                        console.log("heihei");
+                        $("#file").click();
+                        $("#file").click();
+                        //$("#file").trigger("click");
+                    }else{
+                    $.router.load(url);}
                 }
-
-
     })
 }
 //只用来判断是否登陆
