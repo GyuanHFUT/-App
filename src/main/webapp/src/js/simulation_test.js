@@ -1,37 +1,36 @@
 
 $(document).ready(function(){
-    $.init();
-    var fm =3,
-        lm = 0,
-        fs = 0,
-        ls = 0;
-    var answer = [];
-    var test_num=0,grade = 0,
-        zong=$(".weida").find('strong').html(),
-        personal = new Object;
-        personal.wrong = new Object;
-        personal.true = new Array();
-        personal.trans = new Array();
-    var time;
-      $.ajax({
-        type: 'get',
-        async : false,
-        url: '/JuniorHearing/exam/showExamOfListen',
-        success:function(data){
-            console.log(data);
-            datapush(data);
-            Handlebars.registerHelper("addOne",function(index,options){
-                return parseInt(index)+1;
-            });
-            Handlebars.registerHelper("choice",function(option_A,options){
-                var sty =  option_A.slice(option_A.length-4,option_A.length);
-                if(sty !== ".jpg"){
-                    //满足添加继续执行
-                    return options.fn(this);
-                }else{
-                    //不满足条件执行{{else}}部分
-                    return options.inverse(this);
-                }
+        $.init();
+        var fm =3,
+            lm = 0,
+            fs = 0,
+            ls = 0;
+        var answer = [],time,datas;
+        var test_num=0,grade = 0,
+            zong=$(".weida").find('strong').html(),
+            personal = new Object;
+            personal.wrong = new Object;
+            personal.true = new Array();
+            personal.trans = new Array();
+        $.ajax({
+            type: 'get',
+            async : false,
+            url: '/JuniorHearing/exam/showExamOfListen',
+            success:function(data){
+                datas = data;
+                datapush(data);
+                Handlebars.registerHelper("addOne",function(index,options){
+                    return parseInt(index)+1;
+                });
+                Handlebars.registerHelper("choice",function(option_A,options){
+                    var sty =  option_A.slice(option_A.length-4,option_A.length);
+                    if(sty !== ".jpg"){
+                        //满足添加继续执行
+                        return options.fn(this);
+                    }else{
+                        //不满足条件执行{{else}}部分
+                        return options.inverse(this);
+                    }
             });
             var myTemplate = Handlebars.compile($("#myTemplate").html());
             $("#handlebars").html(myTemplate(data));
@@ -57,7 +56,7 @@ $(document).ready(function(){
             };
             $('.yinpinicon').tap(function(){
                 $.alert('考试期间，请勿暂停音频')
-            })
+            });
             $(".page").swipeLeft(function(){
                 var flag=$(this).attr("id");
                 if (flag<$(".page").length-1) {
@@ -163,60 +162,18 @@ $(document).ready(function(){
                         $('.flex:eq('+test+')').removeClass('poplook');
                     }
                 });
-            })
+            });
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
                 $.confirm('确定交卷?', function () {
-                    
-                    audio_paused(audio);
-                    var traid = data[len].listen_id;
-                    var  judgment =true;
-                    var num = new Object;
-                    var x =0;
-                    $(inputlist).each(function(){
-                         var text = $(this).val();
-                        personal.trans.push(text);
-                    });
-                    for(var z=0;z< personal.trans.length;z++){
-                        if(answer[25][z]!== personal.trans[z]){
-                            x++;
-                            judgment = false;
-                            num[z.toString()]= personal.trans[z];
-                            }
-                    };
-                    if(judgment){
-                        personal.true.push(traid);
-                       }else{
-                        personal.wrong[traid.toString()]= num;
-                        // personal.wrong.push(traid+':'+'{'+num+'}' );
-                    }
-                    grade =  personal.true.length + 5 - x;
-                    $('#grade').find('.tips span').html(grade);
-                    var str = JSON.stringify(personal);
-                    var datas ={data:str};
-                    console.log(str);
-                    $.ajax({
-                      type: 'post',
-                      url: '/JuniorHearing/exam/acceptExamOfMessage',
-                      data:datas,
-                      success:function(data){
-                        if(data.success){
-                            $.router.load("./simulation_test.html#grade");
-                        } else{
-                            console.log("出错啦！！！");
-                          return false;
-                        }
-                      },
-                      error:function(){
-                       console.log('this is false!');
-                      }
+                    submit_paper(datas);
                     });
                     //交卷所要做到的携带内容与结果
                     //首先将最后五道题发送给后台，然后将所有的错题和对题题号形成数组给后台，后台判断最后五道题的对错，返回我答案及分数
                     // var last = $(".trans_input input").val()
 
                 });
-            });
+            // });
 
   //初始化结束
   //添加”dui“class
@@ -259,10 +216,9 @@ $(document).ready(function(){
   //倒计时的实现
   function checkTime(){
       if(fm == 0 && lm == 0 && fs == 0 && ls == 0){
-          $.alert('时间到，请点击交卷', function () {
-              // audio_paused(audio);
-              //停止计时，所有其他操作都禁止
-          });
+              $.toast('时间到，系统将强制交卷');
+              audio_paused(audio);
+              submit_paper(datas);
       }else{
           fm = checkfm(fm,lm,fs,ls);
           lm = checklm(lm,fs,ls);
@@ -333,4 +289,50 @@ $(document).ready(function(){
     // }
 
   //ajax事件的学习，需要用这个做一些事情
+function submit_paper(data){
+    audio_paused(audio);
+    console.log(data);
+    var traid = data[len].listen_id;
+    var  judgment =true;
+    var num = new Object;
+    var x =0;
+    $(inputlist).each(function(){
+        var text = $(this).val();
+        personal.trans.push(text);
+    });
+    for(var z=0;z< personal.trans.length;z++){
+        if(answer[25][z]!== personal.trans[z]){
+            x++;
+            judgment = false;
+            num[z.toString()]= personal.trans[z];
+        }
+    };
+    if(judgment){
+        personal.true.push(traid);
+    }else{
+        personal.wrong[traid.toString()]= num;
+        // personal.wrong.push(traid+':'+'{'+num+'}' );
+    }
+    grade =  personal.true.length + 5 - x;
+    $('#grade').find('.tips span').html(grade);
+    var str = JSON.stringify(personal);
+    var datas ={data:str};
+    console.log(str);
+    $.ajax({
+        type: 'post',
+        url: '/JuniorHearing/exam/acceptExamOfMessage',
+        data:datas,
+        success:function(data){
+            if(data.success){
+                $.router.load("./simulation_test.html#grade");
+            } else{
+                console.log("出错啦！！！");
+                return false;
+            }
+        },
+        error:function(){
+            console.log('this is false!');
+        }
+    });
+}
 })
