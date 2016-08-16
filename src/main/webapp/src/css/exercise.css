@@ -25,6 +25,13 @@ padding:0.4rem;
     float: left;
     height: 100%;
 }
+.bar .icon {
+    position: relative;
+    z-index: 20;
+    padding: .5rem .1rem;
+    font-size: 1.3rem;
+    line-height: 1.2rem;
+}
 .imgs{
   padding:0.4rem;
 }
