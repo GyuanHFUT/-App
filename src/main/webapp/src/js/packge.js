@@ -18,7 +18,7 @@ function  select(dui,cuo,zong,islogin){
         var listen_id=parent.attr('shoucangid');
         x--;
         if ($(this).hasClass("dui")) {
-            $(this).find('i').html('&#xe61b;');
+            $(this).find('i').html('&#xe674;');
             //在popup层找到相对应的box改变颜色！
             $(this).addClass("duicolor");
             $('.flex:eq('+x+')').addClass("popdui");
@@ -43,7 +43,8 @@ function  select(dui,cuo,zong,islogin){
         }
         else{
             $(this).addClass("cuocolor");
-             $(this).find('i').html('&#xf0011');
+             $(this).find('i').html('&#xe8a3;');
+            parent.find(".dui").find("i").html('&#xe674;');
              if (!parent.hasClass('yidian')) {
              cuo++;
              zong--;
