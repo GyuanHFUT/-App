@@ -7,23 +7,28 @@ margin:0;
 padding:0.4rem;
 }
 .words .select{
-    height: 2.5rem;
+    /*height: 2.5rem;*/
     line-height:2.5rem;
     display: block;
     text-align: left;
     font-weight: normal;
     font-family: "Source Han Sans CN","noto sans","Microsoft YaHei",'微软雅黑';
+    overflow:hidden;
+
 }
 
 .words .select span{
-    font-size:1.2rem;
-    text-align:left;
+    display:inline-block;
+    font-size:1rem;
     margin-left: 0.5rem;
 }
-.words .iconfont{
+.words .icons{
+    /*float:left;*/
+    /*display:block;*/
     font-size:1.6rem;
     position:relative;
     bottom:0.2rem;
+    height:100%;
 }
 /*当选项为图片的时候*/
 .imgs{
