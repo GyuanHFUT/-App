@@ -52,10 +52,7 @@ a{
   font-size:1rem;
 }
 .panel-left .login,#nickname{
-  display:inline-block;
-  width:8rem;
-  height:2.5rem;
-  line-height:2.5rem;
+  display:inline;
   position:relative;
   left:-1rem;
   bottom:1rem;
