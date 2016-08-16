@@ -66,6 +66,7 @@ public class UserController {
             return map;
         }
         try{
+            user.setPhoto_url(photo_url);//改变session中的值
             userManager.updateUserOfPhoto(user_id,photo_url);
         }catch (Exception e){
             e.printStackTrace();
