@@ -1,11 +1,15 @@
 $(document).ready(function () {
     $.init();
-    //上传头像
-    $("#form1 img").tap(function(){
-        $("#file").click();
-        $("#file").click();
+    ////上传头像
+    var islogin = judgment2();
+    console.log(islogin);
 
-    })
+    //$("#form1 img").tap(function() {
+    //    if (islogin) {
+    //    $("#file").click();
+    //    $("#file").click();
+    //}
+    //})
     //每日一句渲染
 
     $.ajax({
@@ -40,9 +44,10 @@ $(document).ready(function () {
             $.hidePreloader();
         }, 2000);
     });
-    judgment('#simulation', '模板测试功能', '../pages/simulation_test.html#1');
-    judgment('.collect', '收藏功能', '/JuniorHearing/collect/showCollectByUser');
-    judgment('.mistakes', '错题功能', '/JuniorHearing/mistake/showMistakeByUser');
+    judgment('#simulation', '模板测试功能', '../pages/simulation_test.html#1',islogin);
+    judgment('.collect', '收藏功能', '/JuniorHearing/collect/showCollectByUser',islogin);
+    judgment('.mistakes', '错题功能', '/JuniorHearing/mistake/showMistakeByUser',islogin);
+    judgment('#form1 img', '上传头像功能', '1',islogin);
     //注销账号，移至设置页面
     // $('.panel-left .Logout').tap(function(){
     //     $.ajax({
