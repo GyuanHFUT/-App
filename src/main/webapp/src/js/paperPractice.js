@@ -3,7 +3,7 @@ $(document).ready(function(){
         type: 'get',
         url: '/JuniorHearing/exam/showExamOfListen',
         success: function(data){
-
+            console.log(data);
             data[0].first="page-current";
             data[0].box = "current";
 
@@ -40,7 +40,6 @@ $(document).ready(function(){
                     case 3:data[t]["selects_type"]=""; break;
                 };
             };
-            console.log(data);
             Handlebars.registerHelper("addOne",function(index,options){
                 return parseInt(index)+1;
             });
@@ -112,15 +111,45 @@ $(document).ready(function(){
             });
 
             if(islogin){
-                $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                $("header a").attr("href",'/JuniorHearing/user/showUserMessage');
             }
+
+            var flexbox = $('.flex');
+            if(flexbox.length==26){
+                for(var n=27;n<31;n++){
+                    $('#box_li').append('<li class="flex">'+n+'</li> ');
+                }
+            };
             $(".flex").tap(function(){//点击盒子切换页面
                 stopYinpin($audio);
                 var flag=$(this).html();
                 $('.flex:eq('+(flag-1)+')'). addClass('current')
                     .siblings().removeClass('current');
-                $.router.load("#"+flag+"");
+                if(flag>=26){
+                    var yeshu =flag;
+                    flag = 26;
+                    $("#"+flag+"").find(".yeshu").html(yeshu+"/30");
+                    $.router.load("#"+flag+"");
+                }else{
+                    $.router.load("#"+flag+"");
+                }
             })
+            //点击弹框26-30题改变
+            var len = $('.page').length-2;
+            var inputlist = $($('.page')[len]).find('input');
+            $(".open-popup").tap(function(){
+
+                $(inputlist).each(function(){
+                    var text = $(this).val();
+                    var test = $(this).parent().html();
+                    test = test.split('.',1)-1;
+                    if(text !==''){
+                        $('.flex:eq('+test+')').addClass('poplook');
+                    }else{
+                        $('.flex:eq('+test+')').removeClass('poplook');
+                    }
+                });
+            });
         },
   })    
 
