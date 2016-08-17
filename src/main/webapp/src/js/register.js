@@ -15,9 +15,6 @@ $(document).ready(function () {
                         if(data.success){
                             $.toast('验证码已发送，请查收!')
                         }
-                        else{
-                          $.toast('数据异常，请重试!')
-                        }
                  }
             })  }
            })
