@@ -114,9 +114,6 @@ public class UserManagerImpl implements UserManager {
     public Map<String, Object> sentUserCode(String user_name) throws MessageException, IOException{
         Map<String,Object> map = new HashMap<String, Object>();
 
-        if(userMapper.selectUserByName(user_name)!=null){
-            return null;
-        }else {
             String randomNo = RandomNumber.createRandom() + "";
             SentMsgUtil.sentUserCode("您的验证码是" + randomNo, user_name);
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -132,7 +129,7 @@ public class UserManagerImpl implements UserManager {
         }
 
 
-    }
+
 
     @Override
     public Map<String, Object> backUserPwd(String user_name, String user_pwd, String user_code) {
@@ -203,6 +200,11 @@ public class UserManagerImpl implements UserManager {
     @Override
     public void updateUserOfPhoto(int user_id, String photo_url) {
         userMapper.updateUserOfPhoto(user_id,photo_url);
+    }
+
+    @Override
+    public User selectUserByName(String user_name) {
+        return userMapper.selectUserByName(user_name);
     }
 
 }

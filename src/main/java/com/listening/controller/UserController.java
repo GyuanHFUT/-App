@@ -89,8 +89,17 @@ public class UserController {
     public Map<String, Object> sentUserCode(@RequestParam(value = "user_name") String user_name) throws IOException {
         //Map<String, Object> map = new HashMap<String, Object>();
 
-             return userManager.sentUserCode(user_name);
+        if (userManager.selectUserByName(user_name) != null) {
+            return null;
+        } else {
+            return userManager.sentUserCode(user_name);
+        }
+    }
 
+    @RequestMapping(value = "/sentCodeOfBack", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> sentCodeOfBack(@RequestParam(value = "user_name") String user_name) throws IOException {
+        return userManager.sentUserCode(user_name);
     }
 
     @RequestMapping(value = "/backUserPwd", method = RequestMethod.POST)

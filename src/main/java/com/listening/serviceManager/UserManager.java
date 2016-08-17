@@ -1,5 +1,7 @@
 package com.listening.serviceManager;
 
+import com.listening.domain.User;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -25,4 +27,6 @@ public interface UserManager {
     Map<String,Object> showSentence();
 
     void updateUserOfPhoto(int user_id, String photo_url);
+
+    User selectUserByName(String user_name);
 }
