@@ -111,17 +111,27 @@ public class UserManagerImpl implements UserManager {
     }
 
     @Override
-    public void sentUserCode(String user_name) throws MessageException, IOException{
-        String randomNo = RandomNumber.createRandom()+"";
-        SentMsgUtil.sentUserCode("您的验证码是"+randomNo, user_name);
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
-        long sentMsgTime = System.currentTimeMillis();
-        //msgMap.put("success",true);
-        //msgMap.put("randomNo", randomNo);
-        session.setAttribute("sentMsgTime", sentMsgTime);
-        session.setAttribute("randomNo", randomNo);
-        //return msgMap;
+    public Map<String, Object> sentUserCode(String user_name) throws MessageException, IOException{
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        if(userMapper.selectUserByName(user_name)!=null){
+            return null;
+        }else {
+            String randomNo = RandomNumber.createRandom() + "";
+            SentMsgUtil.sentUserCode("您的验证码是" + randomNo, user_name);
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            long sentMsgTime = System.currentTimeMillis();
+            //msgMap.put("success",true);
+            //msgMap.put("randomNo", randomNo);
+            session.setAttribute("sentMsgTime", sentMsgTime);
+            session.setAttribute("randomNo", randomNo);
+
+            map.put("success", true);
+            return map;
+        }
+
+
     }
 
     @Override
