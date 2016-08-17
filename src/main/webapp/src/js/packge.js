@@ -124,6 +124,12 @@ function shoucang(){
                                        text: '取消',
                                    },
                                    {
+                                       text: '注册',
+                                       onClick: function() {
+                                           $.router.load("../pages/register.html");
+                                       }
+                                   },
+                                   {
                                        text: '登录',
                                        onClick: function() {
                                            var user = {"user_name":$("#modal-phonenumeber").val(), "user_pwd":$("#modal-password").val()};
