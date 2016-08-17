@@ -131,6 +131,12 @@ public class UserController {
     @ResponseBody
     public Map<String,Object> cancelUser(){
         Map<String,Object> map = new HashMap<String, Object>();
+        User user = SessionUtils.getCurrentUser();
+        if(user==null){
+            map.put("success",true);
+            map.put("msg","您还未登录！");
+            return map;
+        }
         SessionUtils.resetSession("user");
         map.put("success",true);
         map.put("msg","退出登录成功！");
