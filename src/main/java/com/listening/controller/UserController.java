@@ -73,6 +73,7 @@ public class UserController {
         }
         map.put("success",true);
         map.put("msg","头像上传成功！");
+        map.put("photo_url",photo_url);
         return map;
     }
 
