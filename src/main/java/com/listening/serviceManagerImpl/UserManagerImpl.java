@@ -115,7 +115,7 @@ public class UserManagerImpl implements UserManager {
         Map<String,Object> map = new HashMap<String, Object>();
 
             String randomNo = RandomNumber.createRandom() + "";
-            SentMsgUtil.sentUserCode("您的验证码是" + randomNo, user_name);
+            SentMsgUtil.sentUserCode("【物联网实验室】欢迎使用唤醒听力APP，您的手机验证码是" + randomNo+"。本条信息无需回复", user_name);
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             HttpSession session = request.getSession();
             long sentMsgTime = System.currentTimeMillis();
