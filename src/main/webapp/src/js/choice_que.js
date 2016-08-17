@@ -99,8 +99,9 @@ function myFunction(){
         success : function(data){
             console.log(data);
             if(data.success){
-                history.go(0);
+                $.toast(data.msg);
+                $('.panel-left').find('#form1 img').attr('src',data.photo_url);
             }else{
-                console.log(data.msg)}
+                $.toast(data.msg)}
         }
     })}
