@@ -2,11 +2,11 @@ CACHE MANIFEST
 # 2016-8-16 v1.0.0   
 ../css/*
 ../js/*
-./lib/icon4.css
-./lib/SUI-Mobile-dev/css/sm.min.css
-./lib/SUI-Mobile-dev/js/zepto.js
-./lib/SUI-Mobile-dev/js/sm.min.js
-./lib/SUI-Mobile-dev/js/sm.js
+../lib/icon4/iconfont.css
+../lib/SUI-Mobile-dev/css/sm.min.css
+../lib/SUI-Mobile-dev/js/zepto.js
+../lib/SUI-Mobile-dev/js/sm.min.js
+../lib/SUI-Mobile-dev/js/sm.js
 
 NETWORK:  
 
