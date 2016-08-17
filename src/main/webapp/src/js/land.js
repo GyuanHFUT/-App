@@ -52,7 +52,7 @@ $(document).ready(function () {
         var account = $("#account2").val();
                  $.ajax({
                   type: 'post',
-                  url: '/JuniorHearing/user/sentUserCode',
+                  url: '/JuniorHearing/user/sentCodeOfBack',
                   data:{
                     "user_name":account
                      } ,
