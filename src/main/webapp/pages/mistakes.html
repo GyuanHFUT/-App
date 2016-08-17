@@ -16,9 +16,19 @@
 <div class="page-group " >
     <!-- 你的html代码 -->
     <div id="handlebars" >
-        <div class="page"  style="display:none"></div>
+        <div class="page">
+            <header class="bar bar-nav">
+                <a href="/JuniorHearing/user/showUserMessage" class=" pull-left"><i class="icon iconfont"></i></a>
+                <span class="title"> 我的错题</span>
+            </header>
+            <div class="content content-padded">
+                <h4>你还没有错题哦，快去做题吧!<a href="/JuniorHearing/user/showUserMessage">返回</a></h4>
+            </div>
+        </div>
     </div>
     <div class="page" id ="exam" style="display:none">${exam}</div>
+    <!--<div class="page" id ="exam" style="display:none">${exam}</div>-->
+
 </div>
 <div class="popup">
     <header class="bar bar-nav close-popup">
