@@ -79,7 +79,7 @@ $(document).ready(function () {
                     $.router.load("../pages/choice_que.html");
                 }
                 else {
-                    $.toast(data.msg);
+                    $.toast("您还未登录！");
                 }
             }
         })
