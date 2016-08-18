@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $.init();
     ////上传头像
-    // sessionStorage.islogin = false;
-    sessionStorage.islogin = judgment2();
+   var islogin = judgment2();
+    sessionStorage.islogin = islogin;
     console.log( sessionStorage.islogin);
 
 //每日一句
