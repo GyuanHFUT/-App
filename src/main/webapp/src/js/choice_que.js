@@ -2,9 +2,9 @@ $(document).ready(function () {
     $.init();
     ////上传头像
     var islogin = judgment2();
+    sessionStorage.islogin =islogin;
+    console.log( sessionStorage.islogin);
 
-    sessionStorage.name="asd";
-    console.log(sessionStorage.name);
 //每日一句
     $.ajax({
         type: 'get',
