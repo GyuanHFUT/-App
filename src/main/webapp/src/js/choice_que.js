@@ -22,6 +22,13 @@ $(document).ready(function () {
             url: '/JuniorHearing/user/showUserMessage',
             success: function (data) {
                 console.log(data);
+                // name = JSON.parse(name);
+                //     $('.panel-left').find('.login').hide();
+                //     $('.panel-left').find('#nickname').css('display','inline-block').show();
+                //     $('.panel-left').find('#nickname span').html(name.user_nickname);
+                //     if(name.photo_url){
+                //         $('.panel-left').find('#form1 img').attr('src',name.photo_url);
+                //     };
             }
         });
     }
