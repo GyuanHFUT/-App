@@ -1,14 +1,17 @@
 CACHE MANIFEST  
-# 2016-8-16 v1.0.0   
+# 2016-8-16 v1.0.0
 
+CACHE:
 css/choice_que.css
 lib/icon4/iconfont.css
 lib/SUI-Mobile-dev/css/sm.min.css
 lib/SUI-Mobile-dev/js/zepto.js
 lib/SUI-Mobile-dev/js/sm.min.js
 lib/SUI-Mobile-dev/js/sm.js
+lib/handlebars/handlebars-v3.0.1.js
 
 NETWORK:  
+*
 
 FALLBACK:  
 404.html  
