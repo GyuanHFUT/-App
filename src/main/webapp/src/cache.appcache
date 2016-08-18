@@ -3,6 +3,9 @@ CACHE MANIFEST
 
 CACHE:
 css/choice_que.css
+css/exercise.css
+css/simulation_common.css
+js/exercise1.js
 lib/icon4/iconfont.css
 lib/SUI-Mobile-dev/css/sm.min.css
 lib/SUI-Mobile-dev/js/zepto.js

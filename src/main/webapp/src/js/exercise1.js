@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-    console.log(sessionStorage.name);
   $.ajax({        //获取题目的json数据
         type: 'get',
         url: '/JuniorHearing/word/showAllWord',
