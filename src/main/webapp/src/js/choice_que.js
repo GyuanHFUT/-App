@@ -3,15 +3,7 @@ $(document).ready(function () {
     ////上传头像
     var islogin = judgment2();
     console.log(islogin);
-
-    //$("#form1 img").tap(function() {
-    //    if (islogin) {
-    //    $("#file").click();
-    //    $("#file").click();
-    //}
-    //})
-    //每日一句渲染
-
+//每日一句
     $.ajax({
         type: 'get',
         url: '/JuniorHearing/user/sendUserDay',
@@ -22,19 +14,28 @@ $(document).ready(function () {
             $("#day_word").html(myTemplate(data));
         }
     });
+    if(islogin){
+        $.ajax({
+            type: 'get',
+            url: '/JuniorHearing/user/showUserMessage',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    }
     //侧边栏点击控制事件
-    var name = $('.panel-left').find('#exam').html();
-    if (name !== '${exam}') {
-        console.log(name);
-        name = JSON.parse(name);
-        $('.panel-left').find('.login').hide();
-        $('.panel-left').find('#nickname').css('display','inline-block').show();
-        $('.panel-left').find('#nickname span').html(name.user_nickname);
-        if(name.photo_url){
-            $('.panel-left').find('#form1 img').attr('src',name.photo_url);
-        };
-
-    };
+    // var name = $('.panel-left').find('#exam').html();
+    // if (name !== '${exam}') {
+    //     console.log(name);
+    //     name = JSON.parse(name);
+    //     $('.panel-left').find('.login').hide();
+    //     $('.panel-left').find('#nickname').css('display','inline-block').show();
+    //     $('.panel-left').find('#nickname span').html(name.user_nickname);
+    //     if(name.photo_url){
+    //         $('.panel-left').find('#form1 img').attr('src',name.photo_url);
+    //     };
+    //
+    // };
     $('.panel-left .control p').tap(function () {
         $(this).addClass('active').siblings().removeClass('active');
     })
