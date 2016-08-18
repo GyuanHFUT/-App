@@ -262,7 +262,7 @@ for (var i = s - 1; i >= 0; i--) {
 //登陆检测
 function judgment(name,words,url,islogin){
     $(name).tap(function(){
-                if(!islogin){
+                if(islogin !=="true"){
                     $.confirm(words+'需要登录，是否登陆?',
                         function () {
                             $.router.load("../pages/land.html");

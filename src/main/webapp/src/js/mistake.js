@@ -201,7 +201,7 @@ $(document).ready(function(){
         audio[t].pause();
     }
     //收藏的页面功能实现
-    shoucang();
+    shoucang(sessionStorage.islogin);
     //ajax事件的学习，需要用这个做一些事情
 
 })

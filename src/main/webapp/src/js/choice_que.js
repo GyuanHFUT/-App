@@ -2,8 +2,6 @@ $(document).ready(function () {
     $.init();
     ////上传头像
    sessionStorage.islogin = judgment2();
-
-
 //每日一句
     $.ajax({
         type: 'get',
@@ -86,7 +84,6 @@ $(document).ready(function () {
                 if (data.success) {
                     $.toast(data.msg);
                     location.reload();
-                    // $.router.load("../pages/choice_que.html");
                 }
                 else {
                     $.toast("您还未登录！");
