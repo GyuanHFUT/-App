@@ -135,8 +135,8 @@ public class UserController {
 
     @RequestMapping(value = "/showUserMessage")
     @ResponseBody
-    public Map<String, Object> showUserMessage(){
-        Map<String, Object> map = new HashMap<String, Object>();
+    public User showUserMessage(){
+        //Map<String, Object> map = new HashMap<String, Object>();
         User user = SessionUtils.getCurrentUser();
         if(user==null){
             return null;
@@ -148,8 +148,8 @@ public class UserController {
         //String exam = jsonObject.toString();
         //logger.info(exam);
         //return new ModelAndView("choice_que","exam",exam);
-        map.put("user",user1);
-        return map;
+
+        return user1;
     }
 
 
