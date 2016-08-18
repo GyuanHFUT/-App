@@ -48,8 +48,8 @@ $(document).ready(function () {
             var zong=(flag-1);//获取总题数
             var panduan;//
             tiHuanZong (zong);
-            var islogin = judgment2();
-            select(dui,cuo,zong,islogin);
+
+            select(dui,cuo,zong,sessionStorage.islogin);
             shoucang();  //收藏部分！
             xiangjie();//详解打开和关闭
 

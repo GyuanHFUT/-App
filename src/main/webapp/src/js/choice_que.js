@@ -2,7 +2,9 @@ $(document).ready(function () {
     $.init();
     ////上传头像
     var islogin = judgment2();
-    console.log(islogin);
+
+    sessionStorage.name="asd";
+    console.log(sessionStorage.name);
 //每日一句
     $.ajax({
         type: 'get',
@@ -19,7 +21,6 @@ $(document).ready(function () {
             type: 'get',
             url: '/JuniorHearing/user/showUserMessage',
             success: function (data) {
-                console.log(data);
             }
         });
     }

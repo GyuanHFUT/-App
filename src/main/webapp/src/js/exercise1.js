@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    console.log(sessionStorage.name);
   $.ajax({        //获取题目的json数据
         type: 'get',
         url: '/JuniorHearing/word/showAllWord',
@@ -42,8 +43,8 @@ $(document).ready(function () {
                 var dui=0;
                 var cuo=0;
                 var zong=data.length;//获取总题数
-                var islogin = judgment2();
-                select(dui,cuo,zong,islogin);
+
+                select(dui,cuo,zong,sessionStorage.islogin);
                 tiHuanZong (zong);
                 shoucang();  //收藏部分！
                 xiangjie();//详解打开和关闭
