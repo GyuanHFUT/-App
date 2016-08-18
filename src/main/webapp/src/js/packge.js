@@ -49,7 +49,7 @@ function  select(dui,cuo,zong,islogin){
              cuo++;
              zong--;
              console.log(listen_id);
-             if (islogin){
+             if (islogin=="true"){
                  $.ajax({
                      type: 'get',
                      async: false,
@@ -88,7 +88,6 @@ function  select(dui,cuo,zong,islogin){
 function shoucang(){
  $(".shoucang").tap(function(){
       var  listen_id=$(this).attr('shoucangid');
-     console.log(listen_id);
       var that=this;
       if ($(this).hasClass('active')) 
           {
@@ -143,7 +142,8 @@ function shoucang(){
                                                    if(data.success){
                                                        $.alert("登陆成功!");
                                                        islogin=true;
-                                                       $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                                                       sessionStorage.islogin =true;
+                                                       //$("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
                                                        return islogin;
                                                    }
                                                    else{
@@ -167,7 +167,7 @@ function shoucang(){
                   }
                }
                },
-            }) 
+            })
       }
     })
 }
@@ -286,7 +286,7 @@ function judgment2(islogin){
             async: false,
             success: function (data){
                 if(data=="login"){
-                    islogin=null;
+                    islogin=false;
                 }else{
                     islogin=true;
                 }
