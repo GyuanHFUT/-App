@@ -65,7 +65,7 @@ $(document).ready(function(){
     // $('.page').find('.weida').html(data.length);
     $(".weida").find('strong').html(len);
     selects(dui,cuo,zong);
-    shoucang();  //收藏部分！
+    shoucang(sessionStorage.islogin);  //收藏部分！
     xiangjie();//详解打开和关闭
 
 // 点击事件

@@ -85,10 +85,9 @@ function  select(dui,cuo,zong,islogin){
         }})
 }
 //收藏
-function shoucang(){
+function shoucang(islogin){
  $(".shoucang").tap(function(){
       var  listen_id=$(this).attr('shoucangid');
-     console.log(listen_id);
       var that=this;
       if ($(this).hasClass('active')) 
           {
@@ -108,11 +107,7 @@ function shoucang(){
                   })          
       }
       else{
-        $.ajax({
-              type: 'get',
-              url: "/JuniorHearing/collect/addCollect/"+listen_id,
-              success: function(data){
-               if(data=="login"){
+               if(islogin=="false"){
                    $.confirm('收藏功能需要登录，是否登陆?',
                        function () {
                            $.modal({
@@ -143,6 +138,7 @@ function shoucang(){
                                                    if(data.success){
                                                        $.alert("登陆成功!");
                                                        islogin=true;
+                                                       sessionStorage.islogin =true;
                                                        //$("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
                                                        return islogin;
                                                    }
@@ -166,8 +162,6 @@ function shoucang(){
                      $.toast(data.msg);
                   }
                }
-               },
-            }) 
       }
     })
 }
