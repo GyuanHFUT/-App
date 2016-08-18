@@ -1,5 +1,8 @@
 $(document).ready(function () {
           $.init();
+    $("#account").attr("value",localStorage.localaccount);
+    $("#upwd").attr("value",localStorage.localpwd);
+
         $("#send").tap(function () {
         var account = $("#account").val();
         var pwd = $("#upwd").val();

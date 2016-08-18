@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    $.init();
-    ////上传头像
-   sessionStorage.islogin = judgment2();
+
 //每日一句
+
     $.ajax({
         type: 'get',
         url: '/JuniorHearing/user/sendUserDay',
@@ -13,12 +12,16 @@ $(document).ready(function () {
             $("#day_word").html(myTemplate(data));
         }
     });
+    ////上传头像
+    sessionStorage.islogin = judgment2();
     if(sessionStorage.islogin == "true"){
         $.ajax({
             type: 'get',
             url: '/JuniorHearing/user/showUserMessage',
             success: function (data) {
                 console.log(data);
+                localStorage.localaccount=data.user_name;
+                localStorage.localpwd=data.user_pwd;
                 // name = JSON.parse(name);
                     $('.panel-left').find('.login').hide();
                     $('.panel-left').find('#nickname').css('display','inline-block').show();
@@ -29,6 +32,9 @@ $(document).ready(function () {
             }
         });
     }
+    $.init();
+
+
     //侧边栏点击控制事件
     // var name = $('.panel-left').find('#exam').html();
     // if (name !== '${exam}') {
