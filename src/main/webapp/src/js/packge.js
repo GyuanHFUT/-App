@@ -286,7 +286,7 @@ function judgment2(islogin){
             async: false,
             success: function (data){
                 if(data=="login"){
-                    islogin=false;
+                    islogin=null;
                 }else{
                     islogin=true;
                 }
