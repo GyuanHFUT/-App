@@ -72,9 +72,9 @@ $(document).ready(function () {
                     $.toast("已经是第一题了")
                 }
             })
-            if(islogin){
-                $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
-            }
+            //if(islogin){
+            //    $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+            //}
             box($audio);      //盒子切换
         },
   })    
