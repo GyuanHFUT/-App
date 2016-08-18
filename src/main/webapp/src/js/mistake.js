@@ -67,7 +67,7 @@ $(document).ready(function(){
     selects(dui,cuo,zong);
     shoucang();  //收藏部分！
     xiangjie();//详解打开和关闭
-
+    cancel_wrong();//取消错题
 // 点击事件
 // $('input').focus(function(){
     // if($("input").blur(function(){
@@ -200,22 +200,24 @@ $(document).ready(function(){
     function audio_paused(audio,t){
         audio[t].pause();
     }
-    //ajax事件的学习，需要用这个做一些事情
-    cancel_wrong();
+
     function cancel_wrong(){
-        var data =$('.cancel').attr('wrong_id');
-        console.log(data);
-        // var data ={wrong_id:wrong_id};
         $('.cancel').tap(function(){
+            var data =$(this).attr('wrong_id');
+            console.log(data);
             var that =this;
             $.ajax({
                 type:'post',
-                url:'/JuniorHearing/mistake/deleteMistake/'+'data',
+                url:'/JuniorHearing/mistake/deleteMistake/'+data,
                 success:function(data){
-                    // $(that).addClass('active');
-                    console.log(data);
+                    if(data.success){
+                        $(that).addClass('active');
+                        $.toast("改错题成功移出错题集！");
+                        console.log(data);
+                    }else{
+                        $.toast(data.msg);
+                    }
                 }
-
             })
         })
     }
