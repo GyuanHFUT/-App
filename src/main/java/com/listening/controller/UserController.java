@@ -121,7 +121,7 @@ public class UserController {
         return userManager.showSentence();
     }
 
-    @RequestMapping(value = "/showUserMessage")
+/*  @RequestMapping(value = "/showUserMessage")
     public ModelAndView showUserMessage(){
         User user = SessionUtils.getCurrentUser();
         logger.info("进入该方法："+user.getUser_name());
@@ -131,7 +131,27 @@ public class UserController {
         String exam = jsonObject.toString();
         logger.info(exam);
         return new ModelAndView("choice_que","exam",exam);
+    }*/
+
+    @RequestMapping(value = "/showUserMessage")
+    @ResponseBody
+    public Map<String, Object> showUserMessage(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        User user = SessionUtils.getCurrentUser();
+        if(user==null){
+            return null;
+        }
+        logger.info("进入该方法："+user.getUser_name());
+        String user_name = user.getUser_name();
+        User user1 = userManager.selectUserByName(user_name);
+        //JSONObject jsonObject = JSONObject.fromObject(user1);
+        //String exam = jsonObject.toString();
+        //logger.info(exam);
+        //return new ModelAndView("choice_que","exam",exam);
+        map.put("user",user1);
+        return map;
     }
+
 
     @RequestMapping(value = "/cancelUser")
     @ResponseBody
