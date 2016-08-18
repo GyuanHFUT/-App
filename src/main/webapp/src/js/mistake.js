@@ -200,7 +200,6 @@ $(document).ready(function(){
     function audio_paused(audio,t){
         audio[t].pause();
     }
-
     //ajax事件的学习，需要用这个做一些事情
 
 })
