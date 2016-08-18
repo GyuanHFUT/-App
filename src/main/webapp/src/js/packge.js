@@ -49,7 +49,7 @@ function  select(dui,cuo,zong,islogin){
              cuo++;
              zong--;
              console.log(listen_id);
-             if (islogin){
+             if (islogin=="true"){
                  $.ajax({
                      type: 'get',
                      async: false,
@@ -143,7 +143,7 @@ function shoucang(){
                                                    if(data.success){
                                                        $.alert("登陆成功!");
                                                        islogin=true;
-                                                       $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                                                       //$("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
                                                        return islogin;
                                                    }
                                                    else{
@@ -286,7 +286,7 @@ function judgment2(islogin){
             async: false,
             success: function (data){
                 if(data=="login"){
-                    islogin=null;
+                    islogin=false;
                 }else{
                     islogin=true;
                 }
