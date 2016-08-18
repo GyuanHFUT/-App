@@ -85,7 +85,7 @@ function  select(dui,cuo,zong,islogin){
         }})
 }
 //收藏
-function shoucang(islogin){
+function shoucang(){
  $(".shoucang").tap(function(){
       var  listen_id=$(this).attr('shoucangid');
       var that=this;
@@ -107,7 +107,11 @@ function shoucang(islogin){
                   })          
       }
       else{
-               if(islogin=="false"){
+        $.ajax({
+              type: 'get',
+              url: "/JuniorHearing/collect/addCollect/"+listen_id,
+              success: function(data){
+               if(data=="login"){
                    $.confirm('收藏功能需要登录，是否登陆?',
                        function () {
                            $.modal({
@@ -162,6 +166,8 @@ function shoucang(islogin){
                      $.toast(data.msg);
                   }
                }
+               },
+            })
       }
     })
 }

@@ -62,7 +62,7 @@ $(document).ready(function () {
             tiHuanZong (zong);
 
             select(dui,cuo,zong,sessionStorage.islogin);
-            shoucang(sessionStorage.islogin);  //收藏部分！
+            shoucang();  //收藏部分！
             xiangjie();//详解打开和关闭
             $('.yinpinicon').tap(function(){
                 $(this).find('.playn').toggle();
