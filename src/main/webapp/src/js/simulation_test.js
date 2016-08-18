@@ -1,7 +1,6 @@
 
 $(document).ready(function(){
     console.log( sessionStorage.islogin);
-        $.init();
         var fm =3,
             lm = 0,
             fs = 0,
@@ -32,24 +31,29 @@ $(document).ready(function(){
                         //不满足条件执行{{else}}部分
                         return options.inverse(this);
                     }
-            });
-            var myTemplate = Handlebars.compile($("#myTemplate").html());
-            $("#handlebars").html(myTemplate(data));
-            var box = Handlebars.compile($("#box").html());
-            $("#box_li").html(box(data));
-
-        }
-
-      });
+                });
+                var myTemplate = Handlebars.compile($("#myTemplate").html());
+                $("#handlebars").html(myTemplate(data));
+                var box = Handlebars.compile($("#box").html());
+                $("#box_li").html(box(data));
+               }
+           });
+    $.init();
+    console.log(datas);
             var len = $('.page').length-2;
             var inputlist = $($('.page')[len]).find('input');
             time = $('.time');
             timing();
-            setInterval(checkTime,1000);
+    var audio = $('.audion');
+    var flexbox = $('.flex');
+    var myaudio = $('.yinpin audio');
+    myaudio.oncanplay = $.alert('音频已加载完成,听力考试正式开始', function () {
+        setInterval(checkTime,1000);
+        audio_play(audio);
+    });
             //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
-            var audio = $('.audion');
-            var flexbox = $('.flex');
-            audio_play(audio);
+
+            // audio_play(audio);
             if(flexbox.length==26){
                 for(var n=27;n<31;n++){
                     $('#box_li').append('<li class="flex">'+n+'</li> ');
