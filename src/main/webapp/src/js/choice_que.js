@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $.init();
     ////上传头像
-    var islogin = judgment2();
-    sessionStorage.islogin =islogin;
+    // sessionStorage.islogin = false;
+    sessionStorage.islogin = judgment2();
     console.log( sessionStorage.islogin);
 
 //每日一句
@@ -23,12 +23,12 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 // name = JSON.parse(name);
-                //     $('.panel-left').find('.login').hide();
-                //     $('.panel-left').find('#nickname').css('display','inline-block').show();
-                //     $('.panel-left').find('#nickname span').html(name.user_nickname);
-                //     if(name.photo_url){
-                //         $('.panel-left').find('#form1 img').attr('src',name.photo_url);
-                //     };
+                    $('.panel-left').find('.login').hide();
+                    $('.panel-left').find('#nickname').css('display','inline-block').show();
+                    $('.panel-left').find('#nickname span').html(data.user.user_nickname);
+                    if(data.user.photo_url){
+                        $('.panel-left').find('#form1 img').attr('src',data.user.photo_url);
+                    };
             }
         });
     }
@@ -54,10 +54,10 @@ $(document).ready(function () {
             $.hidePreloader();
         }, 2000);
     });
-    judgment('#simulation', '模板测试功能', '../pages/simulation_test.html#1',islogin);
-    judgment('.collect', '收藏功能', '/JuniorHearing/collect/showCollectByUser',islogin);
-    judgment('.mistakes', '错题功能', '/JuniorHearing/mistake/showMistakeByUser',islogin);
-    judgment('#form1 img', '上传头像功能', '1',islogin);
+    judgment('#simulation', '模板测试功能', '../pages/simulation_test.html#1',sessionStorage.islogin);
+    judgment('.collect', '收藏功能', '/JuniorHearing/collect/showCollectByUser',sessionStorage.islogin);
+    judgment('.mistakes', '错题功能', '/JuniorHearing/mistake/showMistakeByUser',sessionStorage.islogin);
+    judgment('#form1 img', '上传头像功能', '1',sessionStorage.islogin);
     //注销账号，移至设置页面
     // $('.panel-left .Logout').tap(function(){
     //     $.ajax({
@@ -86,7 +86,8 @@ $(document).ready(function () {
                 console.log(data);
                 if (data.success) {
                     $.toast(data.msg);
-                    $.router.load("../pages/choice_que.html");
+                    location.reload();
+                    // $.router.load("../pages/choice_que.html");
                 }
                 else {
                     $.toast("您还未登录！");
