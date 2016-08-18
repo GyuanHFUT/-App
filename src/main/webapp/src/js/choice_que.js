@@ -16,11 +16,12 @@ $(document).ready(function () {
             $("#day_word").html(myTemplate(data));
         }
     });
-    if(islogin){
+    if(sessionStorage.islogin){
         $.ajax({
             type: 'get',
             url: '/JuniorHearing/user/showUserMessage',
             success: function (data) {
+                console.log(data);
             }
         });
     }
