@@ -22,7 +22,7 @@
                 <span class="title"> 我的收藏</span>
             </header>
             <div class="content content-padded">
-                <h4>你还没有收藏哦，快去做题吧!<a href="/JuniorHearing/user/showUserMessage">返回</a></h4>
+                <h4>你还没有收藏哦，快去做题吧!<a href="../pages/choice_que.html">返回</a></h4>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
     {{#each this}}
     <div class="page {{first}}" id="{{addOne @index}}" curr="{{addOne @index}}">
         <header class="bar bar-nav">
-            <a href="/JuniorHearing/user/showUserMessage" class=" pull-left"><i class="icon iconfont">&#xe63f;</i></a>
+            <a href="/JuniorHearing/pages/choice_que.html" class=" pull-left"><i class="icon iconfont">&#xe63f;</i></a>
             <span class="title">{{listen_name}}</span>
             <div class="yinpin">
                 <audio src="{{radio_url}}" preload="preload" class="audion">您的浏览器不支持音频播放。</audio>
@@ -68,7 +68,7 @@
 
 
         <nav class="bar bar-tab">
-            <a class="tab-item external shoucang {{listen_collect}}" href="#" shoucangid="{{listen_id}}">
+            <a class="tab-item external shoucang active " href="#" shoucangid="{{listen_id}}">
                 <i class="icon iconfont">&#xe625;</i>
                 <span class="tab-label">收藏</span>
             </a>

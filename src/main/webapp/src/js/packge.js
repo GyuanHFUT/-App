@@ -49,7 +49,7 @@ function  select(dui,cuo,zong,islogin){
              cuo++;
              zong--;
              console.log(listen_id);
-             if (islogin){
+             if (islogin=="true"){
                  $.ajax({
                      type: 'get',
                      async: false,
@@ -88,7 +88,6 @@ function  select(dui,cuo,zong,islogin){
 function shoucang(){
  $(".shoucang").tap(function(){
       var  listen_id=$(this).attr('shoucangid');
-     console.log(listen_id);
       var that=this;
       if ($(this).hasClass('active')) 
           {
@@ -143,7 +142,8 @@ function shoucang(){
                                                    if(data.success){
                                                        $.alert("登陆成功!");
                                                        islogin=true;
-                                                       $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                                                       sessionStorage.islogin =true;
+                                                       //$("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
                                                        return islogin;
                                                    }
                                                    else{
@@ -167,7 +167,7 @@ function shoucang(){
                   }
                }
                },
-            }) 
+            })
       }
     })
 }
@@ -262,7 +262,7 @@ for (var i = s - 1; i >= 0; i--) {
 //登陆检测
 function judgment(name,words,url,islogin){
     $(name).tap(function(){
-                if(!islogin){
+                if(islogin !=="true"){
                     $.confirm(words+'需要登录，是否登陆?',
                         function () {
                             $.router.load("../pages/land.html");

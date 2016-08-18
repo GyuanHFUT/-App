@@ -174,7 +174,7 @@ $(document).ready(function(){
                 });
             $(".return").on('tap',function(){
                 $.confirm('正在考试中，退出此次考试将无效', function () {
-                    $.router.load("/JuniorHearing/user/showUserMessage");
+                    $.router.load("/JuniorHearing/pages/choice_que.html");
                 });
 
             });
