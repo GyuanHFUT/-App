@@ -1,4 +1,5 @@
 $(document).ready(function(){
+   
     var data = $('#exam').html();
         data = JSON.parse(data);
         console.log(data);

@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+    console.log( sessionStorage.islogin);
         $.init();
         var fm =3,
             lm = 0,

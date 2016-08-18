@@ -83,7 +83,7 @@ $(document).ready(function () {
                 console.log(data);
                 if(data.success){
                     $.alert("密码重置成功!", function () {
-                    $.router.load("/JuniorHearing/user/showUserMessage");
+                    $.router.load("/JuniorHearing/pages/choice_que.html");
                 })}  
                 else{
                    $.alert(data.msg);
