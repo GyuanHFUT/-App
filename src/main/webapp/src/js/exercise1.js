@@ -88,9 +88,9 @@ $(document).ready(function () {
                     }
                 })
                 box($audio);
-                if(islogin){
-                    $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
-                }
+                //if(islogin){
+                //    $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+                //}
             }else{
                 $toast("抽题失败！")
             }

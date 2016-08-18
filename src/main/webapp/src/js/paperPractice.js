@@ -149,9 +149,9 @@ $(document).ready(function(){
                 }
             })
 
-            if(islogin){
-                $("header a").attr("href",'/JuniorHearing/user/showUserMessage');
-            }
+            //if(islogin){
+            //    $("header a").attr("href",'/JuniorHearing/user/showUserMessage');
+            //}
 
             var flexbox = $('.flex');
             if(flexbox.length==26){

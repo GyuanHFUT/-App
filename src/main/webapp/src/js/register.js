@@ -85,7 +85,7 @@ $(document).ready(function () {
                 console.log(data);
                 if(data.success){
                     $.alert("注册成功!", function () {
-                    $.router.load("/JuniorHearing/user/showUserMessage");
+                    $.router.load("../pages/choice_que.html");
                 })}  
                 else{
                    $.alert("验证码错误，请重试!");

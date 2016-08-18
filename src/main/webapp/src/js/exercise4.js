@@ -120,9 +120,9 @@ $(document).ready(function () {
                     $.toast("已经是第一题了")
                 }
             })
-            if(islogin){
-                $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
-            }
+            //if(islogin){
+            //    $("header a").attr("href",'/JuniorHearing/user/showUserMessage#practice');
+            //}
             $(".flex").tap(function(){//点击盒子切换页面
                 var flag=$(this).html();
                 $('.flex:eq('+(flag-1)+')'). addClass('current')
