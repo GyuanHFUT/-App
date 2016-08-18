@@ -66,8 +66,8 @@ $(document).ready(function(){
             var dui=0;
             var cuo=0;
             var zong=30;//获取总题数
-            var islogin = judgment2();
-            select(dui,cuo,zong,islogin);
+
+            select(dui,cuo,zong,sessionStorage.islogin);
             shoucang();  //收藏部分！
             xiangjie();//详解打开和关闭
 
