@@ -79,8 +79,9 @@ $(document).ready(function(){
                 var nextNext=$(this).parent().parent().parent().next().next().find("audio");
                 console.log($flag.attr("src")==prev.attr("src"));
                 if ($flag.attr("src")==prev.attr("src")) {
-                    icon();
+
                     if ($(".bofang")[0]) {
+                        icon();
                         $(".bofang")[0].paused?$(".bofang")[0].play():$(".bofang")[0].pause();
                     }else{
                         $.toast("请从本题第一小题开始播放!");
