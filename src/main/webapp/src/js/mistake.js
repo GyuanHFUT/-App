@@ -201,5 +201,23 @@ $(document).ready(function(){
         audio[t].pause();
     }
     //ajax事件的学习，需要用这个做一些事情
+    cancel_wrong();
+    function cancel_wrong(){
+        var data =$('.cancel').attr('wrong_id');
+        console.log(data);
+        // var data ={wrong_id:wrong_id};
+        $('.cancel').tap(function(){
+            var that =this;
+            $.ajax({
+                type:'post',
+                url:'/JuniorHearing/mistake/deleteMistake/'+'data',
+                success:function(data){
+                    // $(that).addClass('active');
+                    console.log(data);
+                }
+
+            })
+        })
+    }
 
 })

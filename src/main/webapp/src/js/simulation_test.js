@@ -52,7 +52,6 @@ $(document).ready(function(){
         audio_play(audio);
     });
             //页面翻转======这里的触摸还有一些问题，左滑的时候呈现出来的是右滑效果，是用了它原生的路由跳转的结果。
-
             // audio_play(audio);
             if(flexbox.length==26){
                 for(var n=27;n<31;n++){
@@ -157,16 +156,24 @@ $(document).ready(function(){
             //点击弹框26-30题改变
             $(".open-popup").tap(function(){
                 console.log(inputlist);
+                var pop=0;
                 $(inputlist).each(function(){
                     var text = $(this).val();
                     var test = $(this).parent().html();
                         test = test.split('.',1)-1;
                     if(text !==''){
+                        pop++;
                         $('.flex:eq('+test+')').addClass('poplook');
                     }else{
                         $('.flex:eq('+test+')').removeClass('poplook');
                     }
                 });
+                test_num=test_num+pop;
+                zong = zong-pop;
+                $(".test_num").find('strong').html(test_num);
+                $(".weida").find('strong').html(zong);
+                test_num =test_num-pop;
+                zong = zong+pop;
             });
             //交卷部分
             $(document).on('tap','.confirm-ok', function () {
