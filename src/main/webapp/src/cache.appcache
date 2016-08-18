@@ -1,6 +1,7 @@
 CACHE MANIFEST  
 # 2016-8-16 v1.0.0   
 
+CACHE:
 css/choice_que.css
 lib/icon4/iconfont.css
 lib/SUI-Mobile-dev/css/sm.min.css
@@ -9,6 +10,6 @@ lib/SUI-Mobile-dev/js/sm.min.js
 lib/SUI-Mobile-dev/js/sm.js
 
 NETWORK:  
-
+*
 FALLBACK:  
 404.html  
