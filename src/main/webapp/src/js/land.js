@@ -14,7 +14,7 @@ $(document).ready(function () {
                 if(data.success){   
 
                   $.alert("登陆成功!", function () {
-                    $.router.load("/JuniorHearing/user/showUserMessage");
+                    $.router.load("../pages/choice_que.html");
         })}
                   else{
                      $.alert(data.msg);
