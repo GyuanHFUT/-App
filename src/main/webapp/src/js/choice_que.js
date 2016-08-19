@@ -34,20 +34,6 @@ $(document).ready(function () {
     }
     $.init();
 
-
-    //侧边栏点击控制事件
-    // var name = $('.panel-left').find('#exam').html();
-    // if (name !== '${exam}') {
-    //     console.log(name);
-    //     name = JSON.parse(name);
-    //     $('.panel-left').find('.login').hide();
-    //     $('.panel-left').find('#nickname').css('display','inline-block').show();
-    //     $('.panel-left').find('#nickname span').html(name.user_nickname);
-    //     if(name.photo_url){
-    //         $('.panel-left').find('#form1 img').attr('src',name.photo_url);
-    //     };
-    //
-    // };
     $('.panel-left .control p').tap(function () {
         $(this).addClass('active').siblings().removeClass('active');
     })
@@ -61,24 +47,7 @@ $(document).ready(function () {
     judgment('.collect', '收藏功能', '/JuniorHearing/collect/showCollectByUser',sessionStorage.islogin);
     judgment('.mistakes', '错题功能', '/JuniorHearing/mistake/showMistakeByUser',sessionStorage.islogin);
     judgment('#form1 img', '上传头像功能', '1',sessionStorage.islogin);
-    //注销账号，移至设置页面
-    // $('.panel-left .Logout').tap(function(){
-    //     $.ajax({
-    //         type:'get',
-    //         url:'/JuniorHearing/user/deleteUser',
-    //         success:function(data){
-    //             // var data = JSON.parse(data);
-    //             console.log(data);
-    //             if(data.success){
-    //                 $.toast(data.msg);
-    //                 $.router.load("../pages/choice_que.html");
-    //             }
-    //             else{
-    //                 $.toast(data.msg);
-    //             }
-    //         }
-    //     })
-    // })
+    
     //退出登陆
     $('.panel-left .Logout').tap(function () {
         $.ajax({
