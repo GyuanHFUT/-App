@@ -3,7 +3,7 @@ $(document).ready(function(){
         type: 'get',
         url: '/JuniorHearing/exam/showExamOfListen',
         success: function(data){
-            console.log(data);
+            console.log(data[25]);
             data[0].first="page-current";
             data[0].box = "current";
             data[15].tishi="请听下面一段对话，回答第16至第17小题。";
