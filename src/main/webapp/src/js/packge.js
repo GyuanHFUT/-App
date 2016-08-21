@@ -271,7 +271,7 @@ function judgment(name,words,url,islogin){
                     if(url=="1"){
                         console.log("heihei");
                         $("#file").click();
-                        $("#file").click();
+                      //  $("#file").click();
                         //$("#file").trigger("click");
                     }else{
                     $.router.load(url);}

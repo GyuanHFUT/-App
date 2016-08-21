@@ -10,6 +10,7 @@ $(document).ready(function(){
             data[17].tishi = "请听下面一段对话，回答第18至第20小题。";
             data[20].tishi = "请听下面一段对话，回答第21至第25小题。";
             for (var t = 0; t < data.length; t++) {
+
                 var n = data[t].listen_type,
                     title = data[t].listen_question,
                     s = data[t].listen_style;
@@ -196,30 +197,8 @@ $(document).ready(function(){
                 }
             })
             //点击弹框26-30题改变
-            var len = $('.page').length - 2;
-            var inputlist = $($('.page')[len]).find('input');
-            //点击弹框26-30题改变
-            $(".open-popup").tap(function () {
-                var pop = 0;
-                $(inputlist).each(function () {
-                    var text = $(this).val();
-                    var test = $(this).parent().html();
-                    test = test.split('.', 1) - 1;
-                    if (text !== '') {
-                        pop++;
-                        $('.flex:eq(' + test + ')').addClass('poplook');
-                    } else {
-                        $('.flex:eq(' + test + ')').removeClass('poplook');
-                    }
-                });
-                test_num = test_num + pop;
-                zong = zong - pop;
-                $(".test_num").find('strong').html(test_num);
-                $(".weida").find('strong').html(zong);
-                test_num = test_num - pop;
-                zong = zong + pop;
-            });
         }
 
-  });
-});
+    })
+})
+
