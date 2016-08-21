@@ -70,5 +70,4 @@ public class MistakeController {
         map.put("msg", "成功取消！");
         return map;
     }
-
 }

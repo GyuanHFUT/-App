@@ -212,13 +212,40 @@ $(document).ready(function(){
                 success:function(data){
                     if(data.success){
                         $(that).addClass('active');
-                        $.toast("改错题成功移出错题集！");
+                        $.toast("该错题成功移出错题集！");
                         console.log(data);
                     }else{
                         $.toast(data.msg);
                     }
                 }
             })
+        })
+    }
+    // poptest();
+    //错题部分提交填空题没有完成呢
+    function poptest(){
+        var  tranlist = $('.page').find('.trans_input');
+        var paindex = $(tranlist).parents('.page').attr('curr');
+        // $(this).attr('curr');
+        // if()
+        $('.open-popup').tap(function(){
+
+            // for()
+            $(inputlist).each(function(){
+                var text = $(this).val();
+                if(text !==''){
+
+                    var inlist = $(paindex).find('input');
+                    $(inlist).each(function(){
+
+                    })
+                    console.log(paindex);
+                    // pop++;
+                    $('.flex:eq('+paindex+')').addClass('poplook');
+                }else{
+                    // $('.flex:eq('+test+')').removeClass('poplook');
+                }
+            });
         })
     }
 
