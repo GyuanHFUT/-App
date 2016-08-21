@@ -43,7 +43,7 @@ $(document).ready(function () {
             $.hidePreloader();
         }, 2000);
     });
-    judgment('#simulation', '模板测试功能', '../pages/simulation_test.html#1',sessionStorage.islogin);
+    judgment('#simulation', '模拟测试功能', '../pages/simulation_test.html#1',sessionStorage.islogin);
     judgment('.collect', '收藏功能', '/JuniorHearing/collect/showCollectByUser',sessionStorage.islogin);
     judgment('.mistakes', '错题功能', '/JuniorHearing/mistake/showMistakeByUser',sessionStorage.islogin);
     judgment('#form1 img', '上传头像功能', '1',sessionStorage.islogin);
