@@ -198,5 +198,5 @@ $(document).ready(function(){
                 test_num =test_num-pop;
                 zong = zong+pop;
             });
-            }
+            }})
 })
