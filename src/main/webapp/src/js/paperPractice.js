@@ -177,18 +177,27 @@ $(document).ready(function(){
             //点击弹框26-30题改变
             var len = $('.page').length-2;
             var inputlist = $($('.page')[len]).find('input');
+            //点击弹框26-30题改变
             $(".open-popup").tap(function(){
-
+                var pop=0;
                 $(inputlist).each(function(){
                     var text = $(this).val();
                     var test = $(this).parent().html();
-                    test = test.split('.',1)-1;
+                        test = test.split('.',1)-1;
                     if(text !==''){
+                        pop++;
                         $('.flex:eq('+test+')').addClass('poplook');
                     }else{
                         $('.flex:eq('+test+')').removeClass('poplook');
                     }
                 });
+                test_num=test_num+pop;
+                zong = zong-pop;
+                $(".test_num").find('strong').html(test_num);
+                $(".weida").find('strong').html(zong);
+                test_num =test_num-pop;
+                zong = zong+pop;
+            });
             });
         },
   })

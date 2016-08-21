@@ -20,8 +20,8 @@ $(document).ready(function () {
             url: '/JuniorHearing/user/showUserMessage',
             success: function (data) {
                 console.log(data);
-                localStorage.localaccount=data.user_name;
-                localStorage.localpwd=data.user_pwd;
+                // localStorage.localaccount=data.user_name;
+                // localStorage.localpwd=data.user_pwd;
                 // name = JSON.parse(name);
                     $('.panel-left').find('.login').hide();
                     $('.panel-left').find('#nickname').css('display','inline-block').show();
