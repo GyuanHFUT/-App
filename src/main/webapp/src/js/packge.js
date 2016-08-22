@@ -294,3 +294,26 @@ function judgment2(islogin){
         })
     return islogin;
 }
+//信息转换判断
+function information(data){
+    console.log(data);
+    var input=$(".trans_input input");
+    console.log(input[0]);
+    $(input).blur(function(){
+        console.log($(this).val());
+        var n = parseInt($(this).parent().text());
+        var i = (n-1)%5;
+        if($(this).val()==data[i]){
+            $('.flex:eq('+(n-1)+')').addClass("popdui");
+        }else{
+            $('.flex:eq('+(n-1)+')').addClass("popcuo");
+        }
+    })
+    $(input).focus(function(){
+        var n = parseInt($(this).parent().text());
+        $('.flex:eq('+(n-1)+')'). addClass('current')
+            .siblings().removeClass('current');
+    })
+
+
+}

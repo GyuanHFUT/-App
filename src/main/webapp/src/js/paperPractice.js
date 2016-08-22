@@ -3,7 +3,6 @@ $(document).ready(function(){
         type: 'get',
         url: '/JuniorHearing/exam/showExamOfListen',
         success: function(data){
-            console.log(data[25]);
             data[0].first="page-current";
             data[0].box = "current";
             data[15].tishi="请听下面一段对话，回答第16至第17小题。";
@@ -95,18 +94,7 @@ $(document).ready(function(){
 
                 }
             });
-            //$('.yinpinicon').tap(function(){
-            //    var $flag=$(this).parent().find('audio');
-            //    var prev=$(this).parent().parent().parent();
-            //    var now=$(prev).attr("id");
-            //    console.log(now);
-            //    if (now>16) {};
-            //    $(this).find('.playn').toggle();
-            //    $(this).find('.stopn').toggle();
-            //    var $flag=$(this).parent().find('audio');
-            //    var flag=$flag[0];        //转化成dom对象！
-            //    flag.paused ? flag.play() : flag.pause();
-            //});
+
             var $audio=$('audio');
             stopNow($audio);
             //滑动翻页部分
@@ -175,6 +163,7 @@ $(document).ready(function(){
                 }
             })
             //点击弹框26-30题改变
-
+            var information_answer=[data[25].first_answer,data[25].second_answer,data[25].three_answer,data[25].four_answer,data[25].five_answer]
+            information(information_answer);
             }})
 })
