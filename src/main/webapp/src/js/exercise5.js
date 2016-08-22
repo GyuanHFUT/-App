@@ -37,7 +37,7 @@ $(document).ready(function () {
                 flag.toggle();
                 var input=parents.find("input");
                  var x = $(this).attr("value")-1;
-                 console.log(information_answer[x]);
+                 $('.flex:eq('+x+')').addClass("popdui");
                 for(var i=0;i<input.length;i++){
                     if($(input[i]).val()==information_answer[x][i]){
                         $(input[i]).addClass("duicolor");
