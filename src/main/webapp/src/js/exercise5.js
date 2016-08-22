@@ -7,14 +7,10 @@ $(document).ready(function () {
           var data=data.blanks;
             data[0].xx="page-current";
             data[0].box = "current";
-
+            var information_answer=new Array(data.length);
             for (var t = 0; t <=data.length - 1 ; t++) {
-                s = data[t].listen_style;
-                switch(s){
-                    case "1":data[t]["selects_type"]="words";break;
-                    case "2":data[t]["selects_type"]="imgs"; break;
-                    case "3":data[t]["selects_type"]=""; break;
-                }; }
+                 information_answer[t]=[data[t].first_answer,data[t].second_answer,data[t].three_answer,data[t].four_answer,data[t].five_answer]
+                 }
 
             var myTemplate = Handlebars.compile($("#myTemplate").html());
             var myTemplate2 = Handlebars.compile($("#myTemplate2").html());
@@ -32,9 +28,32 @@ $(document).ready(function () {
             var cuo=0;
             var zong=data.length;//获取总题数
             tiHuanZong(zong);
-            select(dui,cuo,zong,sessionStorage.islogin);
             shoucang();  //收藏部分！
-            xiangjie();//详解打开和关闭
+            $(".open-xiangjie").click(function(){
+             if(!$(this).hasClass("yidian")){
+                $(this).addClass("yidian");
+                var parents  =  $(this).parent().parent();
+                var flag=parents.find(".xiangjie-wapper");
+                flag.toggle();
+                var input=parents.find("input");
+                 var x = $(this).attr("value")-1;
+                 console.log(information_answer[x]);
+                for(var i=0;i<input.length;i++){
+                    if($(input[i]).val()==information_answer[x][i]){
+                        $(input[i]).addClass("duicolor");
+                    }else{
+                        $(input[i]).addClass("cuocolor");
+                    }
+                }
+                $(this).addClass('active');
+                if ($(flag).css("display")==='none') {
+                    $(this).removeClass('active');
+                }
+                else{
+                    $(this).addClass('active');
+                };
+             }
+            })
             $('.yinpinicon').tap(function(){
                 $(this).find('.playn').toggle();
                 $(this).find('.stopn').toggle();
@@ -76,63 +95,5 @@ $(document).ready(function () {
             //}
             box($audio);      //盒子切换
         },
-  })    
-    //var data = [
-    //                      {
-    //                         "listen_id":1,
-    //                         "listen_type":"3",
-    //                         "listen_title":"",
-    //                         "option_A": "sunshine",
-    //                         "option_B": "big",
-    //                         "option_C": "two",
-    //                         "listen_answer":"B",
-    //                         "radio_url":"../src/audio/1.mp3",
-    //                         "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-    //                         "yuanwen":"Is there anything wrong with you,Peter?",
-    //                         "listen_style":"1",
-    //                         "form_url":"../src/img/encouragement.jpg"
-    //                     },
-    //                      {
-    //                          "listen_id":2,
-    //                          "listen_type":2,
-    //                         "listen_title":"What will the weather be like nowday?",
-    //                          "option_A": "sunshine",
-    //                          "option_B": "big",
-    //                          "option_C": "boy",
-    //                          "listen_answer":"B",
-    //                          "radio_url":"../src/audio/1.mp3",
-    //                          "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-    //                          "yuanwen":"Is there anything wrong with you,Peter?",
-    //                           "form_url":"../src/img/encouragement.jpg",
-    //                         "listen_style":"1"
-    //                      },
-    //                      {
-    //                          "listen_id":3,
-    //                          "listen_type":2,
-    //                         "listen_title":"What will the weather be like tomorrow?",
-    //                         "option_A": "../src/img/encouragement.jpg",
-    //                         "option_B": "../src/img/encouragement.jpg",
-    //                         "option_C": "../src/img/encouragement.jpg",
-    //                          "listen_answer":"C",
-    //                          "radio_url":"../src/audio/1.mp3",
-    //                          "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-    //                          "yuanwen":"Is there anything wrong with you,Peter?",
-    //                           "form_url":"../src/img/encouragement.jpg",
-    //                            "listen_style":"2"
-    //                      },
-    //                      { "listen_id":4,
-    //                         "listen_type":2,
-    //                         "listen_title":"What will the weather be like future?",
-    //                         "option_A": "../src/img/encouragement.jpg",
-    //                         "option_B": "../src/img/encouragement.jpg",
-    //                         "option_C": "../src/img/encouragement.jpg",
-    //                         "listen_answer":"A",
-    //                         "radio_url":"../src/audio/1.mp3",
-    //                         "answer":"违反道路交通安全法，违反法律法规即为内联的新页面违法行为。官方已无违章/违规的说法。",
-    //                         "yuanwen":"Is there anything wrong with you,Peter?",
-    //                          "form_url":"../src/img/encouragement.jpg",
-    //                         "listen_style":"2"
-    //                     }
-    //                   ] ;
-
+  })
 })

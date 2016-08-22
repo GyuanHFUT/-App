@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="../src/cache.appcache">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,9 +67,9 @@
                             <i class="icon iconfont">&#xe606;</i>
                             <span class="tab-label yeshu">{{addOne @index}}/1110</span>
                         </a>
-                        <a class="tab-item external open-xiangjie" href="#">
-                            <i class="icon iconfont">&#xe608;</i>
-                            <span class="tab-label">打开详解</span>
+                        <a class="tab-item external open-xiangjie" value="{{addOne @index}}" href="#">
+                            <i class="icon iconfont">&#xe600;</i>
+                            <span class="tab-label">完成本题</span>
                         </a>
                     </nav>
 
@@ -77,12 +77,12 @@
                 <div class="content content-padded">
                        <h3>{{addOne @index}}.信息转换</h3>
                   <div class="show_trans"><img src="{{form_url}}"></div>
-                  <div class="selects {{selects_type}} " value="{{addOne @index}}" shoucangid="{{listen_id}}">
-                  <div class="trans_input">26.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">27.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">28.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">29.<input type="text" name="test_answer" value=""/></div>
-                  <div class="trans_input">30.<input type="text" name="test_answer" value=""/></div>
+                  <div class="selects" value="{{addOne @index}}" shoucangid="{{listen_id}}">
+                  <div class="trans_input">1.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">2.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">3.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">4.<input type="text" name="test_answer" value=""/></div>
+                  <div class="trans_input">5.<input type="text" name="test_answer" value=""/></div>
                   </div>
                    
                         <div class="xiangjie-wapper">
@@ -101,7 +101,7 @@
      </script>
      <script type="text/x-handlebars-template" id="myTemplate2">
        {{#each this}}
-                      <li class="flex {{box}}">{{addOne @index}}</li>
+               <li class="flex {{box}}">{{addOne @index}}</li>
       {{/each}}  
     </script>  
    <script type='text/javascript' src='../src/js/packge.js' charset='utf-8'></script> 

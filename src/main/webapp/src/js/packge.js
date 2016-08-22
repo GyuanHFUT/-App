@@ -186,7 +186,6 @@ function xiangjie(){
          var parents  =  $(this).parent().parent();
          var flag=parents.find(".xiangjie-wapper");
           flag.toggle();
-          // console.log($(flag).css("display")==='none');
           $(this).addClass('active');
           if ($(flag).css("display")==='none') {
                $(this).removeClass('active');
@@ -194,10 +193,7 @@ function xiangjie(){
           else{
                 $(this).addClass('active');
            };
-         // parents.find(".xiangjie-wapper").toggle(
-         //        ,
-         //        function(){ $(this).removeClass('active')}
-         //    ) 
+
     })
 }
 //盒子切换事件
