@@ -37,7 +37,7 @@ $(document).ready(function () {
                 flag.toggle();
                 var input=parents.find("input");
                  var x = $(this).attr("value")-1;
-                 $('.flex:eq('+x+')').addClass("popdui");
+                console.log(information_answer[0])
                 for(var i=0;i<input.length;i++){
                     if($(input[i]).val()==information_answer[x][i]){
                         $(input[i]).addClass("duicolor");
@@ -45,6 +45,13 @@ $(document).ready(function () {
                         $(input[i]).addClass("cuocolor");
                     }
                 }
+
+                console.log(parents.find(".duicolor").length)
+                 if(parents.find(".duicolor").length==5){
+                 $('.flex:eq('+x+')').addClass("popdui");
+                }else {
+                     $('.flex:eq('+x+')').addClass("popcuo");
+                 }
                 $(this).addClass('active');
                 if ($(flag).css("display")==='none') {
                     $(this).removeClass('active');
