@@ -47,10 +47,16 @@ $(document).ready(function () {
                 }
 
                 console.log(parents.find(".duicolor").length)
+                 zong--;
+                 $(".weida").find('b').html(zong);
                  if(parents.find(".duicolor").length==5){
                  $('.flex:eq('+x+')').addClass("popdui");
+                     dui++;
+                     $(".dadui").find('b').html(cuo);
                 }else {
                      $('.flex:eq('+x+')').addClass("popcuo");
+                     cuo++;
+                     $(".dacuo").find('b').html(cuo);
                  }
                 $(this).addClass('active');
                 if ($(flag).css("display")==='none') {
