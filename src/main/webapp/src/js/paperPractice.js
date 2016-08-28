@@ -190,7 +190,7 @@ $(document).ready(function(){
             //点击弹框26-30题改变
 
             var information_answer=[data[25].first_answer,data[25].second_answer,data[25].three_answer,data[25].four_answer,data[25].five_answer]
-            information(information_answer);
+            information(dui, cuo, zong,information_answer);
             }})
 
 })

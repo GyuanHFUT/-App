@@ -291,7 +291,7 @@ function judgment2(islogin){
     return islogin;
 }
 //信息转换判断
-function information(data){
+function information(dui,cuo,zong,data){
     console.log(data);
     var input=$(".trans_input input");
     console.log(input[0]);
@@ -299,10 +299,16 @@ function information(data){
         console.log($(this).val());
         var n = parseInt($(this).parent().text());
         var i = (n-1)%5;
+        zong--;
+        $(".weida").find('b').html(zong);
         if($(this).val()==data[i]){
             $('.flex:eq('+(n-1)+')').addClass("popdui");
+            dui++;
+            $(".dadui").find('b').html(dui);
         }else{
             $('.flex:eq('+(n-1)+')').addClass("popcuo");
+            cuo++;
+            $(".dacuo").find('b').html(cuo);
         }
     })
     $(input).focus(function(){
